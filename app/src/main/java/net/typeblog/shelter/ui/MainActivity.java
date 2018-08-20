@@ -43,8 +43,17 @@ public class MainActivity extends AppCompatActivity {
         } else {
             if (!mStorage.getBoolean(LocalStorageManager.PREF_IS_DEVICE_ADMIN)) {
                 mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
-                // TODO: Navigate to the Device Admin settings page
-                throw new IllegalStateException("TODO");
+                // Navigate to the Device Admin settings page
+                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                intent.putExtra(
+                        DevicePolicyManager.EXTRA_DEVICE_ADMIN,
+                        new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class));
+                intent.putExtra(
+                        DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+                        getString(R.string.device_admin_explanation));
+                startActivity(intent);
+                finish();
+                return;
             }
 
             if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
