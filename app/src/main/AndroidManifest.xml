@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.typeblog.shelter">
 
+    <uses-feature android:name="android.software.device_admin" android:required="true"/>
+    <uses-feature android:name="android.software.managed_users" android:required="true"/>
+    <!--<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS"/>-->
+
     <application
         android:name=".ShelterApplication"
         android:allowBackup="false"
@@ -17,6 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.DummyActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="net.typeblog.shelter.action.START_SERVICE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <receiver android:name=".receivers.ShelterDeviceAdminReceiver"
             android:label="@string/device_admin_label"
             android:description="@string/device_admin_desc"
@@ -27,6 +38,9 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+        <service android:name=".services.ShelterService"
+                android:exported="true"
+                android:permission="android.permission.BIND_DEVICE_ADMIN"/>
     </application>
 
 </manifest>
