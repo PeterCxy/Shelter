@@ -185,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, getString(R.string.device_admin_toast), Toast.LENGTH_LONG).show();
                 finish();
-                return;
             }
         }
     }
