@@ -42,6 +42,8 @@
                 android:resource="@xml/device_admin" />
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.DEVICE_ADMIN_DISABLED" />
+                <action android:name="android.app.action.PROVISION_MANAGED_PROFILE" />
             </intent-filter>
         </receiver>
 
