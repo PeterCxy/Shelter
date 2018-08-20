@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindWorkService() {
         // Bind to the ShelterService in work profile
-        Intent intent = new Intent("net.typeblog.shelter.action.START_SERVICE");
+        Intent intent = new Intent(DummyActivity.START_SERVICE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         try {
             Utility.transferIntentToProfile(this, intent);

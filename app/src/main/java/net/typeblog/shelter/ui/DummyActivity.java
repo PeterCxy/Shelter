@@ -12,7 +12,14 @@ import android.support.annotation.Nullable;
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.util.Utility;
 
+// DummyActivity does nothing about presenting any UI
+// It is a wrapper over various different operations
+// that might be required to perform across user profiles
+// which is only possible through Intents that are in
+// the crossProfileIntentFilter
 public class DummyActivity extends Activity {
+    public static final String START_SERVICE = "net.typeblog.shelter.action.START_SERVICE";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +30,13 @@ public class DummyActivity extends Activity {
             Utility.enforceWorkProfilePolicies(this);
         }
 
+        Intent intent = getIntent();
+        if (START_SERVICE.equals(intent.getAction())) {
+            actionStartService();
+        }
+    }
+
+    private void actionStartService() {
         ((ShelterApplication) getApplication()).bindShelterService(new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {

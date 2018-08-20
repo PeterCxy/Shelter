@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.ui.MainActivity;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class Utility {
         // Allow cross-profile intents for START_SERVICE
         manager.addCrossProfileIntentFilter(
                 adminComponent,
-                new IntentFilter("net.typeblog.shelter.action.START_SERVICE"),
+                new IntentFilter(DummyActivity.START_SERVICE),
                 DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
     }
 }
