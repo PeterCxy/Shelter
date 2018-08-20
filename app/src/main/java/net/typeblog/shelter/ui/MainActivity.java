@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
             Toast.makeText(this, getString(R.string.work_profile_not_found), Toast.LENGTH_LONG).show();
             finish();
+            return;
         }
         startActivityForResult(intent, REQUEST_START_SERVICE_IN_WORK_PROFILE);
     }
