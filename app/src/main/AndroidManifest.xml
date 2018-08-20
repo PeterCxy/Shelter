@@ -14,20 +14,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- The main activity for UI -->
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- An activity that wraps intents that cross the profile boundary -->
+        <!-- Needed because only cross-profile Activity intents are supported -->
         <activity android:name=".ui.DummyActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
-                <action android:name="net.typeblog.shelter.action.START_SERVICE"/>
+                <action android:name="net.typeblog.shelter.action.START_SERVICE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <!-- Implementation of the device policy controller -->
         <receiver android:name=".receivers.ShelterDeviceAdminReceiver"
             android:label="@string/device_admin_label"
             android:description="@string/device_admin_desc"
@@ -38,6 +44,9 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+
+        <!-- Core service running on both the main profile and the work profile -->
+        <!-- Actions like cloning / freezing apps will be performed by this service -->
         <service android:name=".services.ShelterService"
                 android:exported="true"
                 android:permission="android.permission.BIND_DEVICE_ADMIN"/>
