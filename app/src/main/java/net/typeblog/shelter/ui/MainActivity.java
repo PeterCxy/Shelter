@@ -1,8 +1,11 @@
 package net.typeblog.shelter.ui;
 
 import android.app.admin.DevicePolicyManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -153,14 +156,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_PROVISION_PROFILE && resultCode == RESULT_OK) {
-            // Provisioning finished.
-            // Set the HAS_SETUP flag
-            mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
-
-            // Initialize the app just as if the activity was started.
-            // TODO: Should not initialize here. It is possible that the process is not finished yet.
-            //initializeApp();
+        if (requestCode == REQUEST_PROVISION_PROFILE) {
+            if (resultCode == RESULT_OK) {
+                // The sync part of the setup process is completed
+                // We register a receiver to wait for the async part
+                registerReceiver(new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
+                        bindServices();
+                    }
+                }, new IntentFilter(DevicePolicyManager.ACTION_MANAGED_PROFILE_PROVISIONED));
+            } else {
+                Toast.makeText(this,
+                        getString(R.string.work_profile_provision_failed), Toast.LENGTH_LONG).show();
+                finish();
+            }
         } else if (requestCode == REQUEST_START_SERVICE_IN_WORK_PROFILE && resultCode == RESULT_OK) {
             // TODO: Set the service in work profile as foreground to keep it alive
             Bundle extra = data.getBundleExtra("extra");
