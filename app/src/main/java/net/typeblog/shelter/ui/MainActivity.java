@@ -173,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         } else if (requestCode == REQUEST_START_SERVICE_IN_WORK_PROFILE && resultCode == RESULT_OK) {
-            // TODO: Set the service in work profile as foreground to keep it alive
             Bundle extra = data.getBundleExtra("extra");
             IBinder binder = extra.getBinder("service");
             mServiceWork = IShelterService.Stub.asInterface(binder);
