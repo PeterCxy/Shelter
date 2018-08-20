@@ -20,6 +20,7 @@ import net.typeblog.shelter.util.Utility;
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PROVISION_PROFILE = 1;
     private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
+    private static final int REQUEST_SET_DEVICE_ADMIN = 3;
 
     private LocalStorageManager mStorage = null;
     private DevicePolicyManager mPolicyManager = null;
@@ -51,19 +52,23 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(
                         DevicePolicyManager.EXTRA_ADD_EXPLANATION,
                         getString(R.string.device_admin_explanation));
-                startActivity(intent);
-                finish();
+                startActivityForResult(intent, REQUEST_SET_DEVICE_ADMIN);
                 return;
             }
 
-            if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
-                setupProfile();
-            } else {
-                // Initialize the app
-                initializeApp();
-            }
+            init();
         }
 
+    }
+
+    private void init() {
+        if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
+            // If not set up yet, we have to provision the profile first
+            setupProfile();
+        } else {
+            // Initialize the app (start by binding the services)
+            bindServices();
+        }
     }
 
     private void setupProfile() {
@@ -82,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_PROVISION_PROFILE);
     }
 
-    private void initializeApp() {
+    private void bindServices() {
         // Bind to the service provided by this app in main user
         ((ShelterApplication) getApplication()).bindShelterService(new ServiceConnection() {
             @Override
@@ -162,6 +167,15 @@ public class MainActivity extends AppCompatActivity {
             IBinder binder = extra.getBinder("service");
             mServiceWork = IShelterService.Stub.asInterface(binder);
             buildView();
+        } else if (requestCode == REQUEST_SET_DEVICE_ADMIN) {
+            if (resultCode == RESULT_OK) {
+                // Device Admin is now set, go ahead to provisioning (or initialization)
+                init();
+            } else {
+                Toast.makeText(this, getString(R.string.device_admin_toast), Toast.LENGTH_LONG).show();
+                finish();
+                return;
+            }
         }
     }
 }

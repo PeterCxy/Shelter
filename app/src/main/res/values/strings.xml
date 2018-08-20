@@ -2,7 +2,8 @@
     <string name="app_name">Shelter</string>
     <string name="device_admin_label">Shelter</string>
     <string name="device_admin_desc">App Isolation Service</string>
-    <string name="device_admin_explanation">Shelter needs to become Device Admin in order to perform its isolation tasks.</string>
+    <string name="device_admin_explanation">Shelter needs to become Device Admin in order to perform its isolation tasks.</string>\
+    <string name="device_admin_toast">You have to grant Device Admin permission for Shelter to work. Please try again.</string>
     <string name="msg_device_unsupported">Permission is denied or Unsupported device</string>
     <string name="work_profile_not_found">Work profile not found. Please restart the app to re-provision the profile.</string>
 </resources>
