@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else {
             if (!mStorage.getBoolean(LocalStorageManager.PREF_IS_DEVICE_ADMIN)) {
+                mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
                 // TODO: Navigate to the Device Admin settings page
                 throw new IllegalStateException("TODO");
             }
@@ -93,7 +94,14 @@ public class MainActivity extends AppCompatActivity {
         // Bind to the ShelterService in work profile
         Intent intent = new Intent("net.typeblog.shelter.action.START_SERVICE");
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        Utility.transferIntentToProfile(this, intent);
+        try {
+            Utility.transferIntentToProfile(this, intent);
+        } catch (IndexOutOfBoundsException e) {
+            // This exception implies a missing work profile
+            mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
+            Toast.makeText(this, getString(R.string.work_profile_not_found), Toast.LENGTH_LONG).show();
+            finish();
+        }
         startActivityForResult(intent, REQUEST_START_SERVICE_IN_WORK_PROFILE);
     }
 
@@ -116,13 +124,13 @@ public class MainActivity extends AppCompatActivity {
             // For the work instance, we just kill it entirely
             // We don't need it to be awake to do anything useful
             mServiceWork.stopShelterService(true);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             // We are stopping anyway
         }
 
         try {
             mServiceMain.stopShelterService(false);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             // We are stopping anyway
         }
     }

@@ -16,6 +16,10 @@ import java.util.stream.Collectors;
 
 public class Utility {
     // Affiliate an Intent to another profile (i.e. the Work profile that we manage)
+    // This method cares nothing about if the other profile even exists.
+    // When there is no other profile, this method would just simply throw
+    // an IndexOutOfBoundException
+    // which can be caught and resolved.
     public static void transferIntentToProfile(Context context, Intent intent) {
         PackageManager pm = context.getPackageManager();
         List<ResolveInfo> info = pm.queryIntentActivities(intent, 0);
