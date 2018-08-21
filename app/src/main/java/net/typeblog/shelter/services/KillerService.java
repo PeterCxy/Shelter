@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import net.typeblog.shelter.util.Utility;
+
 // KillerService is a dirty fix to the fact that
 // Activities cannot receive any event about their
 // removal from recent tasks.
@@ -31,22 +33,21 @@ public class KillerService extends Service {
     }
 
     @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        if (level >= TRIM_MEMORY_BACKGROUND) {
+            killEverything();
+        }
+    }
+
+    @Override
     public void onTaskRemoved(Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
+        killEverything();
+    }
 
-        // Ensure that all our other services are killed at this point
-        try {
-            mServiceWork.stopShelterService(true);
-        } catch (Exception e) {
-            // We are stopping anyway
-        }
-
-        try {
-            mServiceMain.stopShelterService(false);
-        } catch (Exception e) {
-            // We are stopping anyway
-        }
-
+    private void killEverything() {
+        Utility.killShelterServices(mServiceMain, mServiceWork);
         // Kill this service itself
         stopSelf();
     }

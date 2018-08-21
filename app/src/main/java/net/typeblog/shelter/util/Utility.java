@@ -13,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.ui.MainActivity;
 
@@ -73,5 +74,20 @@ public class Utility {
         drawable.draw(canvas);
 
         return bitmap;
+    }
+
+    public static void killShelterServices(IShelterService serviceMain, IShelterService serviceWork) {
+        // Ensure that all our other services are killed at this point
+        try {
+            serviceWork.stopShelterService(true);
+        } catch (Exception e) {
+            // We are stopping anyway
+        }
+
+        try {
+            serviceMain.stopShelterService(false);
+        } catch (Exception e) {
+            // We are stopping anyway
+        }
     }
 }

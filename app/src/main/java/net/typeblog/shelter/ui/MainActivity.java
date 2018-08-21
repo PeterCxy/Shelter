@@ -179,18 +179,16 @@ public class MainActivity extends AppCompatActivity {
         // to avoid double-free
         stopService(new Intent(this, KillerService.class));
 
-        try {
-            // For the work instance, we just kill it entirely
-            // We don't need it to be awake to do anything useful
-            mServiceWork.stopShelterService(true);
-        } catch (Exception e) {
-            // We are stopping anyway
-        }
+        Utility.killShelterServices(mServiceMain, mServiceWork);
+    }
 
-        try {
-            mServiceMain.stopShelterService(false);
-        } catch (Exception e) {
-            // We are stopping anyway
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        if (level >= TRIM_MEMORY_BACKGROUND) {
+            // We actually do not need to be in the background at all
+            // Just.. do not keep me at all.. please.
+            finish();
         }
     }
 
