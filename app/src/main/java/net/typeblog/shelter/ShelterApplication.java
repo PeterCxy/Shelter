@@ -26,7 +26,13 @@ public class ShelterApplication extends Application {
 
     public void unbindShelterService() {
         if (mShelterServiceConnection != null) {
-            unbindService(mShelterServiceConnection);
+            try {
+                unbindService(mShelterServiceConnection);
+            } catch (Exception e) {
+                // This method call might fail if the service is already unbound
+                // just ignore anything that might happen.
+                // We will be stopping already if this would ever happen.
+            }
         }
 
         mShelterServiceConnection = null;
