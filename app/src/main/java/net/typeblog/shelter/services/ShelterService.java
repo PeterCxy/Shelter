@@ -6,19 +6,26 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.app.admin.DevicePolicyManager;
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
+import net.typeblog.shelter.util.ApplicationInfoWrapper;
+import net.typeblog.shelter.util.Utility;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShelterService extends Service {
     private static final String NOTIFICATION_CHANNEL_ID = "ShelterService";
     private DevicePolicyManager mPolicyManager = null;
     private boolean mIsWorkProfile = false;
+    private PackageManager mPackageManager = null;
     private IShelterService.Stub mBinder = new IShelterService.Stub() {
         @Override
         public void stopShelterService(boolean kill) {
@@ -40,16 +47,42 @@ public class ShelterService extends Service {
         }
 
         @Override
-        public List<ResolveInfo> getApps() {
-            Intent mainIntent = new Intent(Intent.ACTION_MAIN);
-            mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-            return getPackageManager().queryIntentActivities(mainIntent, 0);
+        public void getApps(IGetAppsCallback callback) {
+            new Thread(() -> {
+                List<ApplicationInfoWrapper> list = mPackageManager.getInstalledApplications(PackageManager.MATCH_DISABLED_COMPONENTS)
+                        .stream()
+                        .filter((it) -> !it.packageName.equals(getPackageName()))
+                        .filter((it) -> !it.enabled || mPackageManager.getLaunchIntentForPackage(it.packageName) != null)
+                        .map(ApplicationInfoWrapper::new)
+                        .map((it) -> it.loadLabel(mPackageManager))
+                        .collect(Collectors.toList());
+
+                try {
+                    callback.callback(list);
+                } catch (RemoteException e) {
+                    // Do Nothing
+                }
+            }).start();
+        }
+
+        @Override
+        public void loadIcon(ApplicationInfo info, ILoadIconCallback callback) {
+            new Thread(() -> {
+                Bitmap icon = Utility.drawableToBitmap(info.loadUnbadgedIcon(mPackageManager));
+
+                try {
+                    callback.callback(icon);
+                } catch (RemoteException e) {
+                    // Do Nothing
+                }
+            }).start();
         }
     };
 
     @Override
     public void onCreate() {
         mPolicyManager = getSystemService(DevicePolicyManager.class);
+        mPackageManager = getPackageManager();
         mIsWorkProfile = mPolicyManager.isProfileOwnerApp(getPackageName());
 
         if (mIsWorkProfile) {

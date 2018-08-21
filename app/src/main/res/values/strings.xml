@@ -9,4 +9,7 @@
     <string name="work_profile_provision_failed">Cannot provision work profile. You may try again by restarting Shelter.</string>
     <string name="service_title">Shelter Service</string>
     <string name="service_desc">Shelter is now running &#8230;</string>
+    <string name="fragment_profile_main">Main</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[Frozen] %s</string>
 </resources>

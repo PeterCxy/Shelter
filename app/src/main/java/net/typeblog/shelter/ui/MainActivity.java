@@ -9,6 +9,11 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -32,10 +37,15 @@ public class MainActivity extends AppCompatActivity {
     private IShelterService mServiceMain = null;
     private IShelterService mServiceWork = null;
 
+    // Views
+    private ViewPager mPager = null;
+    private TabLayout mTabs = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setSupportActionBar(findViewById(R.id.main_toolbar));
         mStorage = LocalStorageManager.getInstance();
         mPolicyManager = getSystemService(DevicePolicyManager.class);
 
@@ -124,13 +134,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void buildView() {
         // Finally we can build the view
-        // TODO: Actually implement this method
-        try {
-            android.util.Log.d("MainActivity", "Main profile app count: " + mServiceMain.getApps().size());
-            android.util.Log.d("MainActivity", "Work profile app count: " + mServiceWork.getApps().size());
-        } catch (Exception e) {
+        // Find all the views
+        mPager = findViewById(R.id.main_pager);
+        mTabs = findViewById(R.id.main_tablayout);
 
-        }
+        // Initialize the ViewPager and the tab
+        // All the remaining work will be done in the fragments
+        mPager.setAdapter(new AppListFragmentAdapter(getSupportFragmentManager()));
+        mTabs.setupWithViewPager(mPager);
     }
 
     @Override
@@ -184,6 +195,40 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, getString(R.string.device_admin_toast), Toast.LENGTH_LONG).show();
                 finish();
+            }
+        }
+    }
+
+    private class AppListFragmentAdapter extends FragmentPagerAdapter {
+        AppListFragmentAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            if (i == 0) {
+                return AppListFragment.newInstance(mServiceMain, false);
+            } else if (i == 1) {
+                return AppListFragment.newInstance(mServiceWork, true);
+            } else {
+                return null;
+            }
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int i) {
+            if (i == 0) {
+                return getString(R.string.fragment_profile_main);
+            } else if (i == 1) {
+                return getString(R.string.fragment_profile_work);
+            } else {
+                return null;
             }
         }
     }
