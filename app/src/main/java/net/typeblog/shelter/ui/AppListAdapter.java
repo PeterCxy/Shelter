@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -89,12 +90,16 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
     private Map<String, Bitmap> mIconCache = new HashMap<>();
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
-    AppListAdapter(IShelterService service, Drawable defaultIcon) {
+    private SwipeRefreshLayout mSwipeRefresh;
+
+    AppListAdapter(IShelterService service, Drawable defaultIcon, SwipeRefreshLayout swipeRefresh) {
         mService = service;
         mDefaultIcon = defaultIcon;
+        mSwipeRefresh = swipeRefresh;
     }
 
     void refresh() {
+        mSwipeRefresh.setRefreshing(true);
         mList.clear();
         mIconCache.clear();
 
@@ -103,7 +108,10 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
                 @Override
                 public void callback(List<ApplicationInfoWrapper> apps) {
                     mList.addAll(apps);
-                    mHandler.post(() -> notifyDataSetChanged());
+                    mHandler.post(() -> {
+                        mSwipeRefresh.setRefreshing(false);
+                        notifyDataSetChanged();
+                    });
                 }
             });
         } catch (RemoteException e) {
