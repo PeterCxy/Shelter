@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 registerReceiver(new BroadcastReceiver() {
                     @Override
                     public void onReceive(Context context, Intent intent) {
+                        unregisterReceiver(this); // We only want to receive this once
                         mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
                         bindServices();
                     }
