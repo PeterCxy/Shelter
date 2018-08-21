@@ -49,6 +49,11 @@ public class Utility {
                 adminComponent,
                 new IntentFilter(DummyActivity.START_SERVICE),
                 DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
+
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
+                new IntentFilter(DummyActivity.TRY_START_SERVICE),
+                DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
     }
 
     // From <https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap>

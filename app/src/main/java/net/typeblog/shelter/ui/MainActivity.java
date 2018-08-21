@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PROVISION_PROFILE = 1;
     private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
     private static final int REQUEST_SET_DEVICE_ADMIN = 3;
+    private static final int REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE = 4;
 
     private LocalStorageManager mStorage = null;
     private DevicePolicyManager mPolicyManager = null;
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 mServiceMain = IShelterService.Stub.asInterface(service);
-                bindWorkService();
+                detectWorkProfileAvailability();
             }
 
             @Override
@@ -116,19 +117,32 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void bindWorkService() {
-        // Bind to the ShelterService in work profile
-        Intent intent = new Intent(DummyActivity.START_SERVICE);
+    private void detectWorkProfileAvailability() {
+        // Send a dummy intent to the work profile first
+        // to determine if work mode is enabled.
+        // If work mode is disabled when starting this app, we will receive RESULT_CANCELED
+        // in the activity result.
+        Intent intent = new Intent(DummyActivity.TRY_START_SERVICE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         try {
             Utility.transferIntentToProfile(this, intent);
         } catch (IndexOutOfBoundsException e) {
             // This exception implies a missing work profile
+            // which means that the work profile does not even exist
+            // in the first place.
             mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
             Toast.makeText(this, getString(R.string.work_profile_not_found), Toast.LENGTH_LONG).show();
             finish();
             return;
         }
+        startActivityForResult(intent, REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE);
+    }
+
+    private void bindWorkService() {
+        // Bind to the ShelterService in work profile
+        Intent intent = new Intent(DummyActivity.START_SERVICE);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        Utility.transferIntentToProfile(this, intent);
         startActivityForResult(intent, REQUEST_START_SERVICE_IN_WORK_PROFILE);
     }
 
@@ -182,6 +196,19 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this,
                         getString(R.string.work_profile_provision_failed), Toast.LENGTH_LONG).show();
+                finish();
+            }
+        } else if (requestCode == REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE) {
+            if (resultCode == RESULT_OK) {
+                // RESULT_OK is from DummyActivity. The work profile is enabled!
+                bindWorkService();
+            } else {
+                // In this case, the user has been presented with a prompt
+                // to enable work mode, but we have no means to distinguish
+                // "ok" and "cancel", so the only way is to tell the user
+                // to start again.
+                Toast.makeText(this,
+                        getString(R.string.work_mode_disabled), Toast.LENGTH_LONG).show();
                 finish();
             }
         } else if (requestCode == REQUEST_START_SERVICE_IN_WORK_PROFILE && resultCode == RESULT_OK) {

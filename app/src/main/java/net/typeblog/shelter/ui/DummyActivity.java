@@ -19,6 +19,7 @@ import net.typeblog.shelter.util.Utility;
 // the crossProfileIntentFilter
 public class DummyActivity extends Activity {
     public static final String START_SERVICE = "net.typeblog.shelter.action.START_SERVICE";
+    public static final String TRY_START_SERVICE = "net.typeblog.shelter.action.TRY_START_SERVICE";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +34,11 @@ public class DummyActivity extends Activity {
         Intent intent = getIntent();
         if (START_SERVICE.equals(intent.getAction())) {
             actionStartService();
+        } else if (TRY_START_SERVICE.equals(intent.getAction())) {
+            // Dummy activity with dummy intent won't ever fail :)
+            // This is used for testing if work mode is disabled from MainActivity
+            setResult(RESULT_OK);
+            finish();
         }
     }
 
