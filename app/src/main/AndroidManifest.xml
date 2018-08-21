@@ -54,6 +54,10 @@
         <service android:name=".services.ShelterService"
                 android:exported="true"
                 android:permission="android.permission.BIND_DEVICE_ADMIN"/>
+
+        <!-- A hack service to ensure every ShelterService is killed when App is removed -->
+        <!-- from recent tasks -->
+        <service android:name=".services.KillerService" />
     </application>
 
 </manifest>

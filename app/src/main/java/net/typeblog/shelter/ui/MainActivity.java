@@ -22,6 +22,7 @@ import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IShelterService;
+import net.typeblog.shelter.services.KillerService;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
@@ -146,6 +147,19 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_START_SERVICE_IN_WORK_PROFILE);
     }
 
+    private void startKiller() {
+        // Start the sticky KillerService to kill the ShelterService
+        // for us when we are removed from tasks
+        // This is a dirty hack because no lifecycle events will be
+        // called when task is removed from recents
+        Intent intent = new Intent(this, KillerService.class);
+        Bundle bundle = new Bundle();
+        bundle.putBinder("main", mServiceMain.asBinder());
+        bundle.putBinder("work", mServiceWork.asBinder());
+        intent.putExtra("extra", bundle);
+        startService(intent);
+    }
+
     private void buildView() {
         // Finally we can build the view
         // Find all the views
@@ -161,6 +175,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // If the activity is stopped first, then kill the KillerService
+        // to avoid double-free
+        stopService(new Intent(this, KillerService.class));
 
         try {
             // For the work instance, we just kill it entirely
@@ -215,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
             Bundle extra = data.getBundleExtra("extra");
             IBinder binder = extra.getBinder("service");
             mServiceWork = IShelterService.Stub.asInterface(binder);
+            startKiller();
             buildView();
         } else if (requestCode == REQUEST_SET_DEVICE_ADMIN) {
             if (resultCode == RESULT_OK) {
