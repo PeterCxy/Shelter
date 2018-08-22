@@ -167,7 +167,7 @@ public class AppListFragment extends Fragment {
     void installAppCallback(int result, ApplicationInfoWrapper app, boolean isInstall) {
         if (result == Activity.RESULT_OK) {
             String message = getString(isInstall ? R.string.clone_success : R.string.uninstall_success);
-            message = String.format(message, app.mLabel);
+            message = String.format(message, app.getLabel());
             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             LocalBroadcastManager.getInstance(getContext())
                     .sendBroadcast(new Intent(BROADCAST_REFRESH));

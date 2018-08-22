@@ -57,26 +57,26 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
 
             if (mIndex >= 0) {
                 ApplicationInfoWrapper info = mList.get(mIndex);
-                mPackage.setText(info.mInfo.packageName);
+                mPackage.setText(info.getPackageName());
 
-                if (!info.mInfo.enabled) {
-                    String label = String.format(mLabelDisabled, info.mLabel);
+                if (!info.getEnabled()) {
+                    String label = String.format(mLabelDisabled, info.getLabel());
                     mTitle.setText(label);
                     mView.setBackgroundResource(R.color.disabledAppBackground);
                 } else {
-                    mTitle.setText(info.mLabel);
+                    mTitle.setText(info.getLabel());
                     mView.setBackground(null);
                 }
 
                 // Load the application icon from cache
                 // or populate the cache through the service
-                if (mIconCache.containsKey(info.mInfo.packageName)) {
-                    mIcon.setImageBitmap(mIconCache.get(info.mInfo.packageName));
+                if (mIconCache.containsKey(info.getPackageName())) {
+                    mIcon.setImageBitmap(mIconCache.get(info.getPackageName()));
                 } else {
                     mIcon.setImageDrawable(mDefaultIcon);
 
                     try {
-                        mService.loadIcon(info.mInfo, new ILoadIconCallback.Stub() {
+                        mService.loadIcon(info, new ILoadIconCallback.Stub() {
                             @Override
                             public void callback(Bitmap icon) {
                                 if (index == mIndex) {
@@ -84,7 +84,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
                                 }
 
                                 synchronized (AppListAdapter.class) {
-                                    mIconCache.put(info.mInfo.packageName, icon);
+                                    mIconCache.put(info.getPackageName(), icon);
                                 }
                             }
                         });

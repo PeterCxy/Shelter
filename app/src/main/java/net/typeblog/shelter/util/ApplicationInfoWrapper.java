@@ -21,8 +21,8 @@ public class ApplicationInfoWrapper implements Parcelable {
         }
     };
 
-    public ApplicationInfo mInfo = null;
-    public String mLabel = null;
+    private ApplicationInfo mInfo = null;
+    private String mLabel = null;
 
     private ApplicationInfoWrapper() {}
 
@@ -33,6 +33,31 @@ public class ApplicationInfoWrapper implements Parcelable {
     public ApplicationInfoWrapper loadLabel(PackageManager pm) {
         mLabel = pm.getApplicationLabel(mInfo).toString();
         return this;
+    }
+
+    public String getPackageName() {
+        return mInfo.packageName;
+    }
+
+    public String getLabel() {
+        return mLabel;
+    }
+
+    public String getSourceDir() {
+        return mInfo.sourceDir;
+    }
+
+    // NOTE: This does not relate to the "freezing" feature in Shelter
+    public boolean getEnabled() {
+        return mInfo.enabled;
+    }
+
+    public ApplicationInfo getInfo() {
+        return mInfo;
+    }
+
+    public boolean isSystem() {
+        return (mInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
     }
 
     @Override

@@ -80,9 +80,9 @@ public class ShelterService extends Service {
         }
 
         @Override
-        public void loadIcon(ApplicationInfo info, ILoadIconCallback callback) {
+        public void loadIcon(ApplicationInfoWrapper info, ILoadIconCallback callback) {
             new Thread(() -> {
-                Bitmap icon = Utility.drawableToBitmap(info.loadUnbadgedIcon(mPackageManager));
+                Bitmap icon = Utility.drawableToBitmap(info.getInfo().loadUnbadgedIcon(mPackageManager));
 
                 try {
                     callback.callback(icon);
@@ -94,14 +94,14 @@ public class ShelterService extends Service {
 
         @Override
         public void installApp(ApplicationInfoWrapper app, IAppInstallCallback callback) throws RemoteException {
-            if ((app.mInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+            if (!app.isSystem()) {
                 // Installing a non-system app requires firing up PackageInstaller
                 // Delegate this operation to DummyActivity because
                 // Only it can receive a result
                 Intent intent = new Intent(DummyActivity.INSTALL_PACKAGE);
                 intent.setComponent(new ComponentName(ShelterService.this, DummyActivity.class));
-                intent.putExtra("package", app.mInfo.packageName);
-                intent.putExtra("apk", app.mInfo.sourceDir);
+                intent.putExtra("package", app.getPackageName());
+                intent.putExtra("apk", app.getSourceDir());
 
                 // Send the callback to the DummyActivity
                 Bundle callbackExtra = new Bundle();
@@ -114,12 +114,12 @@ public class ShelterService extends Service {
                     // We can only enable system apps in our own profile
                     mPolicyManager.enableSystemApp(
                             new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
-                            app.mInfo.packageName);
+                            app.getPackageName());
 
                     // Also set the hidden state to false.
                     mPolicyManager.setApplicationHidden(
                             new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
-                            app.mInfo.packageName, false);
+                            app.getPackageName(), false);
 
                     callback.callback(Activity.RESULT_OK);
                 } else {
@@ -130,11 +130,11 @@ public class ShelterService extends Service {
 
         @Override
         public void uninstallApp(ApplicationInfoWrapper app, IAppInstallCallback callback) throws RemoteException {
-            if ((app.mInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+            if (!app.isSystem()) {
                 // Similarly, fire up DummyActivity to do uninstallation for us
                 Intent intent = new Intent(DummyActivity.UNINSTALL_PACKAGE);
                 intent.setComponent(new ComponentName(ShelterService.this, DummyActivity.class));
-                intent.putExtra("package", app.mInfo.packageName);
+                intent.putExtra("package", app.getPackageName());
 
                 // Send the callback to the DummyActivity
                 Bundle callbackExtra = new Bundle();
@@ -148,7 +148,7 @@ public class ShelterService extends Service {
                     // There is no way to reverse the "enableSystemApp" operation here
                     mPolicyManager.setApplicationHidden(
                             new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
-                            app.mInfo.packageName, true);
+                            app.getPackageName(), true);
                     callback.callback(Activity.RESULT_OK);
                 } else {
                     callback.callback(RESULT_CANNOT_INSTALL_SYSTEM_APP);
