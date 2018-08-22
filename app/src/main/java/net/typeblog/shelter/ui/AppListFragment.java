@@ -139,7 +139,8 @@ public class AppListFragment extends Fragment {
                             .installApp(app, new IAppInstallCallback.Stub() {
                                 @Override
                                 public void callback(int result) {
-                                    installAppCallback(result, app);
+                                    getActivity().runOnUiThread(() ->
+                                            installAppCallback(result, app));
                                 }
                             });
                 } catch (RemoteException e) {
