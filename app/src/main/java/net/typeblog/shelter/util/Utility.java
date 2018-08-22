@@ -65,6 +65,7 @@ public class Utility {
         ComponentName adminComponent = new ComponentName(context.getApplicationContext(), ShelterDeviceAdminReceiver.class);
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_APPS);
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES);
+        manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_UNINSTALL_APPS);
     }
 
     // From <https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap>

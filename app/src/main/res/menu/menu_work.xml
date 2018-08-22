@@ -3,4 +3,8 @@
     <item
         android:id="@+id/work_clone_to_main"
         android:title="@string/clone_to_main_profile" />
+
+    <item
+        android:id="@+id/work_uninstall"
+        android:title="@string/uninstall_app" />
 </menu>

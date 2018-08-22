@@ -116,6 +116,39 @@ public class ShelterService extends Service {
                             new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
                             app.mInfo.packageName);
 
+                    // Also set the hidden state to false.
+                    mPolicyManager.setApplicationHidden(
+                            new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
+                            app.mInfo.packageName, false);
+
+                    callback.callback(Activity.RESULT_OK);
+                } else {
+                    callback.callback(RESULT_CANNOT_INSTALL_SYSTEM_APP);
+                }
+            }
+        }
+
+        @Override
+        public void uninstallApp(ApplicationInfoWrapper app, IAppInstallCallback callback) throws RemoteException {
+            if ((app.mInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                // Similarly, fire up DummyActivity to do uninstallation for us
+                Intent intent = new Intent(DummyActivity.UNINSTALL_PACKAGE);
+                intent.setComponent(new ComponentName(ShelterService.this, DummyActivity.class));
+                intent.putExtra("package", app.mInfo.packageName);
+
+                // Send the callback to the DummyActivity
+                Bundle callbackExtra = new Bundle();
+                callbackExtra.putBinder("callback", callback.asBinder());
+                intent.putExtra("callback", callbackExtra);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            } else {
+                if (mIsProfileOwner) {
+                    // This is essentially the same as disabling the system app
+                    // There is no way to reverse the "enableSystemApp" operation here
+                    mPolicyManager.setApplicationHidden(
+                            new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
+                            app.mInfo.packageName, true);
                     callback.callback(Activity.RESULT_OK);
                 } else {
                     callback.callback(RESULT_CANNOT_INSTALL_SYSTEM_APP);

@@ -17,6 +17,9 @@
     <string name="list_item_disabled">[Frozen] %s</string>
     <string name="clone_to_work_profile">Clone to Shelter (Work Profile)</string>
     <string name="clone_to_main_profile">Clone to Main Profile</string>
+    <string name="uninstall_app">Uninstall</string>
     <string name="clone_success">Application "%s" cloned successfully</string>
+    <string name="uninstall_success">Application "%s" uninstalled successfully</string>
     <string name="clone_fail_system_app">Cannot clone system apps to a profile that Shelter has no control of.</string>
+    <string name="uninstall_fail_system_app">Cannot uninstall system apps in a profile that Shelter has no control of.</string>
 </resources>

@@ -131,37 +131,50 @@ public class AppListFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.main_clone_to_work:
             case R.id.work_clone_to_main:
-                // Make a local copy
-                final ApplicationInfoWrapper app = mSelectedApp;
-                mSelectedApp = null;
-                try {
-                    ((MainActivity) getActivity()).getOtherService(mIsRemote)
-                            .installApp(app, new IAppInstallCallback.Stub() {
-                                @Override
-                                public void callback(int result) {
-                                    getActivity().runOnUiThread(() ->
-                                            installAppCallback(result, app));
-                                }
-                            });
-                } catch (RemoteException e) {
-                    // TODO: Maybe tell the user?
-                }
+                installOrUninstall(mSelectedApp, true);
+                return true;
+            case R.id.main_uninstall:
+            case R.id.work_uninstall:
+                installOrUninstall(mSelectedApp, false);
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
     }
 
-    void installAppCallback(int result, ApplicationInfoWrapper app) {
+    void installOrUninstall(final ApplicationInfoWrapper app, final boolean isInstall) {
+        mSelectedApp = null;
+        IAppInstallCallback.Stub callback = new IAppInstallCallback.Stub() {
+            @Override
+            public void callback(int result) {
+                getActivity().runOnUiThread(() ->
+                        installAppCallback(result, app, isInstall));
+            }
+        };
+
+        try {
+            if (isInstall) {
+                ((MainActivity) getActivity()).getOtherService(mIsRemote)
+                        .installApp(app, callback);
+            } else {
+                mService.uninstallApp(app, callback);
+            }
+        } catch (RemoteException e) {
+            // TODO: Maybe tell the user?
+        }
+    }
+
+    void installAppCallback(int result, ApplicationInfoWrapper app, boolean isInstall) {
         if (result == Activity.RESULT_OK) {
-            String message = getString(R.string.clone_success);
+            String message = getString(isInstall ? R.string.clone_success : R.string.uninstall_success);
             message = String.format(message, app.mLabel);
             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             LocalBroadcastManager.getInstance(getContext())
                     .sendBroadcast(new Intent(BROADCAST_REFRESH));
         } else if (result == ShelterService.RESULT_CANNOT_INSTALL_SYSTEM_APP) {
             Toast.makeText(getContext(),
-                    getString(R.string.clone_fail_system_app), Toast.LENGTH_SHORT).show();
+                    getString(isInstall ? R.string.clone_fail_system_app :
+                            R.string.uninstall_fail_system_app), Toast.LENGTH_SHORT).show();
         }
     }
 }

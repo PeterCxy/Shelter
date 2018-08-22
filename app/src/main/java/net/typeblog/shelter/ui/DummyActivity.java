@@ -31,6 +31,7 @@ public class DummyActivity extends Activity {
     public static final String START_SERVICE = "net.typeblog.shelter.action.START_SERVICE";
     public static final String TRY_START_SERVICE = "net.typeblog.shelter.action.TRY_START_SERVICE";
     public static final String INSTALL_PACKAGE = "net.typeblog.shelter.action.INSTALL_PACKAGE";
+    public static final String UNINSTALL_PACKAGE = "net.typeblog.shelter.action.UNINSTALL_PACKAGE";
 
     private static final int REQUEST_INSTALL_PACKAGE = 1;
 
@@ -58,6 +59,8 @@ public class DummyActivity extends Activity {
             finish();
         } else if (INSTALL_PACKAGE.equals(intent.getAction())) {
             actionInstallPackage();
+        } else if (UNINSTALL_PACKAGE.equals(intent.getAction())) {
+            actionUninstallPackage();
         } else if (FINALIZE_PROVISION.equals(intent.getAction())) {
             actionFinalizeProvision();
         } else {
@@ -126,6 +129,19 @@ public class DummyActivity extends Activity {
 
         // Restore the VmPolicy anyway
         StrictMode.setVmPolicy(policy);
+    }
+
+    private void actionUninstallPackage() {
+        Uri uri = Uri.fromParts("package", getIntent().getStringExtra("package"), null);
+        Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE, uri);
+        intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
+        // Currently, Install & Uninstall share the same logic
+        // after starting the system PackageInstaller
+        // because the only thing to do is to call the callback
+        // with the result code.
+        // If ANY separate logic is added for any of them,
+        // the request code should be separated.
+        startActivityForResult(intent, REQUEST_INSTALL_PACKAGE);
     }
 
     private void appInstallFinished(int resultCode) {
