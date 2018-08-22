@@ -125,13 +125,13 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         if (mRefreshing) return;
         mRefreshing = true;
         mSwipeRefresh.setRefreshing(true);
-        mList.clear();
-        mIconCache.clear();
 
         try {
             mService.getApps(new IGetAppsCallback.Stub() {
                 @Override
                 public void callback(List<ApplicationInfoWrapper> apps) {
+                    mList.clear();
+                    mIconCache.clear();
                     mList.addAll(apps);
                     mHandler.post(() -> {
                         mSwipeRefresh.setRefreshing(false);
