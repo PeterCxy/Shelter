@@ -60,6 +60,8 @@ public class DummyActivity extends Activity {
             actionInstallPackage();
         } else if (FINALIZE_PROVISION.equals(intent.getAction())) {
             actionFinalizeProvision();
+        } else {
+            finish();
         }
     }
 
