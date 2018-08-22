@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
+import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IAppInstallCallback;
 import net.typeblog.shelter.util.Utility;
 
@@ -32,16 +33,20 @@ public class DummyActivity extends Activity {
     public static final String TRY_START_SERVICE = "net.typeblog.shelter.action.TRY_START_SERVICE";
     public static final String INSTALL_PACKAGE = "net.typeblog.shelter.action.INSTALL_PACKAGE";
     public static final String UNINSTALL_PACKAGE = "net.typeblog.shelter.action.UNINSTALL_PACKAGE";
+    public static final String UNFREEZE_AND_LAUNCH = "net.typeblog.shelter.action.UNFREEZE_AND_LAUNCH";
+    public static final String PUBLIC_UNFREEZE_AND_LAUNCH = "net.typeblog.shelter.action.PUBLIC_UNFREEZE_AND_LAUNCH";
 
     private static final int REQUEST_INSTALL_PACKAGE = 1;
 
     private boolean mIsProfileOwner = false;
+    private DevicePolicyManager mPolicyManager = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mIsProfileOwner = getSystemService(DevicePolicyManager.class).isProfileOwnerApp(getPackageName());
+        mPolicyManager = getSystemService(DevicePolicyManager.class);
+        mIsProfileOwner = mPolicyManager.isProfileOwnerApp(getPackageName());
         if (mIsProfileOwner) {
             // If we are the profile owner, we enforce all our policies
             // so that we can make sure those are updated with our app
@@ -63,6 +68,8 @@ public class DummyActivity extends Activity {
             actionUninstallPackage();
         } else if (FINALIZE_PROVISION.equals(intent.getAction())) {
             actionFinalizeProvision();
+        } else if (UNFREEZE_AND_LAUNCH.equals(intent.getAction()) || PUBLIC_UNFREEZE_AND_LAUNCH.equals(intent.getAction())) {
+            actionUnfreezeAndLaunch();
         } else {
             finish();
         }
@@ -154,6 +161,38 @@ public class DummyActivity extends Activity {
             callback.callback(resultCode);
         } catch (RemoteException e) {
             // do nothing
+        }
+
+        finish();
+    }
+
+    private void actionUnfreezeAndLaunch() {
+        // Unfreeze and launch an app
+        // (actually this also works if the app is not frozen at all)
+        // For now we only support apps in Work profile,
+        // so we just check if we are profile owner here
+        if (!mIsProfileOwner) {
+            // Forward it to work profile
+            Intent intent = new Intent(UNFREEZE_AND_LAUNCH);
+            Utility.transferIntentToProfile(this, intent);
+            intent.putExtra("packageName", getIntent().getStringExtra("packageName"));
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        String packageName = getIntent().getStringExtra("packageName");
+
+        // Unfreeze the app first
+        mPolicyManager.setApplicationHidden(
+                new ComponentName(this, ShelterDeviceAdminReceiver.class),
+                packageName, false);
+
+        // Query the start intent
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+
+        if (launchIntent != null) {
+            startActivity(launchIntent);
         }
 
         finish();

@@ -1,11 +1,18 @@
 package net.typeblog.shelter.ui;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -26,9 +33,12 @@ import android.widget.Toast;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.services.IAppInstallCallback;
+import net.typeblog.shelter.services.ILoadIconCallback;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.ShelterService;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
+
+import java.util.Collections;
 
 public class AppListFragment extends Fragment {
     private static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
@@ -38,6 +48,8 @@ public class AppListFragment extends Fragment {
     private static final int MENU_ITEM_UNINSTALL = 10002;
     private static final int MENU_ITEM_FREEZE = 10003;
     private static final int MENU_ITEM_UNFREEZE = 10004;
+    private static final int MENU_ITEM_LAUNCH = 10005;
+    private static final int MENU_ITEM_CREATE_UNFREEZE_SHORTCUT = 10006;
 
     private IShelterService mService = null;
     private boolean mIsRemote = false;
@@ -143,9 +155,12 @@ public class AppListFragment extends Fragment {
             // Freezing / Unfreezing is only available in profiles that we can control
             if (mSelectedApp.isHidden()) {
                 menu.add(Menu.NONE, MENU_ITEM_UNFREEZE, Menu.NONE, R.string.unfreeze_app);
+                menu.add(Menu.NONE, MENU_ITEM_LAUNCH, Menu.NONE, R.string.unfreeze_and_launch);
             } else {
                 menu.add(Menu.NONE, MENU_ITEM_FREEZE, Menu.NONE, R.string.freeze_app);
+                menu.add(Menu.NONE, MENU_ITEM_LAUNCH, Menu.NONE, R.string.launch);
             }
+            menu.add(Menu.NONE, MENU_ITEM_CREATE_UNFREEZE_SHORTCUT, Menu.NONE, R.string.create_unfreeze_shortcut);
         } else {
             menu.add(Menu.NONE, MENU_ITEM_CLONE, Menu.NONE, R.string.clone_to_work_profile);
         }
@@ -196,6 +211,30 @@ public class AppListFragment extends Fragment {
                         getString(R.string.unfreeze_success, mSelectedApp.getLabel()), Toast.LENGTH_SHORT).show();
                 mAdapter.refresh();
                 return true;
+            case MENU_ITEM_LAUNCH:
+                // LAUNCH and UNFREEZE_AND_LAUNCH share the same ID
+                // because the implementation of UNFREEZE_AND_LAUNCH in DummyActivity
+                // will work for both
+                Intent intent = new Intent(DummyActivity.UNFREEZE_AND_LAUNCH);
+                intent.setComponent(new ComponentName(getContext(), DummyActivity.class));
+                intent.putExtra("packageName", mSelectedApp.getPackageName());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return true;
+            case MENU_ITEM_CREATE_UNFREEZE_SHORTCUT:
+                final ApplicationInfoWrapper app = mSelectedApp;
+                try {
+                    // Call the service to load the latest icon
+                    mService.loadIcon(app, new ILoadIconCallback.Stub() {
+                        @Override
+                        public void callback(Bitmap icon) {
+                            addUnfreezeShortcut(app, icon);
+                        }
+                    });
+                } catch (RemoteException e) {
+                    // Ignore
+                }
+                return true;
         }
 
         return super.onContextItemSelected(item);
@@ -234,6 +273,38 @@ public class AppListFragment extends Fragment {
             Toast.makeText(getContext(),
                     getString(isInstall ? R.string.clone_fail_system_app :
                             R.string.uninstall_fail_system_app), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void addUnfreezeShortcut(ApplicationInfoWrapper app, Bitmap icon) {
+        // First, create an Intent to be sent when clicking on the shortcut
+        Intent launchIntent = new Intent(DummyActivity.PUBLIC_UNFREEZE_AND_LAUNCH);
+        launchIntent.setComponent(new ComponentName(getContext(), DummyActivity.class));
+        launchIntent.putExtra("packageName", app.getPackageName());
+        launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        // Then tell the launcher to add the shortcut
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ShortcutManager shortcutManager = getContext().getSystemService(ShortcutManager.class);
+
+            if (shortcutManager.isRequestPinShortcutSupported()) {
+                ShortcutInfo info = new ShortcutInfo.Builder(getContext(), "shelter-" + app.getPackageName())
+                        .setIntent(launchIntent)
+                        .setIcon(Icon.createWithBitmap(icon))
+                        .setShortLabel(app.getLabel())
+                        .setLongLabel(app.getLabel())
+                        .build();
+                Intent addIntent = shortcutManager.createShortcutResultIntent(info);
+                shortcutManager.requestPinShortcut(info,
+                        PendingIntent.getBroadcast(getContext(), 0, addIntent, 0).getIntentSender());
+            } else {
+                // TODO: Maybe implement this for launchers without pin shortcut support?
+                // TODO: Should be the same with the fallback for Android < O
+                throw new RuntimeException("unimplemented");
+            }
+        } else {
+            // TODO: Maybe backport for Android < O?
+            throw new RuntimeException("unimplemented");
         }
     }
 }

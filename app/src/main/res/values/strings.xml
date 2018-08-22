@@ -20,6 +20,9 @@
     <string name="uninstall_app">Uninstall</string>
     <string name="freeze_app">Freeze</string>
     <string name="unfreeze_app">Unfreeze</string>
+    <string name="launch">Launch</string>
+    <string name="create_unfreeze_shortcut">Create Unfreeze and/or Launch Shortcut</string>
+    <string name="unfreeze_and_launch">Unfreeze and Launch</string>
     <string name="clone_success">Application "%s" cloned successfully</string>
     <string name="uninstall_success">Application "%s" uninstalled successfully</string>
     <string name="freeze_success">Application "%s" frozen successfully</string>
