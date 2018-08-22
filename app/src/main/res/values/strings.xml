@@ -22,4 +22,5 @@
     <string name="uninstall_success">Application "%s" uninstalled successfully</string>
     <string name="clone_fail_system_app">Cannot clone system apps to a profile that Shelter has no control of.</string>
     <string name="uninstall_fail_system_app">Cannot uninstall system apps in a profile that Shelter has no control of.</string>
+    <string name="app_context_menu_title">Operations for %s</string>
 </resources>

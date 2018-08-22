@@ -18,7 +18,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +32,10 @@ import net.typeblog.shelter.util.ApplicationInfoWrapper;
 
 public class AppListFragment extends Fragment {
     private static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
+
+    // Menu Items
+    private static final int MENU_ITEM_CLONE = 10001;
+    private static final int MENU_ITEM_UNINSTALL = 10002;
 
     private IShelterService mService = null;
     private boolean mIsRemote = false;
@@ -51,6 +55,14 @@ public class AppListFragment extends Fragment {
             if (mAdapter != null) {
                 mAdapter.refresh();
             }
+        }
+    };
+
+    // Receiver for context menu closed event
+    private BroadcastReceiver mContextMenuClosedReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mSelectedApp = null;
         }
     };
 
@@ -77,6 +89,9 @@ public class AppListFragment extends Fragment {
         super.onResume();
         LocalBroadcastManager.getInstance(getContext())
                 .registerReceiver(mRefreshReceiver, new IntentFilter(BROADCAST_REFRESH));
+        LocalBroadcastManager.getInstance(getContext())
+                .registerReceiver(mContextMenuClosedReceiver,
+                        new IntentFilter(MainActivity.BROADCAST_CONTEXT_MENU_CLOSED));
         if (mAdapter != null) {
             mAdapter.refresh();
         }
@@ -88,6 +103,8 @@ public class AppListFragment extends Fragment {
         mSelectedApp = null;
         LocalBroadcastManager.getInstance(getContext())
                 .unregisterReceiver(mRefreshReceiver);
+        LocalBroadcastManager.getInstance(getContext())
+                .unregisterReceiver(mContextMenuClosedReceiver);
     }
 
     @Nullable
@@ -116,11 +133,27 @@ public class AppListFragment extends Fragment {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getActivity().getMenuInflater();
+        if (mSelectedApp == null) return;
+
         if (mIsRemote) {
-            inflater.inflate(R.menu.menu_work, menu);
+            if (!mSelectedApp.isSystem())
+                menu.add(Menu.NONE, MENU_ITEM_CLONE, Menu.NONE, R.string.clone_to_main_profile);
         } else {
-            inflater.inflate(R.menu.menu_main, menu);
+            menu.add(Menu.NONE, MENU_ITEM_CLONE, Menu.NONE, R.string.clone_to_work_profile);
+        }
+
+        if (!mSelectedApp.isSystem()) {
+            // We can't uninstall system apps in both cases
+            // but we'll be able to "freeze" them
+            menu.add(Menu.NONE, MENU_ITEM_UNINSTALL, Menu.NONE, R.string.uninstall_app);
+        }
+
+        if (menu.size() > 0) {
+            // Only set title when the menu is not empty
+            // this ensures that no menu will be shown
+            // if no operation available
+            menu.setHeaderTitle(
+                    getString(R.string.app_context_menu_title, mSelectedApp.getLabel()));
         }
     }
 
@@ -129,17 +162,15 @@ public class AppListFragment extends Fragment {
         if (mSelectedApp == null) return false;
 
         switch (item.getItemId()) {
-            case R.id.main_clone_to_work:
-            case R.id.work_clone_to_main:
+            case MENU_ITEM_CLONE:
                 installOrUninstall(mSelectedApp, true);
                 return true;
-            case R.id.main_uninstall:
-            case R.id.work_uninstall:
+            case MENU_ITEM_UNINSTALL:
                 installOrUninstall(mSelectedApp, false);
                 return true;
-            default:
-                return super.onContextItemSelected(item);
         }
+
+        return super.onContextItemSelected(item);
     }
 
     void installOrUninstall(final ApplicationInfoWrapper app, final boolean isInstall) {

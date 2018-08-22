@@ -10,9 +10,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.Toast;
 
 import net.typeblog.shelter.R;
@@ -24,6 +26,8 @@ import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String BROADCAST_CONTEXT_MENU_CLOSED = "net.typeblog.shelter.broadcast.CONTEXT_MENU_CLOSED";
+
     private static final int REQUEST_PROVISION_PROFILE = 1;
     private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
     private static final int REQUEST_SET_DEVICE_ADMIN = 3;
@@ -196,6 +200,13 @@ public class MainActivity extends AppCompatActivity {
             // Just.. do not keep me at all.. please.
             finish();
         }
+    }
+
+    @Override
+    public void onContextMenuClosed(Menu menu) {
+        super.onContextMenuClosed(menu);
+        LocalBroadcastManager.getInstance(this)
+                .sendBroadcast(new Intent(BROADCAST_CONTEXT_MENU_CLOSED));
     }
 
     @Override
