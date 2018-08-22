@@ -33,6 +33,7 @@ public class ShelterService extends Service {
     private DevicePolicyManager mPolicyManager = null;
     private boolean mIsProfileOwner = false;
     private PackageManager mPackageManager = null;
+    private ComponentName mAdminComponent = null;
     private IShelterService.Stub mBinder = new IShelterService.Stub() {
         @Override
         public void stopShelterService(boolean kill) {
@@ -56,19 +57,30 @@ public class ShelterService extends Service {
         @Override
         public void getApps(IGetAppsCallback callback) {
             new Thread(() -> {
-                List<ApplicationInfoWrapper> list = mPackageManager.getInstalledApplications(PackageManager.MATCH_DISABLED_COMPONENTS)
+                List<ApplicationInfoWrapper> list = mPackageManager.getInstalledApplications(PackageManager.MATCH_DISABLED_COMPONENTS | PackageManager.MATCH_UNINSTALLED_PACKAGES)
                         .stream()
                         .filter((it) -> !it.packageName.equals(getPackageName()))
                         .filter((it) ->
                                 // Show if:
                                 // - Isn't system app OR
-                                // - Is disabled OR
+                                // - Is hidden ("frozen") OR
                                 // - Has a launch method
                                 (it.flags & ApplicationInfo.FLAG_SYSTEM) == 0
-                                        || !it.enabled
+                                        || isHidden(it.packageName)
                                         || mPackageManager.getLaunchIntentForPackage(it.packageName) != null)
                         .map(ApplicationInfoWrapper::new)
-                        .map((it) -> it.loadLabel(mPackageManager))
+                        .map((it) -> it.loadLabel(mPackageManager)
+                                .setHidden(isHidden(it.getPackageName())))
+                        .sorted((x, y) -> {
+                            // Sort hidden apps at the last
+                            if (x.isHidden() && !y.isHidden()) {
+                                return 1;
+                            } else if (!x.isHidden() && y.isHidden()) {
+                                return -1;
+                            } else {
+                                return x.getLabel().compareTo(y.getLabel());
+                            }
+                        })
                         .collect(Collectors.toList());
 
                 try {
@@ -113,12 +125,12 @@ public class ShelterService extends Service {
                 if (mIsProfileOwner) {
                     // We can only enable system apps in our own profile
                     mPolicyManager.enableSystemApp(
-                            new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
+                            mAdminComponent,
                             app.getPackageName());
 
                     // Also set the hidden state to false.
                     mPolicyManager.setApplicationHidden(
-                            new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
+                            mAdminComponent,
                             app.getPackageName(), false);
 
                     callback.callback(Activity.RESULT_OK);
@@ -147,7 +159,7 @@ public class ShelterService extends Service {
                     // This is essentially the same as disabling the system app
                     // There is no way to reverse the "enableSystemApp" operation here
                     mPolicyManager.setApplicationHidden(
-                            new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
+                            mAdminComponent,
                             app.getPackageName(), true);
                     callback.callback(Activity.RESULT_OK);
                 } else {
@@ -162,6 +174,7 @@ public class ShelterService extends Service {
         mPolicyManager = getSystemService(DevicePolicyManager.class);
         mPackageManager = getPackageManager();
         mIsProfileOwner = mPolicyManager.isProfileOwnerApp(getPackageName());
+        mAdminComponent = new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class);
     }
 
     @Nullable
@@ -171,6 +184,10 @@ public class ShelterService extends Service {
             setForeground();
         }
         return mBinder;
+    }
+
+    private boolean isHidden(String packageName) {
+        return mIsProfileOwner && mPolicyManager.isApplicationHidden(mAdminComponent, packageName);
     }
 
     private void setForeground() {

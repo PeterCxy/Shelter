@@ -59,7 +59,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
                 ApplicationInfoWrapper info = mList.get(mIndex);
                 mPackage.setText(info.getPackageName());
 
-                if (!info.getEnabled()) {
+                if (info.isHidden()) {
                     String label = String.format(mLabelDisabled, info.getLabel());
                     mTitle.setText(label);
                     mView.setBackgroundResource(R.color.disabledAppBackground);

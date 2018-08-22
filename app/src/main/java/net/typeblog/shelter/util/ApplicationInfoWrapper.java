@@ -17,12 +17,14 @@ public class ApplicationInfoWrapper implements Parcelable {
             ApplicationInfoWrapper info = new ApplicationInfoWrapper();
             info.mInfo = source.readParcelable(ApplicationInfo.class.getClassLoader());
             info.mLabel = source.readString();
+            info.mIsHidden = source.readByte() != 0;
             return info;
         }
     };
 
     private ApplicationInfo mInfo = null;
     private String mLabel = null;
+    private boolean mIsHidden = false;
 
     private ApplicationInfoWrapper() {}
 
@@ -32,6 +34,12 @@ public class ApplicationInfoWrapper implements Parcelable {
 
     public ApplicationInfoWrapper loadLabel(PackageManager pm) {
         mLabel = pm.getApplicationLabel(mInfo).toString();
+        return this;
+    }
+
+    // Only used from ShelterService
+    public ApplicationInfoWrapper setHidden(boolean hidden) {
+        mIsHidden = hidden;
         return this;
     }
 
@@ -52,6 +60,10 @@ public class ApplicationInfoWrapper implements Parcelable {
         return mInfo.enabled;
     }
 
+    public boolean isHidden() {
+        return mIsHidden;
+    }
+
     public ApplicationInfo getInfo() {
         return mInfo;
     }
@@ -64,6 +76,7 @@ public class ApplicationInfoWrapper implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(mInfo, flags);
         dest.writeString(mLabel);
+        dest.writeByte((byte) (mIsHidden ? 1 : 0));
     }
 
     @Override
