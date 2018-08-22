@@ -14,4 +14,6 @@ interface IShelterService {
     void loadIcon(in ApplicationInfoWrapper info, ILoadIconCallback callback);
     void installApp(in ApplicationInfoWrapper app, IAppInstallCallback callback);
     void uninstallApp(in ApplicationInfoWrapper app, IAppInstallCallback callback);
+    void freezeApp(in ApplicationInfoWrapper app);
+    void unfreezeApp(in ApplicationInfoWrapper app);
 }

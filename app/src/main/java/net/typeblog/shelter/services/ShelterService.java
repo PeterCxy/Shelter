@@ -168,6 +168,26 @@ public class ShelterService extends Service {
                 }
             }
         }
+
+        @Override
+        public void freezeApp(ApplicationInfoWrapper app) {
+            if (!mIsProfileOwner)
+                throw new IllegalArgumentException("Cannot freeze app without being profile owner");
+
+            mPolicyManager.setApplicationHidden(
+                    mAdminComponent,
+                    app.getPackageName(), true);
+        }
+
+        @Override
+        public void unfreezeApp(ApplicationInfoWrapper app) {
+            if (!mIsProfileOwner)
+                throw new IllegalArgumentException("Cannot unfreeze app without being profile owner");
+
+            mPolicyManager.setApplicationHidden(
+                    mAdminComponent,
+                    app.getPackageName(), false);
+        }
     };
 
     @Override

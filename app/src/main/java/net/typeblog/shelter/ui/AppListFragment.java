@@ -36,6 +36,8 @@ public class AppListFragment extends Fragment {
     // Menu Items
     private static final int MENU_ITEM_CLONE = 10001;
     private static final int MENU_ITEM_UNINSTALL = 10002;
+    private static final int MENU_ITEM_FREEZE = 10003;
+    private static final int MENU_ITEM_UNFREEZE = 10004;
 
     private IShelterService mService = null;
     private boolean mIsRemote = false;
@@ -138,6 +140,12 @@ public class AppListFragment extends Fragment {
         if (mIsRemote) {
             if (!mSelectedApp.isSystem())
                 menu.add(Menu.NONE, MENU_ITEM_CLONE, Menu.NONE, R.string.clone_to_main_profile);
+            // Freezing / Unfreezing is only available in profiles that we can control
+            if (mSelectedApp.isHidden()) {
+                menu.add(Menu.NONE, MENU_ITEM_UNFREEZE, Menu.NONE, R.string.unfreeze_app);
+            } else {
+                menu.add(Menu.NONE, MENU_ITEM_FREEZE, Menu.NONE, R.string.freeze_app);
+            }
         } else {
             menu.add(Menu.NONE, MENU_ITEM_CLONE, Menu.NONE, R.string.clone_to_work_profile);
         }
@@ -167,6 +175,26 @@ public class AppListFragment extends Fragment {
                 return true;
             case MENU_ITEM_UNINSTALL:
                 installOrUninstall(mSelectedApp, false);
+                return true;
+            case MENU_ITEM_FREEZE:
+                try {
+                    mService.freezeApp(mSelectedApp);
+                } catch (RemoteException e) {
+
+                }
+                Toast.makeText(getContext(),
+                        getString(R.string.freeze_success, mSelectedApp.getLabel()), Toast.LENGTH_SHORT).show();
+                mAdapter.refresh();
+                return true;
+            case MENU_ITEM_UNFREEZE:
+                try {
+                    mService.unfreezeApp(mSelectedApp);
+                } catch (RemoteException e) {
+
+                }
+                Toast.makeText(getContext(),
+                        getString(R.string.unfreeze_success, mSelectedApp.getLabel()), Toast.LENGTH_SHORT).show();
+                mAdapter.refresh();
                 return true;
         }
 

@@ -18,8 +18,12 @@
     <string name="clone_to_work_profile">Clone to Shelter (Work Profile)</string>
     <string name="clone_to_main_profile">Clone to Main Profile</string>
     <string name="uninstall_app">Uninstall</string>
+    <string name="freeze_app">Freeze</string>
+    <string name="unfreeze_app">Unfreeze</string>
     <string name="clone_success">Application "%s" cloned successfully</string>
     <string name="uninstall_success">Application "%s" uninstalled successfully</string>
+    <string name="freeze_success">Application "%s" frozen successfully</string>
+    <string name="unfreeze_success">Application "%s" unfrozen successfully</string>
     <string name="clone_fail_system_app">Cannot clone system apps to a profile that Shelter has no control of.</string>
     <string name="uninstall_fail_system_app">Cannot uninstall system apps in a profile that Shelter has no control of.</string>
     <string name="app_context_menu_title">Operations for %s</string>
