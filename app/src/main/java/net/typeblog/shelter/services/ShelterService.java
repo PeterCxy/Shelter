@@ -57,7 +57,8 @@ public class ShelterService extends Service {
         @Override
         public void getApps(IGetAppsCallback callback) {
             new Thread(() -> {
-                List<ApplicationInfoWrapper> list = mPackageManager.getInstalledApplications(PackageManager.MATCH_DISABLED_COMPONENTS | PackageManager.MATCH_UNINSTALLED_PACKAGES)
+                int pmFlags = PackageManager.MATCH_DISABLED_COMPONENTS | PackageManager.MATCH_UNINSTALLED_PACKAGES;
+                List<ApplicationInfoWrapper> list = mPackageManager.getInstalledApplications(pmFlags)
                         .stream()
                         .filter((it) -> !it.packageName.equals(getPackageName()))
                         .filter((it) ->
