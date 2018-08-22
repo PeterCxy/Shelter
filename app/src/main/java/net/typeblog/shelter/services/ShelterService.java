@@ -59,7 +59,14 @@ public class ShelterService extends Service {
                 List<ApplicationInfoWrapper> list = mPackageManager.getInstalledApplications(PackageManager.MATCH_DISABLED_COMPONENTS)
                         .stream()
                         .filter((it) -> !it.packageName.equals(getPackageName()))
-                        .filter((it) -> !it.enabled || mPackageManager.getLaunchIntentForPackage(it.packageName) != null)
+                        .filter((it) ->
+                                // Show if:
+                                // - Isn't system app OR
+                                // - Is disabled OR
+                                // - Has a launch method
+                                (it.flags & ApplicationInfo.FLAG_SYSTEM) == 0
+                                        || !it.enabled
+                                        || mPackageManager.getLaunchIntentForPackage(it.packageName) != null)
                         .map(ApplicationInfoWrapper::new)
                         .map((it) -> it.loadLabel(mPackageManager))
                         .collect(Collectors.toList());
