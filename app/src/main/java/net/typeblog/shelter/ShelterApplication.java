@@ -17,9 +17,10 @@ public class ShelterApplication extends Application {
         LocalStorageManager.initialize(this);
     }
 
-    public void bindShelterService(ServiceConnection conn) {
+    public void bindShelterService(ServiceConnection conn, boolean foreground) {
         unbindShelterService();
         Intent intent = new Intent(getApplicationContext(), ShelterService.class);
+        intent.putExtra("foreground", foreground);
         bindService(intent, conn, Context.BIND_AUTO_CREATE);
         mShelterServiceConnection = conn;
     }

@@ -31,7 +31,7 @@ public class ShelterService extends Service {
 
     private static final String NOTIFICATION_CHANNEL_ID = "ShelterService";
     private DevicePolicyManager mPolicyManager = null;
-    private boolean mIsWorkProfile = false;
+    private boolean mIsProfileOwner = false;
     private PackageManager mPackageManager = null;
     private IShelterService.Stub mBinder = new IShelterService.Stub() {
         @Override
@@ -110,7 +110,7 @@ public class ShelterService extends Service {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             } else {
-                if (mIsWorkProfile) {
+                if (mIsProfileOwner) {
                     // We can only enable system apps in our own profile
                     mPolicyManager.enableSystemApp(
                             new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
@@ -128,18 +128,15 @@ public class ShelterService extends Service {
     public void onCreate() {
         mPolicyManager = getSystemService(DevicePolicyManager.class);
         mPackageManager = getPackageManager();
-        mIsWorkProfile = mPolicyManager.isProfileOwnerApp(getPackageName());
-
-        if (mIsWorkProfile) {
-            // In work profile, only this service will be running
-            // so we have to keep it alive
-            setForeground();
-        }
+        mIsProfileOwner = mPolicyManager.isProfileOwnerApp(getPackageName());
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        if (intent.getBooleanExtra("foreground", false)) {
+            setForeground();
+        }
         return mBinder;
     }
 

@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindServices() {
         // Bind to the service provided by this app in main user
+        // The service in main profile doesn't need to be foreground
+        // because this activity will hold a ServiceConnection to the service
         ((ShelterApplication) getApplication()).bindShelterService(new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             public void onServiceDisconnected(ComponentName name) {
                 // dummy
             }
-        });
+        }, false);
     }
 
     private void detectWorkProfileAvailability() {

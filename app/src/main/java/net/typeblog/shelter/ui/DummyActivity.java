@@ -83,6 +83,8 @@ public class DummyActivity extends Activity {
     }
 
     private void actionStartService() {
+        // This needs to be foreground because this activity won't be able to hold
+        // the ServiceConnection to it.
         ((ShelterApplication) getApplication()).bindShelterService(new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
@@ -98,7 +100,7 @@ public class DummyActivity extends Activity {
             public void onServiceDisconnected(ComponentName name) {
                 // dummy
             }
-        });
+        }, true);
     }
 
     private void actionInstallPackage() {
