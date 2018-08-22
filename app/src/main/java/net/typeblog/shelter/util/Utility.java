@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.UserManager;
 
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IShelterService;
@@ -55,6 +56,15 @@ public class Utility {
                 adminComponent,
                 new IntentFilter(DummyActivity.TRY_START_SERVICE),
                 DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
+
+        manager.setProfileEnabled(adminComponent);
+    }
+
+    public static void enforceUserRestrictions(Context context) {
+        DevicePolicyManager manager = context.getSystemService(DevicePolicyManager.class);
+        ComponentName adminComponent = new ComponentName(context.getApplicationContext(), ShelterDeviceAdminReceiver.class);
+        manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_APPS);
+        manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES);
     }
 
     // From <https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap>

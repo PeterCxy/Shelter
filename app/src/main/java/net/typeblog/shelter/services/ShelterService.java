@@ -1,20 +1,25 @@
 package net.typeblog.shelter.services;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
+import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
 import net.typeblog.shelter.util.Utility;
 
@@ -22,6 +27,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ShelterService extends Service {
+    public static final int RESULT_CANNOT_INSTALL_SYSTEM_APP = 100001;
+
     private static final String NOTIFICATION_CHANNEL_ID = "ShelterService";
     private DevicePolicyManager mPolicyManager = null;
     private boolean mIsWorkProfile = false;
@@ -76,6 +83,37 @@ public class ShelterService extends Service {
                     // Do Nothing
                 }
             }).start();
+        }
+
+        @Override
+        public void installApp(ApplicationInfoWrapper app, IAppInstallCallback callback) throws RemoteException {
+            if ((app.mInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                // Installing a non-system app requires firing up PackageInstaller
+                // Delegate this operation to DummyActivity because
+                // Only it can receive a result
+                Intent intent = new Intent(DummyActivity.INSTALL_PACKAGE);
+                intent.setComponent(new ComponentName(ShelterService.this, DummyActivity.class));
+                intent.putExtra("package", app.mInfo.packageName);
+                intent.putExtra("apk", app.mInfo.sourceDir);
+
+                // Send the callback to the DummyActivity
+                Bundle callbackExtra = new Bundle();
+                callbackExtra.putBinder("callback", callback.asBinder());
+                intent.putExtra("callback", callbackExtra);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            } else {
+                if (mIsWorkProfile) {
+                    // We can only enable system apps in our own profile
+                    mPolicyManager.enableSystemApp(
+                            new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class),
+                            app.mInfo.packageName);
+
+                    callback.callback(Activity.RESULT_OK);
+                } else {
+                    callback.callback(RESULT_CANNOT_INSTALL_SYSTEM_APP);
+                }
+            }
         }
     };
 

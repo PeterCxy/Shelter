@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +38,18 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
             mIcon = view.findViewById(R.id.list_app_icon);
             mTitle = view.findViewById(R.id.list_app_title);
             mPackage = view.findViewById(R.id.list_app_package);
+            view.setOnClickListener((v) -> onClick());
+        }
+
+        void onClick() {
+            if (mIndex == -1) return;
+
+            // Show available operations via the Fragment
+            // pass the full info to it, since we can't be sure
+            // the index won't change
+            if (mContextMenuHandler != null) {
+                mContextMenuHandler.showContextMenu(mList.get(mIndex), mView);
+            }
         }
 
         void setIndex(final int index) {
@@ -83,11 +96,17 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         }
     }
 
+    interface ContextMenuHandler {
+        void showContextMenu(ApplicationInfoWrapper info, View view);
+    }
+
     private List<ApplicationInfoWrapper> mList = new ArrayList<>();
     private IShelterService mService;
     private Drawable mDefaultIcon;
     private String mLabelDisabled;
+    private boolean mRefreshing = false;
     private Map<String, Bitmap> mIconCache = new HashMap<>();
+    private ContextMenuHandler mContextMenuHandler = null;
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
     private SwipeRefreshLayout mSwipeRefresh;
@@ -98,7 +117,13 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         mSwipeRefresh = swipeRefresh;
     }
 
+    void setContextMenuHandler(ContextMenuHandler handler) {
+        mContextMenuHandler = handler;
+    }
+
     void refresh() {
+        if (mRefreshing) return;
+        mRefreshing = true;
         mSwipeRefresh.setRefreshing(true);
         mList.clear();
         mIconCache.clear();
@@ -111,6 +136,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
                     mHandler.post(() -> {
                         mSwipeRefresh.setRefreshing(false);
                         notifyDataSetChanged();
+                        mRefreshing = false;
                     });
                 }
             });

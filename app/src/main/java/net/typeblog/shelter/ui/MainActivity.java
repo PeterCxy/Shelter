@@ -1,11 +1,8 @@
 package net.typeblog.shelter.ui;
 
 import android.app.admin.DevicePolicyManager;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -172,6 +169,13 @@ public class MainActivity extends AppCompatActivity {
         mTabs.setupWithViewPager(mPager);
     }
 
+    // Get the service on the other side
+    // remote (work) -> main
+    // main -> remote (work)
+    IShelterService getOtherService(boolean isRemote) {
+        return isRemote ? mServiceMain : mServiceWork;
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -194,20 +198,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == REQUEST_PROVISION_PROFILE) {
             if (resultCode == RESULT_OK) {
                 // The sync part of the setup process is completed
-                // We register a receiver to wait for the async part
-                registerReceiver(new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        unregisterReceiver(this); // We only want to receive this once
-                        mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
-                        bindServices();
-                    }
-                }, new IntentFilter(DevicePolicyManager.ACTION_MANAGED_PROFILE_PROVISIONED));
+                // Let's just assume it succeeded. If it did not, the program will break
+                // on the next start anyway.
+                mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
+
+                // However, we still have to wait for DummyActivity in work profile to finish
+                Toast.makeText(this,
+                        getString(R.string.provision_still_pending), Toast.LENGTH_LONG).show();
+                finish();
             } else {
                 Toast.makeText(this,
                         getString(R.string.work_profile_provision_failed), Toast.LENGTH_LONG).show();
@@ -240,6 +241,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, getString(R.string.device_admin_toast), Toast.LENGTH_LONG).show();
                 finish();
             }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 

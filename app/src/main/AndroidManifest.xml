@@ -6,6 +6,9 @@
     <uses-feature android:name="android.software.managed_users" android:required="true"/>
     <!--<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS"/>-->
 
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:name=".ShelterApplication"
         android:allowBackup="false"
@@ -17,9 +20,10 @@
 
         <!-- The main activity for UI -->
         <activity android:name=".ui.MainActivity"
-            android:launchMode="singleTask">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="net.typeblog.shelter.action.PROVISION_FINISHED" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,8 +33,10 @@
         <activity android:name=".ui.DummyActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
+                <action android:name="net.typeblog.shelter.action.FINALIZE_PROVISION" />
                 <action android:name="net.typeblog.shelter.action.START_SERVICE" />
                 <action android:name="net.typeblog.shelter.action.TRY_START_SERVICE" />
+                <action android:name="net.typeblog.shelter.action.INSTALL_PACKAGE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

@@ -1,13 +1,11 @@
 package net.typeblog.shelter.receivers;
 
 import android.app.admin.DeviceAdminReceiver;
-import android.app.admin.DevicePolicyManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
+import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.util.LocalStorageManager;
-import net.typeblog.shelter.util.Utility;
 
 public class ShelterDeviceAdminReceiver extends DeviceAdminReceiver {
     @Override
@@ -25,12 +23,11 @@ public class ShelterDeviceAdminReceiver extends DeviceAdminReceiver {
     @Override
     public void onProfileProvisioningComplete(Context context, Intent intent) {
         super.onProfileProvisioningComplete(context, intent);
-        DevicePolicyManager manager = context.getSystemService(DevicePolicyManager.class);
-        ComponentName adminComponent = new ComponentName(context.getApplicationContext(), ShelterDeviceAdminReceiver.class);
-
-        // Enable the profile
-        manager.setProfileEnabled(adminComponent);
-
-        Utility.enforceWorkProfilePolicies(context);
+        // I don't know why setting the policies in this receiver won't work very well
+        // Anyway, we delegate it to the DummyActivity
+        Intent i = new Intent(context.getApplicationContext(), DummyActivity.class);
+        i.setAction(DummyActivity.FINALIZE_PROVISION);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
     }
 }
