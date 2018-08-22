@@ -38,8 +38,6 @@ import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.ShelterService;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
 
-import java.util.Collections;
-
 public class AppListFragment extends Fragment {
     private static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
 
