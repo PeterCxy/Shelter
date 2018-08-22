@@ -23,7 +23,7 @@ public class KillerService extends Service {
         Bundle extras = intent.getBundleExtra("extra");
         mServiceMain = IShelterService.Stub.asInterface(extras.getBinder("main"));
         mServiceWork = IShelterService.Stub.asInterface(extras.getBinder("work"));
-        return START_STICKY;
+        return START_REDELIVER_INTENT;
     }
 
     @Nullable
