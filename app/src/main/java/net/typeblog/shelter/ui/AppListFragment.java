@@ -300,7 +300,8 @@ public class AppListFragment extends Fragment {
             } else {
                 // TODO: Maybe implement this for launchers without pin shortcut support?
                 // TODO: Should be the same with the fallback for Android < O
-                throw new RuntimeException("unimplemented");
+                // for now just show unsupported
+                Toast.makeText(getContext(), getString(R.string.unsupported_launcher), Toast.LENGTH_LONG).show();
             }
         } else {
             // TODO: Maybe backport for Android < O?
