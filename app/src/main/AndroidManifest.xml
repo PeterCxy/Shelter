@@ -31,6 +31,7 @@
         <!-- An activity that wraps intents that cross the profile boundary -->
         <!-- Needed because only cross-profile Activity intents are supported -->
         <activity android:name=".ui.DummyActivity"
+            android:excludeFromRecents="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="net.typeblog.shelter.action.FINALIZE_PROVISION" />
