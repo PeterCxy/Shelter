@@ -3,6 +3,7 @@ package net.typeblog.shelter.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class LocalStorageManager {
     }
 
     public void removeFromStringList(String pref, String item) {
-        List<String> list = Arrays.asList(getStringList(pref));
+        List<String> list = new ArrayList<>(Arrays.asList(getStringList(pref)));
         list.removeIf(item::equals);
         mPrefs.edit().putString(pref, String.join(LIST_DIVIDER, list)).apply();
     }
