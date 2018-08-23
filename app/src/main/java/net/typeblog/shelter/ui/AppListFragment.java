@@ -1,18 +1,14 @@
 package net.typeblog.shelter.ui;
 
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ShortcutInfo;
-import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -331,28 +327,8 @@ public class AppListFragment extends Fragment {
         launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Then tell the launcher to add the shortcut
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ShortcutManager shortcutManager = getContext().getSystemService(ShortcutManager.class);
-
-            if (shortcutManager.isRequestPinShortcutSupported()) {
-                ShortcutInfo info = new ShortcutInfo.Builder(getContext(), "shelter-" + app.getPackageName())
-                        .setIntent(launchIntent)
-                        .setIcon(Icon.createWithBitmap(icon))
-                        .setShortLabel(app.getLabel())
-                        .setLongLabel(app.getLabel())
-                        .build();
-                Intent addIntent = shortcutManager.createShortcutResultIntent(info);
-                shortcutManager.requestPinShortcut(info,
-                        PendingIntent.getBroadcast(getContext(), 0, addIntent, 0).getIntentSender());
-            } else {
-                // TODO: Maybe implement this for launchers without pin shortcut support?
-                // TODO: Should be the same with the fallback for Android < O
-                // for now just show unsupported
-                Toast.makeText(getContext(), getString(R.string.unsupported_launcher), Toast.LENGTH_LONG).show();
-            }
-        } else {
-            // TODO: Maybe backport for Android < O?
-            throw new RuntimeException("unimplemented");
-        }
+        Utility.createLauncherShortcut(getContext(), launchIntent,
+                Icon.createWithBitmap(icon), "shelter-" + app.getPackageName(),
+                app.getLabel());
     }
 }

@@ -1,5 +1,6 @@
 package net.typeblog.shelter.util;
 
+import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -7,12 +8,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.UserManager;
+import android.widget.Toast;
 
+import net.typeblog.shelter.R;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.ui.DummyActivity;
@@ -124,5 +131,31 @@ public class Utility {
                 Arrays.asList(LocalStorageManager.getInstance().getStringList(pref)));
         list.removeIf((it) -> apps.stream().noneMatch((x) -> x.getPackageName().equals(it)));
         LocalStorageManager.getInstance().setStringList(pref, list.toArray(new String[]{}));
+    }
+
+    public static void createLauncherShortcut(Context context, Intent launchIntent, Icon icon, String id, String label) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
+
+            if (shortcutManager.isRequestPinShortcutSupported()) {
+                ShortcutInfo info = new ShortcutInfo.Builder(context, id)
+                        .setIntent(launchIntent)
+                        .setIcon(icon)
+                        .setShortLabel(label)
+                        .setLongLabel(label)
+                        .build();
+                Intent addIntent = shortcutManager.createShortcutResultIntent(info);
+                shortcutManager.requestPinShortcut(info,
+                        PendingIntent.getBroadcast(context, 0, addIntent, 0).getIntentSender());
+            } else {
+                // TODO: Maybe implement this for launchers without pin shortcut support?
+                // TODO: Should be the same with the fallback for Android < O
+                // for now just show unsupported
+                Toast.makeText(context, context.getString(R.string.unsupported_launcher), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            // TODO: Maybe backport for Android < O?
+            throw new RuntimeException("unimplemented");
+        }
     }
 }

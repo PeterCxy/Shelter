@@ -3,4 +3,8 @@
     <item
         android:id="@+id/main_menu_freeze_all"
         android:title="@string/freeze_all" />
+
+    <item
+        android:id="@+id/main_menu_create_freeze_all_shortcut"
+        android:title="@string/create_freeze_all_shortcut" />
 </menu>

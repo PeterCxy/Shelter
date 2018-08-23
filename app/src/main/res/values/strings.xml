@@ -25,6 +25,8 @@
     <string name="unfreeze_and_launch">Unfreeze and Launch</string>
     <string name="auto_freeze">Auto Freeze</string>
     <string name="freeze_all">Batch Freeze</string>
+    <string name="create_freeze_all_shortcut">Create Batch Freeze Shortcut</string>
+    <string name="freeze_all_shortcut">Freeze</string>
     <string name="clone_success">Application "%s" cloned successfully</string>
     <string name="uninstall_success">Application "%s" uninstalled successfully</string>
     <string name="freeze_success">Application "%s" frozen successfully</string>

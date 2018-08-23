@@ -4,6 +4,7 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.drawable.Icon;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -231,7 +232,14 @@ public class MainActivity extends AppCompatActivity {
                 intent.setComponent(new ComponentName(this, DummyActivity.class));
                 startActivity(intent);
                 return true;
-                // TODO: batch freeze shortcut
+            case R.id.main_menu_create_freeze_all_shortcut:
+                Intent launchIntent = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);
+                launchIntent.setComponent(new ComponentName(this, DummyActivity.class));
+                launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Utility.createLauncherShortcut(this, launchIntent,
+                        Icon.createWithResource(this, R.mipmap.ic_freeze),
+                        "shelter-freeze-all", getString(R.string.freeze_all_shortcut));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
