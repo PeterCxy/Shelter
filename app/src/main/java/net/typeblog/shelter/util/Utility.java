@@ -21,7 +21,7 @@ import net.typeblog.shelter.ui.MainActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 public class Utility {
     // Affiliate an Intent to another profile (i.e. the Work profile that we manage)
@@ -32,10 +32,14 @@ public class Utility {
     public static void transferIntentToProfile(Context context, Intent intent) {
         PackageManager pm = context.getPackageManager();
         List<ResolveInfo> info = pm.queryIntentActivities(intent, 0);
-        ResolveInfo i = info.stream()
+        Optional<ResolveInfo> i = info.stream()
                 .filter((r) -> !r.activityInfo.packageName.equals(context.getPackageName()))
-                .collect(Collectors.toList()).get(0);
-        intent.setComponent(new ComponentName(i.activityInfo.packageName, i.activityInfo.name));
+                .findFirst();
+        if (i.isPresent()) {
+            intent.setComponent(new ComponentName(i.get().activityInfo.packageName, i.get().activityInfo.name));
+        } else {
+            throw new IllegalStateException("Cannot find an intent in other profile");
+        }
     }
 
     // Enforce policies and configurations in the work profile
@@ -81,7 +85,7 @@ public class Utility {
     }
 
     // From <https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap>
-    public static Bitmap drawableToBitmap (Drawable drawable) {
+    public static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable)drawable).getBitmap();
         }

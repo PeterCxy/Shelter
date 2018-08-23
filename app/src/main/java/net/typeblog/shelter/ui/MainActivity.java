@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         try {
             Utility.transferIntentToProfile(this, intent);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IllegalStateException e) {
             // This exception implies a missing work profile
             // which means that the work profile does not even exist
             // in the first place.
