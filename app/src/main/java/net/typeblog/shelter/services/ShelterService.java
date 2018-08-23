@@ -218,7 +218,7 @@ public class ShelterService extends Service {
         if (nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID) == null) {
             NotificationChannel chan = new NotificationChannel(
                     NOTIFICATION_CHANNEL_ID, getString(R.string.app_name),
-                    NotificationManager.IMPORTANCE_DEFAULT);
+                    NotificationManager.IMPORTANCE_LOW);
             nm.createNotificationChannel(chan);
         }
 
@@ -226,6 +226,8 @@ public class ShelterService extends Service {
         NotificationChannel chan = nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID);
         chan.enableVibration(false);
         chan.enableLights(false);
+        chan.setImportance(NotificationManager.IMPORTANCE_LOW);
+        nm.createNotificationChannel(chan);
 
         // Create foreground notification to keep the service alive
         Notification notification = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
