@@ -46,6 +46,10 @@ public class LocalStorageManager {
         return mPrefs.getString(pref, "").split(LIST_DIVIDER);
     }
 
+    public void setStringList(String pref, String[] list) {
+        mPrefs.edit().putString(pref, String.join(LIST_DIVIDER, list)).apply();
+    }
+
     public boolean stringListContains(String pref, String item) {
         return Arrays.asList(getStringList(pref)).indexOf(item) >= 0;
     }
@@ -63,6 +67,6 @@ public class LocalStorageManager {
     public void removeFromStringList(String pref, String item) {
         List<String> list = new ArrayList<>(Arrays.asList(getStringList(pref)));
         list.removeIf(item::equals);
-        mPrefs.edit().putString(pref, String.join(LIST_DIVIDER, list)).apply();
+        setStringList(pref, list.toArray(new String[]{}));
     }
 }

@@ -39,6 +39,7 @@ import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.ShelterService;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
 import net.typeblog.shelter.util.LocalStorageManager;
+import net.typeblog.shelter.util.Utility;
 
 import java.util.List;
 
@@ -154,6 +155,11 @@ public class AppListFragment extends Fragment {
             mService.getApps(new IGetAppsCallback.Stub() {
                 @Override
                 public void callback(List<ApplicationInfoWrapper> apps) {
+                    if (mIsRemote) {
+                        Utility.deleteMissingApps(
+                                LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE,
+                                apps);
+                    }
                     getActivity().runOnUiThread(() -> {
                         mSwipeRefresh.setRefreshing(false);
                         mAdapter.setData(apps);

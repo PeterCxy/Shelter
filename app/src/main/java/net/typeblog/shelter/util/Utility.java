@@ -18,6 +18,8 @@ import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.ui.MainActivity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -110,5 +112,13 @@ public class Utility {
         } catch (Exception e) {
             // We are stopping anyway
         }
+    }
+
+    // Delete apps that no longer exist from the auto freeze list
+    public static void deleteMissingApps(String pref, List<ApplicationInfoWrapper> apps) {
+        List<String> list = new ArrayList<>(
+                Arrays.asList(LocalStorageManager.getInstance().getStringList(pref)));
+        list.removeIf((it) -> apps.stream().noneMatch((x) -> x.getPackageName().equals(it)));
+        LocalStorageManager.getInstance().setStringList(pref, list.toArray(new String[]{}));
     }
 }
