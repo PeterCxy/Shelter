@@ -61,14 +61,14 @@ public class ShelterService extends Service {
                 List<ApplicationInfoWrapper> list = mPackageManager.getInstalledApplications(pmFlags)
                         .stream()
                         .filter((it) -> !it.packageName.equals(getPackageName()))
-                        .filter((it) ->
-                                // Show if:
-                                // - Isn't system app OR
-                                // - Is hidden ("frozen") OR
-                                // - Has a launch method
-                                (it.flags & ApplicationInfo.FLAG_SYSTEM) == 0
-                                        || isHidden(it.packageName)
-                                        || mPackageManager.getLaunchIntentForPackage(it.packageName) != null)
+                        .filter((it) -> {
+                            boolean isSystem = (it.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
+                            boolean isHidden = isHidden(it.packageName);
+                            boolean isInstalled = (it.flags & ApplicationInfo.FLAG_INSTALLED) != 0;
+                            boolean canLaunch = mPackageManager.getLaunchIntentForPackage(it.packageName) != null;
+
+                            return (!isSystem && isInstalled) || isHidden || canLaunch;
+                        })
                         .map(ApplicationInfoWrapper::new)
                         .map((it) -> it.loadLabel(mPackageManager)
                                 .setHidden(isHidden(it.getPackageName())))
