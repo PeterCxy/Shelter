@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.typeblog.shelter.R;
-import net.typeblog.shelter.services.IGetAppsCallback;
 import net.typeblog.shelter.services.ILoadIconCallback;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
@@ -104,45 +102,24 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
     private IShelterService mService;
     private Drawable mDefaultIcon;
     private String mLabelDisabled;
-    private boolean mRefreshing = false;
     private Map<String, Bitmap> mIconCache = new HashMap<>();
     private ContextMenuHandler mContextMenuHandler = null;
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
-    private SwipeRefreshLayout mSwipeRefresh;
-
-    AppListAdapter(IShelterService service, Drawable defaultIcon, SwipeRefreshLayout swipeRefresh) {
+    AppListAdapter(IShelterService service, Drawable defaultIcon) {
         mService = service;
         mDefaultIcon = defaultIcon;
-        mSwipeRefresh = swipeRefresh;
     }
 
     void setContextMenuHandler(ContextMenuHandler handler) {
         mContextMenuHandler = handler;
     }
 
-    void refresh() {
-        if (mRefreshing) return;
-        mRefreshing = true;
-        mSwipeRefresh.setRefreshing(true);
-
-        try {
-            mService.getApps(new IGetAppsCallback.Stub() {
-                @Override
-                public void callback(List<ApplicationInfoWrapper> apps) {
-                    mList.clear();
-                    mIconCache.clear();
-                    mList.addAll(apps);
-                    mHandler.post(() -> {
-                        mSwipeRefresh.setRefreshing(false);
-                        notifyDataSetChanged();
-                        mRefreshing = false;
-                    });
-                }
-            });
-        } catch (RemoteException e) {
-            // Just... do nothing for now
-        }
+    void setData(List<ApplicationInfoWrapper> apps) {
+        mList.clear();
+        mIconCache.clear();
+        mList.addAll(apps);
+        notifyDataSetChanged();
     }
 
     @Override

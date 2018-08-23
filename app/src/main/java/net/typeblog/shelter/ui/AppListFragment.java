@@ -33,13 +33,14 @@ import android.widget.Toast;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.services.IAppInstallCallback;
+import net.typeblog.shelter.services.IGetAppsCallback;
 import net.typeblog.shelter.services.ILoadIconCallback;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.ShelterService;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
 import net.typeblog.shelter.util.LocalStorageManager;
 
-import java.lang.reflect.Array;
+import java.util.List;
 
 public class AppListFragment extends Fragment {
     private static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
@@ -55,6 +56,7 @@ public class AppListFragment extends Fragment {
 
     private IShelterService mService = null;
     private boolean mIsRemote = false;
+    private boolean mRefreshing = false;
     private Drawable mDefaultIcon = null;
     private ApplicationInfoWrapper mSelectedApp = null;
 
@@ -68,9 +70,7 @@ public class AppListFragment extends Fragment {
     private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (mAdapter != null) {
-                mAdapter.refresh();
-            }
+            refresh();
         }
     };
 
@@ -108,9 +108,7 @@ public class AppListFragment extends Fragment {
         LocalBroadcastManager.getInstance(getContext())
                 .registerReceiver(mContextMenuClosedReceiver,
                         new IntentFilter(MainActivity.BROADCAST_CONTEXT_MENU_CLOSED));
-        if (mAdapter != null) {
-            mAdapter.refresh();
-        }
+        refresh();
     }
 
     @Override
@@ -131,7 +129,7 @@ public class AppListFragment extends Fragment {
         // Save the views
         mList = view.findViewById(R.id.fragment_list_recycler_view);
         mSwipeRefresh = view.findViewById(R.id.fragment_swipe_refresh);
-        mAdapter = new AppListAdapter(mService, mDefaultIcon, mSwipeRefresh);
+        mAdapter = new AppListAdapter(mService, mDefaultIcon);
         mAdapter.setContextMenuHandler((info, v) -> {
             mSelectedApp = info;
             mList.showContextMenuForChild(v);
@@ -140,10 +138,32 @@ public class AppListFragment extends Fragment {
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mList.setHasFixedSize(true);
 
-        mSwipeRefresh.setOnRefreshListener(mAdapter::refresh);
+        mSwipeRefresh.setOnRefreshListener(this::refresh);
         registerForContextMenu(mList);
 
         return view;
+    }
+
+    void refresh() {
+        if (mAdapter == null) return;
+        if (mRefreshing) return;
+        mRefreshing = true;
+        mSwipeRefresh.setRefreshing(true);
+
+        try {
+            mService.getApps(new IGetAppsCallback.Stub() {
+                @Override
+                public void callback(List<ApplicationInfoWrapper> apps) {
+                    getActivity().runOnUiThread(() -> {
+                        mSwipeRefresh.setRefreshing(false);
+                        mAdapter.setData(apps);
+                        mRefreshing = false;
+                    });
+                }
+            });
+        } catch (RemoteException e) {
+            // Just... do nothing for now
+        }
     }
 
     @Override
@@ -209,7 +229,7 @@ public class AppListFragment extends Fragment {
                 }
                 Toast.makeText(getContext(),
                         getString(R.string.freeze_success, mSelectedApp.getLabel()), Toast.LENGTH_SHORT).show();
-                mAdapter.refresh();
+                refresh();
                 return true;
             case MENU_ITEM_UNFREEZE:
                 try {
@@ -219,7 +239,7 @@ public class AppListFragment extends Fragment {
                 }
                 Toast.makeText(getContext(),
                         getString(R.string.unfreeze_success, mSelectedApp.getLabel()), Toast.LENGTH_SHORT).show();
-                mAdapter.refresh();
+                refresh();
                 return true;
             case MENU_ITEM_LAUNCH:
                 // LAUNCH and UNFREEZE_AND_LAUNCH share the same ID
