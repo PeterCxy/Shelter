@@ -4,14 +4,14 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="match_parent"
-    android:layout_height="64dp">
+    android:layout_height="80dp">
 
     <ImageView
         android:id="@+id/list_app_icon"
         android:scaleType="fitCenter"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
@@ -20,9 +20,9 @@
         android:id="@+id/list_app_title"
         android:layout_width="0dp"
         android:layout_height="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="0dp"
         android:textColor="@color/black"
         android:ellipsize="marquee"
@@ -35,9 +35,9 @@
         android:layout_width="0dp"
         android:layout_height="24dp"
         android:layout_marginTop="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:textColor="@color/grey"
         android:ellipsize="marquee"
         app:layout_constraintStart_toEndOf="@id/list_app_icon"
