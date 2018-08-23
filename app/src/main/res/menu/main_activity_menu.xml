@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/main_menu_freeze_all"
-        android:title="@string/freeze_all" />
+        android:icon="@drawable/ic_freeze_tinted"
+        android:title="@string/freeze_all"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/main_menu_create_freeze_all_shortcut"
