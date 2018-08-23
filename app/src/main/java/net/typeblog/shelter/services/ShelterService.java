@@ -222,6 +222,11 @@ public class ShelterService extends Service {
             nm.createNotificationChannel(chan);
         }
 
+        // Disable everything: do not disturb the user
+        NotificationChannel chan = nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID);
+        chan.enableVibration(false);
+        chan.enableLights(false);
+
         // Create foreground notification to keep the service alive
         Notification notification = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
                 .setTicker(getString(R.string.app_name))
