@@ -21,10 +21,9 @@
 
         <!-- The main activity for UI -->
         <activity android:name=".ui.MainActivity"
-            >
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="net.typeblog.shelter.action.PROVISION_FINISHED" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

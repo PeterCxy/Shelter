@@ -195,9 +195,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        if (level >= TRIM_MEMORY_BACKGROUND) {
+        if (level >= TRIM_MEMORY_BACKGROUND && mServiceMain != null) {
             // We actually do not need to be in the background at all
+            // (except when we are still waiting for provision to finish)
             // Just.. do not keep me at all.. please.
+            // This is a dirty hack to ensure that the foreground service in work profile
+            // will be killed along with this activity
             finish();
         }
     }
