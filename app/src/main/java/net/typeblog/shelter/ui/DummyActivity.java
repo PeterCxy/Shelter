@@ -18,6 +18,7 @@ import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IAppInstallCallback;
+import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
 import java.io.File;
@@ -35,6 +36,8 @@ public class DummyActivity extends Activity {
     public static final String UNINSTALL_PACKAGE = "net.typeblog.shelter.action.UNINSTALL_PACKAGE";
     public static final String UNFREEZE_AND_LAUNCH = "net.typeblog.shelter.action.UNFREEZE_AND_LAUNCH";
     public static final String PUBLIC_UNFREEZE_AND_LAUNCH = "net.typeblog.shelter.action.PUBLIC_UNFREEZE_AND_LAUNCH";
+    public static final String PUBLIC_FREEZE_ALL = "net.typeblog.shelter.action.PUBLIC_FREEZE_ALL";
+    public static final String FREEZE_ALL_IN_LIST = "net.typeblog.shelter.action.FREEZE_ALL_IN_LIST";
 
     private static final int REQUEST_INSTALL_PACKAGE = 1;
 
@@ -70,6 +73,10 @@ public class DummyActivity extends Activity {
             actionFinalizeProvision();
         } else if (UNFREEZE_AND_LAUNCH.equals(intent.getAction()) || PUBLIC_UNFREEZE_AND_LAUNCH.equals(intent.getAction())) {
             actionUnfreezeAndLaunch();
+        } else if (PUBLIC_FREEZE_ALL.equals(intent.getAction())) {
+            actionPublicFreezeAll();
+        } else if (FREEZE_ALL_IN_LIST.equals(intent.getAction())) {
+            actionFreezeAllInList();
         } else {
             finish();
         }
@@ -196,5 +203,37 @@ public class DummyActivity extends Activity {
         }
 
         finish();
+    }
+
+    private void actionPublicFreezeAll() {
+        // For now we only support freezing apps in work profile
+        // so forward this to DummyActivity in work profile
+        // after loading the full list to freeze
+        if (!mIsProfileOwner) {
+            Intent intent = new Intent(FREEZE_ALL_IN_LIST);
+            Utility.transferIntentToProfile(this, intent);
+            String[] list = LocalStorageManager.getInstance()
+                    .getStringList(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE);
+            intent.putExtra("list", list);
+            startActivity(intent);
+            finish();
+        } else {
+            throw new RuntimeException("unimplemented");
+        }
+    }
+
+    private void actionFreezeAllInList() {
+        if (mIsProfileOwner) {
+            String[] list = getIntent().getStringArrayExtra("list");
+            for (String pkg : list) {
+                mPolicyManager.setApplicationHidden(
+                        new ComponentName(this, ShelterDeviceAdminReceiver.class),
+                        pkg, true);
+            }
+            Toast.makeText(this, R.string.freeze_all_success, Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            finish();
+        }
     }
 }

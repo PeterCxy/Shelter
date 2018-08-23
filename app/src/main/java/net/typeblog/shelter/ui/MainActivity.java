@@ -15,6 +15,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import net.typeblog.shelter.R;
@@ -206,10 +208,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_menu, menu);
+        return true;
+    }
+
+    @Override
     public void onContextMenuClosed(Menu menu) {
         super.onContextMenuClosed(menu);
         LocalBroadcastManager.getInstance(this)
                 .sendBroadcast(new Intent(BROADCAST_CONTEXT_MENU_CLOSED));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.main_menu_freeze_all:
+                // This is the same as clicking on the batch freeze shortcut
+                // so we just forward the request to DummyActivity
+                Intent intent = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);
+                intent.setComponent(new ComponentName(this, DummyActivity.class));
+                startActivity(intent);
+                return true;
+                // TODO: batch freeze shortcut
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

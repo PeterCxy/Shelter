@@ -37,6 +37,9 @@ import net.typeblog.shelter.services.ILoadIconCallback;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.ShelterService;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
+import net.typeblog.shelter.util.LocalStorageManager;
+
+import java.lang.reflect.Array;
 
 public class AppListFragment extends Fragment {
     private static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
@@ -48,6 +51,7 @@ public class AppListFragment extends Fragment {
     private static final int MENU_ITEM_UNFREEZE = 10004;
     private static final int MENU_ITEM_LAUNCH = 10005;
     private static final int MENU_ITEM_CREATE_UNFREEZE_SHORTCUT = 10006;
+    private static final int MENU_ITEM_AUTO_FREEZE = 10007;
 
     private IShelterService mService = null;
     private boolean mIsRemote = false;
@@ -158,6 +162,14 @@ public class AppListFragment extends Fragment {
                 menu.add(Menu.NONE, MENU_ITEM_FREEZE, Menu.NONE, R.string.freeze_app);
                 menu.add(Menu.NONE, MENU_ITEM_LAUNCH, Menu.NONE, R.string.launch);
             }
+            // TODO: If we implement God Mode (i.e. Shelter as device owner), we should
+            // TODO: use two different lists to store auto freeze apps because we'll be
+            // TODO: able to freeze apps in main profile.
+            MenuItem autoFreeze = menu.add(Menu.NONE, MENU_ITEM_AUTO_FREEZE, Menu.NONE, R.string.auto_freeze);
+            autoFreeze.setCheckable(true);
+            autoFreeze.setChecked(
+                    LocalStorageManager.getInstance().stringListContains(
+                            LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, mSelectedApp.getPackageName()));
             menu.add(Menu.NONE, MENU_ITEM_CREATE_UNFREEZE_SHORTCUT, Menu.NONE, R.string.create_unfreeze_shortcut);
         } else {
             menu.add(Menu.NONE, MENU_ITEM_CLONE, Menu.NONE, R.string.clone_to_work_profile);
@@ -233,6 +245,17 @@ public class AppListFragment extends Fragment {
                     // Ignore
                 }
                 return true;
+            case MENU_ITEM_AUTO_FREEZE:
+                boolean orig = LocalStorageManager.getInstance().stringListContains(
+                        LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, mSelectedApp.getPackageName());
+
+                if (!orig) {
+                    LocalStorageManager.getInstance().appendStringList(
+                            LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, mSelectedApp.getPackageName());
+                } else {
+                    LocalStorageManager.getInstance().removeFromStringList(
+                            LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, mSelectedApp.getPackageName());
+                }
         }
 
         return super.onContextItemSelected(item);

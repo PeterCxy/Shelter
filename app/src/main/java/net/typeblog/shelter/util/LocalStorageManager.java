@@ -3,9 +3,15 @@ package net.typeblog.shelter.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class LocalStorageManager {
     public static final String PREF_IS_DEVICE_ADMIN = "is_device_admin";
     public static final String PREF_HAS_SETUP = "has_setup";
+    public static final String PREF_AUTO_FREEZE_LIST_WORK_PROFILE = "auto_freeze_list_work_profile";
+
+    private static final String LIST_DIVIDER = ",";
 
     private static LocalStorageManager sInstance = null;
     private SharedPreferences mPrefs = null;
@@ -33,5 +39,29 @@ public class LocalStorageManager {
 
     public void setBoolean(String pref, boolean value) {
         mPrefs.edit().putBoolean(pref, value).apply();
+    }
+
+    public String[] getStringList(String pref) {
+        return mPrefs.getString(pref, "").split(LIST_DIVIDER);
+    }
+
+    public boolean stringListContains(String pref, String item) {
+        return Arrays.asList(getStringList(pref)).indexOf(item) >= 0;
+    }
+
+    public void appendStringList(String pref, String newItem) {
+        String str = mPrefs.getString(pref, null);
+        if (str == null) {
+            str = newItem;
+        } else {
+            str += LIST_DIVIDER + newItem;
+        }
+        mPrefs.edit().putString(pref, str).apply();
+    }
+
+    public void removeFromStringList(String pref, String item) {
+        List<String> list = Arrays.asList(getStringList(pref));
+        list.removeIf(item::equals);
+        mPrefs.edit().putString(pref, String.join(LIST_DIVIDER, list)).apply();
     }
 }
