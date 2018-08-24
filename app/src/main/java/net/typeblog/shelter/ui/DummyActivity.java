@@ -92,11 +92,26 @@ public class DummyActivity extends Activity {
     }
 
     private void actionFinalizeProvision() {
-        // This is the action used by DeviceAdminReceiver to finalize the setup
-        // The work has been finished in onCreate(), now we just have to
-        // inform the user to restart the main activity
-        Toast.makeText(this, getString(R.string.provision_finished), Toast.LENGTH_LONG).show();
-        finish();
+        if (mIsProfileOwner) {
+            // This is the action used by DeviceAdminReceiver to finalize the setup
+            // The work has been finished in onCreate(), now we just have to
+            // inform the main profile about this
+            Intent intent = new Intent(FINALIZE_PROVISION);
+            Utility.transferIntentToProfile(this, intent);
+            startActivity(intent);
+            finish();
+        } else {
+            // Set the flag telling MainActivity that we have now finished provisioning
+            LocalStorageManager.getInstance()
+                    .setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
+            LocalStorageManager.getInstance()
+                    .setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, false);
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setComponent(new ComponentName(this, MainActivity.class));
+            startActivity(intent);
+            Toast.makeText(this, getString(R.string.provision_finished), Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
     private void actionStartService() {

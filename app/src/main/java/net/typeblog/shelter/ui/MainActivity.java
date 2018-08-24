@@ -81,7 +81,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
-        if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
+        if (mStorage.getBoolean(LocalStorageManager.PREF_IS_SETTING_UP)) {
+            // Provision is still going on...
+            Toast.makeText(this, R.string.provision_still_pending, Toast.LENGTH_SHORT).show();
+            finish();
+        } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
             // If not set up yet, we have to provision the profile first
             setupProfile();
         } else {
@@ -249,9 +253,8 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_PROVISION_PROFILE) {
             if (resultCode == RESULT_OK) {
                 // The sync part of the setup process is completed
-                // Let's just assume it succeeded. If it did not, the program will break
-                // on the next start anyway.
-                mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
+                // Wait for the provisioning to complete
+                mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, true);
 
                 // However, we still have to wait for DummyActivity in work profile to finish
                 Toast.makeText(this,

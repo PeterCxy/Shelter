@@ -80,6 +80,11 @@ public class Utility {
                 new IntentFilter(DummyActivity.FREEZE_ALL_IN_LIST),
                 DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
 
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
+                new IntentFilter(DummyActivity.FINALIZE_PROVISION),
+                DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
+
         manager.setProfileEnabled(adminComponent);
     }
 
