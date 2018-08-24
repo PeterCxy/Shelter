@@ -41,6 +41,12 @@ public class KillerService extends Service {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        killEverything();
+    }
+
+    @Override
     public void onTaskRemoved(Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
         killEverything();

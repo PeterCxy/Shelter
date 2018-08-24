@@ -9,6 +9,7 @@ import net.typeblog.shelter.services.ILoadIconCallback;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
 
 interface IShelterService {
+    void ping();
     void stopShelterService(boolean kill);
     void getApps(IGetAppsCallback callback);
     void loadIcon(in ApplicationInfoWrapper info, ILoadIconCallback callback);

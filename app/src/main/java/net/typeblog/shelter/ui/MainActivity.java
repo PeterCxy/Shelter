@@ -189,6 +189,35 @@ public class MainActivity extends AppCompatActivity {
         return isRemote ? mServiceMain : mServiceWork;
     }
 
+    boolean servicesAlive() {
+        try {
+            mServiceMain.ping();
+        } catch (Exception e) {
+            return false;
+        }
+
+        try {
+            mServiceWork.ping();
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mServiceMain != null && mServiceWork != null && !servicesAlive()) {
+            // Restart the activity if the services are no longer alive
+            // This might be caused by KillerService being destroyed and
+            // bringing all the other services with it
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -36,6 +36,11 @@ public class ShelterService extends Service {
     private ComponentName mAdminComponent = null;
     private IShelterService.Stub mBinder = new IShelterService.Stub() {
         @Override
+        public void ping() {
+            // Do nothing, just let the other side know we are alive
+        }
+
+        @Override
         public void stopShelterService(boolean kill) {
             // dirty: just wait for some time and kill this service itself
             new Thread(() -> {
