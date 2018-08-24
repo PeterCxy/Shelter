@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private LocalStorageManager mStorage = null;
     private DevicePolicyManager mPolicyManager = null;
 
+    // Flag to avoid double-killing our services while restarting
+    private boolean mRestarting = false;
+
     // Two services running in main / work profile
     private IShelterService mServiceMain = null;
     private IShelterService mServiceWork = null;
@@ -209,6 +212,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (mServiceMain != null && mServiceWork != null && !servicesAlive()) {
+            // First, ensure that the services are killed before we restart
+            // Otherwise, the system will reuse the services and the new activity
+            // will end up depending on those old services that we are going to kill
+            // in onDestroy()
+            doOnDestroy();
+
+            // Tell the onDestroy() logic that we are restarting. Do not kill the
+            // KillerService again because the new activity will be starting a new one
+            mRestarting = true;
+
             // Restart the activity if the services are no longer alive
             // This might be caused by KillerService being destroyed and
             // bringing all the other services with it
@@ -221,6 +234,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        // DO NOT kill anything if we are restarting
+        // by the time this method is called, the new
+        // activity could have started those services
+        // again. We will mess up the new activity
+        // if we kill again.
+        if (!mRestarting)
+            doOnDestroy();
+    }
+
+    private void doOnDestroy() {
         // If the activity is stopped first, then kill the KillerService
         // to avoid double-free
         stopService(new Intent(this, KillerService.class));
