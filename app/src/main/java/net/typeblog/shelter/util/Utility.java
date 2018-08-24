@@ -59,6 +59,9 @@ public class Utility {
                 new ComponentName(context.getApplicationContext(), MainActivity.class),
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED, 0);
 
+        // Clear everything first to ensure our policies are set properly
+        manager.clearCrossProfileIntentFilters(adminComponent);
+
         // Allow cross-profile intents for START_SERVICE
         manager.addCrossProfileIntentFilter(
                 adminComponent,
@@ -83,6 +86,17 @@ public class Utility {
         manager.addCrossProfileIntentFilter(
                 adminComponent,
                 new IntentFilter(DummyActivity.FINALIZE_PROVISION),
+                DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
+
+        // Browser intents are allowed from work profile to parent
+        // TODO: Make this configurable, just as ALLOW_PARENT_PROFILE_APP_LINKING in the next function
+        IntentFilter i = new IntentFilter(Intent.ACTION_VIEW);
+        i.addCategory(Intent.CATEGORY_BROWSABLE);
+        i.addDataScheme("http");
+        i.addDataScheme("https");
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
+                i,
                 DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
 
         manager.setProfileEnabled(adminComponent);
