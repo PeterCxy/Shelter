@@ -28,6 +28,10 @@
             </intent-filter>
         </activity>
 
+        <!-- The Settings activity -->
+        <activity android:name=".ui.SettingsActivity"
+            android:label="@string/settings" />
+
         <!-- An activity that wraps intents that cross the profile boundary -->
         <!-- Needed because only cross-profile Activity intents are supported -->
         <activity android:name=".ui.DummyActivity"

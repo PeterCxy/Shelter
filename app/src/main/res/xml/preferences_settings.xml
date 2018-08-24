@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/settings_about">
+
+        <android.support.v7.preference.Preference
+            android:key="settings_version"
+            android:title="@string/settings_version" />
+
+        <android.support.v7.preference.Preference
+            android:key="settings_source_code"
+            android:title="@string/settings_source_code"
+            android:summary="@string/settings_source_code_url" />
+
+        <android.support.v7.preference.Preference
+            android:key="settings_bug_report"
+            android:title="@string/settings_bug_report"
+            android:summary="@string/settings_bug_report_url" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

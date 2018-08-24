@@ -8,6 +8,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/main_menu_settings"
+        android:icon="@drawable/ic_settings_tinted_24dp"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/main_menu_create_freeze_all_shortcut"
         android:title="@string/create_freeze_all_shortcut" />
 </menu>

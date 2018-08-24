@@ -236,6 +236,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.setComponent(new ComponentName(this, DummyActivity.class));
                 startActivity(intent);
                 return true;
+            case R.id.main_menu_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
             case R.id.main_menu_create_freeze_all_shortcut:
                 Intent launchIntent = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);
                 launchIntent.setComponent(new ComponentName(this, DummyActivity.class));
