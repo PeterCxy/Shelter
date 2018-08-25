@@ -31,11 +31,14 @@ Also, Shelter cannot create more than 1 work profile on one Android device, and 
 FAQS
 ===
 
-**Q**: Why not use Island by OasisFeng, the creator of Greenify?
+**Q**: Why not use Island by OasisFeng, the creator of Greenify?  
 **A**: Simply because it is not an FOSS app and it bundles with non-free SDKs. Note that this doesn't necessarily mean that Island has anti-features like tracking (and I don't think it has either), it's just that I wrote Shelter as an FOSS replacement of it. There is no other reason why one would prefer Shelter over Island except for this one.
 
-**Q**: How do I uninstall Shelter from my device?
+**Q**: Why does Shelter always run in background?  
+**A**: Please try removing Shelter from "Recent Apps" every time you close it. If it still persists in your notifications and eating up battery, you might have encountered a bug. Please file a bug report.
+
+**Q**: How do I uninstall Shelter from my device?  
 **A**: 1) Go to Settings -> Accounts to remove the work profile; 2) Go to Settings -> Security -> Advanced -> Device admin apps to remove Shelter from Device Admin apps; 3) Uninstall Shelter normally.
 
-**Q**: If I encounter bugs, how do I report them?
-**A**: You could file an issue on either the main repository at <https://git.angry.im/PeterCxy/Shelter> or the mirror repository at <https://github.com/PeterCxy/Shelter>.
+**Q**: If I encounter bugs, how do I report them?  
+**A**: You could file an issue on either the main repository at <https://git.angry.im/PeterCxy/Shelter> or the mirror repository at <https://github.com/PeterCxy/Shelter>. Please include your system information as well as a logcat if possible.
