@@ -1,5 +1,7 @@
 ![Shelter](https://git.angry.im/PeterCxy/Shelter/raw/branch/master/app/src/main/ic_launcher_shelter-web.png)
 
+Note: the GitHub repository is merely a mirror. Although I also accept pull requests and issues from GitHub, I'd recommend you to go to the main repository at <https://git.angry.im/PeterCxy/Shelter>
+
 Shelter - Isolate your Big Brother Apps / Multiple Accounts
 ===
 
