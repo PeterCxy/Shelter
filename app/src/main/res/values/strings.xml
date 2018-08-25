@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Shelter</string>
+    <string name="first_run_alert">You are about to set up Shelter.\n\nThis app depends on the <b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Shelter will ask for <b>Device Admin permission and set up Work Profile</b> for you.\n\nIf you are a developer and would like to make Shelter work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.</string>
+    <string name="first_run_alert_cancel">Bye</string>
+    <string name="first_run_alert_continue">Continue</string>
     <string name="device_admin_label">Shelter</string>
     <string name="device_admin_desc">App Isolation Service</string>
     <string name="device_admin_explanation">Shelter needs to become Device Admin in order to perform its isolation tasks.</string>

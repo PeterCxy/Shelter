@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -90,7 +91,13 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
             // If not set up yet, we have to provision the profile first
-            setupProfile();
+            new AlertDialog.Builder(this)
+                    .setMessage(R.string.first_run_alert)
+                    .setPositiveButton(R.string.first_run_alert_continue,
+                            (dialog, which) -> setupProfile())
+                    .setNegativeButton(R.string.first_run_alert_cancel,
+                            (dialog, which) -> finish())
+                    .show();
         } else {
             // Initialize the app (start by binding the services)
             bindServices();
