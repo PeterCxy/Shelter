@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+    buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId "net.typeblog.shelter"
         minSdkVersion 26
@@ -16,6 +17,9 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    aaptOptions {
+        cruncherEnabled = false
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
