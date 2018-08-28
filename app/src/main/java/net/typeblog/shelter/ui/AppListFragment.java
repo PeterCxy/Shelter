@@ -260,7 +260,7 @@ public class AppListFragment extends Fragment {
                     mService.loadIcon(app, new ILoadIconCallback.Stub() {
                         @Override
                         public void callback(Bitmap icon) {
-                            addUnfreezeShortcut(app, icon);
+                            getActivity().runOnUiThread(() -> addUnfreezeShortcut(app, icon));
                         }
                     });
                 } catch (RemoteException e) {

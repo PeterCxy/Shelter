@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -315,6 +316,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_PROVISION_PROFILE) {
             if (resultCode == RESULT_OK) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                    // For pre-Oreo, by the time this is received, the whole process
+                    // should have completed.
+                    recreate();
+                    return;
+                }
                 // The sync part of the setup process is completed
                 // Wait for the provisioning to complete
                 mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, true);

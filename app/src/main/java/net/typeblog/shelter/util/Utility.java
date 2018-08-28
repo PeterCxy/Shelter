@@ -17,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.UserManager;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import net.typeblog.shelter.R;
@@ -31,6 +32,21 @@ import java.util.List;
 import java.util.Optional;
 
 public class Utility {
+    // Polyfill for String.join
+    public static String stringJoin(String delimiter, String[] list) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return String.join(delimiter, list);
+        } else {
+            if (list.length == 0) return "";
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < list.length - 1; i++) {
+                sb.append(list[i]).append(delimiter);
+            }
+            sb.append(list[list.length - 1]);
+            return sb.toString();
+        }
+    }
+
     // Affiliate an Intent to another profile (i.e. the Work profile that we manage)
     // This method cares nothing about if the other profile even exists.
     // When there is no other profile, this method would just simply throw
@@ -109,6 +125,12 @@ public class Utility {
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES);
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_UNINSTALL_APPS);
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            // Polyfill for UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES
+            // Don't use this on Android Oreo and later, it will crash
+            manager.setSecureSetting(adminComponent, Settings.Secure.INSTALL_NON_MARKET_APPS, "1");
+        }
+
         // TODO: This should be configured by the user, instead of being enforced each time Shelter starts
         // TODO: But we should also have some default restrictions that are set the first time Shelter starts
         manager.addUserRestriction(adminComponent, UserManager.ALLOW_PARENT_PROFILE_APP_LINKING);
@@ -177,8 +199,12 @@ public class Utility {
                 Toast.makeText(context, context.getString(R.string.unsupported_launcher), Toast.LENGTH_LONG).show();
             }
         } else {
-            // TODO: Maybe backport for Android < O?
-            throw new RuntimeException("unimplemented");
+            Intent shortcutIntent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
+            shortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
+            shortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, label);
+            shortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, drawableToBitmap(icon.loadDrawable(context)));
+            context.sendBroadcast(shortcutIntent);
+            Toast.makeText(context, R.string.shortcut_create_success, Toast.LENGTH_SHORT).show();
         }
     }
 }

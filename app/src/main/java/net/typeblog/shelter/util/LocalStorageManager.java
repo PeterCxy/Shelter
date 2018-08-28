@@ -48,7 +48,7 @@ public class LocalStorageManager {
     }
 
     public void setStringList(String pref, String[] list) {
-        mPrefs.edit().putString(pref, String.join(LIST_DIVIDER, list)).apply();
+        mPrefs.edit().putString(pref, Utility.stringJoin(LIST_DIVIDER, list)).apply();
     }
 
     public boolean stringListContains(String pref, String item) {

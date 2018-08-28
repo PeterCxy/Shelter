@@ -1,5 +1,6 @@
 package net.typeblog.shelter.services;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -23,6 +25,7 @@ import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
 import net.typeblog.shelter.util.Utility;
 
+import java.lang.annotation.Target;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -217,8 +220,27 @@ public class ShelterService extends Service {
     }
 
     private void setForeground() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setForegroundOreo();
+        } else {
+            setForegroundLollipop();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void setForegroundLollipop() {
+        Notification notification = new Notification.Builder(this)
+                .setTicker(getString(R.string.app_name))
+                .setContentTitle(getString(R.string.service_title))
+                .setContentText(getString(R.string.service_desc))
+                .setSmallIcon(R.drawable.ic_notification_white_24dp)
+                .build();
+        startForeground(1, notification);
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private void setForegroundOreo() {
         // Android O and later: Notification Channel
-        // TODO: Maybe backport to pre-O?
         NotificationManager nm = getSystemService(NotificationManager.class);
         if (nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID) == null) {
             NotificationChannel chan = new NotificationChannel(

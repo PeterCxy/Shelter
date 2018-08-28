@@ -39,6 +39,7 @@
     <string name="unsupported_launcher">Cannot add shortcuts to your launcher. Please contact the developer for more information.</string>
     <string name="app_context_menu_title">Operations for %s</string>
     <string name="freeze_all_success">All apps in \"Auto Freeze\" list have been frozen successfully.</string>
+    <string name="shortcut_create_success">Shortcut created on your launcher.</string>
     <string name="settings">Settings</string>
     <string name="settings_about">About</string>
     <string name="settings_version">Version</string>
