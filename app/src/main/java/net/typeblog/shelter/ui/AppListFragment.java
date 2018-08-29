@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
@@ -218,7 +219,15 @@ public class AppListFragment extends Fragment {
 
         switch (item.getItemId()) {
             case MENU_ITEM_CLONE:
-                installOrUninstall(mSelectedApp, true);
+                if (Utility.isMIUI() && !mSelectedApp.isSystem()) {
+                    // Cannot clone non-system apps on MIUI
+                    new AlertDialog.Builder(getContext())
+                            .setMessage(R.string.miui_cannot_clone)
+                            .setPositiveButton(android.R.string.ok, null)
+                            .show();
+                } else {
+                    installOrUninstall(mSelectedApp, true);
+                }
                 return true;
             case MENU_ITEM_UNINSTALL:
                 installOrUninstall(mSelectedApp, false);

@@ -127,10 +127,9 @@ public class Utility {
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES);
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_UNINSTALL_APPS);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O || isMIUI()) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             // Polyfill for UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES
             // Don't use this on Android Oreo and later, it will crash
-            // TODO: WIP: Maybe this is needed on MIUI
             manager.setSecureSetting(adminComponent, Settings.Secure.INSTALL_NON_MARKET_APPS, "1");
         }
 
@@ -145,8 +144,6 @@ public class Utility {
             Process proc = Runtime.getRuntime().exec("getprop ro.miui.ui.version.name");
             BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             String line = reader.readLine().trim();
-            // TODO: Remove this after trying on MIUI
-            android.util.Log.d("Utility", "ro.miui.ui.version.name = " + line);
             return !line.isEmpty();
         } catch (Exception e) {
             return false;

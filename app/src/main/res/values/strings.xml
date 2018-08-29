@@ -59,4 +59,7 @@
     <string name="app_context_menu_title">Operations for %s</string>
     <string name="freeze_all_success">All apps in \"Auto Freeze\" list have been frozen successfully.</string>
     <string name="shortcut_create_success">Shortcut created on your launcher.</string>
+
+    <!-- MIUI -->
+    <string name="miui_cannot_clone">Cloning non-system apps to another profile is currently not possible on MIUI. Please clone your system\'s app store (e.g. <b>Play Store</b>) into the other profile and then install apps from there.</string>
 </resources>
