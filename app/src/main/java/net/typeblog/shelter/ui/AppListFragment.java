@@ -287,6 +287,7 @@ public class AppListFragment extends Fragment {
                     LocalStorageManager.getInstance().removeFromStringList(
                             LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, mSelectedApp.getPackageName());
                 }
+                return true;
         }
 
         return super.onContextItemSelected(item);
