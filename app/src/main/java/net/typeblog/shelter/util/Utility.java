@@ -26,6 +26,8 @@ import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.ui.MainActivity;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -125,15 +127,30 @@ public class Utility {
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES);
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_UNINSTALL_APPS);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O || isMIUI()) {
             // Polyfill for UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES
             // Don't use this on Android Oreo and later, it will crash
+            // TODO: WIP: Maybe this is needed on MIUI
             manager.setSecureSetting(adminComponent, Settings.Secure.INSTALL_NON_MARKET_APPS, "1");
         }
 
         // TODO: This should be configured by the user, instead of being enforced each time Shelter starts
         // TODO: But we should also have some default restrictions that are set the first time Shelter starts
         manager.addUserRestriction(adminComponent, UserManager.ALLOW_PARENT_PROFILE_APP_LINKING);
+    }
+
+    // Detect if the device is MIUI
+    public static boolean isMIUI() {
+        try {
+            Process proc = Runtime.getRuntime().exec("getprop ro.miui.ui.version.name");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+            String line = reader.readLine().trim();
+            // TODO: Remove this after trying on MIUI
+            android.util.Log.d("Utility", "ro.miui.ui.version.name = " + line);
+            return !line.isEmpty();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     // From <https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap>
