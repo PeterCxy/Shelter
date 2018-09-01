@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
-        if (mStorage.getBoolean(LocalStorageManager.PREF_IS_SETTING_UP)) {
+        if (mStorage.getBoolean(LocalStorageManager.PREF_IS_SETTING_UP) && !isWorkProfileAvailable()) {
             // Provision is still going on...
             Toast.makeText(this, R.string.provision_still_pending, Toast.LENGTH_SHORT).show();
             finish();
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 mServiceMain = IShelterService.Stub.asInterface(service);
-                detectWorkProfileAvailability();
+                tryStartWorkService();
             }
 
             @Override
@@ -139,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
         }, false);
     }
 
-    private void detectWorkProfileAvailability() {
+    private void tryStartWorkService() {
         // Send a dummy intent to the work profile first
-        // to determine if work mode is enabled.
+        // to determine if work mode is enabled and we CAN start something in that profile.
         // If work mode is disabled when starting this app, we will receive RESULT_CANCELED
         // in the activity result.
         Intent intent = new Intent(DummyActivity.TRY_START_SERVICE);
@@ -191,6 +191,23 @@ public class MainActivity extends AppCompatActivity {
         // All the remaining work will be done in the fragments
         mPager.setAdapter(new AppListFragmentAdapter(getSupportFragmentManager()));
         mTabs.setupWithViewPager(mPager);
+    }
+
+    private boolean isWorkProfileAvailable() {
+        // Determine if the work profile is already available
+        // If so, return true and set all the corresponding flags to true
+        // This is for scenarios where the asynchronous part of the
+        // setup process might be finished before the synchronous part
+        Intent intent = new Intent(DummyActivity.TRY_START_SERVICE);
+        try {
+            Utility.transferIntentToProfile(this, intent);
+            mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, false);
+            mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
+            return true;
+        } catch (IllegalStateException e) {
+            // If any exception is thrown, this means that the profile is not available
+            return false;
+        }
     }
 
     // Get the service on the other side
@@ -316,8 +333,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_PROVISION_PROFILE) {
             if (resultCode == RESULT_OK) {
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                    // For pre-Oreo, by the time this is received, the whole process
+                if (isWorkProfileAvailable()) {
+                    // For pre-Oreo, or post-Oreo on some circumstances,
+                    // by the time this is received, the whole process
                     // should have completed.
                     recreate();
                     return;
