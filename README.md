@@ -17,8 +17,8 @@ This app depends on your Android system's implementation of Work Profile. Some v
 Features / Use Cases
 ===
 
-1. Run "Big Brother" apps inside the isolated profile so they cannot access your data outside the profile
-2. "Freeze" (disable) background-heavy or seldom-used apps when you don't need them. This is especially true if you use apps from Chinese companies like Baidu, Alibaba, Tencent.
+1. Run "Big Brother" apps inside the isolated profile so they cannot access your data / files outside the profile
+2. "Freeze" (disable) background-heavy, tracking-heavy or seldom-used apps when you don't need them. This is especially true if you use apps from Chinese companies like Baidu, Alibaba, Tencent.
 3. Clone apps to use two accounts on one device
 
 Caveats
@@ -29,7 +29,7 @@ Shelter is not a full sandbox implementation. It cannot protect you from:
 1. Security bugs of the Android system or Linux kernel
 2. Backdoors installed in your Android system (so please use an open-source ROM if you are concerned about this)
 3. Backdoors installed into the firmwares (no way to work around this)
-4. Any other bugs or limitations imposed by the Android system.
+4. Any other bugs or limitations imposed by the Android system. (i.e. If Android chooses to expose some information into the work profile, there is nothing I could do about it)
 
 Also, Shelter cannot create more than 1 work profile on one Android device, and cannot co-exist with any other apps that manages a Work Profile. This is due to the limitations of the Android system, and I can do nothing about this.
 
