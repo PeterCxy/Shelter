@@ -1,0 +1,61 @@
+<resources>
+    <string name="first_run_alert">您正在使用 Shelter。\n\n这个应用依赖于 Android 的 <b>工作用户</b> 功能来隔离 App。如果你使用的厂商 / 自定义 ROM 破坏了这个功能 (如 MIUI)，您应该立即 <b>退出</b> 并且 <b>停止使用</b> 本应用。\n\n如果你选择继续，Shelter 将为您初始化工作用户。\n\n如果您是开发者并且希望将 Shelter 带到那些目前不能使用的 ROM 上，欢迎您提交 Pull Request。本应用的开发者对您在不兼容的 ROM 上运行该 App 带来的任何后果 <b>不负任何责任</b>。</string>
+    <string name="first_run_alert_cancel">再见</string>
+    <string name="first_run_alert_continue">继续</string>
+    <string name="device_admin_desc">App 隔离服务</string>
+    <string name="device_admin_explanation">Shelter 需要成为设备管理员才能正常进行 App 隔离等操作。</string>
+
+    <!-- Notifications -->
+    <string name="service_title">Shelter 服务</string>
+    <string name="service_desc">Shelter 正在运行 &#8230;</string>
+
+    <!-- Main UI -->
+    <string name="fragment_profile_main">主用户</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[已冻结] %s</string>
+
+    <!-- App Context Menu -->
+    <string name="clone_to_work_profile">克隆到 Shelter (工作用户)</string>
+    <string name="clone_to_main_profile">克隆到主用户</string>
+    <string name="uninstall_app">卸载</string>
+    <string name="freeze_app">冻结</string>
+    <string name="unfreeze_app">解除冻结</string>
+    <string name="launch">运行</string>
+    <string name="create_unfreeze_shortcut">创建解冻并运行快捷方式</string>
+    <string name="unfreeze_and_launch">解冻并运行</string>
+    <string name="auto_freeze">自动冻结</string>
+
+    <!-- Action Bar Options Menu -->
+    <string name="freeze_all">批量冻结</string>
+    <string name="create_freeze_all_shortcut">创建批量冻结快捷方式</string>
+    <string name="freeze_all_shortcut">冻结</string>
+
+    <!-- Settings Options -->
+    <string name="settings">设置</string>
+    <string name="settings_about">关于</string>
+    <string name="settings_version">版本</string>
+    <string name="settings_source_code">源代码</string>
+    <string name="settings_bug_report">Bug 报告</string>
+
+    <!-- Toast Long Texts -->
+    <string name="device_admin_toast">Shelter 必须拥有设备管理员权限以正常工作，请再试一次</string>
+    <string name="provision_still_pending">正在为您准备 Shelter, 请稍候 &#8230;</string>
+    <string name="provision_finished">Shelter 已初始化完成，正在启动 Shelter。如果 Shelter 没有自动启动，请您从启动器手动启动它</string>
+    <string name="msg_device_unsupported">权限不足 / 设备不兼容</string>
+    <string name="work_profile_not_found">工作用户不可用，请重新启动 Shelter 以重新初始化</string>
+    <string name="work_profile_provision_failed">无法创建工作用户，您可以重启 Shelter 并再试一次</string>
+    <string name="work_mode_disabled">工作模式 (Work Mode) 已被您关闭，请开启后再启动 Shelter</string>
+    <string name="clone_success">应用 \"%s\" 克隆成功</string>
+    <string name="uninstall_success">应用 \"%s\" 卸载成功</string>
+    <string name="freeze_success">应用 \"%s\" 冻结成功</string>
+    <string name="unfreeze_success">应用 \"%s\" 解冻成功</string>
+    <string name="clone_fail_system_app">无法将系统应用克隆到 Shelter 无权管理的用户下</string>
+    <string name="uninstall_fail_system_app">无法在 Shelter 无权管理的用户下卸载系统应用</string>
+    <string name="unsupported_launcher">无法在您的启动器上添加快捷方式，请联系开发者</string>
+    <string name="app_context_menu_title">%s 可用操作</string>
+    <string name="freeze_all_success">所有在 \"自动冻结\" 列表中的应用都已经冻结成功</string>
+    <string name="shortcut_create_success">快捷方式已创建</string>
+
+    <!-- MIUI -->
+    <string name="miui_cannot_clone">目前无法在 MIUI 上克隆非系统应用。请先克隆您的系统应用商店 (如 <b>Play Store</b>) 然后从克隆的应用商店中安装应用</string>
+</resources>
