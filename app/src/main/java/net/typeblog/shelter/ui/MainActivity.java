@@ -107,18 +107,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupProfile() {
+        // Build the provisioning intent first
+        ComponentName admin = new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class);
+        Intent intent = new Intent(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE);
+        intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_SKIP_ENCRYPTION, true);
+        intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME, admin);
+
         // Check if provisioning is allowed
-        if (!mPolicyManager.isProvisioningAllowed(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE)) {
+        if (!mPolicyManager.isProvisioningAllowed(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE)
+                || getPackageManager().resolveActivity(intent, 0) == null) {
             Toast.makeText(this,
                     getString(R.string.msg_device_unsupported), Toast.LENGTH_LONG).show();
             finish();
         }
 
         // Start provisioning
-        ComponentName admin = new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class);
-        Intent intent = new Intent(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE);
-        intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_SKIP_ENCRYPTION, true);
-        intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME, admin);
         startActivityForResult(intent, REQUEST_PROVISION_PROFILE);
     }
 
