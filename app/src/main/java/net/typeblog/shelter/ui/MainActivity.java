@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
             // If not set up yet, we have to provision the profile first
             new AlertDialog.Builder(this)
+                    .setCancelable(false)
                     .setMessage(R.string.first_run_alert)
                     .setPositiveButton(R.string.first_run_alert_continue,
                             (dialog, which) -> setupProfile())
