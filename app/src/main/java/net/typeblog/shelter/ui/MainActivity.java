@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.Icon;
-import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
