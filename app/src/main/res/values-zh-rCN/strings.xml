@@ -29,6 +29,8 @@
     <string name="freeze_all">批量冻结</string>
     <string name="create_freeze_all_shortcut">创建批量冻结快捷方式</string>
     <string name="freeze_all_shortcut">冻结</string>
+    <string name="install_app_to_profile">安装 APK 到 Shelter</string>
+    <string name="install_app_to_profile_success">已成功在工作用户内安装 APK</string>
 
     <!-- Settings Options -->
     <string name="settings">设置</string>

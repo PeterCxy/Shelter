@@ -12,9 +12,11 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
@@ -23,9 +25,9 @@ import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
+import net.typeblog.shelter.util.FileProviderProxy;
 import net.typeblog.shelter.util.Utility;
 
-import java.lang.annotation.Target;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -147,6 +149,26 @@ public class ShelterService extends Service {
                     callback.callback(RESULT_CANNOT_INSTALL_SYSTEM_APP);
                 }
             }
+        }
+
+        @Override
+        public void installApk(ParcelFileDescriptor fd, IAppInstallCallback callback) {
+            // Directly install an APK through a given Fd
+            // instead of installing an existing one
+            Intent intent = new Intent(DummyActivity.INSTALL_PACKAGE);
+            intent.setComponent(new ComponentName(ShelterService.this, DummyActivity.class));
+            // Generate a content Uri pointing to the Fd
+            // DummyActivity is expected to release the Fd after finishing
+            Uri uri = FileProviderProxy.setFd(fd, "apk");
+            intent.putExtra("direct_install_apk", uri);
+
+            // Send the callback to the DummyActivity
+            Bundle callbackExtra = new Bundle();
+            callbackExtra.putBinder("callback", callback.asBinder());
+            intent.putExtra("callback", callbackExtra);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(intent);
         }
 
         @Override

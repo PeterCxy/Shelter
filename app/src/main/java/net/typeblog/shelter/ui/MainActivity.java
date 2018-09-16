@@ -5,7 +5,10 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.IBinder;
+import android.os.ParcelFileDescriptor;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -24,10 +27,13 @@ import android.widget.Toast;
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.services.IAppInstallCallback;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.KillerService;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     public static final String BROADCAST_CONTEXT_MENU_CLOSED = "net.typeblog.shelter.broadcast.CONTEXT_MENU_CLOSED";
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
     private static final int REQUEST_SET_DEVICE_ADMIN = 3;
     private static final int REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE = 4;
+    private static final int REQUEST_DOCUMENTS_CHOOSE_APK = 5;
 
     private LocalStorageManager mStorage = null;
     private DevicePolicyManager mPolicyManager = null;
@@ -328,6 +335,12 @@ public class MainActivity extends AppCompatActivity {
                         Icon.createWithResource(this, R.mipmap.ic_freeze),
                         "shelter-freeze-all", getString(R.string.freeze_all_shortcut));
                 return true;
+            case R.id.main_menu_install_app_to_profile:
+                Intent openApkIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                openApkIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                openApkIntent.setType("application/vnd.android.package-archive");
+                startActivityForResult(openApkIntent, REQUEST_DOCUMENTS_CHOOSE_APK);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -382,6 +395,25 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, getString(R.string.device_admin_toast), Toast.LENGTH_LONG).show();
                 finish();
+            }
+        } else if (requestCode == REQUEST_DOCUMENTS_CHOOSE_APK && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
+
+            try {
+                ParcelFileDescriptor fd = getContentResolver().openFileDescriptor(uri, "r");
+                mServiceWork.installApk(fd, new IAppInstallCallback.Stub() {
+                    @Override
+                    public void callback(int result) {
+                        runOnUiThread(() -> {
+                            // The other side will have closed the Fd for us
+                            if (result == RESULT_OK)
+                                Toast.makeText(MainActivity.this,
+                                        R.string.install_app_to_profile_success, Toast.LENGTH_LONG).show();
+                        });
+                    }
+                });
+            } catch (RemoteException | IOException e) {
+                // Well, I don't know what to do then
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

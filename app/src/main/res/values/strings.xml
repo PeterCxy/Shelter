@@ -31,6 +31,8 @@
     <string name="freeze_all">Batch Freeze</string>
     <string name="create_freeze_all_shortcut">Create Batch Freeze Shortcut</string>
     <string name="freeze_all_shortcut">Freeze</string>
+    <string name="install_app_to_profile">Install APK into Shelter</string>
+    <string name="install_app_to_profile_success">Application installation finished in work profile.</string>
 
     <!-- Settings Options -->
     <string name="settings">Settings</string>

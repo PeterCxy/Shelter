@@ -8,7 +8,6 @@ import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.StrictMode;
@@ -19,6 +18,7 @@ import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IAppInstallCallback;
+import net.typeblog.shelter.util.FileProviderProxy;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
@@ -137,14 +137,25 @@ public class DummyActivity extends Activity {
     }
 
     private void actionInstallPackage() {
-        Uri uri = Uri.fromParts("package", getIntent().getStringExtra("package"), null);
+        Uri uri = null;
+        if (getIntent().hasExtra("package")) {
+            uri = Uri.fromParts("package", getIntent().getStringExtra("package"), null);
+        }
         StrictMode.VmPolicy policy = StrictMode.getVmPolicy();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // I really have no idea about why the "package:" uri do not work
-            // after Android O, anyway we fall back to using the apk path...
-            // Since I have plan to support pre-O in later versions, I keep this
-            // branch in case that we reduce minSDK in the future.
-            uri = Uri.fromFile(new File(getIntent().getStringExtra("apk")));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O || getIntent().hasExtra("direct_install_apk")) {
+            if (getIntent().hasExtra("apk")) {
+                // I really have no idea about why the "package:" uri do not work
+                // after Android O, anyway we fall back to using the apk path...
+                // Since I have plan to support pre-O in later versions, I keep this
+                // branch in case that we reduce minSDK in the future.
+                uri = Uri.fromFile(new File(getIntent().getStringExtra("apk")));
+            } else if (getIntent().hasExtra("direct_install_apk")) {
+                // Directly install an APK inside the profile
+                // The APK will be an Uri from our own FileProviderProxy
+                // which points to an opened Fd in another profile.
+                // We must close the Fd when we finish.
+                uri = getIntent().getParcelableExtra("direct_install_apk");
+            }
 
             // A permissive VmPolicy must be set to work around
             // the limitation on cross-application Uri
@@ -155,6 +166,7 @@ public class DummyActivity extends Activity {
         intent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, getPackageName());
         intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
         intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(intent, REQUEST_INSTALL_PACKAGE);
 
         // Restore the VmPolicy anyway
@@ -175,6 +187,13 @@ public class DummyActivity extends Activity {
     }
 
     private void appInstallFinished(int resultCode) {
+        // Clear the fd anyway since we have finished installation.
+        // Because we might have been installing an APK opened from
+        // the other profile. We don't know, but just clean it.
+        FileProviderProxy.clearFd();
+
+        if (!getIntent().hasExtra("callback")) return;
+
         // Send the result code back to the caller
         Bundle callbackExtra = getIntent().getBundleExtra("callback");
         IAppInstallCallback callback = IAppInstallCallback.Stub
