@@ -106,12 +106,20 @@ public class Utility {
                 new IntentFilter(DummyActivity.FINALIZE_PROVISION),
                 DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
 
-        IntentFilter crossProfileIntentFilter = new IntentFilter();
-        crossProfileIntentFilter.addAction("android.intent.action.SEND");
-        crossProfileIntentFilter.addAction("android.intent.action.SEND_MULTIPLE");
-        try {crossProfileIntentFilter.addDataType("*/*"); }
-        catch (IntentFilter.MalformedMimeTypeException ignored){} 
-        manager.addCrossProfileIntentFilter(adminComponent, crossProfileIntentFilter, DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
+        // Allow ACTION_SEND and ACTION_SEND_MULTIPLE to cross from managed to parent
+        // TODO: Make this configurable
+        IntentFilter actionSendFilter = new IntentFilter();
+        actionSendFilter.addAction(Intent.ACTION_SEND);
+        actionSendFilter.addAction(Intent.ACTION_SEND_MULTIPLE);
+        try {
+            actionSendFilter.addDataType("*/*");
+        } catch (IntentFilter.MalformedMimeTypeException ignored) {
+            // WTF?
+        }
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
+                actionSendFilter,
+                DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
         
         // Browser intents are allowed from work profile to parent
         // TODO: Make this configurable, just as ALLOW_PARENT_PROFILE_APP_LINKING in the next function
