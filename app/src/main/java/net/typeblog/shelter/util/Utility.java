@@ -116,6 +116,7 @@ public class Utility {
         } catch (IntentFilter.MalformedMimeTypeException ignored) {
             // WTF?
         }
+        actionSendFilter.addCategory("android.intent.category.DEFAULT");
         manager.addCrossProfileIntentFilter(
                 adminComponent,
                 actionSendFilter,
