@@ -8,4 +8,6 @@ interface IFileShuttleService {
     List loadFiles(String path);
     Map loadFileMeta(String path);
     ParcelFileDescriptor openFile(String path, String mode);
+    String createFile(String path, String mimeType, String displayName);
+    String deleteFile(String path);
 }

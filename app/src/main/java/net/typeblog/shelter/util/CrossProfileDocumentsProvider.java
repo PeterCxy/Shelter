@@ -19,6 +19,7 @@ import net.typeblog.shelter.services.IFileShuttleService;
 import net.typeblog.shelter.services.IFileShuttleServiceCallback;
 import net.typeblog.shelter.ui.DummyActivity;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ import java.util.Map;
 public class CrossProfileDocumentsProvider extends DocumentsProvider {
     // The dummy root path that will be replaced by the real path to external storage on the other side
     public static final String DUMMY_ROOT = "/shelter_storage_root/";
+    private static final String AUTHORITY = "net.typeblog.shelter.documents";
     private static final String[] DEFAULT_ROOT_PROJECTION = new String[] {
             DocumentsContract.Root.COLUMN_ROOT_ID,
             DocumentsContract.Root.COLUMN_DOCUMENT_ID, DocumentsContract.Root.COLUMN_ICON,
@@ -120,7 +122,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         row.add(DocumentsContract.Root.COLUMN_DOCUMENT_ID, DUMMY_ROOT);
         row.add(DocumentsContract.Root.COLUMN_ICON, R.mipmap.ic_launcher_egg);
         row.add(DocumentsContract.Root.COLUMN_TITLE, getContext().getString(R.string.app_name));
-        row.add(DocumentsContract.Root.COLUMN_FLAGS, 0);
+        row.add(DocumentsContract.Root.COLUMN_FLAGS, DocumentsContract.Root.FLAG_SUPPORTS_CREATE);
         return result;
     }
 
@@ -148,6 +150,9 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
             return null;
         }
         final MatrixCursor result = new MatrixCursor(DEFAULT_DOCUMENT_PROJECTION);
+        // Allow receiving notification on create / delete
+        result.setNotificationUri(getContext().getContentResolver(),
+                DocumentsContract.buildDocumentUri(AUTHORITY, parentDocumentId));
 
         for (Map<String, Object> file : files) {
             includeFile(result, file);
@@ -162,6 +167,31 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
             return mService.openFile(documentId, mode);
         } catch (RemoteException e) {
             return null;
+        }
+    }
+
+    @Override
+    public String createDocument(String parentDocumentId, String mimeType, String displayName) {
+        ensureServiceBound();
+        try {
+            String ret = mService.createFile(parentDocumentId, mimeType, displayName);
+            getContext().getContentResolver().notifyChange(
+                    DocumentsContract.buildDocumentUri(AUTHORITY, parentDocumentId), null);
+            return ret;
+        } catch (RemoteException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteDocument(String documentId) {
+        ensureServiceBound();
+        try {
+            String parent = mService.deleteFile(documentId);
+            getContext().getContentResolver().notifyChange(
+                    DocumentsContract.buildDocumentUri(AUTHORITY, parent), null);
+        } catch (RemoteException e) {
+
         }
     }
 

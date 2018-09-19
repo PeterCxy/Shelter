@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
+import android.os.RemoteException;
 import android.provider.DocumentsContract;
 import android.support.annotation.Nullable;
 import android.webkit.MimeTypeMap;
@@ -16,6 +17,7 @@ import net.typeblog.shelter.util.CrossProfileDocumentsProvider;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,14 +59,17 @@ public class FileShuttleService extends Service {
             map.put(DocumentsContract.Document.COLUMN_DISPLAY_NAME, f.getName());
             map.put(DocumentsContract.Document.COLUMN_SIZE, f.length());
             map.put(DocumentsContract.Document.COLUMN_LAST_MODIFIED, f.lastModified());
-            map.put(DocumentsContract.Document.COLUMN_FLAGS, 0);
 
             if (f.isDirectory()) {
                 map.put(DocumentsContract.Document.COLUMN_MIME_TYPE, DocumentsContract.Document.MIME_TYPE_DIR);
+                map.put(DocumentsContract.Document.COLUMN_FLAGS,
+                        DocumentsContract.Document.FLAG_DIR_SUPPORTS_CREATE |
+                                DocumentsContract.Document.FLAG_SUPPORTS_DELETE);
             } else {
                 String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
                         MimeTypeMap.getFileExtensionFromUrl("file://" + f.getAbsolutePath()));
                 map.put(DocumentsContract.Document.COLUMN_MIME_TYPE, mime);
+                map.put(DocumentsContract.Document.COLUMN_FLAGS, DocumentsContract.Document.FLAG_SUPPORTS_DELETE);
             }
             return map;
         }
@@ -79,6 +84,44 @@ public class FileShuttleService extends Service {
             } catch (FileNotFoundException e) {
                 return null;
             }
+        }
+
+        @Override
+        public String createFile(String path, String mimeType, String displayName) {
+            resetSuicideTask();
+            File f;
+            if (!DocumentsContract.Document.MIME_TYPE_DIR.equals(mimeType)) {
+                String fullPath = path + "/" + displayName;
+                String extensionPart = "." + MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType);
+                if (!fullPath.endsWith(extensionPart)) {
+                    fullPath += extensionPart;
+                }
+                android.util.Log.d("FileShuttle", fullPath);
+                f = new File(resolvePath(fullPath));
+                try {
+                    if (!f.createNewFile()) {
+                        return null;
+                    }
+                } catch (IOException e) {
+                    return null;
+                }
+
+            } else {
+                String fullPath = path + "/" + displayName;
+                f = new File(resolvePath(fullPath));
+                if (!f.mkdir()) {
+                    return null;
+                }
+            }
+            return f.getAbsolutePath();
+        }
+
+        @Override
+        public String deleteFile(String path) {
+            resetSuicideTask();
+            File f = new File(resolvePath(path));
+            f.delete();
+            return f.getParentFile().getAbsolutePath();
         }
     };
 
