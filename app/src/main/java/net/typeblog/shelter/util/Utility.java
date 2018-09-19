@@ -313,4 +313,14 @@ public class Utility {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFile(filePath, options);
     }
+
+    // Get file's extension name
+    public static String getFileExtension(String filePath) {
+        int index = filePath.lastIndexOf(".");
+        if (index > 0) {
+            return filePath.substring(index + 1, filePath.length());
+        } else {
+            return null;
+        }
+    }
 }

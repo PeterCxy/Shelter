@@ -74,7 +74,7 @@ public class FileShuttleService extends Service {
                                 DocumentsContract.Document.FLAG_SUPPORTS_DELETE);
             } else {
                 String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
-                        MimeTypeMap.getFileExtensionFromUrl("file://" + f.getAbsolutePath()));
+                        Utility.getFileExtension(f.getAbsolutePath()));
                 int flags = DocumentsContract.Document.FLAG_SUPPORTS_DELETE;
                 if (mime != null && (mime.startsWith("image/") || mime.startsWith("video/"))) {
                     flags |= DocumentsContract.Document.FLAG_SUPPORTS_THUMBNAIL;
@@ -105,7 +105,7 @@ public class FileShuttleService extends Service {
             resetSuicideTask();
             String fullPath = resolvePath(path);
             String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
-                    MimeTypeMap.getFileExtensionFromUrl("file://" + fullPath));
+                    Utility.getFileExtension(fullPath));
             if (mime == null) {
                 return null;
             }
