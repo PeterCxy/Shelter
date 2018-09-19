@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -75,7 +76,7 @@ public class FileShuttleService extends Service {
                 String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
                         MimeTypeMap.getFileExtensionFromUrl("file://" + f.getAbsolutePath()));
                 int flags = DocumentsContract.Document.FLAG_SUPPORTS_DELETE;
-                if (mime != null && mime.startsWith("image/")) {
+                if (mime != null && (mime.startsWith("image/") || mime.startsWith("video/"))) {
                     flags |= DocumentsContract.Document.FLAG_SUPPORTS_THUMBNAIL;
                 }
                 map.put(DocumentsContract.Document.COLUMN_MIME_TYPE, mime);
@@ -100,32 +101,16 @@ public class FileShuttleService extends Service {
         public ParcelFileDescriptor openThumbnail(String path, Point sizeHint) {
             resetSuicideTask();
             String fullPath = resolvePath(path);
-            int id = Utility.getMediaStoreId(FileShuttleService.this, fullPath);
-            if (id == -1) {
-                // Fallback to directly loading thumbnail from file
-                return loadBitmapThumbnail(fullPath, sizeHint);
-            }
-            Cursor result = MediaStore.Images.Thumbnails.queryMiniThumbnail(
-                    getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
-            if (result.getCount() == 0) {
-                // If no thumbnail is found, we try to request one first
-                MediaStore.Images.Thumbnails.getThumbnail(
-                        getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
-                result = MediaStore.Images.Thumbnails.queryMiniThumbnail(
-                        getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
-            }
-            if (result.getCount() == 0) {
-                // Fallback to directly loading thumbnail from file
-                return loadBitmapThumbnail(fullPath, sizeHint);
+            String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
+                    MimeTypeMap.getFileExtensionFromUrl("file://" + fullPath));
+            if (mime.startsWith("image/")) {
+                // Image thumbnail
+                return loadImageThumbnail(fullPath, sizeHint);
+            } else if (mime.startsWith("video/")) {
+                // Video thumbnail
+                return loadVideoThumbnail(fullPath);
             } else {
-                result.moveToFirst();
-                try {
-                    int index = result.getColumnIndex(MediaStore.Images.Thumbnails.DATA);
-                    return getContentResolver().openFileDescriptor(
-                            Uri.fromFile(new File(result.getString(index))), "r");
-                } catch (FileNotFoundException e) {
-                    return null;
-                }
+                return null;
             }
         }
 
@@ -201,6 +186,45 @@ public class FileShuttleService extends Service {
         stopSelf();
     }
 
+    private ParcelFileDescriptor loadImageThumbnail(String fullPath, Point sizeHint) {
+        int id = Utility.getMediaStoreId(FileShuttleService.this, fullPath);
+        if (id == -1) {
+            // Fallback to directly loading thumbnail from file
+            return loadBitmapThumbnail(fullPath, sizeHint);
+        }
+        Cursor result = MediaStore.Images.Thumbnails.queryMiniThumbnail(
+                getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
+        if (result.getCount() == 0) {
+            // If no thumbnail is found, we try to request one first
+            MediaStore.Images.Thumbnails.getThumbnail(
+                    getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
+            result = MediaStore.Images.Thumbnails.queryMiniThumbnail(
+                    getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
+        }
+        if (result.getCount() == 0) {
+            // Fallback to directly loading thumbnail from file
+            return loadBitmapThumbnail(fullPath, sizeHint);
+        } else {
+            result.moveToFirst();
+            try {
+                int index = result.getColumnIndex(MediaStore.Images.Thumbnails.DATA);
+                return getContentResolver().openFileDescriptor(
+                        Uri.fromFile(new File(result.getString(index))), "r");
+            } catch (FileNotFoundException e) {
+                return null;
+            }
+        }
+    }
+
+    private ParcelFileDescriptor loadVideoThumbnail(String fullPath) {
+        // The MediaStore interface for video thumbnails just do not work at all
+        // It can't even retrieve video IDs from the database
+        // Anyway, use this as a temporary fix.
+        // TODO: Figure out how to use the MediaStore interface with videos
+        Bitmap bmp = ThumbnailUtils.createVideoThumbnail(fullPath, MediaStore.Video.Thumbnails.MICRO_KIND);
+        return bitmapToFd(bmp);
+    }
+
     // Fallback method for thumbnail loading: just load from disk, but load a scaled down version
     private ParcelFileDescriptor loadBitmapThumbnail(String path, Point sizeHint) {
         Bitmap bmp = Utility.decodeSampledBitmap(path, sizeHint.x, sizeHint.y);
@@ -209,6 +233,10 @@ public class FileShuttleService extends Service {
             return null;
         }
 
+        return bitmapToFd(bmp);
+    }
+
+    private ParcelFileDescriptor bitmapToFd(Bitmap bmp) {
         ParcelFileDescriptor[] pair;
         try {
             // Use a pipe as a virtual in-memory ParcelFileDescriptor
