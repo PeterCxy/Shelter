@@ -1,5 +1,6 @@
 package net.typeblog.shelter.ui;
 
+import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     private LocalStorageManager mStorage = null;
     private DevicePolicyManager mPolicyManager = null;
 
+    // The "please wait" dialog when creating profile
+    private ProgressDialog mProgressDialog = null;
+
     // Flag to avoid double-killing our services while restarting
     private boolean mRestarting = false;
 
@@ -89,6 +93,15 @@ public class MainActivity extends AppCompatActivity {
             init();
         }
 
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (mProgressDialog != null && isWorkProfileAvailable()) {
+            mProgressDialog.dismiss();
+            init();
+        }
     }
 
     private void init() {
@@ -361,9 +374,10 @@ public class MainActivity extends AppCompatActivity {
                 mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, true);
 
                 // However, we still have to wait for DummyActivity in work profile to finish
-                Toast.makeText(this,
-                        getString(R.string.provision_still_pending), Toast.LENGTH_LONG).show();
-                finish();
+                mProgressDialog = new ProgressDialog(this);
+                mProgressDialog.setMessage(getString(R.string.provision_still_pending));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
             } else {
                 Toast.makeText(this,
                         getString(R.string.work_profile_provision_failed), Toast.LENGTH_LONG).show();
