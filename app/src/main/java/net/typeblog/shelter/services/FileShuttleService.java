@@ -95,6 +95,7 @@ public class FileShuttleService extends Service {
 
         @Override
         public ParcelFileDescriptor openThumbnail(String path) {
+            resetSuicideTask();
             int id = Utility.getMediaStoreId(FileShuttleService.this, path);
             if (id == -1) return null;
             Cursor result = MediaStore.Images.Thumbnails.queryMiniThumbnail(
