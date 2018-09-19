@@ -34,6 +34,9 @@
 
     <!-- Settings Options -->
     <string name="settings">设置</string>
+    <string name="settings_interaction">交互</string>
+    <string name="settings_cross_profile_file_chooser">跨用户文件选择器</string>
+    <string name="settings_cross_profile_file_chooser_desc">打开以后，您将可以从主用户中的 Documents UI (启动器上的名称为 文件 或 下载) 或支持 Documents UI 的 APP 中 浏览 / 查看 / 选择 / 复制 Shelter 内的文件，反之亦然。</string>
     <string name="settings_about">关于</string>
     <string name="settings_version">版本</string>
     <string name="settings_source_code">源代码</string>
