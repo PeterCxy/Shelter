@@ -177,7 +177,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         ensureServiceBound();
         try {
             return new AssetFileDescriptor(
-                    mService.openThumbnail(documentId), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
+                    mService.openThumbnail(documentId, sizeHint), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
         } catch (RemoteException e) {
             return null;
         }

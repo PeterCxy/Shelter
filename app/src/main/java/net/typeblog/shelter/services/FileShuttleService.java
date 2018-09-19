@@ -3,6 +3,8 @@ package net.typeblog.shelter.services;
 import android.app.Service;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -20,6 +22,7 @@ import net.typeblog.shelter.util.Utility;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,10 +97,14 @@ public class FileShuttleService extends Service {
         }
 
         @Override
-        public ParcelFileDescriptor openThumbnail(String path) {
+        public ParcelFileDescriptor openThumbnail(String path, Point sizeHint) {
             resetSuicideTask();
-            int id = Utility.getMediaStoreId(FileShuttleService.this, path);
-            if (id == -1) return null;
+            String fullPath = resolvePath(path);
+            int id = Utility.getMediaStoreId(FileShuttleService.this, fullPath);
+            if (id == -1) {
+                // Fallback to directly loading thumbnail from file
+                return loadBitmapThumbnail(fullPath, sizeHint);
+            }
             Cursor result = MediaStore.Images.Thumbnails.queryMiniThumbnail(
                     getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
             if (result.getCount() == 0) {
@@ -108,7 +115,8 @@ public class FileShuttleService extends Service {
                         getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
             }
             if (result.getCount() == 0) {
-                return null;
+                // Fallback to directly loading thumbnail from file
+                return loadBitmapThumbnail(fullPath, sizeHint);
             } else {
                 result.moveToFirst();
                 try {
@@ -191,5 +199,38 @@ public class FileShuttleService extends Service {
         mHandler.removeCallbacks(mSuicideTask);
         ((ShelterApplication) getApplication()).unbindFileShuttleService();
         stopSelf();
+    }
+
+    // Fallback method for thumbnail loading: just load from disk, but load a scaled down version
+    private ParcelFileDescriptor loadBitmapThumbnail(String path, Point sizeHint) {
+        Bitmap bmp = Utility.decodeSampledBitmap(path, sizeHint.x, sizeHint.y);
+
+        if (bmp == null) {
+            return null;
+        }
+
+        ParcelFileDescriptor[] pair;
+        try {
+            // Use a pipe as a virtual in-memory ParcelFileDescriptor
+            pair = ParcelFileDescriptor.createPipe();
+        } catch (IOException e) {
+            return null;
+        }
+
+        FileOutputStream os = new FileOutputStream(pair[1].getFileDescriptor());
+        // Send the bitmap into the pipe in another thread, so that we can return the
+        // reading fd to the Documents UI before we finish sending the Bitmap.
+        new Thread(() -> {
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, os);
+            try {
+                os.flush();
+                os.close();
+            } catch (IOException e) {
+                // ...
+            }
+            bmp.recycle();
+        }).start();
+
+        return pair[0];
     }
 }
