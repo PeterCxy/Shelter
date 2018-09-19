@@ -7,7 +7,6 @@ import android.content.ServiceConnection;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.IBinder;
-import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -31,6 +30,7 @@ import net.typeblog.shelter.services.IAppInstallCallback;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.KillerService;
 import net.typeblog.shelter.util.LocalStorageManager;
+import net.typeblog.shelter.util.UriForwardProxy;
 import net.typeblog.shelter.util.Utility;
 
 import java.io.IOException;
@@ -398,10 +398,10 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (requestCode == REQUEST_DOCUMENTS_CHOOSE_APK && resultCode == RESULT_OK && data != null) {
             Uri uri = data.getData();
+            UriForwardProxy proxy = new UriForwardProxy(getApplicationContext(), uri);
 
             try {
-                ParcelFileDescriptor fd = getContentResolver().openFileDescriptor(uri, "r");
-                mServiceWork.installApk(fd, new IAppInstallCallback.Stub() {
+                mServiceWork.installApk(proxy, new IAppInstallCallback.Stub() {
                     @Override
                     public void callback(int result) {
                         runOnUiThread(() -> {
@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 });
-            } catch (RemoteException | IOException e) {
+            } catch (RemoteException e) {
                 // Well, I don't know what to do then
             }
         } else {

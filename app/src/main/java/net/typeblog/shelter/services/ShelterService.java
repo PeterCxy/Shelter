@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
@@ -26,6 +25,7 @@ import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
 import net.typeblog.shelter.util.FileProviderProxy;
+import net.typeblog.shelter.util.UriForwardProxy;
 import net.typeblog.shelter.util.Utility;
 
 import java.util.List;
@@ -152,14 +152,14 @@ public class ShelterService extends Service {
         }
 
         @Override
-        public void installApk(ParcelFileDescriptor fd, IAppInstallCallback callback) {
+        public void installApk(UriForwardProxy uriForwarder, IAppInstallCallback callback) {
             // Directly install an APK through a given Fd
             // instead of installing an existing one
             Intent intent = new Intent(DummyActivity.INSTALL_PACKAGE);
             intent.setComponent(new ComponentName(ShelterService.this, DummyActivity.class));
             // Generate a content Uri pointing to the Fd
             // DummyActivity is expected to release the Fd after finishing
-            Uri uri = FileProviderProxy.setFd(fd, "apk");
+            Uri uri = FileProviderProxy.setUriForwardProxy(uriForwarder, "apk");
             intent.putExtra("direct_install_apk", uri);
 
             // Send the callback to the DummyActivity

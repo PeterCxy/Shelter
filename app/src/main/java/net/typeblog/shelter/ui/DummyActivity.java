@@ -190,7 +190,7 @@ public class DummyActivity extends Activity {
         // Clear the fd anyway since we have finished installation.
         // Because we might have been installing an APK opened from
         // the other profile. We don't know, but just clean it.
-        FileProviderProxy.clearFd();
+        FileProviderProxy.clearForwardProxy();
 
         if (!getIntent().hasExtra("callback")) return;
 
