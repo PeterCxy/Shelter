@@ -1,8 +1,10 @@
 package net.typeblog.shelter.util;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Handler;
@@ -165,6 +167,17 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         ensureServiceBound();
         try {
             return mService.openFile(documentId, mode);
+        } catch (RemoteException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public AssetFileDescriptor openDocumentThumbnail(String documentId, Point sizeHint, CancellationSignal signal) {
+        ensureServiceBound();
+        try {
+            return new AssetFileDescriptor(
+                    mService.openThumbnail(documentId), 0, AssetFileDescriptor.UNKNOWN_LENGTH);
         } catch (RemoteException e) {
             return null;
         }

@@ -10,13 +10,16 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Build;
 import android.os.UserManager;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.widget.Toast;
 
@@ -253,6 +256,20 @@ public class Utility {
             shortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, drawableToBitmap(icon.loadDrawable(context)));
             context.sendBroadcast(shortcutIntent);
             Toast.makeText(context, R.string.shortcut_create_success, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static int getMediaStoreId(Context context, String path) {
+        Cursor cursor = context.getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[]{MediaStore.MediaColumns._ID},
+                MediaStore.MediaColumns.DATA + " LIKE ? ",
+                new String[]{path}, null);
+        if (cursor == null || cursor.getCount() == 0) {
+            return -1;
+        } else {
+            cursor.moveToFirst();
+            return cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
         }
     }
 }
