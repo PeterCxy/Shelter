@@ -13,6 +13,7 @@ public class LocalStorageManager {
     public static final String PREF_HAS_SETUP = "has_setup";
     public static final String PREF_AUTO_FREEZE_LIST_WORK_PROFILE = "auto_freeze_list_work_profile";
     public static final String PREF_CROSS_PROFILE_FILE_CHOOSER = "cross_profile_file_chooser";
+    public static final String PREF_AUTH_KEY = "auth_key";
 
     private static final String LIST_DIVIDER = ",";
 
@@ -42,6 +43,14 @@ public class LocalStorageManager {
 
     public void setBoolean(String pref, boolean value) {
         mPrefs.edit().putBoolean(pref, value).apply();
+    }
+
+    public String getString(String pref) {
+        return mPrefs.getString(pref, null);
+    }
+
+    public void setString(String pref, String value) {
+        mPrefs.edit().putString(pref, value).apply();
     }
 
     public String[] getStringList(String pref) {

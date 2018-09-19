@@ -24,12 +24,15 @@ import net.typeblog.shelter.services.FileShuttleService;
 import net.typeblog.shelter.services.IAppInstallCallback;
 import net.typeblog.shelter.services.IFileShuttleService;
 import net.typeblog.shelter.services.IFileShuttleServiceCallback;
+import net.typeblog.shelter.util.AuthenticationUtility;
 import net.typeblog.shelter.util.FileProviderProxy;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 // DummyActivity does nothing about presenting any UI
 // It is a wrapper over various different operations
@@ -54,6 +57,12 @@ public class DummyActivity extends Activity {
     public static final String START_FILE_SHUTTLE_2 = "net.typeblog.shelter.action.START_FILE_SHUTTLE_2";
     public static final String SYNCHRONIZE_PREFERENCE = "net.typeblog.shelter.action.SYNCHRONIZE_PREFERENCE";
 
+    // Only these actions are allowed without a valid signature
+    private static final List<String> ACTIONS_ALLOWED_WITHOUT_SIGNATURE = Arrays.asList(
+            FINALIZE_PROVISION,
+            PUBLIC_FREEZE_ALL,
+            PUBLIC_UNFREEZE_AND_LAUNCH);
+
     private static final int REQUEST_INSTALL_PACKAGE = 1;
     private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE= 2;
 
@@ -75,6 +84,20 @@ public class DummyActivity extends Activity {
         }
 
         Intent intent = getIntent();
+
+        // Check the intent signature first
+        // Call checkIntent() first, because we might receive an auth_key from the other side any time.
+        // Calling checkIntent() will ensure that the first auth_key is properly received.
+        // ONLY the first received one should be stored and trusted.
+        if (!AuthenticationUtility.checkIntent(intent)) {
+            // If check failed and not in allowed-without-signature list
+            if (!ACTIONS_ALLOWED_WITHOUT_SIGNATURE.contains(intent.getAction())) {
+                // Unauthenticated! Just exit IMMEDIATELY
+                finish();
+                return;
+            }
+        }
+
         if (START_SERVICE.equals(intent.getAction())) {
             actionStartService();
         } else if (TRY_START_SERVICE.equals(intent.getAction())) {

@@ -62,6 +62,9 @@ public class Utility {
                 .findFirst();
         if (i.isPresent()) {
             intent.setComponent(new ComponentName(i.get().activityInfo.packageName, i.get().activityInfo.name));
+
+            // Add signature
+            AuthenticationUtility.signIntent(intent);
         } else {
             throw new IllegalStateException("Cannot find an intent in other profile");
         }
