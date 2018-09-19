@@ -26,6 +26,7 @@ import net.typeblog.shelter.services.IFileShuttleService;
 import net.typeblog.shelter.services.IFileShuttleServiceCallback;
 import net.typeblog.shelter.util.FileProviderProxy;
 import net.typeblog.shelter.util.LocalStorageManager;
+import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
 
 import java.io.File;
@@ -51,6 +52,7 @@ public class DummyActivity extends Activity {
     // This is a bad experience, so we use two to avoid this.
     public static final String START_FILE_SHUTTLE = "net.typeblog.shelter.action.START_FILE_SHUTTLE";
     public static final String START_FILE_SHUTTLE_2 = "net.typeblog.shelter.action.START_FILE_SHUTTLE_2";
+    public static final String SYNCHRONIZE_PREFERENCE = "net.typeblog.shelter.action.SYNCHRONIZE_PREFERENCE";
 
     private static final int REQUEST_INSTALL_PACKAGE = 1;
     private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE= 2;
@@ -69,6 +71,7 @@ public class DummyActivity extends Activity {
             // so that we can make sure those are updated with our app
             Utility.enforceWorkProfilePolicies(this);
             Utility.enforceUserRestrictions(this);
+            SettingsManager.getInstance().applyAll();
         }
 
         Intent intent = getIntent();
@@ -93,6 +96,8 @@ public class DummyActivity extends Activity {
             actionFreezeAllInList();
         } else if (START_FILE_SHUTTLE.equals(intent.getAction()) || START_FILE_SHUTTLE_2.equals(intent.getAction())) {
             actionStartFileShuttle();
+        } else if (SYNCHRONIZE_PREFERENCE.equals(intent.getAction())) {
+            actionSynchronizePreference();
         } else {
             finish();
         }
@@ -330,5 +335,16 @@ public class DummyActivity extends Activity {
                 // Do Nothing
             }
         });
+    }
+
+    private void actionSynchronizePreference() {
+        String name = getIntent().getStringExtra("name");
+        if (getIntent().hasExtra("boolean")) {
+            LocalStorageManager.getInstance()
+                    .setBoolean(name, getIntent().getBooleanExtra("boolean", false));
+        }
+        // TODO: Cases for other types
+        SettingsManager.getInstance().applyAll();
+        finish();
     }
 }

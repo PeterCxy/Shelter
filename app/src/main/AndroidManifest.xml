@@ -54,6 +54,7 @@
                 <!-- When the intent is actually already forwarded to work profile -->
                 <action android:name="net.typeblog.shelter.action.START_FILE_SHUTTLE" />
                 <action android:name="net.typeblog.shelter.action.START_FILE_SHUTTLE_2" />
+                <action android:name="net.typeblog.shelter.action.SYNCHRONIZE_PREFERENCE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -89,7 +90,8 @@
             android:authorities="net.typeblog.shelter.documents"
             android:grantUriPermissions="true"
             android:permission="android.permission.MANAGE_DOCUMENTS"
-            android:exported="true">
+            android:exported="true"
+            android:enabled="false">
             <intent-filter>
                 <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
             </intent-filter>

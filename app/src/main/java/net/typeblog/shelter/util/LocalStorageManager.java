@@ -12,6 +12,7 @@ public class LocalStorageManager {
     public static final String PREF_IS_SETTING_UP = "is_setting_up";
     public static final String PREF_HAS_SETUP = "has_setup";
     public static final String PREF_AUTO_FREEZE_LIST_WORK_PROFILE = "auto_freeze_list_work_profile";
+    public static final String PREF_CROSS_PROFILE_FILE_CHOOSER = "cross_profile_file_chooser";
 
     private static final String LIST_DIVIDER = ",";
 

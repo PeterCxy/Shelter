@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import net.typeblog.shelter.services.FileShuttleService;
 import net.typeblog.shelter.services.ShelterService;
 import net.typeblog.shelter.util.LocalStorageManager;
+import net.typeblog.shelter.util.SettingsManager;
 
 public class ShelterApplication extends Application {
     private ServiceConnection mShelterServiceConnection = null;
@@ -17,6 +18,7 @@ public class ShelterApplication extends Application {
     public void onCreate() {
         super.onCreate();
         LocalStorageManager.initialize(this);
+        SettingsManager.initialize(this);
     }
 
     public void bindShelterService(ServiceConnection conn, boolean foreground) {

@@ -3,6 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.v7.preference.PreferenceCategory
+        android:title="@string/settings_interaction">
+
+        <android.support.v7.preference.CheckBoxPreference
+            android:key="settings_cross_profile_file_chooser"
+            android:title="@string/settings_cross_profile_file_chooser"
+            android:summary="@string/settings_cross_profile_file_chooser_desc" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+    <android.support.v7.preference.PreferenceCategory
         android:title="@string/settings_about">
 
         <android.support.v7.preference.Preference

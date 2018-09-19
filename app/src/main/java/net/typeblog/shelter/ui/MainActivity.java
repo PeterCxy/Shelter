@@ -31,6 +31,7 @@ import net.typeblog.shelter.services.IAppInstallCallback;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.KillerService;
 import net.typeblog.shelter.util.LocalStorageManager;
+import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.UriForwardProxy;
 import net.typeblog.shelter.util.Utility;
 
@@ -120,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
                             (dialog, which) -> finish())
                     .show();
         } else {
+            // Initialize the settings
+            SettingsManager.getInstance().applyAll();
             // Initialize the app (start by binding the services)
             bindServices();
         }
