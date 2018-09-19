@@ -131,6 +131,14 @@ public class FileShuttleService extends Service {
                     fullPath += extensionPart;
                 }
                 f = new File(resolvePath(fullPath));
+
+                if (mimeType.startsWith("image/") || mimeType.startsWith("video/")) {
+                    // Notify the media scanner to scan the file
+                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    intent.setData(Uri.fromFile(f));
+                    sendBroadcast(intent);
+                }
+
                 try {
                     if (!f.createNewFile()) {
                         return null;
