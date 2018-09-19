@@ -72,7 +72,7 @@ public class FileShuttleService extends Service {
                 String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
                         MimeTypeMap.getFileExtensionFromUrl("file://" + f.getAbsolutePath()));
                 int flags = DocumentsContract.Document.FLAG_SUPPORTS_DELETE;
-                if (mime.startsWith("image/")) {
+                if (mime != null && mime.startsWith("image/")) {
                     flags |= DocumentsContract.Document.FLAG_SUPPORTS_THUMBNAIL;
                 }
                 map.put(DocumentsContract.Document.COLUMN_MIME_TYPE, mime);
