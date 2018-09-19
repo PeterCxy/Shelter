@@ -124,7 +124,6 @@ public class FileShuttleService extends Service {
                 if (!fullPath.endsWith(extensionPart)) {
                     fullPath += extensionPart;
                 }
-                android.util.Log.d("FileShuttle", fullPath);
                 f = new File(resolvePath(fullPath));
                 try {
                     if (!f.createNewFile()) {
