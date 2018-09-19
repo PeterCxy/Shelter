@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:maxSdkVersion="25"
         android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".ShelterApplication"
@@ -49,6 +50,10 @@
                 <action android:name="net.typeblog.shelter.action.PUBLIC_UNFREEZE_AND_LAUNCH" />
                 <action android:name="net.typeblog.shelter.action.PUBLIC_FREEZE_ALL" />
                 <action android:name="net.typeblog.shelter.action.FREEZE_ALL_IN_LIST" />
+                <!-- We need two of these to avoid being prompted with an action chooser dialog -->
+                <!-- When the intent is actually already forwarded to work profile -->
+                <action android:name="net.typeblog.shelter.action.START_FILE_SHUTTLE" />
+                <action android:name="net.typeblog.shelter.action.START_FILE_SHUTTLE_2" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -78,11 +83,28 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!-- A DocumentsProvider that lists files in another profile -->
+        <provider
+            android:name="net.typeblog.shelter.util.CrossProfileDocumentsProvider"
+            android:authorities="net.typeblog.shelter.documents"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.MANAGE_DOCUMENTS"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
+            </intent-filter>
+        </provider>
+
         <!-- Core service running on both the main profile and the work profile -->
         <!-- Actions like cloning / freezing apps will be performed by this service -->
         <service android:name=".services.ShelterService"
                 android:exported="true"
                 android:permission="android.permission.BIND_DEVICE_ADMIN"/>
+
+        <!-- Service to forward file information between profiles -->
+        <service android:name=".services.FileShuttleService"
+                android:exported="true"
+                android:permission="android.permission.BIND_DEVICE_ADMIN" />
 
         <!-- A hack service to ensure every ShelterService is killed when App is removed -->
         <!-- from recent tasks -->

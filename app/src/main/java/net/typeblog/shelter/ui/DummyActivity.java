@@ -1,23 +1,29 @@
 package net.typeblog.shelter.ui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.services.FileShuttleService;
 import net.typeblog.shelter.services.IAppInstallCallback;
+import net.typeblog.shelter.services.IFileShuttleService;
+import net.typeblog.shelter.services.IFileShuttleServiceCallback;
 import net.typeblog.shelter.util.FileProviderProxy;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
@@ -39,8 +45,15 @@ public class DummyActivity extends Activity {
     public static final String PUBLIC_UNFREEZE_AND_LAUNCH = "net.typeblog.shelter.action.PUBLIC_UNFREEZE_AND_LAUNCH";
     public static final String PUBLIC_FREEZE_ALL = "net.typeblog.shelter.action.PUBLIC_FREEZE_ALL";
     public static final String FREEZE_ALL_IN_LIST = "net.typeblog.shelter.action.FREEZE_ALL_IN_LIST";
+    // If we use the same intent for parent -> profile and profile -> parent, the user will
+    // be prompted with the action chooser with only one choice in it when the intent is
+    // forwarded by Utility.transferIntentToProfile()
+    // This is a bad experience, so we use two to avoid this.
+    public static final String START_FILE_SHUTTLE = "net.typeblog.shelter.action.START_FILE_SHUTTLE";
+    public static final String START_FILE_SHUTTLE_2 = "net.typeblog.shelter.action.START_FILE_SHUTTLE_2";
 
     private static final int REQUEST_INSTALL_PACKAGE = 1;
+    private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE= 2;
 
     private boolean mIsProfileOwner = false;
     private DevicePolicyManager mPolicyManager = null;
@@ -78,6 +91,8 @@ public class DummyActivity extends Activity {
             actionPublicFreezeAll();
         } else if (FREEZE_ALL_IN_LIST.equals(intent.getAction())) {
             actionFreezeAllInList();
+        } else if (START_FILE_SHUTTLE.equals(intent.getAction()) || START_FILE_SHUTTLE_2.equals(intent.getAction())) {
+            actionStartFileShuttle();
         } else {
             finish();
         }
@@ -89,6 +104,19 @@ public class DummyActivity extends Activity {
 
         if (requestCode == REQUEST_INSTALL_PACKAGE) {
             appInstallFinished(resultCode);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_PERMISSION_EXTERNAL_STORAGE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                doStartFileShuttle();
+            } else {
+                finish();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
@@ -270,5 +298,37 @@ public class DummyActivity extends Activity {
         } else {
             finish();
         }
+    }
+
+    private void actionStartFileShuttle() {
+        // This requires the permission WRITE_EXTERNAL_STORAGE
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            doStartFileShuttle();
+        } else {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_EXTERNAL_STORAGE);
+        }
+    }
+
+    private void doStartFileShuttle() {
+        ((ShelterApplication) getApplication()).bindFileShuttleService(new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                IFileShuttleService shuttle = IFileShuttleService.Stub.asInterface(service);
+                IFileShuttleServiceCallback callback = IFileShuttleServiceCallback.Stub.asInterface(
+                        getIntent().getBundleExtra("extra").getBinder("callback"));
+                try {
+                    callback.callback(shuttle);
+                } catch (RemoteException e) {
+                    // Do Nothing
+                }
+
+                finish();
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                // Do Nothing
+            }
+        });
     }
 }

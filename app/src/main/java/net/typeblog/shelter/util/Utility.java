@@ -106,6 +106,16 @@ public class Utility {
                 new IntentFilter(DummyActivity.FINALIZE_PROVISION),
                 DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
 
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
+                new IntentFilter(DummyActivity.START_FILE_SHUTTLE),
+                DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
+
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
+                new IntentFilter(DummyActivity.START_FILE_SHUTTLE_2),
+                DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
+
         // Allow ACTION_SEND and ACTION_SEND_MULTIPLE to cross from managed to parent
         // TODO: Make this configurable
         IntentFilter actionSendFilter = new IntentFilter();
