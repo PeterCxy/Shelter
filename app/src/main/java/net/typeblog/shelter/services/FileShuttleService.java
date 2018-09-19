@@ -79,6 +79,9 @@ public class FileShuttleService extends Service {
                 if (mime != null && (mime.startsWith("image/") || mime.startsWith("video/"))) {
                     flags |= DocumentsContract.Document.FLAG_SUPPORTS_THUMBNAIL;
                 }
+                if (mime == null) {
+                    mime = "application/unknown";
+                }
                 map.put(DocumentsContract.Document.COLUMN_MIME_TYPE, mime);
                 map.put(DocumentsContract.Document.COLUMN_FLAGS, flags);
             }
@@ -103,6 +106,9 @@ public class FileShuttleService extends Service {
             String fullPath = resolvePath(path);
             String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
                     MimeTypeMap.getFileExtensionFromUrl("file://" + fullPath));
+            if (mime == null) {
+                return null;
+            }
             if (mime.startsWith("image/")) {
                 // Image thumbnail
                 return loadImageThumbnail(fullPath, sizeHint);
@@ -220,7 +226,7 @@ public class FileShuttleService extends Service {
         // It can't even retrieve video IDs from the database
         // Anyway, use this as a temporary fix.
         // TODO: Figure out how to use the MediaStore interface with videos
-        Bitmap bmp = ThumbnailUtils.createVideoThumbnail(fullPath, MediaStore.Video.Thumbnails.MICRO_KIND);
+        Bitmap bmp = ThumbnailUtils.createVideoThumbnail(fullPath, MediaStore.Video.Thumbnails.MINI_KIND);
         return bitmapToFd(bmp);
     }
 
