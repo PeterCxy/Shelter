@@ -123,7 +123,10 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         row.add(DocumentsContract.Root.COLUMN_ROOT_ID, DUMMY_ROOT);
         row.add(DocumentsContract.Root.COLUMN_DOCUMENT_ID, DUMMY_ROOT);
         row.add(DocumentsContract.Root.COLUMN_ICON, R.mipmap.ic_launcher_egg);
-        row.add(DocumentsContract.Root.COLUMN_TITLE, getContext().getString(R.string.app_name));
+        row.add(DocumentsContract.Root.COLUMN_TITLE,
+                Utility.isProfileOwner(getContext()) ?
+                        getContext().getString(R.string.fragment_profile_main) :
+                        getContext().getString(R.string.fragment_profile_work));
         row.add(DocumentsContract.Root.COLUMN_FLAGS, DocumentsContract.Root.FLAG_SUPPORTS_CREATE);
         return result;
     }

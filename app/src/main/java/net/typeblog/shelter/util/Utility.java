@@ -38,6 +38,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class Utility {
+    // Determine if the current app is the owner of the current profile
+    // TODO: Replace all occurrences of duplicated code to call this function instead
+    public static boolean isProfileOwner(Context context) {
+        return context.getSystemService(DevicePolicyManager.class)
+                .isProfileOwnerApp(context.getPackageName());
+    }
+
     // Polyfill for String.join
     public static String stringJoin(String delimiter, String[] list) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
