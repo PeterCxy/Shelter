@@ -71,6 +71,10 @@ public class AuthenticationUtility {
         }
     }
 
+    public static void reset() {
+        LocalStorageManager.getInstance().remove(LocalStorageManager.PREF_AUTH_KEY);
+    }
+
     private static String sign(String hexKey, long timestamp) {
         try {
             SecretKeySpec keySpec = new SecretKeySpec(hexStringToByteArray(hexKey), "HmacSHA256");

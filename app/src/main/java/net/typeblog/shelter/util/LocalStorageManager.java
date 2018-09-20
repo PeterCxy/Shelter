@@ -37,6 +37,10 @@ public class LocalStorageManager {
     }
 
     // === Wrapper methods from SharedPreferences ===
+    public void remove(String pref) {
+        mPrefs.edit().remove(pref).apply();
+    }
+
     public boolean getBoolean(String pref) {
         return mPrefs.getBoolean(pref, false);
     }

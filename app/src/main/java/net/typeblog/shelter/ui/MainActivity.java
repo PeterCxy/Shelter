@@ -30,6 +30,7 @@ import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IAppInstallCallback;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.KillerService;
+import net.typeblog.shelter.util.AuthenticationUtility;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.UriForwardProxy;
@@ -111,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.provision_still_pending, Toast.LENGTH_SHORT).show();
             finish();
         } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
+            // Reset the authentication key first
+            AuthenticationUtility.reset();
             // If not set up yet, we have to provision the profile first
             new AlertDialog.Builder(this)
                     .setCancelable(false)
