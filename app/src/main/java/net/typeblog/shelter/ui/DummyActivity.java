@@ -68,7 +68,8 @@ public class DummyActivity extends Activity {
     // without a valid signature
     private static final List<String> ACTIONS_ALLOWED_WITHOUT_SIGNATURE_SAME_PROCESS = Arrays.asList(
             INSTALL_PACKAGE,
-            UNINSTALL_PACKAGE);
+            UNINSTALL_PACKAGE,
+            UNFREEZE_AND_LAUNCH);
 
     private static final int REQUEST_INSTALL_PACKAGE = 1;
     private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE= 2;

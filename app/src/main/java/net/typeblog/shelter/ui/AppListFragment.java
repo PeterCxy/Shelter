@@ -260,6 +260,7 @@ public class AppListFragment extends Fragment {
                 intent.setComponent(new ComponentName(getContext(), DummyActivity.class));
                 intent.putExtra("packageName", mSelectedApp.getPackageName());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                DummyActivity.registerSameProcessRequest(intent);
                 startActivity(intent);
                 return true;
             case MENU_ITEM_CREATE_UNFREEZE_SHORTCUT:
