@@ -5,6 +5,9 @@
 
 Note: the GitHub repository is merely a mirror. Although I also accept pull requests and issues from GitHub, I'd recommend you to go to the main repository at <https://git.angry.im/PeterCxy/Shelter>
 
+Note: The F-Droid version is automatically built and signed by the F-Droid server on each update of Shelter. The build is not managed by the author and could lag behind the updates from Play Store and this repository for several days due to high server load.
+
+
 Shelter - Isolate your Big Brother Apps / Multiple Accounts
 ===
 
