@@ -131,6 +131,7 @@ public class ShelterService extends Service {
                 callbackExtra.putBinder("callback", callback.asBinder());
                 intent.putExtra("callback", callbackExtra);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                DummyActivity.registerSameProcessRequest(intent);
                 startActivity(intent);
             } else {
                 if (mIsProfileOwner) {
@@ -168,6 +169,7 @@ public class ShelterService extends Service {
             intent.putExtra("callback", callbackExtra);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            DummyActivity.registerSameProcessRequest(intent);
             startActivity(intent);
         }
 
@@ -184,6 +186,7 @@ public class ShelterService extends Service {
                 callbackExtra.putBinder("callback", callback.asBinder());
                 intent.putExtra("callback", callbackExtra);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                DummyActivity.registerSameProcessRequest(intent);
                 startActivity(intent);
             } else {
                 if (mIsProfileOwner) {

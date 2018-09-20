@@ -32,6 +32,7 @@ import net.typeblog.shelter.util.Utility;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 // DummyActivity does nothing about presenting any UI
@@ -63,8 +64,40 @@ public class DummyActivity extends Activity {
             PUBLIC_FREEZE_ALL,
             PUBLIC_UNFREEZE_AND_LAUNCH);
 
+    // Only these actions are allowed to be called from the same process (pre-registered)
+    // without a valid signature
+    private static final List<String> ACTIONS_ALLOWED_WITHOUT_SIGNATURE_SAME_PROCESS = Arrays.asList(
+            INSTALL_PACKAGE,
+            UNINSTALL_PACKAGE);
+
     private static final int REQUEST_INSTALL_PACKAGE = 1;
     private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE= 2;
+
+    // A state variable to record the last time DummyActivity was informed that someone
+    // in the same process needs to call an action without signature
+    // Since they must be in the same process as DummyActivity, it will be totally fine
+    // to share a memory state
+    private static volatile long sLastSameProcessRequest = -1;
+
+    // Register that an intent will be sent to this Activity without signature
+    // from the same process. Each registration is allowed for at most 5 seconds.
+    public static synchronized void registerSameProcessRequest(Intent intent) {
+        sLastSameProcessRequest = new Date().getTime();
+        intent.putExtra("is_same_process", true);
+    }
+
+    private static synchronized boolean checkSameProcessRequest(Intent intent) {
+        if (!intent.getBooleanExtra("is_same_process", false)) return false;
+        if (sLastSameProcessRequest == -1) return false;
+
+        boolean ret = new Date().getTime() - sLastSameProcessRequest <= 5000 // Timeout 5s
+                && ACTIONS_ALLOWED_WITHOUT_SIGNATURE_SAME_PROCESS.contains(intent.getAction());
+        if (ret) {
+            sLastSameProcessRequest = -1; // Revoke the registered request
+        }
+
+        return ret;
+    }
 
     private boolean mIsProfileOwner = false;
     private DevicePolicyManager mPolicyManager = null;
@@ -85,16 +118,20 @@ public class DummyActivity extends Activity {
 
         Intent intent = getIntent();
 
-        // Check the intent signature first
-        // Call checkIntent() first, because we might receive an auth_key from the other side any time.
-        // Calling checkIntent() will ensure that the first auth_key is properly received.
-        // ONLY the first received one should be stored and trusted.
-        if (!AuthenticationUtility.checkIntent(intent)) {
-            // If check failed and not in allowed-without-signature list
-            if (!ACTIONS_ALLOWED_WITHOUT_SIGNATURE.contains(intent.getAction())) {
-                // Unauthenticated! Just exit IMMEDIATELY
-                finish();
-                return;
+        // First check if we have a registered request from the same process
+        // if it passes, we don't have to check if it has proper signature any more
+        if (!checkSameProcessRequest(getIntent())) {
+            // Check the intent signature first
+            // Call checkIntent() first, because we might receive an auth_key from the other side any time.
+            // Calling checkIntent() will ensure that the first auth_key is properly received.
+            // ONLY the first received one should be stored and trusted.
+            if (!AuthenticationUtility.checkIntent(intent)) {
+                // If check failed and not in allowed-without-signature list
+                if (!ACTIONS_ALLOWED_WITHOUT_SIGNATURE.contains(intent.getAction())) {
+                    // Unauthenticated! Just exit IMMEDIATELY
+                    finish();
+                    return;
+                }
             }
         }
 
