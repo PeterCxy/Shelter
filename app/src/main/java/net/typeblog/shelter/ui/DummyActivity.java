@@ -191,7 +191,8 @@ public class DummyActivity extends Activity {
             // The work has been finished in onCreate(), now we just have to
             // inform the main profile about this
             Intent intent = new Intent(FINALIZE_PROVISION);
-            Utility.transferIntentToProfile(this, intent);
+            // We don't need signature for this intent
+            Utility.transferIntentToProfileUnsigned(this, intent);
             startActivity(intent);
             finish();
         } else {

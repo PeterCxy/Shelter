@@ -226,7 +226,10 @@ public class MainActivity extends AppCompatActivity {
         // setup process might be finished before the synchronous part
         Intent intent = new Intent(DummyActivity.TRY_START_SERVICE);
         try {
-            Utility.transferIntentToProfile(this, intent);
+            // DO NOT sign this request, because this won't be actually sent to work profile
+            // If this is signed, and is the first request to be signed,
+            // then the other side would never receive the auth_key
+            Utility.transferIntentToProfileUnsigned(this, intent);
             mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, false);
             mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
             return true;

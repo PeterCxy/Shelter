@@ -66,6 +66,12 @@ public class Utility {
     // an IndexOutOfBoundException
     // which can be caught and resolved.
     public static void transferIntentToProfile(Context context, Intent intent) {
+        transferIntentToProfileUnsigned(context, intent);
+        // Add signature
+        AuthenticationUtility.signIntent(intent);
+    }
+
+    public static void transferIntentToProfileUnsigned(Context context, Intent intent) {
         PackageManager pm = context.getPackageManager();
         List<ResolveInfo> info = pm.queryIntentActivities(intent, 0);
         Optional<ResolveInfo> i = info.stream()
@@ -73,9 +79,6 @@ public class Utility {
                 .findFirst();
         if (i.isPresent()) {
             intent.setComponent(new ComponentName(i.get().activityInfo.packageName, i.get().activityInfo.name));
-
-            // Add signature
-            AuthenticationUtility.signIntent(intent);
         } else {
             throw new IllegalStateException("Cannot find an intent in other profile");
         }
