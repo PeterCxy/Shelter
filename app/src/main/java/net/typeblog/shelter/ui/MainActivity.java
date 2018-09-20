@@ -172,13 +172,13 @@ public class MainActivity extends AppCompatActivity {
         // Send a dummy intent to the work profile first
         // to determine if work mode is enabled and we CAN start something in that profile.
         // If work mode is disabled when starting this app, we will receive RESULT_CANCELED
-        // in the activity result.
+        // in the activity result, and we can then prompt the user to enable it
         Intent intent = new Intent(DummyActivity.TRY_START_SERVICE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         try {
             Utility.transferIntentToProfile(this, intent);
         } catch (IllegalStateException e) {
-            // This exception implies a missing work profile
+            // This exception implies a missing work profile, NOT a disabled work profile
             // which means that the work profile does not even exist
             // in the first place.
             mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
