@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
+import android.os.RemoteException;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -163,6 +164,19 @@ public class FileShuttleService extends Service {
             File f = new File(resolvePath(path));
             f.delete();
             return f.getParentFile().getAbsolutePath();
+        }
+
+        @Override
+        public boolean isChildOf(String parent, String child) {
+            File parentFile = new File(resolvePath(parent));
+            File childFile = new File(resolvePath(child));
+            String parentPath = parentFile.getAbsolutePath();
+            if (parentPath.charAt(parentPath.length() - 1) != '/') {
+                parentPath += "/"; // Make sure it ends with '/'
+            }
+            return parentFile.exists() && parentFile.isDirectory()
+                    && childFile.exists()
+                    && childFile.getAbsolutePath().startsWith(parentPath);
         }
     };
 

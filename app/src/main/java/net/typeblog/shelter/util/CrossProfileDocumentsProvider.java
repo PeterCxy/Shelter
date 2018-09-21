@@ -127,7 +127,9 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
                 Utility.isProfileOwner(getContext()) ?
                         getContext().getString(R.string.fragment_profile_main) :
                         getContext().getString(R.string.fragment_profile_work));
-        row.add(DocumentsContract.Root.COLUMN_FLAGS, DocumentsContract.Root.FLAG_SUPPORTS_CREATE);
+        row.add(DocumentsContract.Root.COLUMN_FLAGS,
+                DocumentsContract.Root.FLAG_SUPPORTS_CREATE | DocumentsContract.Root.FLAG_LOCAL_ONLY |
+                        DocumentsContract.Root.FLAG_SUPPORTS_IS_CHILD); // SUPPORTS_IS_CHILD is required for OPEN_DOCUMENT_TREE
         return result;
     }
 
@@ -208,6 +210,16 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
                     DocumentsContract.buildDocumentUri(AUTHORITY, parent), null);
         } catch (RemoteException e) {
 
+        }
+    }
+
+    @Override
+    public boolean isChildDocument(String parentDocumentId, String documentId) {
+        ensureServiceBound();
+        try {
+            return mService.isChildOf(parentDocumentId, documentId);
+        } catch (RemoteException e) {
+            return false;
         }
     }
 

@@ -12,4 +12,5 @@ interface IFileShuttleService {
     ParcelFileDescriptor openThumbnail(String path, in Point sizeHint);
     String createFile(String path, String mimeType, String displayName);
     String deleteFile(String path);
+    boolean isChildOf(String parentPath, String childPath);
 }
