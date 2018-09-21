@@ -118,7 +118,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
 
     @Override
     public Cursor queryRoots(String[] projection) {
-        final MatrixCursor result = new MatrixCursor(DEFAULT_ROOT_PROJECTION);
+        final MatrixCursor result = new MatrixCursor(projection == null ? DEFAULT_ROOT_PROJECTION : projection);
         final MatrixCursor.RowBuilder row = result.newRow();
         row.add(DocumentsContract.Root.COLUMN_ROOT_ID, DUMMY_ROOT);
         row.add(DocumentsContract.Root.COLUMN_DOCUMENT_ID, DUMMY_ROOT);
@@ -136,7 +136,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
     @Override
     public Cursor queryDocument(String documentId, String[] projection) {
         ensureServiceBound();
-        final MatrixCursor result = new MatrixCursor(DEFAULT_DOCUMENT_PROJECTION);
+        final MatrixCursor result = new MatrixCursor(projection == null ? DEFAULT_DOCUMENT_PROJECTION : projection);
         Map<String, Object> fileInfo = null;
         try {
             fileInfo = mService.loadFileMeta(documentId);
@@ -156,7 +156,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         } catch (RemoteException e) {
             return null;
         }
-        final MatrixCursor result = new MatrixCursor(DEFAULT_DOCUMENT_PROJECTION);
+        final MatrixCursor result = new MatrixCursor(projection == null ? DEFAULT_DOCUMENT_PROJECTION : projection);
         // Allow receiving notification on create / delete
         result.setNotificationUri(getContext().getContentResolver(),
                 DocumentsContract.buildDocumentUri(AUTHORITY, parentDocumentId));
