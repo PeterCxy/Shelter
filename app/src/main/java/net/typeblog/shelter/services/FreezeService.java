@@ -83,7 +83,6 @@ public class FreezeService extends Service {
                     }
                     sAppToFreeze.clear();
                 }
-                unregisterReceiver(this);
                 stopSelf();
             }
         }
@@ -94,6 +93,12 @@ public class FreezeService extends Service {
         super.onCreate();
         // This is the only thing that we do
         registerReceiver(mLockReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mLockReceiver);
     }
 
     @Nullable
