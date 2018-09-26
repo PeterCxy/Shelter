@@ -1,5 +1,6 @@
 package net.typeblog.shelter.util;
 
+import android.app.AppOpsManager;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -331,5 +332,17 @@ public class Utility {
         } else {
             return null;
         }
+    }
+
+    // Check if USAGE_STATS is granted
+    public static boolean checkUsageStatsPermission(Context context) {
+        return checkSpecialAccessPermission(context, AppOpsManager.OPSTR_GET_USAGE_STATS);
+    }
+
+    // Check special access permission through AppOps
+    public static boolean checkSpecialAccessPermission(Context context, String name) {
+        AppOpsManager appops = context.getSystemService(AppOpsManager.class);
+        int mode = appops.checkOpNoThrow(name, android.os.Process.myUid(), context.getPackageName());
+        return mode == AppOpsManager.MODE_ALLOWED;
     }
 }

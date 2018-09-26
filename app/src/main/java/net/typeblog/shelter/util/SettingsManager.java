@@ -70,4 +70,15 @@ public class SettingsManager {
     public boolean getAutoFreezeServiceEnabled() {
         return mStorage.getBoolean(LocalStorageManager.PREF_AUTO_FREEZE_SERVICE);
     }
+
+    // Set the enabled state of "skip foreground"
+    public void setSkipForegroundEnabled(boolean enabled) {
+        mStorage.setBoolean(LocalStorageManager.PREF_DONT_FREEZE_FOREGROUND, enabled);
+        syncSettingsToProfileBool(LocalStorageManager.PREF_DONT_FREEZE_FOREGROUND, enabled);
+    }
+
+    // Get the enabled state of "skip foreground"
+    public boolean getSkipForegroundEnabled() {
+        return mStorage.getBoolean(LocalStorageManager.PREF_DONT_FREEZE_FOREGROUND);
+    }
 }

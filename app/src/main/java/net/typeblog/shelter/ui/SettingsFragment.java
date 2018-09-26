@@ -4,13 +4,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.util.SettingsManager;
+import net.typeblog.shelter.util.Utility;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
     private static final String SETTINGS_VERSION = "settings_version";
@@ -18,11 +21,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_BUG_REPORT = "settings_bug_report";
     private static final String SETTINGS_CROSS_PROFILE_FILE_CHOOSER = "settings_cross_profile_file_chooser";
     private static final String SETTINGS_AUTO_FREEZE_SERVICE = "settings_auto_freeze_service";
+    private static final String SETTINGS_SKIP_FOREGROUND = "settings_dont_freeze_foreground";
 
     private SettingsManager mManager = SettingsManager.getInstance();
 
     private CheckBoxPreference mPrefCrossProfileFileChooser = null;
     private CheckBoxPreference mPrefAutoFreezeService = null;
+    private CheckBoxPreference mPrefSkipForeground = null;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -52,6 +57,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefAutoFreezeService = (CheckBoxPreference) findPreference(SETTINGS_AUTO_FREEZE_SERVICE);
         mPrefAutoFreezeService.setChecked(mManager.getAutoFreezeServiceEnabled());
         mPrefAutoFreezeService.setOnPreferenceChangeListener(this);
+        mPrefSkipForeground = (CheckBoxPreference) findPreference(SETTINGS_SKIP_FOREGROUND);
+        mPrefSkipForeground.setChecked(mManager.getSkipForegroundEnabled());
+        mPrefSkipForeground.setOnPreferenceChangeListener(this);
     }
 
     private boolean openSummaryUrl(Preference pref) {
@@ -69,6 +77,21 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         } else if (preference == mPrefAutoFreezeService) {
             mManager.setAutoFreezeServiceEnabled((boolean) newState);
             return true;
+        } else if (preference == mPrefSkipForeground) {
+            boolean enabled = (boolean) newState;
+            if (!enabled || Utility.checkUsageStatsPermission(getContext())) {
+                mManager.setSkipForegroundEnabled(enabled);
+                return true;
+            } else {
+                new AlertDialog.Builder(getContext())
+                        .setMessage(R.string.request_usage_stats)
+                        .setPositiveButton(android.R.string.ok,
+                                (dialog, which) -> startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)))
+                        .setNegativeButton(android.R.string.cancel,
+                                (dialog, which) -> dialog.dismiss())
+                        .show();
+                return false;
+            }
         } else {
             return false;
         }

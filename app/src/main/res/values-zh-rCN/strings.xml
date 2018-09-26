@@ -40,6 +40,8 @@
     <string name="settings_services">服务</string>
     <string name="settings_auto_freeze_service">自动冻结服务</string>
     <string name="settings_auto_freeze_service_desc">在您锁屏时，自动冻结您通过 \"解冻并运行\" 启动的应用</string>
+    <string name="settings_dont_freeze_foreground">跳过前台应用</string>
+    <string name="settings_dont_freeze_foreground_desc">在您锁屏的时候，不要冻结前台应用 (锁屏时仍有可见窗口的应用)。这主要用于音乐播放器等 App，但您将需要在使用完成后手动使用 \"批量冻结\" 快捷方式冻结它们。</string>
     <string name="settings_about">关于</string>
     <string name="settings_version">版本</string>
     <string name="settings_source_code">源代码</string>
@@ -63,6 +65,7 @@
     <string name="app_context_menu_title">%s 可用操作</string>
     <string name="freeze_all_success">所有在 \"自动冻结\" 列表中的应用都已经冻结成功</string>
     <string name="shortcut_create_success">快捷方式已创建</string>
+    <string name="request_usage_stats">Shelter 需要 <b>使用情况数据</b> 来做这件事。请在按 \"确定\" 后出现的窗口中，对 <b>两个</b> Shelter <b>都</b> 打开此权限。如果没有全部打开，该功能将无法正确运作。</string>
 
     <!-- MIUI -->
     <string name="miui_cannot_clone">目前无法在 MIUI 上克隆非系统应用。请先克隆您的系统应用商店 (如 <b>Play Store</b>) 然后从克隆的应用商店中安装应用</string>
