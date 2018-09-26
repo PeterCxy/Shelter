@@ -9,12 +9,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 
+import androidx.annotation.Nullable;
+
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.Nullable;
 
 // This service simply registers a screen-off listener that will be called
 // when the user locks the screen. When this happens, this service
