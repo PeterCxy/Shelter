@@ -28,6 +28,8 @@ android {
     lintOptions {
         // We have community-contributed translations. Do not let them block releases.
         disable 'MissingTranslation'
+        // We don't need Google App Indexing
+        disable 'GoogleAppIndexingWarning'
     }
 }
 
