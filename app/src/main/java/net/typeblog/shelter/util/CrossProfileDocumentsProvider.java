@@ -13,7 +13,8 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.provider.DocumentsContract;
 import android.provider.DocumentsProvider;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.services.FileShuttleService;
@@ -21,7 +22,6 @@ import net.typeblog.shelter.services.IFileShuttleService;
 import net.typeblog.shelter.services.IFileShuttleServiceCallback;
 import net.typeblog.shelter.ui.DummyActivity;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 

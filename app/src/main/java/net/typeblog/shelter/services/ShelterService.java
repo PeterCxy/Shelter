@@ -17,7 +17,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;

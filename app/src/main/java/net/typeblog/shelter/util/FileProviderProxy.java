@@ -2,11 +2,11 @@ package net.typeblog.shelter.util;
 
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import android.support.annotation.NonNull;
-import android.support.v4.content.FileProvider;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 // A simple and naïve FileProvider which forwards content Uris
 // to a given Uri from another profile through UriForwardProxy

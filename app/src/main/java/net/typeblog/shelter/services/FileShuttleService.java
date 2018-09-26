@@ -12,11 +12,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
-import android.os.RemoteException;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
 import android.webkit.MimeTypeMap;
+
+import androidx.annotation.Nullable;
 
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.util.CrossProfileDocumentsProvider;
