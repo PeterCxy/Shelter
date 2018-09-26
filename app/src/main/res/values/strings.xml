@@ -39,6 +39,9 @@
     <string name="settings_interaction">Interaction</string>
     <string name="settings_cross_profile_file_chooser">File Shuttle</string>
     <string name="settings_cross_profile_file_chooser_desc">When enabled, you\'ll be able to browse / view / pick / copy files in Shelter from main profile and vice-versa, ONLY through Documents UI (named Files or Documents on your launcher) or apps with Documents UI support (they only gain temporary access to files you choose in Documents UI), while still pertaining the filesystem isolation.</string>
+    <string name="settings_services">Services</string>
+    <string name="settings_auto_freeze_service">Auto Freeze Service</string>
+    <string name="settings_auto_freeze_service_desc">Automatically freeze apps you launched from \"Unfreeze &amp; Launch Shortcut\" when you lock your screen.</string>
     <string name="settings_about">About</string>
     <string name="settings_version">Version</string>
     <string name="settings_source_code">Source Code</string>

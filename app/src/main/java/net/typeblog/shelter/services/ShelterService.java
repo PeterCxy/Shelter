@@ -58,8 +58,8 @@ public class ShelterService extends Service {
 
                 ((ShelterApplication) getApplication()).unbindShelterService();
 
-                if (kill) {
-                    // Just kill the entire process if this signal is received
+                if (kill && !(mIsProfileOwner && FreezeService.hasPendingAppToFreeze())) {
+                    // Just kill the entire process if this signal is received and the process has nothing to do
                     System.exit(0);
                 }
             }).start();

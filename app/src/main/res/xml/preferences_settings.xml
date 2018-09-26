@@ -13,6 +13,16 @@
     </androidx.preference.PreferenceCategory>
 
     <androidx.preference.PreferenceCategory
+        android:title="@string/settings_services">
+
+        <androidx.preference.CheckBoxPreference
+            android:key="settings_auto_freeze_service"
+            android:title="@string/settings_auto_freeze_service"
+            android:summary="@string/settings_auto_freeze_service_desc" />
+
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
         android:title="@string/settings_about">
 
         <androidx.preference.Preference

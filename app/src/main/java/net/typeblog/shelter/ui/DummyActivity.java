@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.services.FreezeService;
 import net.typeblog.shelter.services.IAppInstallCallback;
 import net.typeblog.shelter.services.IFileShuttleService;
 import net.typeblog.shelter.services.IFileShuttleServiceCallback;
@@ -312,7 +313,12 @@ public class DummyActivity extends Activity {
             // Forward it to work profile
             Intent intent = new Intent(UNFREEZE_AND_LAUNCH);
             Utility.transferIntentToProfile(this, intent);
-            intent.putExtra("packageName", getIntent().getStringExtra("packageName"));
+            String packageName = getIntent().getStringExtra("packageName");
+            intent.putExtra("packageName", packageName);
+            intent.putExtra("shouldFreeze",
+                    SettingsManager.getInstance().getAutoFreezeServiceEnabled() &&
+                            LocalStorageManager.getInstance()
+                                .stringListContains(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, packageName));
             startActivity(intent);
             finish();
             return;
@@ -329,6 +335,10 @@ public class DummyActivity extends Activity {
         Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
 
         if (launchIntent != null) {
+            if (getIntent().getBooleanExtra("shouldFreeze", false)) {
+                FreezeService.registerAppToFreeze(packageName);
+                startService(new Intent(this, FreezeService.class));
+            }
             startActivity(launchIntent);
         }
 

@@ -111,6 +111,9 @@
         <!-- A hack service to ensure every ShelterService is killed when App is removed -->
         <!-- from recent tasks -->
         <service android:name=".services.KillerService" />
+
+        <!-- Service to freeze apps on screen lock -->
+        <service android:name=".services.FreezeService" />
     </application>
 
 </manifest>

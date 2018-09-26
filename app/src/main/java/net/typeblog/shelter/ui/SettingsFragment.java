@@ -17,10 +17,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_SOURCE_CODE = "settings_source_code";
     private static final String SETTINGS_BUG_REPORT = "settings_bug_report";
     private static final String SETTINGS_CROSS_PROFILE_FILE_CHOOSER = "settings_cross_profile_file_chooser";
+    private static final String SETTINGS_AUTO_FREEZE_SERVICE = "settings_auto_freeze_service";
 
     private SettingsManager mManager = SettingsManager.getInstance();
 
     private CheckBoxPreference mPrefCrossProfileFileChooser = null;
+    private CheckBoxPreference mPrefAutoFreezeService = null;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -45,6 +47,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefCrossProfileFileChooser = (CheckBoxPreference) findPreference(SETTINGS_CROSS_PROFILE_FILE_CHOOSER);
         mPrefCrossProfileFileChooser.setChecked(mManager.getCrossProfileFileChooserEnabled());
         mPrefCrossProfileFileChooser.setOnPreferenceChangeListener(this);
+
+        // === Services ===
+        mPrefAutoFreezeService = (CheckBoxPreference) findPreference(SETTINGS_AUTO_FREEZE_SERVICE);
+        mPrefAutoFreezeService.setChecked(mManager.getAutoFreezeServiceEnabled());
+        mPrefAutoFreezeService.setOnPreferenceChangeListener(this);
     }
 
     private boolean openSummaryUrl(Preference pref) {
@@ -58,6 +65,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     public boolean onPreferenceChange(Preference preference, Object newState) {
         if (preference == mPrefCrossProfileFileChooser) {
             mManager.setCrossProfileFileChooserEnabled((boolean) newState);
+            return true;
+        } else if (preference == mPrefAutoFreezeService) {
+            mManager.setAutoFreezeServiceEnabled((boolean) newState);
             return true;
         } else {
             return false;

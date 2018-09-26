@@ -59,4 +59,15 @@ public class SettingsManager {
     public boolean getCrossProfileFileChooserEnabled() {
         return mStorage.getBoolean(LocalStorageManager.PREF_CROSS_PROFILE_FILE_CHOOSER);
     }
+
+    // Set the enabled state of the auto freeze service
+    // This does NOT need to be synchronized nor applied across profile
+    public void setAutoFreezeServiceEnabled(boolean enabled) {
+        mStorage.setBoolean(LocalStorageManager.PREF_AUTO_FREEZE_SERVICE, enabled);
+    }
+
+    // Get the enabled state of the auto freeze service
+    public boolean getAutoFreezeServiceEnabled() {
+        return mStorage.getBoolean(LocalStorageManager.PREF_AUTO_FREEZE_SERVICE);
+    }
 }
