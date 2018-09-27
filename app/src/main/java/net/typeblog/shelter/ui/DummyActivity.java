@@ -370,6 +370,7 @@ public class DummyActivity extends Activity {
                         new ComponentName(this, ShelterDeviceAdminReceiver.class),
                         pkg, true);
             }
+            stopService(new Intent(this, FreezeService.class)); // Stop the auto-freeze service
             Toast.makeText(this, R.string.freeze_all_success, Toast.LENGTH_SHORT).show();
             finish();
         } else {
