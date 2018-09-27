@@ -13,6 +13,7 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
+import net.typeblog.shelter.R;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
@@ -45,6 +46,9 @@ public class FreezeService extends Service {
 
     // An app being inactive for this amount of time will be frozen
     private static long APP_INACTIVE_TIMEOUT = 1000;
+
+    // Notification ID
+    private static int NOTIFICATION_ID = 0xe49c0;
 
     // The actual receiver of the screen-off event
     private BroadcastReceiver mLockReceiver = new BroadcastReceiver() {
@@ -93,6 +97,8 @@ public class FreezeService extends Service {
         super.onCreate();
         // This is the only thing that we do
         registerReceiver(mLockReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
+        // Use foreground notification to keep this service alive until screen is locked
+        setForeground();
     }
 
     @Override
@@ -105,5 +111,14 @@ public class FreezeService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    private void setForeground() {
+        startForeground(NOTIFICATION_ID, Utility.buildNotification(this,
+                getString(R.string.service_auto_freeze_title),
+                getString(R.string.service_auto_freeze_title),
+                getString(R.string.service_auto_freeze_desc),
+                android.R.color.transparent
+        ));
     }
 }
