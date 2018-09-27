@@ -118,7 +118,7 @@ public class FreezeService extends Service {
                 getString(R.string.service_auto_freeze_title),
                 getString(R.string.service_auto_freeze_title),
                 getString(R.string.service_auto_freeze_desc),
-                android.R.color.transparent
+                R.drawable.ic_lock_open_white_24dp
         ));
     }
 }
