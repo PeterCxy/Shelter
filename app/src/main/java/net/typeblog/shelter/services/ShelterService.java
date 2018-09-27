@@ -1,10 +1,6 @@
 package net.typeblog.shelter.services;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.Service;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -13,7 +9,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -35,7 +30,7 @@ import java.util.stream.Collectors;
 public class ShelterService extends Service {
     public static final int RESULT_CANNOT_INSTALL_SYSTEM_APP = 100001;
 
-    private static final String NOTIFICATION_CHANNEL_ID = "ShelterService";
+    private static final int NOTIFICATION_ID = 0x49a11;
     private DevicePolicyManager mPolicyManager = null;
     private boolean mIsProfileOwner = false;
     private PackageManager mPackageManager = null;
@@ -246,49 +241,10 @@ public class ShelterService extends Service {
     }
 
     private void setForeground() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            setForegroundOreo();
-        } else {
-            setForegroundLollipop();
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void setForegroundLollipop() {
-        Notification notification = new Notification.Builder(this)
-                .setTicker(getString(R.string.app_name))
-                .setContentTitle(getString(R.string.service_title))
-                .setContentText(getString(R.string.service_desc))
-                .setSmallIcon(R.drawable.ic_notification_white_24dp)
-                .build();
-        startForeground(1, notification);
-    }
-
-    @TargetApi(Build.VERSION_CODES.O)
-    private void setForegroundOreo() {
-        // Android O and later: Notification Channel
-        NotificationManager nm = getSystemService(NotificationManager.class);
-        if (nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID) == null) {
-            NotificationChannel chan = new NotificationChannel(
-                    NOTIFICATION_CHANNEL_ID, getString(R.string.app_name),
-                    NotificationManager.IMPORTANCE_LOW);
-            nm.createNotificationChannel(chan);
-        }
-
-        // Disable everything: do not disturb the user
-        NotificationChannel chan = nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID);
-        chan.enableVibration(false);
-        chan.enableLights(false);
-        chan.setImportance(NotificationManager.IMPORTANCE_LOW);
-        nm.createNotificationChannel(chan);
-
-        // Create foreground notification to keep the service alive
-        Notification notification = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
-                .setTicker(getString(R.string.app_name))
-                .setContentTitle(getString(R.string.service_title))
-                .setContentText(getString(R.string.service_desc))
-                .setSmallIcon(R.drawable.ic_notification_white_24dp)
-                .build();
-        startForeground(1, notification);
+        startForeground(NOTIFICATION_ID, Utility.buildNotification(this,
+                getString(R.string.app_name),
+                getString(R.string.service_title),
+                getString(R.string.service_desc),
+                R.drawable.ic_notification_white_24dp));
     }
 }

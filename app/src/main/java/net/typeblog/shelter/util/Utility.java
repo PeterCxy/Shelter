@@ -1,7 +1,12 @@
 package net.typeblog.shelter.util;
 
+import android.annotation.TargetApi;
 import android.app.AppOpsManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -344,5 +349,52 @@ public class Utility {
         AppOpsManager appops = context.getSystemService(AppOpsManager.class);
         int mode = appops.checkOpNoThrow(name, android.os.Process.myUid(), context.getPackageName());
         return mode == AppOpsManager.MODE_ALLOWED;
+    }
+
+    // Utilities to build notifications for cross-version compatibility
+    private static final String NOTIFICATION_CHANNEL_ID = "ShelterService";
+    public static Notification buildNotification(Context context, String ticker, String title, String desc, int icon) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return buildNotificationOreo(context, ticker, title, desc, icon);
+        } else {
+            return buildNotificationLollipop(context, ticker, title, desc, icon);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private static Notification buildNotificationLollipop(Context context, String ticker, String title, String desc, int icon) {
+        return new Notification.Builder(context)
+                .setTicker(ticker)
+                .setContentTitle(title)
+                .setContentText(desc)
+                .setSmallIcon(icon)
+                .build();
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private static Notification buildNotificationOreo(Context context, String ticker, String title, String desc, int icon) {
+        // Android O and later: Notification Channel
+        NotificationManager nm = context.getSystemService(NotificationManager.class);
+        if (nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID) == null) {
+            NotificationChannel chan = new NotificationChannel(
+                    NOTIFICATION_CHANNEL_ID, context.getString(R.string.app_name),
+                    NotificationManager.IMPORTANCE_LOW);
+            nm.createNotificationChannel(chan);
+        }
+
+        // Disable everything: do not disturb the user
+        NotificationChannel chan = nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID);
+        chan.enableVibration(false);
+        chan.enableLights(false);
+        chan.setImportance(NotificationManager.IMPORTANCE_LOW);
+        nm.createNotificationChannel(chan);
+
+        // Create foreground notification to keep the service alive
+        return new Notification.Builder(context, NOTIFICATION_CHANNEL_ID)
+                .setTicker(ticker)
+                .setContentTitle(title)
+                .setContentText(desc)
+                .setSmallIcon(icon)
+                .build();
     }
 }
