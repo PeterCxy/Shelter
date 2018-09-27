@@ -368,6 +368,7 @@ public class Utility {
                 .setContentTitle(title)
                 .setContentText(desc)
                 .setSmallIcon(icon)
+                .setPriority(Notification.PRIORITY_MIN)
                 .build();
     }
 
@@ -378,7 +379,7 @@ public class Utility {
         if (nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID) == null) {
             NotificationChannel chan = new NotificationChannel(
                     NOTIFICATION_CHANNEL_ID, context.getString(R.string.app_name),
-                    NotificationManager.IMPORTANCE_LOW);
+                    NotificationManager.IMPORTANCE_MIN);
             nm.createNotificationChannel(chan);
         }
 
@@ -386,7 +387,7 @@ public class Utility {
         NotificationChannel chan = nm.getNotificationChannel(NOTIFICATION_CHANNEL_ID);
         chan.enableVibration(false);
         chan.enableLights(false);
-        chan.setImportance(NotificationManager.IMPORTANCE_LOW);
+        chan.setImportance(NotificationManager.IMPORTANCE_MIN);
         nm.createNotificationChannel(chan);
 
         // Create foreground notification to keep the service alive
