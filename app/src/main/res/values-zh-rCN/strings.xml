@@ -71,4 +71,5 @@
 
     <!-- MIUI -->
     <string name="miui_cannot_clone">目前无法在 MIUI 上克隆非系统应用。请先克隆您的系统应用商店 (如 <b>Play Store</b>) 然后从克隆的应用商店中安装应用</string>
+    <string name="continue_anyway">无视并继续</string>
 </resources>

@@ -225,6 +225,8 @@ public class AppListFragment extends Fragment {
                     new AlertDialog.Builder(getContext())
                             .setMessage(R.string.miui_cannot_clone)
                             .setPositiveButton(android.R.string.ok, null)
+                            .setNegativeButton(R.string.continue_anyway, (diag, button) ->
+                                    installOrUninstall(mSelectedApp, true))
                             .show();
                 } else {
                     installOrUninstall(mSelectedApp, true);
