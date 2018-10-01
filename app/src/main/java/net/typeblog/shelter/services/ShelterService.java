@@ -217,6 +217,11 @@ public class ShelterService extends Service {
                     mAdminComponent,
                     app.getPackageName(), false);
         }
+
+        @Override
+        public boolean hasUsageStatsPermission() {
+            return Utility.checkUsageStatsPermission(ShelterService.this);
+        }
     };
 
     @Override

@@ -347,7 +347,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.main_menu_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                Bundle extras = new Bundle();
+                extras.putBinder("profile_service", mServiceWork.asBinder());
+                settingsIntent.putExtra("extras", extras);
+                startActivity(settingsIntent);
                 return true;
             case R.id.main_menu_create_freeze_all_shortcut:
                 Intent launchIntent = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);

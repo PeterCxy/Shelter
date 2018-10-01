@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.provider.Settings;
 
 import androidx.appcompat.app.AlertDialog;
@@ -12,6 +13,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import net.typeblog.shelter.R;
+import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
 
@@ -24,6 +26,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_SKIP_FOREGROUND = "settings_dont_freeze_foreground";
 
     private SettingsManager mManager = SettingsManager.getInstance();
+    private IShelterService mServiceWork = null;
 
     private CheckBoxPreference mPrefCrossProfileFileChooser = null;
     private CheckBoxPreference mPrefAutoFreezeService = null;
@@ -32,6 +35,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.preferences_settings);
+        mServiceWork = IShelterService.Stub.asInterface(
+                ((Bundle) getActivity().getIntent().getParcelableExtra("extras")).getBinder("profile_service"));
 
         // Set the displayed version
         try {
@@ -79,7 +84,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             return true;
         } else if (preference == mPrefSkipForeground) {
             boolean enabled = (boolean) newState;
-            if (!enabled || Utility.checkUsageStatsPermission(getContext())) {
+            boolean hasPermission = false;
+            try {
+                hasPermission = mServiceWork.hasUsageStatsPermission() && Utility.checkUsageStatsPermission(getContext());
+            } catch (RemoteException e) {
+
+            }
+            if (!enabled || hasPermission) {
                 mManager.setSkipForegroundEnabled(enabled);
                 return true;
             } else {
