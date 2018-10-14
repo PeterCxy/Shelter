@@ -289,11 +289,13 @@ public class AppListFragment extends Fragment {
             case MENU_ITEM_CLONE:
                 if (Utility.isMIUI() && !mSelectedApp.isSystem()) {
                     // Cannot clone non-system apps on MIUI
+                    // Keep this variable intact when showing the dialog
+                    final ApplicationInfoWrapper selectedApp = mSelectedApp;
                     new AlertDialog.Builder(getContext())
                             .setMessage(R.string.miui_cannot_clone)
                             .setPositiveButton(android.R.string.ok, null)
                             .setNegativeButton(R.string.continue_anyway, (diag, button) ->
-                                    installOrUninstall(mSelectedApp, true))
+                                    installOrUninstall(selectedApp, true))
                             .show();
                 } else {
                     installOrUninstall(mSelectedApp, true);
