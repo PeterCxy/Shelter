@@ -44,4 +44,19 @@
         app:layout_constraintTop_toBottomOf="@id/list_app_title"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/list_app_select_order"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:background="@drawable/circle_accent"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

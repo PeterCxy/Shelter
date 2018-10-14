@@ -23,6 +23,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +42,7 @@ import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AppListFragment extends Fragment {
     private static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
@@ -133,6 +136,12 @@ public class AppListFragment extends Fragment {
             mSelectedApp = info;
             mList.showContextMenuForChild(v);
         });
+        if (mIsRemote) {
+            // Allow multi-select actions if this is in the work profile
+            // to allow things like multi-app unfreeze shortcuts
+            mAdapter.allowMultiSelect();
+            mAdapter.setActionModeHandler(this::createMultiSelectActionMode);
+        }
         mList.setAdapter(mAdapter);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mList.setHasFixedSize(true);
@@ -146,6 +155,7 @@ public class AppListFragment extends Fragment {
     void refresh() {
         if (mAdapter == null) return;
         if (mRefreshing) return;
+        if (mAdapter.isMultiSelectMode()) return; // Disallow refreshing when we are multi-selecting
         mRefreshing = true;
         mSwipeRefresh.setRefreshing(true);
 
@@ -168,6 +178,50 @@ public class AppListFragment extends Fragment {
         } catch (RemoteException e) {
             // Just... do nothing for now
         }
+    }
+
+    // Enter multi-select mode for work profile
+    boolean createMultiSelectActionMode() {
+        ((AppCompatActivity) getActivity()).startSupportActionMode(new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                menu.add(Menu.NONE, MENU_ITEM_CREATE_UNFREEZE_SHORTCUT, Menu.NONE, R.string.create_unfreeze_shortcut)
+                        .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return true;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                List<ApplicationInfoWrapper> list = mAdapter.getSelectedItems();
+                if (list == null) {
+                    // We can't perform any action on nothing
+                    return false;
+                }
+
+                switch (item.getItemId()) {
+                    case MENU_ITEM_CREATE_UNFREEZE_SHORTCUT:
+                        // When multiple apps are selected for creating unfreeze & launch shortcut
+                        // the shortcut will launch the first one, before which all the others
+                        // will be unfrozen. This helps apps that has dependency relationships.
+                        loadIconAndAddUnfreezeShortcut(list.get(0), list);
+                        mode.finish();
+                        return true;
+                }
+
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                mAdapter.cancelMultiSelectMode();
+            }
+        });
+        return true;
     }
 
     @Override
@@ -267,18 +321,7 @@ public class AppListFragment extends Fragment {
                 startActivity(intent);
                 return true;
             case MENU_ITEM_CREATE_UNFREEZE_SHORTCUT:
-                final ApplicationInfoWrapper app = mSelectedApp;
-                try {
-                    // Call the service to load the latest icon
-                    mService.loadIcon(app, new ILoadIconCallback.Stub() {
-                        @Override
-                        public void callback(Bitmap icon) {
-                            getActivity().runOnUiThread(() -> addUnfreezeShortcut(app, icon));
-                        }
-                    });
-                } catch (RemoteException e) {
-                    // Ignore
-                }
+                loadIconAndAddUnfreezeShortcut(mSelectedApp, null);
                 return true;
             case MENU_ITEM_AUTO_FREEZE:
                 boolean orig = LocalStorageManager.getInstance().stringListContains(
@@ -333,16 +376,41 @@ public class AppListFragment extends Fragment {
         }
     }
 
-    void addUnfreezeShortcut(ApplicationInfoWrapper app, Bitmap icon) {
+    void loadIconAndAddUnfreezeShortcut(final ApplicationInfoWrapper app, final List<ApplicationInfoWrapper> linkedApps) {
+        try {
+            // Call the service to load the latest icon
+            mService.loadIcon(app, new ILoadIconCallback.Stub() {
+                @Override
+                public void callback(Bitmap icon) {
+                    getActivity().runOnUiThread(() -> addUnfreezeShortcut(app, linkedApps, icon));
+                }
+            });
+        } catch (RemoteException e) {
+            // Ignore
+        }
+    }
+
+    void addUnfreezeShortcut(ApplicationInfoWrapper app, List<ApplicationInfoWrapper> linkedApps, Bitmap icon) {
+        String id = "shelter-" + app.getPackageName();
         // First, create an Intent to be sent when clicking on the shortcut
         Intent launchIntent = new Intent(DummyActivity.PUBLIC_UNFREEZE_AND_LAUNCH);
         launchIntent.setComponent(new ComponentName(getContext(), DummyActivity.class));
         launchIntent.putExtra("packageName", app.getPackageName());
+        if (linkedApps != null) {
+            String appListStr = linkedApps.stream()
+                    .map(ApplicationInfoWrapper::getPackageName).collect(Collectors.joining(","));
+            id += appListStr.hashCode();
+            // Multiple apps can be added so that
+            // these "linked" apps are all unfrozen
+            // before launching the main app
+            // Note: PersistableBundle doesn't support String array lists inside them
+            launchIntent.putExtra("linkedPackages", appListStr);
+        }
         launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Then tell the launcher to add the shortcut
         Utility.createLauncherShortcut(getContext(), launchIntent,
-                Icon.createWithBitmap(icon), "shelter-" + app.getPackageName(),
+                Icon.createWithBitmap(icon), id,
                 app.getLabel());
     }
 }
