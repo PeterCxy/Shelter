@@ -15,6 +15,7 @@
     <string name="fragment_profile_main">主用户</string>
     <string name="fragment_profile_work">Shelter</string>
     <string name="list_item_disabled">[已冻结] %s</string>
+    <string name="batch_operation">批量操作</string>
 
     <!-- App Context Menu -->
     <string name="clone_to_work_profile">克隆到 Shelter (工作用户)</string>

@@ -195,6 +195,7 @@ public class AppListFragment extends Fragment {
 
             @Override
             public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                mode.setTitle(R.string.batch_operation);
                 return true;
             }
 
