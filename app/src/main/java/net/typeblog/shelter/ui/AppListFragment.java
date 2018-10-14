@@ -155,7 +155,10 @@ public class AppListFragment extends Fragment {
     void refresh() {
         if (mAdapter == null) return;
         if (mRefreshing) return;
-        if (mAdapter.isMultiSelectMode()) return; // Disallow refreshing when we are multi-selecting
+        if (mAdapter.isMultiSelectMode()) {
+            mSwipeRefresh.setRefreshing(false);
+            return; // Disallow refreshing when we are multi-selecting
+        }
         mRefreshing = true;
         mSwipeRefresh.setRefreshing(true);
 
