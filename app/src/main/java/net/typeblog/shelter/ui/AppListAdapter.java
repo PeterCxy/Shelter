@@ -110,7 +110,11 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     if (mIndex != -1) {
-                        hideSelectOrder(mList.get(mIndex));
+                        // The selection index of items other than this one
+                        // can be changed because of the removal of the current one
+                        // Thus, we just notify that the data set has been changed,
+                        // to force redraw all of them.
+                        notifyDataSetChanged();
                     }
                 }
 
