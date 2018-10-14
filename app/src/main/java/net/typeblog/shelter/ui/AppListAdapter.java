@@ -129,15 +129,21 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         // When an item should be displayed in selected state
         // (not necessarily when the user clicked on it; the view might have been recycled)
         void showSelectOrder() {
-            mView.setBackgroundResource(R.color.selectedAppBackground);
+            if (!mList.get(mIndex).isHidden()) {
+                mView.setBackgroundResource(R.color.selectedAppBackground);
+            } else {
+                // The app is both frozen and selected
+                // we use a blended color of the two for its background
+                mView.setBackgroundResource(R.color.selectedAndDisabledAppBackground);
+            }
             mSelectOrder.setVisibility(View.VISIBLE);
             mSelectOrder.setText(String.valueOf(mSelectedIndices.indexOf(mIndex) + 1));
         }
 
         // When an item should be displayed in deselected state
-        void hideSelectOrder(ApplicationInfoWrapper info) {
+        void hideSelectOrder() {
             // First, determine the hidden (frozen) state
-            if (!info.isHidden()) {
+            if (!mList.get(mIndex).isHidden()) {
                 mView.setBackground(null);
             } else {
                 mView.setBackgroundResource(R.color.disabledAppBackground);
@@ -166,7 +172,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
                 if (mMultiSelectMode && mSelectedIndices.contains(mIndex)) {
                     showSelectOrder();
                 } else {
-                    hideSelectOrder(info);
+                    hideSelectOrder();
                 }
 
                 // Load the application icon from cache

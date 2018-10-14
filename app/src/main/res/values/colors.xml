@@ -7,4 +7,5 @@
     <color name="grey">#999999</color>
     <color name="disabledAppBackground">#E0F2F1</color>
     <color name="selectedAppBackground">#EEEEEE</color>
+    <color name="selectedAndDisabledAppBackground">#CEE1E0</color>
 </resources>
