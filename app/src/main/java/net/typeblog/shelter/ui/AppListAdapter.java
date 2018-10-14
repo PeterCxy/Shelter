@@ -109,13 +109,15 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    if (mIndex != -1) {
-                        // The selection index of items other than this one
-                        // can be changed because of the removal of the current one
-                        // Thus, we just notify that the data set has been changed,
-                        // to force redraw all of them.
-                        notifyDataSetChanged();
+                    if (mActionModeCancelHandler != null && mSelectedIndices.size() == 0) {
+                        // If there is no selection left, tell parent to cancel the action mode.
+                        mActionModeCancelHandler.cancelActionMode();
                     }
+                    // The selection index of items other than this one
+                    // can be changed because of the removal of the current one
+                    // Thus, we just notify that the data set has been changed,
+                    // to force redraw all of them.
+                    notifyDataSetChanged();
                 }
 
                 @Override
@@ -211,6 +213,10 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         boolean createActionMode();
     }
 
+    interface ActionModeCancelHandler {
+        void cancelActionMode();
+    }
+
     private List<ApplicationInfoWrapper> mList = new ArrayList<>();
     private IShelterService mService;
     private Drawable mDefaultIcon;
@@ -218,6 +224,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
     private Map<String, Bitmap> mIconCache = new HashMap<>();
     private ContextMenuHandler mContextMenuHandler = null;
     private ActionModeHandler mActionModeHandler = null;
+    private ActionModeCancelHandler mActionModeCancelHandler = null;
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
     // Multi-selection mode
@@ -238,6 +245,12 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
     // to enter action mode, in order to show the specific menus
     void setActionModeHandler(ActionModeHandler handler) {
         mActionModeHandler = handler;
+    }
+
+    // When there is no selection left, we have to notify our parent fragment
+    // to exit action mode
+    void setActionModeCancelHandler(ActionModeCancelHandler handler) {
+        mActionModeCancelHandler = handler;
     }
 
     void allowMultiSelect() {

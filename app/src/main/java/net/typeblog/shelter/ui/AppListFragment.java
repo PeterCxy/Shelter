@@ -67,6 +67,9 @@ public class AppListFragment extends Fragment {
     private AppListAdapter mAdapter = null;
     private SwipeRefreshLayout mSwipeRefresh = null;
 
+    // Variable to store the current action mode object if any
+    private ActionMode mActionMode = null;
+
     // Receiver for Refresh events
     // used for app changes
     private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
@@ -141,6 +144,11 @@ public class AppListFragment extends Fragment {
             // to allow things like multi-app unfreeze shortcuts
             mAdapter.allowMultiSelect();
             mAdapter.setActionModeHandler(this::createMultiSelectActionMode);
+            mAdapter.setActionModeCancelHandler(() -> {
+                if (mActionMode != null) {
+                    mActionMode.finish();
+                }
+            });
         }
         mList.setAdapter(mAdapter);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -185,7 +193,7 @@ public class AppListFragment extends Fragment {
 
     // Enter multi-select mode for work profile
     boolean createMultiSelectActionMode() {
-        ((AppCompatActivity) getActivity()).startSupportActionMode(new ActionMode.Callback() {
+        mActionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(new ActionMode.Callback() {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                 menu.add(Menu.NONE, MENU_ITEM_CREATE_UNFREEZE_SHORTCUT, Menu.NONE, R.string.create_unfreeze_shortcut)
@@ -222,6 +230,7 @@ public class AppListFragment extends Fragment {
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
+                mActionMode = null;
                 mAdapter.cancelMultiSelectMode();
             }
         });
