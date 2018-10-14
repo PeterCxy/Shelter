@@ -312,7 +312,6 @@ public class DummyActivity extends Activity {
         if (!mIsProfileOwner) {
             // Forward it to work profile
             Intent intent = new Intent(UNFREEZE_AND_LAUNCH);
-            Utility.transferIntentToProfile(this, intent);
             String packageName = getIntent().getStringExtra("packageName");
             intent.putExtra("packageName", packageName);
             intent.putExtra("shouldFreeze",
@@ -334,6 +333,7 @@ public class DummyActivity extends Activity {
                 intent.putExtra("linkedPackages", packages);
                 intent.putExtra("linkedPackagesShouldFreeze", packagesShouldFreeze);
             }
+            Utility.transferIntentToProfile(this, intent);
             startActivity(intent);
             finish();
             return;
@@ -388,10 +388,10 @@ public class DummyActivity extends Activity {
         // after loading the full list to freeze
         if (!mIsProfileOwner) {
             Intent intent = new Intent(FREEZE_ALL_IN_LIST);
-            Utility.transferIntentToProfile(this, intent);
             String[] list = LocalStorageManager.getInstance()
                     .getStringList(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE);
             intent.putExtra("list", list);
+            Utility.transferIntentToProfile(this, intent);
             startActivity(intent);
             finish();
         } else {
