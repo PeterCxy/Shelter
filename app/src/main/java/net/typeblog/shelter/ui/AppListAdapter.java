@@ -99,7 +99,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         void deselect() {
             mSelectedIndices.remove((Integer) mIndex);
             mSelectOrder.clearAnimation();
-            mView.setBackgroundResource(android.R.color.transparent);
+            setUnselectedBackground();
             Animation anim = AnimationUtils.loadAnimation(mView.getContext(), R.anim.scale_hide);
             anim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -144,13 +144,17 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
 
         // When an item should be displayed in deselected state
         void hideSelectOrder() {
-            // First, determine the hidden (frozen) state
+            setUnselectedBackground();
+            mSelectOrder.setVisibility(View.GONE);
+        }
+
+        // Set the background when not in the selected state
+        void setUnselectedBackground() {
             if (!mList.get(mIndex).isHidden()) {
                 mView.setBackground(null);
             } else {
                 mView.setBackgroundResource(R.color.disabledAppBackground);
             }
-            mSelectOrder.setVisibility(View.GONE);
         }
 
         void setIndex(final int index) {
