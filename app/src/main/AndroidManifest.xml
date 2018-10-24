@@ -60,6 +60,17 @@
             </intent-filter>
         </activity>
 
+        <!-- Activity to forward ACTION_IMAGE_CAPTURE as ACTION_OPEN_DOCUMENT -->
+        <activity android:name=".ui.CameraProxyActivity"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/camera_proxy_activity">
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <!-- Implementation of the device policy controller -->
         <receiver android:name=".receivers.ShelterDeviceAdminReceiver"
             android:label="@string/device_admin_label"

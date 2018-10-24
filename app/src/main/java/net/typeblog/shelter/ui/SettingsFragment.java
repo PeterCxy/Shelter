@@ -22,6 +22,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_SOURCE_CODE = "settings_source_code";
     private static final String SETTINGS_BUG_REPORT = "settings_bug_report";
     private static final String SETTINGS_CROSS_PROFILE_FILE_CHOOSER = "settings_cross_profile_file_chooser";
+    private static final String SETTINGS_CAMERA_PROXY = "settings_camera_proxy";
     private static final String SETTINGS_AUTO_FREEZE_SERVICE = "settings_auto_freeze_service";
     private static final String SETTINGS_SKIP_FOREGROUND = "settings_dont_freeze_foreground";
 
@@ -29,6 +30,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private IShelterService mServiceWork = null;
 
     private CheckBoxPreference mPrefCrossProfileFileChooser = null;
+    private CheckBoxPreference mPrefCameraProxy = null;
     private CheckBoxPreference mPrefAutoFreezeService = null;
     private CheckBoxPreference mPrefSkipForeground = null;
 
@@ -57,6 +59,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefCrossProfileFileChooser = (CheckBoxPreference) findPreference(SETTINGS_CROSS_PROFILE_FILE_CHOOSER);
         mPrefCrossProfileFileChooser.setChecked(mManager.getCrossProfileFileChooserEnabled());
         mPrefCrossProfileFileChooser.setOnPreferenceChangeListener(this);
+        mPrefCameraProxy = (CheckBoxPreference) findPreference(SETTINGS_CAMERA_PROXY);
+        mPrefCameraProxy.setChecked(mManager.getCameraProxyEnabled());
+        mPrefCameraProxy.setOnPreferenceChangeListener(this);
 
         // === Services ===
         mPrefAutoFreezeService = (CheckBoxPreference) findPreference(SETTINGS_AUTO_FREEZE_SERVICE);
@@ -78,6 +83,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     public boolean onPreferenceChange(Preference preference, Object newState) {
         if (preference == mPrefCrossProfileFileChooser) {
             mManager.setCrossProfileFileChooserEnabled((boolean) newState);
+            return true;
+        } else if (preference == mPrefCameraProxy) {
+            mManager.setCameraProxyEnabled(((boolean) newState));
             return true;
         } else if (preference == mPrefAutoFreezeService) {
             mManager.setAutoFreezeServiceEnabled((boolean) newState);

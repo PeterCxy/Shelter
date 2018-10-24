@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
+import net.typeblog.shelter.ui.CameraProxyActivity;
 import net.typeblog.shelter.ui.DummyActivity;
 
 public class SettingsManager {
@@ -37,6 +38,7 @@ public class SettingsManager {
     // Enforce all settings
     public void applyAll() {
         applyCrossProfileFileChooser();
+        applyCameraProxy();
     }
 
     // Read and apply the enabled state of the cross profile file chooser
@@ -44,6 +46,15 @@ public class SettingsManager {
         boolean enabled = mStorage.getBoolean(LocalStorageManager.PREF_CROSS_PROFILE_FILE_CHOOSER);
         mContext.getPackageManager().setComponentEnabledSetting(
                 new ComponentName(mContext, CrossProfileDocumentsProvider.class),
+                enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+    }
+
+    // Read and apply the enabled state of the camera proxy
+    public void applyCameraProxy() {
+        boolean enabled = mStorage.getBoolean(LocalStorageManager.PREF_CAMERA_PROXY);
+        mContext.getPackageManager().setComponentEnabledSetting(
+                new ComponentName(mContext, CameraProxyActivity.class),
                 enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP);
     }
@@ -58,6 +69,18 @@ public class SettingsManager {
     // Get the enabled state of the cross profile file chooser
     public boolean getCrossProfileFileChooserEnabled() {
         return mStorage.getBoolean(LocalStorageManager.PREF_CROSS_PROFILE_FILE_CHOOSER);
+    }
+
+    // Set the enabled state of the cross profile file chooser
+    public void setCameraProxyEnabled(boolean enabled) {
+        mStorage.setBoolean(LocalStorageManager.PREF_CAMERA_PROXY, enabled);
+        applyCameraProxy();
+        syncSettingsToProfileBool(LocalStorageManager.PREF_CAMERA_PROXY, enabled);
+    }
+
+    // Get the enabled state of the cross profile file chooser
+    public boolean getCameraProxyEnabled() {
+        return mStorage.getBoolean(LocalStorageManager.PREF_CAMERA_PROXY);
     }
 
     // Set the enabled state of the auto freeze service

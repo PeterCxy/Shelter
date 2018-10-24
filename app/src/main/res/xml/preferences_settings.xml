@@ -10,6 +10,11 @@
             android:title="@string/settings_cross_profile_file_chooser"
             android:summary="@string/settings_cross_profile_file_chooser_desc" />
 
+        <androidx.preference.CheckBoxPreference
+            android:key="settings_camera_proxy"
+            android:title="@string/settings_camera_proxy"
+            android:summary="@string/settings_camera_proxy_desc" />
+
     </androidx.preference.PreferenceCategory>
 
     <androidx.preference.PreferenceCategory

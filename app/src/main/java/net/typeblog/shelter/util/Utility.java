@@ -35,6 +35,7 @@ import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.ui.MainActivity;
 
 import java.io.BufferedReader;
+import java.io.FileDescriptor;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -326,6 +327,21 @@ public class Utility {
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFile(filePath, options);
+    }
+
+    public static Bitmap decodeSampledBitmap(FileDescriptor fd,
+                                             int reqWidth, int reqHeight) {
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFileDescriptor(fd, null, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFileDescriptor(fd, null, options);
     }
 
     // Get file's extension name

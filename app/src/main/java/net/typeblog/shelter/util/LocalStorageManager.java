@@ -16,6 +16,7 @@ public class LocalStorageManager {
     public static final String PREF_AUTH_KEY = "auth_key";
     public static final String PREF_AUTO_FREEZE_SERVICE = "auto_freeze_service";
     public static final String PREF_DONT_FREEZE_FOREGROUND = "dont_freeze_foreground";
+    public static final String PREF_CAMERA_PROXY = "camera_proxy";
 
     private static final String LIST_DIVIDER = ",";
 
