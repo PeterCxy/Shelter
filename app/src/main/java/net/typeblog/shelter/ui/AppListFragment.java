@@ -25,7 +25,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
-import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +43,7 @@ import net.typeblog.shelter.util.Utility;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AppListFragment extends Fragment {
+public class AppListFragment extends BaseFragment {
     private static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
 
     // Menu Items
@@ -179,7 +178,7 @@ public class AppListFragment extends Fragment {
                                 LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE,
                                 apps);
                     }
-                    getActivity().runOnUiThread(() -> {
+                    runOnUiThread(() -> {
                         mSwipeRefresh.setRefreshing(false);
                         mAdapter.setData(apps);
                         mRefreshing = false;
@@ -360,7 +359,7 @@ public class AppListFragment extends Fragment {
         IAppInstallCallback.Stub callback = new IAppInstallCallback.Stub() {
             @Override
             public void callback(int result) {
-                getActivity().runOnUiThread(() ->
+                runOnUiThread(() ->
                         installAppCallback(result, app, isInstall));
             }
         };
@@ -397,7 +396,7 @@ public class AppListFragment extends Fragment {
             mService.loadIcon(app, new ILoadIconCallback.Stub() {
                 @Override
                 public void callback(Bitmap icon) {
-                    getActivity().runOnUiThread(() -> addUnfreezeShortcut(app, linkedApps, icon));
+                    runOnUiThread(() -> addUnfreezeShortcut(app, linkedApps, icon));
                 }
             });
         } catch (RemoteException e) {
