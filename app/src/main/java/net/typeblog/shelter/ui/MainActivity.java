@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mPager = null;
     private TabLayout mTabs = null;
 
+    // current Tab position
+    private int curTabPos = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -215,11 +218,29 @@ public class MainActivity extends AppCompatActivity {
         // Find all the views
         mPager = findViewById(R.id.main_pager);
         mTabs = findViewById(R.id.main_tablayout);
+        mTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                curTabPos = tab.getPosition();
+                mPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+
+        });
 
         // Initialize the ViewPager and the tab
         // All the remaining work will be done in the fragments
-        mPager.setAdapter(new AppListFragmentAdapter(getSupportFragmentManager()));
+        AppListFragmentAdapter mFramgentAdapter = 
+            new AppListFragmentAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mFramgentAdapter);
+        mPager.setCurrentItem(curTabPos);
         mTabs.setupWithViewPager(mPager);
+        mTabs.getTabAt(curTabPos).select();
     }
 
     private boolean isWorkProfileAvailable() {
