@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.ui.AppListFragment;
 import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
 import net.typeblog.shelter.util.FileProviderProxy;
@@ -35,6 +36,9 @@ public class ShelterService extends Service {
     private boolean mIsProfileOwner = false;
     private PackageManager mPackageManager = null;
     private ComponentName mAdminComponent = null;
+
+    private static boolean mShowAll = false; 
+
     private IShelterService.Stub mBinder = new IShelterService.Stub() {
         @Override
         public void ping() {
@@ -73,7 +77,8 @@ public class ShelterService extends Service {
                             boolean isInstalled = (it.flags & ApplicationInfo.FLAG_INSTALLED) != 0;
                             boolean canLaunch = mPackageManager.getLaunchIntentForPackage(it.packageName) != null;
 
-                            return (!isSystem && isInstalled) || isHidden || canLaunch;
+                            return (!isSystem && isInstalled) || isHidden || canLaunch
+                                    || (mShowAll && isSystem && !mIsProfileOwner);
                         })
                         .map(ApplicationInfoWrapper::new)
                         .map((it) -> it.loadLabel(mPackageManager)
@@ -239,6 +244,16 @@ public class ShelterService extends Service {
             } else {
                 return mPolicyManager.removeCrossProfileWidgetProvider(mAdminComponent, pkgName);
             }
+        }
+
+        @Override
+        public boolean isShowAll() {
+            return mShowAll;
+        }
+
+        @Override
+        public void setShowAll(boolean value) {
+            mShowAll = value;
         }
     };
 

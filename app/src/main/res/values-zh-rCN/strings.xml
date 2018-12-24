@@ -36,6 +36,7 @@
     <string name="freeze_all_shortcut">冻结</string>
     <string name="install_app_to_profile">安装 APK 到 Shelter</string>
     <string name="install_app_to_profile_success">已成功在工作用户内安装 APK</string>
+    <string name="show_all_applications">显示所有应用</string>
 
     <!-- Settings Options -->
     <string name="settings">设置</string>

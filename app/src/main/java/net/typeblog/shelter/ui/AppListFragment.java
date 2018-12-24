@@ -46,7 +46,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AppListFragment extends BaseFragment {
-    private static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
+    public static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
 
     // Menu Items
     private static final int MENU_ITEM_CLONE = 10001;
@@ -67,6 +67,8 @@ public class AppListFragment extends BaseFragment {
     // Cache of allowed Cross-profile widget providers
     // Only useful if this fragment manages the work profile
     private Set<String> mCrossProfileWidgetProviders = new HashSet<>();
+
+    public static boolean showAll = false;
 
     // Views
     private RecyclerView mList = null;

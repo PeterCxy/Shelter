@@ -22,6 +22,7 @@
     <string name="freeze_all">Групповая заморозка</string>
     <string name="create_freeze_all_shortcut">Создать ярлык групповой заморозки</string>
     <string name="freeze_all_shortcut">Заморозить</string>
+    <string name="show_all_applications">Показать все приложения</string>
     <string name="settings">Настройки</string>
     <string name="settings_about">О программе</string>
     <string name="settings_version">Версия</string>

@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mPager = null;
     private TabLayout mTabs = null;
 
+    private Menu mOptionsMenu;
+
     // current Tab position
     private int curTabPos = 1;
 
@@ -161,6 +163,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 mServiceMain = IShelterService.Stub.asInterface(service);
+                if (mOptionsMenu != null) {
+                    MenuItem item = mOptionsMenu.findItem(R.id.main_menu_show_all_applications);
+                    item.setEnabled(true);
+                    if (item.isCheckable()) {
+                        try {
+                            item.setChecked(mServiceMain.isShowAll());
+                        } catch (RemoteException e) { };
+                    }
+                }
                 tryStartWorkService();
             }
 
@@ -347,6 +358,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_activity_menu, menu);
+        mOptionsMenu = menu;
+        if (mServiceMain != null) {
+            MenuItem item = menu.findItem(R.id.main_menu_show_all_applications);
+            item.setEnabled(true);
+            if (item.isCheckable()) {
+                try {
+                    item.setChecked(mServiceMain.isShowAll());
+                } catch (RemoteException e) { };
+            }
+        }
         return true;
     }
 
@@ -387,6 +408,18 @@ public class MainActivity extends AppCompatActivity {
                 openApkIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 openApkIntent.setType("application/vnd.android.package-archive");
                 startActivityForResult(openApkIntent, REQUEST_DOCUMENTS_CHOOSE_APK);
+                return true;
+            case R.id.main_menu_show_all_applications:
+                boolean showAll = false;
+                if (item.isCheckable()) {
+                    try {
+                        showAll = mServiceMain.isShowAll();
+                        item.setChecked(!showAll);
+                        mServiceMain.setShowAll(!showAll);
+                        LocalBroadcastManager.getInstance(this)
+                                .sendBroadcast(new Intent(AppListFragment.BROADCAST_REFRESH));
+                    } catch (RemoteException e) { }
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

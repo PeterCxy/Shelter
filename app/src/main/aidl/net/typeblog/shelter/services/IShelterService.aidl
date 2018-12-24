@@ -22,4 +22,6 @@ interface IShelterService {
     boolean hasUsageStatsPermission();
     List<String> getCrossProfileWidgetProviders();
     boolean setCrossProfileWidgetProviderEnabled(String pkgName, boolean enabled);
+    boolean isShowAll();
+    void setShowAll(boolean value);
 }

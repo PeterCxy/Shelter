@@ -20,4 +20,12 @@
     <item
         android:id="@+id/main_menu_install_app_to_profile"
         android:title="@string/install_app_to_profile" />
+
+    <item
+        android:id="@+id/main_menu_show_all_applications"
+        android:title="@string/show_all_applications"
+        app:actionLayout="@layout/action_layout_checkbox"
+        app:showAsAction="ifRoom|withText"
+        android:enabled="false"
+        android:checkable="true" />
 </menu>
