@@ -222,6 +222,24 @@ public class ShelterService extends Service {
         public boolean hasUsageStatsPermission() {
             return Utility.checkUsageStatsPermission(ShelterService.this);
         }
+
+        @Override
+        public List<String> getCrossProfileWidgetProviders() {
+            if (!mIsProfileOwner)
+                throw new IllegalStateException("Cannot access cross-profile widget providers without being profile owner");
+            return mPolicyManager.getCrossProfileWidgetProviders(mAdminComponent);
+        }
+
+        @Override
+        public boolean setCrossProfileWidgetProviderEnabled(String pkgName, boolean enabled) {
+            if (!mIsProfileOwner)
+                throw new IllegalStateException("Cannot access cross-profile widget providers without being profile owner");
+            if (enabled) {
+                return mPolicyManager.addCrossProfileWidgetProvider(mAdminComponent, pkgName);
+            } else {
+                return mPolicyManager.removeCrossProfileWidgetProvider(mAdminComponent, pkgName);
+            }
+        }
     };
 
     @Override

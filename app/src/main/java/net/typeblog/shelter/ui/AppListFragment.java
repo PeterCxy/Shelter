@@ -40,7 +40,9 @@ import net.typeblog.shelter.util.ApplicationInfoWrapper;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AppListFragment extends BaseFragment {
@@ -54,12 +56,17 @@ public class AppListFragment extends BaseFragment {
     private static final int MENU_ITEM_LAUNCH = 10005;
     private static final int MENU_ITEM_CREATE_UNFREEZE_SHORTCUT = 10006;
     private static final int MENU_ITEM_AUTO_FREEZE = 10007;
+    private static final int MENU_ITEM_ALLOW_CROSS_PROFILE_WIDGET = 10008;
 
     private IShelterService mService = null;
     private boolean mIsRemote = false;
     private boolean mRefreshing = false;
     private Drawable mDefaultIcon = null;
     private ApplicationInfoWrapper mSelectedApp = null;
+
+    // Cache of allowed Cross-profile widget providers
+    // Only useful if this fragment manages the work profile
+    private Set<String> mCrossProfileWidgetProviders = new HashSet<>();
 
     // Views
     private RecyclerView mList = null;
@@ -174,6 +181,17 @@ public class AppListFragment extends BaseFragment {
                 @Override
                 public void callback(List<ApplicationInfoWrapper> apps) {
                     if (mIsRemote) {
+                        mCrossProfileWidgetProviders.clear();
+
+                        // Update the cross-profile widget provider list
+                        try {
+                            mCrossProfileWidgetProviders.addAll(mService.getCrossProfileWidgetProviders());
+                        } catch (RemoteException e) {
+
+                        }
+                    }
+
+                    if (mIsRemote) {
                         Utility.deleteMissingApps(
                                 LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE,
                                 apps);
@@ -252,6 +270,13 @@ public class AppListFragment extends BaseFragment {
                 menu.add(Menu.NONE, MENU_ITEM_FREEZE, Menu.NONE, R.string.freeze_app);
                 menu.add(Menu.NONE, MENU_ITEM_LAUNCH, Menu.NONE, R.string.launch);
             }
+            // Cross-profile widget settings is also limited to work profile
+            MenuItem crossProfileWdiegt =
+                    menu.add(Menu.NONE, MENU_ITEM_ALLOW_CROSS_PROFILE_WIDGET, Menu.NONE,
+                            R.string.allow_cross_profile_widgets);
+            crossProfileWdiegt.setCheckable(true);
+            crossProfileWdiegt.setChecked(
+                    mCrossProfileWidgetProviders.contains(mSelectedApp.getPackageName()));
             // TODO: If we implement God Mode (i.e. Shelter as device owner), we should
             // TODO: use two different lists to store auto freeze apps because we'll be
             // TODO: able to freeze apps in main profile.
@@ -347,6 +372,23 @@ public class AppListFragment extends BaseFragment {
                 } else {
                     LocalStorageManager.getInstance().removeFromStringList(
                             LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, mSelectedApp.getPackageName());
+                }
+                return true;
+            case MENU_ITEM_ALLOW_CROSS_PROFILE_WIDGET:
+                boolean newState = !item.isChecked();
+                try {
+                    if (mService.setCrossProfileWidgetProviderEnabled(mSelectedApp.getPackageName(), newState)) {
+                        item.setChecked(newState);
+
+                        // Update the cached list of all cross-profile widget providers
+                        if (newState) {
+                            mCrossProfileWidgetProviders.add(mSelectedApp.getPackageName());
+                        } else {
+                            mCrossProfileWidgetProviders.remove(mSelectedApp.getPackageName());
+                        }
+                    }
+                } catch (RemoteException e) {
+
                 }
                 return true;
         }

@@ -28,6 +28,7 @@
     <string name="create_unfreeze_shortcut">创建解冻并运行快捷方式</string>
     <string name="unfreeze_and_launch">解冻并运行</string>
     <string name="auto_freeze">自动冻结</string>
+    <string name="allow_cross_profile_widgets">允许在主用户中创建小工具</string>
 
     <!-- Action Bar Options Menu -->
     <string name="freeze_all">批量冻结</string>
