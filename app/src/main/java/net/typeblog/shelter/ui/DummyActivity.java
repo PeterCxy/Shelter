@@ -452,6 +452,9 @@ public class DummyActivity extends Activity {
         if (getIntent().hasExtra("boolean")) {
             LocalStorageManager.getInstance()
                     .setBoolean(name, getIntent().getBooleanExtra("boolean", false));
+        } else if (getIntent().hasExtra("int")) {
+            LocalStorageManager.getInstance()
+                    .setInt(name, getIntent().getIntExtra("int", Integer.MIN_VALUE));
         }
         // TODO: Cases for other types
         SettingsManager.getInstance().applyAll();

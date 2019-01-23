@@ -49,6 +49,7 @@
     <string name="settings_services">Services</string>
     <string name="settings_auto_freeze_service">Auto Freeze Service</string>
     <string name="settings_auto_freeze_service_desc">When the screen is locked, automatically freeze apps launched from \"Unfreeze &amp; Launch Shortcut\".</string>
+    <string name="settings_auto_freeze_delay">Auto Freeze Delay</string>
     <string name="settings_dont_freeze_foreground">Skip Foreground Apps</string>
     <string name="settings_dont_freeze_foreground_desc">Do NOT freeze foreground apps (with visible activity) when you lock your screen. This can be useful for apps like music players, but you\'ll need to manually freeze them through \"Batch Freeze Shortcut\" afterwards.</string>
     <string name="settings_about">About</string>

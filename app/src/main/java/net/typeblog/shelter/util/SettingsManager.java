@@ -35,6 +35,15 @@ public class SettingsManager {
         mContext.startActivity(intent);
     }
 
+    private void syncSettingsToProfileInt(String name, int value) {
+        Intent intent = new Intent(DummyActivity.SYNCHRONIZE_PREFERENCE);
+        intent.putExtra("name", name);
+        intent.putExtra("int", value);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Utility.transferIntentToProfile(mContext, intent);
+        mContext.startActivity(intent);
+    }
+
     // Enforce all settings
     public void applyAll() {
         applyCrossProfileFileChooser();
@@ -92,6 +101,22 @@ public class SettingsManager {
     // Get the enabled state of the auto freeze service
     public boolean getAutoFreezeServiceEnabled() {
         return mStorage.getBoolean(LocalStorageManager.PREF_AUTO_FREEZE_SERVICE);
+    }
+
+    // Set the delay for auto freeze service (in seconds)
+    public void setAutoFreezeDelay(int seconds) {
+        mStorage.setInt(LocalStorageManager.PREF_AUTO_FREEZE_DELAY, seconds);
+        syncSettingsToProfileInt(LocalStorageManager.PREF_AUTO_FREEZE_DELAY, seconds);
+    }
+
+    // Get the delay for auto freeze service
+    public int getAutoFreezeDelay() {
+        int ret = mStorage.getInt(LocalStorageManager.PREF_AUTO_FREEZE_DELAY);
+        if (ret == Integer.MIN_VALUE) {
+            // Default delay is 0 seconds
+            ret = 0;
+        }
+        return ret;
     }
 
     // Set the enabled state of "skip foreground"

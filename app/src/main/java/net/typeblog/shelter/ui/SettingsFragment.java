@@ -17,6 +17,10 @@ import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
 
+import mobi.upod.timedurationpicker.TimeDurationPicker;
+import mobi.upod.timedurationpicker.TimeDurationPickerDialogFragment;
+import mobi.upod.timedurationpicker.TimeDurationUtil;
+
 public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
     private static final String SETTINGS_VERSION = "settings_version";
     private static final String SETTINGS_SOURCE_CODE = "settings_source_code";
@@ -24,6 +28,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_CROSS_PROFILE_FILE_CHOOSER = "settings_cross_profile_file_chooser";
     private static final String SETTINGS_CAMERA_PROXY = "settings_camera_proxy";
     private static final String SETTINGS_AUTO_FREEZE_SERVICE = "settings_auto_freeze_service";
+    private static final String SETTINGS_AUTO_FREEZE_DELAY = "settings_auto_freeze_delay";
     private static final String SETTINGS_SKIP_FOREGROUND = "settings_dont_freeze_foreground";
 
     private SettingsManager mManager = SettingsManager.getInstance();
@@ -33,6 +38,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private CheckBoxPreference mPrefCameraProxy = null;
     private CheckBoxPreference mPrefAutoFreezeService = null;
     private CheckBoxPreference mPrefSkipForeground = null;
+
+    private Preference mPrefAutoFreezeDelay = null;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -67,15 +74,38 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefAutoFreezeService = (CheckBoxPreference) findPreference(SETTINGS_AUTO_FREEZE_SERVICE);
         mPrefAutoFreezeService.setChecked(mManager.getAutoFreezeServiceEnabled());
         mPrefAutoFreezeService.setOnPreferenceChangeListener(this);
+        mPrefAutoFreezeDelay = findPreference(SETTINGS_AUTO_FREEZE_DELAY);
+        mPrefAutoFreezeDelay.setOnPreferenceClickListener(this::openAutoFreezeDelayPicker);
+        updateAutoFreezeDelay();
         mPrefSkipForeground = (CheckBoxPreference) findPreference(SETTINGS_SKIP_FOREGROUND);
         mPrefSkipForeground.setChecked(mManager.getSkipForegroundEnabled());
         mPrefSkipForeground.setOnPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Update all preferences that may change when returning
+        // i.e. preferences that open another dialog for picking
+        updateAutoFreezeDelay();
+    }
+
+    private void updateAutoFreezeDelay() {
+        mPrefAutoFreezeDelay.setSummary(TimeDurationUtil.formatMinutesSeconds(
+                ((long) mManager.getAutoFreezeDelay()) * 1000
+        ));
     }
 
     private boolean openSummaryUrl(Preference pref) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(pref.getSummary().toString()));
         startActivity(intent);
+        return true;
+    }
+
+    private boolean openAutoFreezeDelayPicker(Preference pref) {
+        new AutoFreezeDelayPickerFragment().show(getActivity().getFragmentManager(), "dialog");
         return true;
     }
 
@@ -113,6 +143,25 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             }
         } else {
             return false;
+        }
+    }
+
+    public static class AutoFreezeDelayPickerFragment extends TimeDurationPickerDialogFragment {
+        @Override
+        protected long getInitialDuration() {
+            return ((long) SettingsManager.getInstance().getAutoFreezeDelay()) * 1000;
+        }
+
+        @Override
+        protected int setTimeUnits() {
+            return TimeDurationPicker.MM_SS;
+        }
+
+        @Override
+        public void onDurationSet(TimeDurationPicker view, long duration) {
+            long seconds = duration / 1000;
+            if (seconds >= Integer.MAX_VALUE) return;
+            SettingsManager.getInstance().setAutoFreezeDelay((int) seconds);
         }
     }
 }

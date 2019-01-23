@@ -9,7 +9,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 
 import androidx.annotation.Nullable;
 
@@ -54,41 +56,63 @@ public class FreezeService extends Service {
     private BroadcastReceiver mLockReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            synchronized (FreezeService.class) {
-                if (sAppToFreeze.size() > 0) {
-                    long now = new Date().getTime();
+            // Delay the work so that it can be canceled if the screen
+            // gets unlocked before the delay passes
+            mHandler.postDelayed(mFreezeWork,
+                    ((long) SettingsManager.getInstance().getAutoFreezeDelay()) * 1000);
+            registerReceiver(mUnlockReceiver, new IntentFilter(Intent.ACTION_SCREEN_ON));
+        }
+    };
 
-                    // Initialize with empty usage stats
-                    // If we don't have the permission to use UsageStats
-                    // or "do not freeze foreground apps" is not enabled,
-                    // then we won't need any usage stats, so we just keep
-                    // it empty in those cases
-                    Map<String, UsageStats> allStats = new HashMap<>();
+    // The receiver of the screen-on event
+    // Cancels the freeze job if the designated delay has not passed
+    private BroadcastReceiver mUnlockReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mHandler.removeCallbacks(mFreezeWork);
+        }
+    };
 
-                    if (SettingsManager.getInstance().getSkipForegroundEnabled() &&
-                            Utility.checkUsageStatsPermission(FreezeService.this)) {
-                        UsageStatsManager usm = getSystemService(UsageStatsManager.class);
-                        allStats = usm.queryAndAggregateUsageStats(now - APP_INACTIVE_TIMEOUT, now);
-                    }
-                    DevicePolicyManager dpm = getSystemService(DevicePolicyManager.class);
-                    ComponentName adminComponent = new ComponentName(FreezeService.this, ShelterDeviceAdminReceiver.class);
-                    for (String app : sAppToFreeze) {
-                        boolean shouldFreeze = true;
-                        UsageStats stats =  allStats.get(app);
-                        if (stats != null && now - stats.getLastTimeUsed() <= APP_INACTIVE_TIMEOUT &&
-                                stats.getTotalTimeInForeground() >= APP_INACTIVE_TIMEOUT) {
-                            // Don't freeze foreground apps if requested
-                            shouldFreeze = false;
-                        }
+    // The handler and the delayed work to handle
+    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private Runnable mFreezeWork = () -> {
+        synchronized (FreezeService.class) {
+            // Cancel the unlock receiver first - the delay has passed if this work is executed
+            unregisterReceiver(mUnlockReceiver);
 
-                        if (shouldFreeze) {
-                            dpm.setApplicationHidden(adminComponent, app, true);
-                        }
-                    }
-                    sAppToFreeze.clear();
+            if (sAppToFreeze.size() > 0) {
+                long now = new Date().getTime();
+
+                // Initialize with empty usage stats
+                // If we don't have the permission to use UsageStats
+                // or "do not freeze foreground apps" is not enabled,
+                // then we won't need any usage stats, so we just keep
+                // it empty in those cases
+                Map<String, UsageStats> allStats = new HashMap<>();
+
+                if (SettingsManager.getInstance().getSkipForegroundEnabled() &&
+                        Utility.checkUsageStatsPermission(FreezeService.this)) {
+                    UsageStatsManager usm = getSystemService(UsageStatsManager.class);
+                    allStats = usm.queryAndAggregateUsageStats(now - APP_INACTIVE_TIMEOUT, now);
                 }
-                stopSelf();
+                DevicePolicyManager dpm = getSystemService(DevicePolicyManager.class);
+                ComponentName adminComponent = new ComponentName(FreezeService.this, ShelterDeviceAdminReceiver.class);
+                for (String app : sAppToFreeze) {
+                    boolean shouldFreeze = true;
+                    UsageStats stats =  allStats.get(app);
+                    if (stats != null && now - stats.getLastTimeUsed() <= APP_INACTIVE_TIMEOUT &&
+                            stats.getTotalTimeInForeground() >= APP_INACTIVE_TIMEOUT) {
+                        // Don't freeze foreground apps if requested
+                        shouldFreeze = false;
+                    }
+
+                    if (shouldFreeze) {
+                        dpm.setApplicationHidden(adminComponent, app, true);
+                    }
+                }
+                sAppToFreeze.clear();
             }
+            stopSelf();
         }
     };
 
