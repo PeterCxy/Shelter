@@ -25,6 +25,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_VERSION = "settings_version";
     private static final String SETTINGS_SOURCE_CODE = "settings_source_code";
     private static final String SETTINGS_BUG_REPORT = "settings_bug_report";
+    private static final String SETTINGS_PATREON = "settings_patreon";
     private static final String SETTINGS_CROSS_PROFILE_FILE_CHOOSER = "settings_cross_profile_file_chooser";
     private static final String SETTINGS_CAMERA_PROXY = "settings_camera_proxy";
     private static final String SETTINGS_AUTO_FREEZE_SERVICE = "settings_auto_freeze_service";
@@ -60,6 +61,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         findPreference(SETTINGS_SOURCE_CODE)
                 .setOnPreferenceClickListener(this::openSummaryUrl);
         findPreference(SETTINGS_BUG_REPORT)
+                .setOnPreferenceClickListener(this::openSummaryUrl);
+        findPreference(SETTINGS_PATREON)
                 .setOnPreferenceClickListener(this::openSummaryUrl);
 
         // === Interactions ===

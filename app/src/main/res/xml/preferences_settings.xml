@@ -55,6 +55,11 @@
             android:title="@string/settings_bug_report"
             android:summary="@string/settings_bug_report_url" />
 
+        <androidx.preference.Preference
+            android:key="settings_patreon"
+            android:title="@string/settings_patreon"
+            android:summary="@string/settings_patreon_url" />
+
     </androidx.preference.PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>
