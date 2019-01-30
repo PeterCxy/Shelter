@@ -12,7 +12,7 @@ import net.typeblog.shelter.util.UriForwardProxy;
 interface IShelterService {
     void ping();
     void stopShelterService(boolean kill);
-    void getApps(IGetAppsCallback callback);
+    void getApps(IGetAppsCallback callback, boolean showAll);
     void loadIcon(in ApplicationInfoWrapper info, ILoadIconCallback callback);
     void installApp(in ApplicationInfoWrapper app, IAppInstallCallback callback);
     void installApk(in UriForwardProxy uri, IAppInstallCallback callback);

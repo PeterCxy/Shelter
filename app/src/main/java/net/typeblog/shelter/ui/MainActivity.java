@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mPager = null;
     private TabLayout mTabs = null;
 
+    // Show all applications or not
+    // default to false
+    boolean mShowAll = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -366,6 +370,25 @@ public class MainActivity extends AppCompatActivity {
                 openApkIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 openApkIntent.setType("application/vnd.android.package-archive");
                 startActivityForResult(openApkIntent, REQUEST_DOCUMENTS_CHOOSE_APK);
+                return true;
+            case R.id.main_menu_show_all:
+                Runnable update = () -> {
+                    mShowAll = !item.isChecked();
+                    item.setChecked(mShowAll);
+                    LocalBroadcastManager.getInstance(this)
+                            .sendBroadcast(new Intent(AppListFragment.BROADCAST_REFRESH));
+                };
+
+                if (!item.isChecked()) {
+                    new AlertDialog.Builder(this)
+                            .setMessage(R.string.show_all_warning)
+                            .setPositiveButton(R.string.first_run_alert_continue,
+                                    (dialog, which) -> update.run())
+                            .setNegativeButton(R.string.first_run_alert_cancel, null)
+                            .show();
+                } else {
+                    update.run();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

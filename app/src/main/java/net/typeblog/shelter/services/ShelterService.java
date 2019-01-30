@@ -61,7 +61,7 @@ public class ShelterService extends Service {
         }
 
         @Override
-        public void getApps(IGetAppsCallback callback) {
+        public void getApps(IGetAppsCallback callback, boolean showAll) {
             new Thread(() -> {
                 int pmFlags = PackageManager.MATCH_DISABLED_COMPONENTS | PackageManager.MATCH_UNINSTALLED_PACKAGES;
                 List<ApplicationInfoWrapper> list = mPackageManager.getInstalledApplications(pmFlags)
@@ -73,7 +73,7 @@ public class ShelterService extends Service {
                             boolean isInstalled = (it.flags & ApplicationInfo.FLAG_INSTALLED) != 0;
                             boolean canLaunch = mPackageManager.getLaunchIntentForPackage(it.packageName) != null;
 
-                            return (!isSystem && isInstalled) || isHidden || canLaunch;
+                            return showAll || (!isSystem && isInstalled) || isHidden || canLaunch;
                         })
                         .map(ApplicationInfoWrapper::new)
                         .map((it) -> it.loadLabel(mPackageManager)

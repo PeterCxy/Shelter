@@ -46,7 +46,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AppListFragment extends BaseFragment {
-    private static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
+    static final String BROADCAST_REFRESH = "net.typeblog.shelter.broadcast.REFRESH";
 
     // Menu Items
     private static final int MENU_ITEM_CLONE = 10001;
@@ -202,7 +202,7 @@ public class AppListFragment extends BaseFragment {
                         mRefreshing = false;
                     });
                 }
-            });
+            }, ((MainActivity) getActivity()).mShowAll);
         } catch (RemoteException e) {
             // Just... do nothing for now
         }
@@ -260,15 +260,24 @@ public class AppListFragment extends BaseFragment {
         if (mSelectedApp == null) return;
 
         if (mIsRemote) {
+            // Determine if the app is able to launch
+            // Un-launchable apps are normally hidden, but can be shown with the "show all" option
+            // All launching-related menu options should be hidden for apps that cannot be launched
+            boolean canLaunch = mSelectedApp.canLaunch(getContext().getPackageManager());
+
             if (!mSelectedApp.isSystem())
                 menu.add(Menu.NONE, MENU_ITEM_CLONE, Menu.NONE, R.string.clone_to_main_profile);
             // Freezing / Unfreezing is only available in profiles that we can control
             if (mSelectedApp.isHidden()) {
                 menu.add(Menu.NONE, MENU_ITEM_UNFREEZE, Menu.NONE, R.string.unfreeze_app);
-                menu.add(Menu.NONE, MENU_ITEM_LAUNCH, Menu.NONE, R.string.unfreeze_and_launch);
+
+                if (canLaunch)
+                    menu.add(Menu.NONE, MENU_ITEM_LAUNCH, Menu.NONE, R.string.unfreeze_and_launch);
             } else {
                 menu.add(Menu.NONE, MENU_ITEM_FREEZE, Menu.NONE, R.string.freeze_app);
-                menu.add(Menu.NONE, MENU_ITEM_LAUNCH, Menu.NONE, R.string.launch);
+
+                if (canLaunch)
+                    menu.add(Menu.NONE, MENU_ITEM_LAUNCH, Menu.NONE, R.string.launch);
             }
             // Cross-profile widget settings is also limited to work profile
             MenuItem crossProfileWdiegt =
@@ -277,15 +286,19 @@ public class AppListFragment extends BaseFragment {
             crossProfileWdiegt.setCheckable(true);
             crossProfileWdiegt.setChecked(
                     mCrossProfileWidgetProviders.contains(mSelectedApp.getPackageName()));
-            // TODO: If we implement God Mode (i.e. Shelter as device owner), we should
-            // TODO: use two different lists to store auto freeze apps because we'll be
-            // TODO: able to freeze apps in main profile.
-            MenuItem autoFreeze = menu.add(Menu.NONE, MENU_ITEM_AUTO_FREEZE, Menu.NONE, R.string.auto_freeze);
-            autoFreeze.setCheckable(true);
-            autoFreeze.setChecked(
-                    LocalStorageManager.getInstance().stringListContains(
-                            LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, mSelectedApp.getPackageName()));
-            menu.add(Menu.NONE, MENU_ITEM_CREATE_UNFREEZE_SHORTCUT, Menu.NONE, R.string.create_unfreeze_shortcut);
+
+            // Auto-freeze only works with launchable apps
+            if (canLaunch) {
+                // TODO: If we implement God Mode (i.e. Shelter as device owner), we should
+                // TODO: use two different lists to store auto freeze apps because we'll be
+                // TODO: able to freeze apps in main profile.
+                MenuItem autoFreeze = menu.add(Menu.NONE, MENU_ITEM_AUTO_FREEZE, Menu.NONE, R.string.auto_freeze);
+                autoFreeze.setCheckable(true);
+                autoFreeze.setChecked(
+                        LocalStorageManager.getInstance().stringListContains(
+                                LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, mSelectedApp.getPackageName()));
+                menu.add(Menu.NONE, MENU_ITEM_CREATE_UNFREEZE_SHORTCUT, Menu.NONE, R.string.create_unfreeze_shortcut);
+            }
         } else {
             menu.add(Menu.NONE, MENU_ITEM_CLONE, Menu.NONE, R.string.clone_to_work_profile);
         }

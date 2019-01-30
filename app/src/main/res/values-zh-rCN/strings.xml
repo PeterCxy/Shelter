@@ -36,6 +36,8 @@
     <string name="freeze_all_shortcut">冻结</string>
     <string name="install_app_to_profile">安装 APK 到 Shelter</string>
     <string name="install_app_to_profile_success">已成功在工作用户内安装 APK</string>
+    <string name="show_all">显示全部应用</string>
+    <string name="show_all_warning">对列表中默认隐藏的应用执行操作可能导致崩溃以及其他各种无法预料的行为。但是，当您的手机厂商没有正确在工作用户中开启所有必要的系统组件应用的时候，这个功能可以帮助您解决问题。如果您选择继续，您确保您了解您在做什么，Shelter 无法提供任何保证。</string>
 
     <!-- Settings Options -->
     <string name="settings">设置</string>

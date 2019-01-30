@@ -20,4 +20,10 @@
     <item
         android:id="@+id/main_menu_install_app_to_profile"
         android:title="@string/install_app_to_profile" />
+
+    <item
+        android:id="@+id/main_menu_show_all"
+        android:title="@string/show_all"
+        android:checkable="true"
+        android:checked="false" />
 </menu>
