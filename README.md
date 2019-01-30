@@ -50,3 +50,6 @@ FAQS
 
 **Q**: If I encounter bugs, how do I report them?  
 **A**: You could file an issue on either the main repository at <https://git.angry.im/PeterCxy/Shelter> or the mirror repository at <https://github.com/PeterCxy/Shelter>. Please include your system information as well as a logcat if possible.
+
+**Q**: How do I support the project?  
+**A**: You can submit issues if you find a bug or have an idea about features of Shelter; you may also contribute code to this project if you can code; providing translations is also welcomed. If you have some extra money lying around, you can also [support me on Patreon](https://www.patreon.com/PeterCxy).
