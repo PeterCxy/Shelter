@@ -67,4 +67,7 @@
     <string name="show_all">إظهار كل التطبيقات</string>
     <string name="show_all_warning">قد يتسبب التلاعب بالتطبيقات المخفية من القائمة في حدوث أعطال وكل أنواع السلوك غير المتوقع. على الرغم من ذلك ، يمكن أن تكون هذه الميزة مفيدة عندما لا يقوم ROM المخصص بتمكين جميع تطبيقات النظام الضرورية في الملف العمل بشكل افتراضي. إذا تابعت ، فهذا علي مسؤليتك الخاصه.</string>
     <string name="settings_auto_freeze_delay">تأخير التجميد التلقائي</string>
+    <string name="settings_fingerprint_auth_service">بصمة الإصبع</string>
+    <string name="settings_fingerprint_auth_service_desc">استخدم بصمتك لالغاء تجميد و بدأ التطبيقات</string>
+    <string name="fingerprint_auth_negative">الغاء</string>
 </resources>

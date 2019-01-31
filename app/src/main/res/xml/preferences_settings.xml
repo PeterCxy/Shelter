@@ -36,6 +36,12 @@
             android:title="@string/settings_dont_freeze_foreground"
             android:summary="@string/settings_dont_freeze_foreground_desc" />
 
+        <androidx.preference.CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="settings_auto_freeze_service"
+            android:key="settings_fingerprint_auth_service"
+            android:summary="@string/settings_fingerprint_auth_service_desc"
+            android:title="@string/settings_fingerprint_auth_service" />
     </androidx.preference.PreferenceCategory>
 
     <androidx.preference.PreferenceCategory

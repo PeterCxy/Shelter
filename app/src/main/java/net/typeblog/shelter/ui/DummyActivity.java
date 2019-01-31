@@ -1,7 +1,6 @@
 package net.typeblog.shelter.ui;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -17,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
@@ -35,13 +36,15 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 // DummyActivity does nothing about presenting any UI
 // It is a wrapper over various different operations
 // that might be required to perform across user profiles
 // which is only possible through Intents that are in
 // the crossProfileIntentFilter
-public class DummyActivity extends Activity {
+public class DummyActivity extends AppCompatActivity {
     public static final String FINALIZE_PROVISION = "net.typeblog.shelter.action.FINALIZE_PROVISION";
     public static final String START_SERVICE = "net.typeblog.shelter.action.START_SERVICE";
     public static final String TRY_START_SERVICE = "net.typeblog.shelter.action.TRY_START_SERVICE";
@@ -73,7 +76,7 @@ public class DummyActivity extends Activity {
             UNFREEZE_AND_LAUNCH);
 
     private static final int REQUEST_INSTALL_PACKAGE = 1;
-    private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE= 2;
+    private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE = 2;
 
     // A state variable to record the last time DummyActivity was informed that someone
     // in the same process needs to call an action without signature
@@ -151,7 +154,14 @@ public class DummyActivity extends Activity {
         } else if (FINALIZE_PROVISION.equals(intent.getAction())) {
             actionFinalizeProvision();
         } else if (UNFREEZE_AND_LAUNCH.equals(intent.getAction()) || PUBLIC_UNFREEZE_AND_LAUNCH.equals(intent.getAction())) {
-            actionUnfreezeAndLaunch();
+            if ((SettingsManager.getInstance().getAutoFreezeServiceEnabled() && SettingsManager.getInstance().getFingerprintAuthEnabled())) {
+                //We check to see if the app has already been authorized on the main profile
+                if (!intent.getBooleanExtra("authorized", false))
+                    auth();
+                else
+                    actionUnfreezeAndLaunch();
+            } else
+                actionUnfreezeAndLaunch();
         } else if (PUBLIC_FREEZE_ALL.equals(intent.getAction())) {
             actionPublicFreezeAll();
         } else if (FREEZE_ALL_IN_LIST.equals(intent.getAction())) {
@@ -317,7 +327,7 @@ public class DummyActivity extends Activity {
             intent.putExtra("shouldFreeze",
                     SettingsManager.getInstance().getAutoFreezeServiceEnabled() &&
                             LocalStorageManager.getInstance()
-                                .stringListContains(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, packageName));
+                                    .stringListContains(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, packageName));
             if (getIntent().hasExtra("linkedPackages")) {
                 // Multiple apps should be unfrozen here
                 String[] packages = getIntent().getStringExtra("linkedPackages").split(",");
@@ -333,6 +343,9 @@ public class DummyActivity extends Activity {
                 intent.putExtra("linkedPackages", packages);
                 intent.putExtra("linkedPackagesShouldFreeze", packagesShouldFreeze);
             }
+
+            //We use this to for the fingerprint authentication to check if the app has already been authorized on the main profile
+            intent.putExtra("authorized", true);
             Utility.transferIntentToProfile(this, intent);
             startActivity(intent);
             finish();
@@ -459,5 +472,37 @@ public class DummyActivity extends Activity {
         // TODO: Cases for other types
         SettingsManager.getInstance().applyAll();
         finish();
+    }
+
+    private void auth() {
+        Executor executor = Executors.newSingleThreadExecutor();
+
+        final BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
+                    // user clicked negative button
+                }
+                finish();
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                actionUnfreezeAndLaunch();
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                //Called when a biometric is valid but not recognized.
+            }
+        });
+        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle(getString(R.string.settings_fingerprint_auth_service))
+                .setNegativeButtonText(getString(R.string.fingerprint_auth_negative))
+                .build();
+        biometricPrompt.authenticate(promptInfo);
     }
 }
