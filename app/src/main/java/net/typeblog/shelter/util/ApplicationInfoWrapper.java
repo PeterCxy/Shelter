@@ -37,10 +37,6 @@ public class ApplicationInfoWrapper implements Parcelable {
         return this;
     }
 
-    public boolean canLaunch(PackageManager pm) {
-        return pm.getLaunchIntentForPackage(mInfo.packageName) != null;
-    }
-
     // Only used from ShelterService
     public ApplicationInfoWrapper setHidden(boolean hidden) {
         mIsHidden = hidden;

@@ -77,6 +77,7 @@
     <string name="freeze_all_success">所有在 \"自动冻结\" 列表中的应用都已经冻结成功</string>
     <string name="shortcut_create_success">快捷方式已创建</string>
     <string name="request_usage_stats">Shelter 需要 <b>使用情况数据</b> 来做这件事。请在按 \"确定\" 后出现的窗口中，对 <b>两个</b> Shelter <b>都</b> 打开此权限。如果没有全部打开，该功能将无法正确运作。</string>
+    <string name="launch_app_fail">无法启动没有用户界面的应用 %s</string>
 
     <!-- MIUI -->
     <string name="miui_cannot_clone">目前无法在 MIUI 上克隆非系统应用。请先克隆您的系统应用商店 (如 <b>Play Store</b>) 然后从克隆的应用商店中安装应用</string>
