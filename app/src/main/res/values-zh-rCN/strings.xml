@@ -19,6 +19,7 @@
     <string name="batch_operation">批量操作</string>
 
     <!-- App Context Menu -->
+    <string name="search">搜索</string>
     <string name="clone_to_work_profile">克隆到 Shelter (工作用户)</string>
     <string name="clone_to_main_profile">克隆到主用户</string>
     <string name="uninstall_app">卸载</string>

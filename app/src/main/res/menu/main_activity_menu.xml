@@ -2,6 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/main_menu_search"
+        android:icon="@drawable/ic_search_tinted_24dp"
+        android:title="@string/search"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <item
         android:id="@+id/main_menu_freeze_all"
         android:icon="@drawable/ic_freeze_tinted"
         android:title="@string/freeze_all"

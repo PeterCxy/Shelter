@@ -221,7 +221,12 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         void cancelActionMode();
     }
 
+    // The ORIGINAL list of applications without filtering
+    private List<ApplicationInfoWrapper> mOrigList = new ArrayList<>();
+    // The list of applications that is ACTUALLY displayed
+    // (after filtering by search query if applicable)
     private List<ApplicationInfoWrapper> mList = new ArrayList<>();
+    private String mSearchQuery = null;
     private IShelterService mService;
     private Drawable mDefaultIcon;
     private String mLabelDisabled;
@@ -281,9 +286,33 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
     }
 
     void setData(List<ApplicationInfoWrapper> apps) {
+        mOrigList.clear();
         mList.clear();
         mIconCache.clear();
-        mList.addAll(apps);
+        mOrigList.addAll(apps);
+        notifyChange();
+    }
+
+    // null = clear search query
+    void setSearchQuery(String query) {
+        mSearchQuery = query;
+        notifyChange();
+    }
+
+    // Call this on ACTUAL data set change and/or search query change
+    private void notifyChange() {
+        mList.clear();
+        if (mSearchQuery == null) {
+            // No search query, do not filter
+            mList.addAll(mOrigList);
+        } else {
+            // Filter by search query
+            mList.addAll(mOrigList.stream()
+                    .filter((app) ->
+                            app.getPackageName().toLowerCase().contains(mSearchQuery)
+                                    || app.getLabel().toLowerCase().contains(mSearchQuery))
+                    .collect(Collectors.toList()));
+        }
         notifyDataSetChanged();
     }
 

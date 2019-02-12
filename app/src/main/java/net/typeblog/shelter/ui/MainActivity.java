@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -40,6 +41,7 @@ import net.typeblog.shelter.util.Utility;
 
 public class MainActivity extends AppCompatActivity {
     public static final String BROADCAST_CONTEXT_MENU_CLOSED = "net.typeblog.shelter.broadcast.CONTEXT_MENU_CLOSED";
+    public static final String BROADCAST_SEARCH_FILTER_CHANGED = "net.typeblog.shelter.broadcast.SEARCH_FILTER_CHANGED";
 
     private static final int REQUEST_PROVISION_PROFILE = 1;
     private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
@@ -330,6 +332,24 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_activity_menu, menu);
+
+        // Initialize the search button
+        SearchView searchView = (SearchView) menu.findItem(R.id.main_menu_search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Intent intent = new Intent(BROADCAST_SEARCH_FILTER_CHANGED);
+                intent.putExtra("text", newText.toLowerCase().trim());
+                LocalBroadcastManager.getInstance(MainActivity.this)
+                        .sendBroadcast(intent);
+                return true;
+            }
+        });
         return true;
     }
 

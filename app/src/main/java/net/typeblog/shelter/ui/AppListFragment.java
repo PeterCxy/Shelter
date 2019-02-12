@@ -93,6 +93,19 @@ public class AppListFragment extends BaseFragment {
         }
     };
 
+    // Receiver for search event
+    private BroadcastReceiver mSearchReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String query = intent.getStringExtra("text");
+            if (query == "") {
+                // Consider empty query as null
+                query = null;
+            }
+            mAdapter.setSearchQuery(query);
+        }
+    };
+
     static AppListFragment newInstance(IShelterService service, boolean isRemote) {
         AppListFragment fragment = new AppListFragment();
         Bundle args = new Bundle();
@@ -119,6 +132,9 @@ public class AppListFragment extends BaseFragment {
         LocalBroadcastManager.getInstance(getContext())
                 .registerReceiver(mContextMenuClosedReceiver,
                         new IntentFilter(MainActivity.BROADCAST_CONTEXT_MENU_CLOSED));
+        LocalBroadcastManager.getInstance(getContext())
+                .registerReceiver(mSearchReceiver,
+                        new IntentFilter(MainActivity.BROADCAST_SEARCH_FILTER_CHANGED));
         refresh();
     }
 
@@ -130,6 +146,8 @@ public class AppListFragment extends BaseFragment {
                 .unregisterReceiver(mRefreshReceiver);
         LocalBroadcastManager.getInstance(getContext())
                 .unregisterReceiver(mContextMenuClosedReceiver);
+        LocalBroadcastManager.getInstance(getContext())
+                .unregisterReceiver(mSearchReceiver);
     }
 
     @Nullable

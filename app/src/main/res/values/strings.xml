@@ -33,6 +33,7 @@
     <string name="allow_cross_profile_widgets">Allow Widgets in Main Profile</string>
 
     <!-- Action Bar Options Menu -->
+    <string name="search">Search</string>
     <string name="freeze_all">Batch Freeze</string>
     <string name="create_freeze_all_shortcut">Create Batch Freeze Shortcut</string>
     <string name="freeze_all_shortcut">Freeze</string>
