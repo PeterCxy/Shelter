@@ -372,9 +372,6 @@ public class DummyActivity extends Activity {
                 registerAppToFreeze(packageName);
             }
             startActivity(launchIntent);
-        } else {
-            // Acknowledge the user that the application cannot be launched
-            Toast.makeText(this, getString(R.string.launch_app_fail, packageName), Toast.LENGTH_SHORT).show();
         }
 
         finish();

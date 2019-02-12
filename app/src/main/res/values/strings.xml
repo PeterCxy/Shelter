@@ -83,7 +83,6 @@
     <string name="freeze_all_success">All apps in \"Auto Freeze\" list have been frozen successfully.</string>
     <string name="shortcut_create_success">Shortcut created on your launcher.</string>
     <string name="request_usage_stats">Shelter needs <b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Shelter apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
-    <string name="launch_app_fail">Cannot launch app %s because it has no GUI.</string>
 
     <!-- MIUI -->
     <string name="miui_cannot_clone">Cloning non-system apps to another profile is currently not possible on MIUI. Please clone your system\'s app store (e.g. <b>Play Store</b>) into the other profile and then install apps from there.</string>
