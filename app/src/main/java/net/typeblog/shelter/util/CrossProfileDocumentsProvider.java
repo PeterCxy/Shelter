@@ -133,6 +133,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Cursor queryDocument(String documentId, String[] projection) {
         ensureServiceBound();
@@ -147,6 +148,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Cursor queryChildDocuments(String parentDocumentId, String[] projection, String sortOrder) {
         ensureServiceBound();
