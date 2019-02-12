@@ -55,6 +55,9 @@
     <string name="settings_auto_freeze_delay">Auto Freeze Delay</string>
     <string name="settings_dont_freeze_foreground">Skip Foreground Apps</string>
     <string name="settings_dont_freeze_foreground_desc">Do NOT freeze foreground apps (with visible activity) when you lock your screen. This can be useful for apps like music players, but you\'ll need to manually freeze them through \"Batch Freeze Shortcut\" afterwards.</string>
+    <string name="settings_fingerprint_auth_service">Fingerprint Authentication</string>
+    <string name="settings_fingerprint_auth_service_desc">Use your fingerprint to unfreeze and launch apps</string>
+    <string name="fingerprint_auth_negative">Cancel</string>
     <string name="settings_about">About</string>
     <string name="settings_version">Version</string>
     <string name="settings_source_code">Source Code</string>

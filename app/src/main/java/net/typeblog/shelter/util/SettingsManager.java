@@ -129,4 +129,15 @@ public class SettingsManager {
     public boolean getSkipForegroundEnabled() {
         return mStorage.getBoolean(LocalStorageManager.PREF_DONT_FREEZE_FOREGROUND);
     }
+
+    // Set the enabled state of "Fingerprint Authentication"
+    // This does NOT need to be synchronized nor applied across profile
+    public void setFingerprintAuthEnabled(boolean enabled) {
+        mStorage.setBoolean(LocalStorageManager.PREF_FINGERPRINT_AUTH, enabled);
+    }
+
+    // Get the enabled state of "Fingerprint Authentication"
+    public boolean getFingerprintAuthEnabled() {
+        return mStorage.getBoolean(LocalStorageManager.PREF_FINGERPRINT_AUTH);
+    }
 }
