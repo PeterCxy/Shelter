@@ -1,7 +1,9 @@
 package net.typeblog.shelter.util;
 
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -25,6 +27,8 @@ public class ApplicationInfoWrapper implements Parcelable {
     private ApplicationInfo mInfo = null;
     private String mLabel = null;
     private boolean mIsHidden = false;
+    private static final int MATCH_ANY_USER = 0x00400000;
+    private static final int MATCH_DISABLED_COMPONENTS = 0x00000200;
 
     private ApplicationInfoWrapper() {}
 
@@ -38,7 +42,24 @@ public class ApplicationInfoWrapper implements Parcelable {
     }
 
     public boolean canLaunch(PackageManager pm) {
-        return pm.getLaunchIntentForPackage(mInfo.packageName) != null;
+        ResolveInfo ri;
+        Intent intentToResolve = new Intent(Intent.ACTION_MAIN);
+        intentToResolve.addCategory(Intent.CATEGORY_LAUNCHER);
+        intentToResolve.setPackage(mInfo.packageName);
+
+        ri = pm.resolveActivity(intentToResolve, MATCH_DISABLED_COMPONENTS | MATCH_ANY_USER);
+        if (ri == null) {
+            intentToResolve.removeCategory(Intent.CATEGORY_LAUNCHER);
+            intentToResolve.addCategory(Intent.CATEGORY_INFO);
+            intentToResolve.setPackage(mInfo.packageName);
+            ri = pm.resolveActivity(intentToResolve, MATCH_DISABLED_COMPONENTS | MATCH_ANY_USER);
+        }
+
+        if (ri == null) {
+            return false;
+        }
+
+        return true;
     }
 
     // Only used from ShelterService

@@ -30,6 +30,7 @@ android {
         disable 'MissingTranslation'
         // We don't need Google App Indexing
         disable 'GoogleAppIndexingWarning'
+        disable 'WrongConstant'
     }
 }
 
