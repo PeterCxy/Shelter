@@ -125,6 +125,11 @@ public class Utility {
 
         manager.addCrossProfileIntentFilter(
                 adminComponent,
+                new IntentFilter(DummyActivity.PUBLIC_FREEZE_ALL),
+                DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED); // Used by FreezeService in profile
+
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
                 new IntentFilter(DummyActivity.FINALIZE_PROVISION),
                 DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
 

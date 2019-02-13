@@ -1,5 +1,7 @@
 package net.typeblog.shelter.services;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.app.admin.DevicePolicyManager;
 import android.app.usage.UsageStats;
@@ -17,6 +19,7 @@ import androidx.annotation.Nullable;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.ui.DummyActivity;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
 
@@ -144,11 +147,27 @@ public class FreezeService extends Service {
     }
 
     private void setForeground() {
-        startForeground(NOTIFICATION_ID, Utility.buildNotification(this,
+        Notification notification = Utility.buildNotification(this,
                 getString(R.string.service_auto_freeze_title),
                 getString(R.string.service_auto_freeze_title),
                 getString(R.string.service_auto_freeze_desc),
                 R.drawable.ic_lock_open_white_24dp
-        ));
+        );
+
+        // Add a quick action to freeze all applications in list right now
+        // by just reusing the intent for the "freeze all" desktop shortcut
+        Intent intentFreeze = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);
+        // The intent for the shortcut lives in the main profile, while this
+        // service runs in the work profile.
+        Utility.transferIntentToProfileUnsigned(this, intentFreeze);
+        notification.actions = new Notification.Action[] {
+                new Notification.Action.Builder(
+                        null, getString(R.string.service_auto_freeze_now),
+                        PendingIntent.getActivity(this, 0, intentFreeze, 0)
+                ).build()
+        };
+
+        // Show the notification and begin foreground operation
+        startForeground(NOTIFICATION_ID, notification);
     }
 }

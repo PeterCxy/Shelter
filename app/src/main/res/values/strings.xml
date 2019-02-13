@@ -13,6 +13,7 @@
     <string name="service_desc">Shelter is now running &#8230;</string>
     <string name="service_auto_freeze_title">Auto-freeze pending</string>
     <string name="service_auto_freeze_desc">Shelter will auto-freeze apps launched from \"Unfreeze &amp; Launch\" on the next screen lock event.</string>
+    <string name="service_auto_freeze_now">Freeze Now</string>
 
     <!-- Main UI -->
     <string name="fragment_profile_main">Main</string>

@@ -11,6 +11,7 @@
     <string name="service_desc">Shelter 正在运行 &#8230;</string>
     <string name="service_auto_freeze_title">自动冻结等待中</string>
     <string name="service_auto_freeze_desc">Shelter 将会在您下次锁屏时自动冻结使用 \"解冻并运行\" 启动的应用</string>
+    <string name="service_auto_freeze_now">立刻冻结</string>
 
     <!-- Main UI -->
     <string name="fragment_profile_main">主用户</string>
