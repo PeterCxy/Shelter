@@ -61,6 +61,7 @@ public class AppListFragment extends BaseFragment {
     private IShelterService mService = null;
     private boolean mIsRemote = false;
     private boolean mRefreshing = false;
+    private boolean mNeedRefresh = true;
     private Drawable mDefaultIcon = null;
     private ApplicationInfoWrapper mSelectedApp = null;
 
@@ -106,6 +107,21 @@ public class AppListFragment extends BaseFragment {
         }
     };
 
+    // Receiver for packages add/change/remove events
+    // used for app changes
+    private BroadcastReceiver mPackageInstallReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(Intent.ACTION_PACKAGE_INSTALL)
+                    || action.equals(Intent.ACTION_PACKAGE_ADDED)
+                    || action.equals(Intent.ACTION_PACKAGE_CHANGED)
+                    || action.equals(Intent.ACTION_PACKAGE_REMOVED)) {
+                mNeedRefresh = true;
+            };
+        }
+    };
+
     static AppListFragment newInstance(IShelterService service, boolean isRemote) {
         AppListFragment fragment = new AppListFragment();
         Bundle args = new Bundle();
@@ -122,6 +138,7 @@ public class AppListFragment extends BaseFragment {
         IBinder service = getArguments().getBinder("service");
         mService = IShelterService.Stub.asInterface(service);
         mIsRemote = getArguments().getBoolean("is_remote");
+        mNeedRefresh = true;
     }
 
     @Override
@@ -135,7 +152,17 @@ public class AppListFragment extends BaseFragment {
         LocalBroadcastManager.getInstance(getContext())
                 .registerReceiver(mSearchReceiver,
                         new IntentFilter(MainActivity.BROADCAST_SEARCH_FILTER_CHANGED));
-        refresh();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_PACKAGE_INSTALL);
+        filter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        LocalBroadcastManager.getInstance(getContext())
+                .registerReceiver(mPackageInstallReceiver, filter);
+
+        if (mNeedRefresh) {
+            refresh();
+        }
     }
 
     @Override
@@ -218,6 +245,7 @@ public class AppListFragment extends BaseFragment {
                         mSwipeRefresh.setRefreshing(false);
                         mAdapter.setData(apps);
                         mRefreshing = false;
+                        mNeedRefresh = false;
                     });
                 }
             }, ((MainActivity) getActivity()).mShowAll);
