@@ -29,16 +29,14 @@ import java.util.stream.Collectors;
 
 public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
-        private ViewGroup mView;
         private ImageView mIcon;
         private TextView mTitle;
         private TextView mPackage;
         // This text view shows the order of all selected items
         private TextView mSelectOrder;
         int mIndex = -1;
-        ViewHolder(ViewGroup view) {
+        ViewHolder(View view) {
             super(view);
-            mView = view;
             mIcon = view.findViewById(R.id.list_app_icon);
             mTitle = view.findViewById(R.id.list_app_title);
             mPackage = view.findViewById(R.id.list_app_package);
@@ -57,7 +55,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
                 // pass the full info to it, since we can't be sure
                 // the index won't change
                 if (mContextMenuHandler != null) {
-                    mContextMenuHandler.showContextMenu(mList.get(mIndex), mView);
+                    mContextMenuHandler.showContextMenu(mList.get(mIndex), itemView);
                 }
             } else {
                 // In multi-select mode, single clicks just adds to the selection
@@ -91,7 +89,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         void select() {
             mSelectedIndices.add(mIndex);
             mSelectOrder.clearAnimation();
-            mSelectOrder.startAnimation(AnimationUtils.loadAnimation(mView.getContext(), R.anim.scale_appear));
+            mSelectOrder.startAnimation(AnimationUtils.loadAnimation(itemView.getContext(), R.anim.scale_appear));
             showSelectOrder();
         }
 
@@ -100,7 +98,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
             mSelectedIndices.remove((Integer) mIndex);
             mSelectOrder.clearAnimation();
             setUnselectedBackground();
-            Animation anim = AnimationUtils.loadAnimation(mView.getContext(), R.anim.scale_hide);
+            Animation anim = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.scale_hide);
             anim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -132,11 +130,11 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         // (not necessarily when the user clicked on it; the view might have been recycled)
         void showSelectOrder() {
             if (!mList.get(mIndex).isHidden()) {
-                mView.setBackgroundResource(R.color.selectedAppBackground);
+                itemView.setBackgroundResource(R.color.selectedAppBackground);
             } else {
                 // The app is both frozen and selected
                 // we use a blended color of the two for its background
-                mView.setBackgroundResource(R.color.selectedAndDisabledAppBackground);
+                itemView.setBackgroundResource(R.color.selectedAndDisabledAppBackground);
             }
             mSelectOrder.setVisibility(View.VISIBLE);
             mSelectOrder.setText(String.valueOf(mSelectedIndices.indexOf(mIndex) + 1));
@@ -151,9 +149,9 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         // Set the background when not in the selected state
         void setUnselectedBackground() {
             if (!mList.get(mIndex).isHidden()) {
-                mView.setBackground(null);
+                itemView.setBackground(null);
             } else {
-                mView.setBackgroundResource(R.color.disabledAppBackground);
+                itemView.setBackgroundResource(R.color.disabledAppBackground);
             }
         }
 
@@ -328,7 +326,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
             mLabelDisabled = viewGroup.getContext().getString(R.string.list_item_disabled);
         }
         LayoutInflater inflater = viewGroup.getContext().getSystemService(LayoutInflater.class);
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.app_list_item, viewGroup, false);
+        View view = inflater.inflate(R.layout.app_list_item, viewGroup, false);
         ViewHolder vh = new ViewHolder(view);
         vh.setIndex(i);
         return vh;
