@@ -50,7 +50,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
     // We just release the service when idle, thus enabling the
     // system to release memory
     private Runnable mReleaseServiceTask = this::releaseService;
-    private Object mLock = new Object();
+    private final Object mLock = new Object();
 
     private void doBindService() {
         // Call DummyActivity on the other side to bind the service for us
