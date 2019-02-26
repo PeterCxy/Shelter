@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,9 +47,9 @@ public class FileShuttleService extends Service {
         }
 
         @Override
-        public List<Map> loadFiles(String path) {
+        public List<Map<String, Serializable>> loadFiles(String path) {
             resetSuicideTask();
-            ArrayList<Map> ret = new ArrayList<>();
+            ArrayList<Map<String, Serializable>> ret = new ArrayList<>();
             File f = new File(resolvePath(path));
             if (f.listFiles() != null) {
                 for (File child : f.listFiles()) {
@@ -59,10 +60,10 @@ public class FileShuttleService extends Service {
         }
 
         @Override
-        public Map loadFileMeta(String path) {
+        public Map<String, Serializable> loadFileMeta(String path) {
             resetSuicideTask();
             File f = new File(resolvePath(path));
-            HashMap<String, Object> map = new HashMap<>();
+            HashMap<String, Serializable> map = new HashMap<>();
             map.put(DocumentsContract.Document.COLUMN_DOCUMENT_ID, f.getAbsolutePath());
             map.put(DocumentsContract.Document.COLUMN_DISPLAY_NAME, f.getName());
             map.put(DocumentsContract.Document.COLUMN_SIZE, f.length());

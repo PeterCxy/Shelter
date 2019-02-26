@@ -22,6 +22,7 @@ import net.typeblog.shelter.services.IFileShuttleService;
 import net.typeblog.shelter.services.IFileShuttleServiceCallback;
 import net.typeblog.shelter.ui.DummyActivity;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -137,7 +138,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
     public Cursor queryDocument(String documentId, String[] projection) {
         ensureServiceBound();
         final MatrixCursor result = new MatrixCursor(projection == null ? DEFAULT_DOCUMENT_PROJECTION : projection);
-        Map<String, Object> fileInfo;
+        Map<String, Serializable> fileInfo;
         try {
             fileInfo = mService.loadFileMeta(documentId);
         } catch (RemoteException e) {
@@ -150,7 +151,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
     @Override
     public Cursor queryChildDocuments(String parentDocumentId, String[] projection, String sortOrder) {
         ensureServiceBound();
-        List<Map<String, Object>> files;
+        List<Map<String, Serializable>> files;
         try {
             files = mService.loadFiles(parentDocumentId);
         } catch (RemoteException e) {
@@ -161,7 +162,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         result.setNotificationUri(getContext().getContentResolver(),
                 DocumentsContract.buildDocumentUri(AUTHORITY, parentDocumentId));
 
-        for (Map<String, Object> file : files) {
+        for (Map<String, Serializable> file : files) {
             includeFile(result, file);
         }
         return result;
@@ -223,7 +224,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         }
     }
 
-    private void includeFile(MatrixCursor cursor, Map<String, Object> fileInfo) {
+    private void includeFile(MatrixCursor cursor, Map<String, Serializable> fileInfo) {
         final MatrixCursor.RowBuilder row = cursor.newRow();
         for (String col : DEFAULT_DOCUMENT_PROJECTION) {
             row.add(col, fileInfo.get(col));
