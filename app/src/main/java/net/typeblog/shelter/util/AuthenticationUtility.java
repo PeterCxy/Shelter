@@ -1,16 +1,11 @@
 package net.typeblog.shelter.util;
 
 import android.content.Intent;
-import android.os.Bundle;
 
-import java.lang.reflect.Array;
+import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
@@ -49,7 +44,7 @@ public class AuthenticationUtility {
         } else {
             long timestamp = new Date().getTime();
             intent.putExtra("timestamp", timestamp);
-            intent.putExtra("signature", sign(key, intentToString(intent)));
+            intent.putExtra("signature", sign(key, timestamp));
         }
     }
 
@@ -71,10 +66,8 @@ public class AuthenticationUtility {
         } else {
             long timestamp = new Date().getTime();
             long intentTimestamp = intent.getLongExtra("timestamp", 0);
-            String signature = intent.getStringExtra("signature");
-            intent.removeExtra("signature"); // We don't include the signature itself while checking
             return timestamp - intentTimestamp < 30 * 1000 &&
-                    sign(key, intentToString(intent)).equals(signature);
+                    sign(key, intentTimestamp).equals(intent.getStringExtra("signature"));
         }
     }
 
@@ -82,12 +75,12 @@ public class AuthenticationUtility {
         LocalStorageManager.getInstance().remove(LocalStorageManager.PREF_AUTH_KEY);
     }
 
-    private static String sign(String hexKey, String serializedString) {
+    private static String sign(String hexKey, long timestamp) {
         try {
             SecretKeySpec keySpec = new SecretKeySpec(hexStringToByteArray(hexKey), "HmacSHA256");
             Mac mac = Mac.getInstance("HmacSHA256");
             mac.init(keySpec);
-            return bytesToHex(mac.doFinal(serializedString.getBytes()));
+            return bytesToHex(mac.doFinal(longToBytes(timestamp)));
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             throw new RuntimeException("WTF?");
         }
@@ -123,48 +116,9 @@ public class AuthenticationUtility {
         }
     }
 
-    // A deterministic way to convert an Intent into a String
-    private static String intentToString(Intent intent) {
-        // Read all the extras as "key,value" first
-        Bundle intentExtras = intent.getExtras();
-        List<String> extras = new ArrayList<>();
-        for (String key : intentExtras.keySet()) {
-            Object obj = intentExtras.get(key);
-
-            // Sign all primitive-typed and primitive-array-typed extras
-            if (isPrimitiveType(obj.getClass())) {
-                extras.add(key + "," + obj);
-            } else if (isPrimitiveArray(obj.getClass())) {
-                extras.add(key + "," + primitiveArrayToString(obj));
-            }
-        }
-
-        // Sort all the extras alphabetically
-        extras.sort(Comparator.naturalOrder());
-
-        // Collapse all extras into one string and append it after the action
-        return intent.getAction() + ";" + extras.stream().collect(Collectors.joining(";"));
-    }
-
-    private static boolean isPrimitiveType(Class<?> clazz) {
-        return clazz == Integer.class || clazz == Long.class || clazz == Float.class || clazz == Double.class
-                || clazz == Short.class || clazz == Byte.class || clazz == Character.class
-                || clazz == String.class || clazz == Boolean.class
-                || clazz == int.class || clazz == long.class || clazz == float.class
-                || clazz == double.class || clazz == short.class || clazz == byte.class
-                || clazz == char.class || clazz == boolean.class;
-    }
-
-    private static boolean isPrimitiveArray(Class<?> clazz) {
-        return clazz.isArray() && isPrimitiveType(clazz.getComponentType());
-    }
-
-    private static String primitiveArrayToString(Object array) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < Array.getLength(array); i++) {
-            sb.append(Array.get(array, i));
-            sb.append("|");
-        }
-        return sb.toString();
+    private static byte[] longToBytes(long x) {
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+        buffer.putLong(x);
+        return buffer.array();
     }
 }
