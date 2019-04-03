@@ -353,7 +353,7 @@ public class Utility {
     public static String getFileExtension(String filePath) {
         int index = filePath.lastIndexOf(".");
         if (index > 0) {
-            return filePath.substring(index + 1, filePath.length());
+            return filePath.substring(index + 1);
         } else {
             return null;
         }

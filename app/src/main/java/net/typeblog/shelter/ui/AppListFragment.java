@@ -98,7 +98,7 @@ public class AppListFragment extends BaseFragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             String query = intent.getStringExtra("text");
-            if (query == "") {
+            if ("".equals(query)) {
                 // Consider empty query as null
                 query = null;
             }

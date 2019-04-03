@@ -50,10 +50,10 @@ public class FreezeService extends Service {
     }
 
     // An app being inactive for this amount of time will be frozen
-    private static long APP_INACTIVE_TIMEOUT = 1000;
+    private static final long APP_INACTIVE_TIMEOUT = 1000;
 
     // Notification ID
-    private static int NOTIFICATION_ID = 0xe49c0;
+    private static final int NOTIFICATION_ID = 0xe49c0;
 
     // The actual receiver of the screen-off event
     private BroadcastReceiver mLockReceiver = new BroadcastReceiver() {
