@@ -9,6 +9,9 @@
     <string name="camera_proxy_activity">Choose an Image File</string>
 
     <!-- Notifications -->
+    <string name="notifications_important">Shelter Important</string>
+    <string name="finish_provision_title">Click here to finish setting up Shelter</string>
+    <string name="finish_provision_desc">Congratulations! You are one click away from finishing setting up Shelter.</string>
     <string name="service_title">Shelter Service</string>
     <string name="service_desc">Shelter is now running &#8230;</string>
     <string name="service_auto_freeze_title">Auto-freeze pending</string>
