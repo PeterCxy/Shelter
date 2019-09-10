@@ -3,6 +3,7 @@ package net.typeblog.shelter.ui;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.provider.Settings;
@@ -83,6 +84,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefSkipForeground = (CheckBoxPreference) findPreference(SETTINGS_SKIP_FOREGROUND);
         mPrefSkipForeground.setChecked(mManager.getSkipForegroundEnabled());
         mPrefSkipForeground.setOnPreferenceChangeListener(this);
+
+        // Disable FileSuttle on Q for now
+        // TODO: Refactor FileShuttle and remove this
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            mPrefCrossProfileFileChooser.setEnabled(false);
+        }
     }
 
     @Override
