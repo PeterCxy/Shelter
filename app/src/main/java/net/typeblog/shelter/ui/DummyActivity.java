@@ -1,14 +1,11 @@
 package net.typeblog.shelter.ui;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.ServiceConnection;
 import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;

@@ -42,10 +42,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public class Utility {
     // Determine if the current app is the owner of the current profile
