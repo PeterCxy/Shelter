@@ -40,6 +40,7 @@
         <!-- Needed because only cross-profile Activity intents are supported -->
         <activity android:name=".ui.DummyActivity"
             android:excludeFromRecents="true"
+            android:launchMode="singleTask"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="net.typeblog.shelter.action.FINALIZE_PROVISION" />
@@ -56,6 +57,7 @@
                 <action android:name="net.typeblog.shelter.action.START_FILE_SHUTTLE" />
                 <action android:name="net.typeblog.shelter.action.START_FILE_SHUTTLE_2" />
                 <action android:name="net.typeblog.shelter.action.SYNCHRONIZE_PREFERENCE" />
+                <action android:name="net.typeblog.shelter.action.PACKAGEINSTALLER_CALLBACK" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

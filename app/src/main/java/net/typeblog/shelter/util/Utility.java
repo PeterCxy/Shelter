@@ -36,11 +36,16 @@ import net.typeblog.shelter.ui.MainActivity;
 
 import java.io.BufferedReader;
 import java.io.FileDescriptor;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class Utility {
     // Determine if the current app is the owner of the current profile
@@ -369,6 +374,15 @@ public class Utility {
         AppOpsManager appops = context.getSystemService(AppOpsManager.class);
         int mode = appops.checkOpNoThrow(name, android.os.Process.myUid(), context.getPackageName());
         return mode == AppOpsManager.MODE_ALLOWED;
+    }
+
+    // Pipe an InputStream to OutputStream
+    public static void pipe(InputStream is, OutputStream os) throws IOException {
+        int n;
+        byte[] buffer = new byte[65536];
+        while ((n = is.read(buffer)) > -1) {
+            os.write(buffer, 0, n);
+        }
     }
 
     // Utilities to build notifications for cross-version compatibility
