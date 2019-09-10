@@ -7,6 +7,9 @@
     <string name="camera_proxy_activity">选择图片文件</string>
 
     <!-- Notifications -->
+    <string name="notifications_important">Shelter 重要通知</string>
+    <string name="finish_provision_title">点击这里完成 Shelter 初始化</string>
+    <string name="finish_provision_desc">您距离使用 Shelter 仅有一步之遥。</string>
     <string name="service_title">Shelter 服务</string>
     <string name="service_desc">Shelter 正在运行 &#8230;</string>
     <string name="service_auto_freeze_title">自动冻结等待中</string>
