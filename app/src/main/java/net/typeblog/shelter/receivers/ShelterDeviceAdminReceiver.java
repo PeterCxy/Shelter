@@ -9,23 +9,10 @@ import android.content.Intent;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ui.DummyActivity;
-import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
 public class ShelterDeviceAdminReceiver extends DeviceAdminReceiver {
     private static final int NOTIFICATION_ID = 114514;
-
-    @Override
-    public void onEnabled(Context context, Intent intent) {
-        super.onEnabled(context, intent);
-        LocalStorageManager.getInstance().setBoolean(LocalStorageManager.PREF_IS_DEVICE_ADMIN, true);
-    }
-
-    @Override
-    public void onDisabled(Context context, Intent intent) {
-        super.onDisabled(context, intent);
-        LocalStorageManager.getInstance().setBoolean(LocalStorageManager.PREF_IS_DEVICE_ADMIN, false);
-    }
 
     @Override
     public void onProfileProvisioningComplete(Context context, Intent intent) {

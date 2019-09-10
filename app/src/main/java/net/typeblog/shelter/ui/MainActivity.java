@@ -84,20 +84,6 @@ public class MainActivity extends AppCompatActivity {
             android.util.Log.d("MainActivity", "started in user profile. stopping.");
             finish();
         } else {
-            if (!mStorage.getBoolean(LocalStorageManager.PREF_IS_DEVICE_ADMIN)) {
-                mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
-                // Navigate to the Device Admin settings page
-                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-                intent.putExtra(
-                        DevicePolicyManager.EXTRA_DEVICE_ADMIN,
-                        new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class));
-                intent.putExtra(
-                        DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                        getString(R.string.device_admin_explanation));
-                startActivityForResult(intent, REQUEST_SET_DEVICE_ADMIN);
-                return;
-            }
-
             init();
         }
 

@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LocalStorageManager {
-    public static final String PREF_IS_DEVICE_ADMIN = "is_device_admin";
     public static final String PREF_IS_SETTING_UP = "is_setting_up";
     public static final String PREF_HAS_SETUP = "has_setup";
     public static final String PREF_AUTO_FREEZE_LIST_WORK_PROFILE = "auto_freeze_list_work_profile";
