@@ -27,12 +27,14 @@ Features / Use Cases
 Caveats
 ===
 
-Shelter is not a full sandbox implementation. It cannot protect you from:
+Shelter is __not__ a full sandbox implementation. It cannot protect you from:
 
 1. Security bugs of the Android system or Linux kernel
 2. Backdoors installed in your Android system (so please use an open-source ROM if you are concerned about this)
 3. Backdoors installed into the firmwares (no way to work around this)
 4. Any other bugs or limitations imposed by the Android system. (i.e. If Android chooses to expose some information into the work profile, there is nothing I could do about it)
+
+For information that may still be exposed to the work profile, please refer to this support article by Google: <https://support.google.com/work/android/answer/6191949?hl=en>. Note that though the section "what data about my device is visible to my organization" is about the information visible to __administrator__, not necessarily every application, the fact that those information are not totally isolated is still a big caveat to the work profile feature.
 
 Also, Shelter cannot create more than 1 work profile on one Android device, and cannot co-exist with any other apps that manages a Work Profile. This is due to the limitations of the Android system, and I can do nothing about this.
 
@@ -40,7 +42,7 @@ FAQS
 ===
 
 **Q**: Why not use Island by OasisFeng, the creator of Greenify?  
-**A**: Simply because it is not an FOSS app and it bundles with non-free SDKs. Note that this doesn't necessarily mean that Island has anti-features like tracking (and I don't think it has either), it's just that I wrote Shelter as an FOSS replacement of it. There is no other reason why one would prefer Shelter over Island except for this one.
+**A**: ~~Simply because it is not an FOSS app and it bundles with non-free SDKs. Note that this doesn't necessarily mean that Island has anti-features like tracking (and I don't think it has either), it's just that I wrote Shelter as an FOSS replacement of it. There is no other reason why one would prefer Shelter over Island except for this one.~~ This is no longer true. Island is now also FOSS, but I am keeping this project for my stupid affection for WTFPL.
 
 **Q**: Why does Shelter always run in background?  
 **A**: Please try removing Shelter from "Recent Apps" every time you close it. If it still persists in your notifications and eating up battery, you might have encountered a bug. Please file a bug report.
