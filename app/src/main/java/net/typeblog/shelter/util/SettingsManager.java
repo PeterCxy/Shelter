@@ -129,4 +129,20 @@ public class SettingsManager {
     public boolean getSkipForegroundEnabled() {
         return mStorage.getBoolean(LocalStorageManager.PREF_DONT_FREEZE_FOREGROUND);
     }
+
+    // Get dark mode | 0 = Auto, 1 = Dark, 2 = Light
+    public int getDarkMode() {
+        int darkMode = mStorage.getInt(LocalStorageManager.PREF_DARK_MODE);
+        if (darkMode == Integer.MIN_VALUE) {
+            setDarkMode(0);
+            return mStorage.getInt(LocalStorageManager.PREF_DARK_MODE);
+        } else {
+            return darkMode;
+        }
+    }
+
+    // Set dark mode | 0 = Auto, 1 = Dark, 2 = Light
+    public void setDarkMode(int darkMode) {
+        mStorage.setInt(LocalStorageManager.PREF_DARK_MODE, darkMode);
+    }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="themeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="theme">
+        <item>Auto</item>
+        <item>Dark</item>
+        <item>Light</item>
+    </string-array>
+</resources>

@@ -9,7 +9,9 @@ import android.os.RemoteException;
 import android.provider.Settings;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.CheckBoxPreference;
+import androidx.preference.DropDownPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
@@ -32,6 +34,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_AUTO_FREEZE_SERVICE = "settings_auto_freeze_service";
     private static final String SETTINGS_AUTO_FREEZE_DELAY = "settings_auto_freeze_delay";
     private static final String SETTINGS_SKIP_FOREGROUND = "settings_dont_freeze_foreground";
+    private static final String SETTINGS_DARK_MODE = "settings_dark_mode";
 
     private SettingsManager mManager = SettingsManager.getInstance();
     private IShelterService mServiceWork = null;
@@ -40,6 +43,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private CheckBoxPreference mPrefCameraProxy = null;
     private CheckBoxPreference mPrefAutoFreezeService = null;
     private CheckBoxPreference mPrefSkipForeground = null;
+
+    private DropDownPreference mDarkMode = null;
 
     private Preference mPrefAutoFreezeDelay = null;
 
@@ -84,6 +89,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefSkipForeground = (CheckBoxPreference) findPreference(SETTINGS_SKIP_FOREGROUND);
         mPrefSkipForeground.setChecked(mManager.getSkipForegroundEnabled());
         mPrefSkipForeground.setOnPreferenceChangeListener(this);
+
+        // === Display ===
+        mDarkMode = findPreference(SETTINGS_DARK_MODE);
+        mDarkMode.setValueIndex(mManager.getDarkMode());
+        mDarkMode.setOnPreferenceChangeListener(this);
 
         // Disable FileSuttle on Q for now
         // TODO: Refactor FileShuttle and remove this
@@ -151,6 +161,20 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
                         .show();
                 return false;
             }
+        } else if (preference == mDarkMode) {
+            mManager.setDarkMode(Integer.valueOf((String) newState));
+            switch ((String) newState) {
+                case "0":
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                    break;
+                case "1":
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    break;
+                case "2":
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    break;
+            }
+            return true;
         } else {
             return false;
         }

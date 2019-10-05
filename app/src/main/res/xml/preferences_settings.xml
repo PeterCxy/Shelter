@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.preference.PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.preference.PreferenceCategory
         android:title="@string/settings_interaction">
@@ -35,6 +35,19 @@
             android:key="settings_dont_freeze_foreground"
             android:title="@string/settings_dont_freeze_foreground"
             android:summary="@string/settings_dont_freeze_foreground_desc" />
+
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:title="@string/settings_display">
+
+        <androidx.preference.DropDownPreference
+            android:entries="@array/theme"
+            android:key="settings_dark_mode"
+            android:title="@string/dark_mode"
+            android:entryValues="@array/themeValues"
+            app:useSimpleSummaryProvider="true"/>
+
 
     </androidx.preference.PreferenceCategory>
 
