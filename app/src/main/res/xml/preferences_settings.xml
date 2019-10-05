@@ -44,7 +44,7 @@
         <androidx.preference.DropDownPreference
             android:entries="@array/theme"
             android:key="settings_dark_mode"
-            android:title="@string/dark_mode"
+            android:title="@string/settings_dark_mode"
             android:entryValues="@array/themeValues"
             app:useSimpleSummaryProvider="true"/>
 
