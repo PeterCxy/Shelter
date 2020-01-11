@@ -143,7 +143,10 @@ public class DummyActivity extends Activity {
                 }
             }
         }
+        checkIntent(getIntent());
+    }
 
+    private void checkIntent(Intent intent) {
         if (START_SERVICE.equals(intent.getAction())) {
             actionStartService();
         } else if (TRY_START_SERVICE.equals(intent.getAction())) {
@@ -167,16 +170,7 @@ public class DummyActivity extends Activity {
             actionStartFileShuttle();
         } else if (SYNCHRONIZE_PREFERENCE.equals(intent.getAction())) {
             actionSynchronizePreference();
-        } else {
-            finish();
-        }
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-
-        if (intent.getAction().equals(PACKAGEINSTALLER_CALLBACK)) {
+        } else if (PACKAGEINSTALLER_CALLBACK.equals(intent.getAction())) {
             int status = intent.getExtras().getInt(PackageInstaller.EXTRA_STATUS);
 
             switch (status) {
@@ -190,7 +184,15 @@ public class DummyActivity extends Activity {
                     appInstallFinished(Activity.RESULT_CANCELED);
                     break;
             }
+        } else {
+            finish();
         }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        checkIntent(intent);
     }
 
     @Override
