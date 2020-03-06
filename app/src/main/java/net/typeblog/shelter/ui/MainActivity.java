@@ -91,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(
                         DevicePolicyManager.EXTRA_DEVICE_ADMIN,
                         new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class));
-                intent.putExtra(
-                        DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                        getString(R.string.device_admin_explanation));
                 startActivityForResult(intent, REQUEST_SET_DEVICE_ADMIN);
                 return;
             }

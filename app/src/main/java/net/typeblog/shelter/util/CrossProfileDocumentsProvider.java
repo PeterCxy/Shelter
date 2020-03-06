@@ -123,7 +123,7 @@ public class CrossProfileDocumentsProvider extends DocumentsProvider {
         final MatrixCursor.RowBuilder row = result.newRow();
         row.add(DocumentsContract.Root.COLUMN_ROOT_ID, DUMMY_ROOT);
         row.add(DocumentsContract.Root.COLUMN_DOCUMENT_ID, DUMMY_ROOT);
-        row.add(DocumentsContract.Root.COLUMN_ICON, R.mipmap.ic_launcher_egg);
+        row.add(DocumentsContract.Root.COLUMN_ICON, R.mipmap.ic_launcher);
         row.add(DocumentsContract.Root.COLUMN_TITLE,
                 Utility.isProfileOwner(getContext()) ?
                         getContext().getString(R.string.fragment_profile_main) :

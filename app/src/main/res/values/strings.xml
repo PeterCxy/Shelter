@@ -1,28 +1,27 @@
 <resources>
-    <string name="app_name" translatable="false">Shelter</string>
-    <string name="first_run_alert">You are about to set up Shelter.\n\nThis app depends on the <b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Shelter will set up Work Profile for you.\n\nIf you are a developer and would like to make Shelter work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.</string>
+    <string name="app_name">Dual Screen</string>
+    <string name="first_run_alert">You are about to set up Dual Screen.\n\nThis app depends on the <b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Dual Screen will set up Work Profile for you.\n\nIf you are a developer and would like to make Dual Screen work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.</string>
     <string name="first_run_alert_cancel">Bye</string>
     <string name="first_run_alert_continue">Continue</string>
-    <string name="device_admin_label" translatable="false">Shelter</string>
-    <string name="device_admin_desc">App Isolation Service</string>
-    <string name="device_admin_explanation">Shelter needs to become Device Admin in order to perform its isolation tasks.</string>
+    <string name="device_admin_label">Dual Screen</string>
+    <string name="device_admin_desc">Show APP on two screens simultaneously</string>
     <string name="camera_proxy_activity">Choose an Image File</string>
 
     <!-- Notifications -->
-    <string name="service_title">Shelter Service</string>
-    <string name="service_desc">Shelter is now running &#8230;</string>
+    <string name="service_title">Dual Screen Service</string>
+    <string name="service_desc">Dual Screen is now running &#8230;</string>
     <string name="service_auto_freeze_title">Auto-freeze pending</string>
-    <string name="service_auto_freeze_desc">Shelter will auto-freeze apps launched from \"Unfreeze &amp; Launch\" on the next screen lock event.</string>
+    <string name="service_auto_freeze_desc">Dual Screen will auto-freeze apps launched from \"Unfreeze &amp; Launch\" on the next screen lock event.</string>
     <string name="service_auto_freeze_now">Freeze Now</string>
 
     <!-- Main UI -->
     <string name="fragment_profile_main">Main</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_work">Dual Screen</string>
     <string name="list_item_disabled">[Frozen] %s</string>
     <string name="batch_operation">Batch operation</string>
 
     <!-- App Context Menu -->
-    <string name="clone_to_work_profile">Clone to Shelter (Work Profile)</string>
+    <string name="clone_to_work_profile">Clone to Dual Screen (Work Profile)</string>
     <string name="clone_to_main_profile">Clone to Main Profile</string>
     <string name="uninstall_app">Uninstall</string>
     <string name="freeze_app">Freeze</string>
@@ -38,7 +37,7 @@
     <string name="freeze_all">Batch Freeze</string>
     <string name="create_freeze_all_shortcut">Create Batch Freeze Shortcut</string>
     <string name="freeze_all_shortcut">Freeze</string>
-    <string name="install_app_to_profile">Install APK into Shelter</string>
+    <string name="install_app_to_profile">Install APK into Dual Screen</string>
     <string name="install_app_to_profile_success">Application installation finished in work profile.</string>
     <string name="show_all">Show All Apps</string>
     <string name="show_all_warning">Manipulating apps that are hidden from the list could cause crashes and all sorts of unexpected behavior. However, this feature can be useful when faulty vendor-customized ROMs does not enable all necessary system apps in work profile by default. If you continue, you are on your own.</string>
@@ -47,7 +46,7 @@
     <string name="settings">Settings</string>
     <string name="settings_interaction">Interaction</string>
     <string name="settings_cross_profile_file_chooser">File Shuttle</string>
-    <string name="settings_cross_profile_file_chooser_desc">When enabled, you\'ll be able to browse / view / pick / copy files in Shelter from main profile and vice-versa, ONLY through Documents UI (named Files or Documents on your launcher) or apps with Documents UI support (they only gain temporary access to files you choose in Documents UI), while still pertaining the filesystem isolation.</string>
+    <string name="settings_cross_profile_file_chooser_desc">When enabled, you\'ll be able to browse / view / pick / copy files in Dual Screen from main profile and vice-versa, ONLY through Documents UI (named Files or Documents on your launcher) or apps with Documents UI support (they only gain temporary access to files you choose in Documents UI), while still pertaining the filesystem isolation.</string>
     <string name="settings_camera_proxy">Image Chooser as Fake Camera</string>
     <string name="settings_camera_proxy_desc">Present a fake camera app to other apps, allowing you to choose an arbitrary image from Documents UI (and File Shuttle if enabled) as the taken picture. This enables File Shuttle for any app that supports invoking other camera apps to take a picture, even if they don\'t support Documents UI natively.</string>
     <string name="settings_services">Services</string>
@@ -59,31 +58,31 @@
     <string name="settings_about">About</string>
     <string name="settings_version">Version</string>
     <string name="settings_source_code">Source Code</string>
-    <string name="settings_source_code_url" translatable="false">https://git.angry.im/PeterCxy/Shelter</string>
+    <string name="settings_source_code_url" translatable="false">https://git.angry.im/PeterCxy/Dual Screen</string>
     <string name="settings_bug_report">Bug Report / Issue Tracker</string>
-    <string name="settings_bug_report_url" translatable="false">https://git.angry.im/PeterCxy/Shelter/issues</string>
+    <string name="settings_bug_report_url" translatable="false">https://git.angry.im/PeterCxy/Dual Screen/issues</string>
     <string name="settings_patreon" translatable="false">Patreon</string>
     <string name="settings_patreon_url" translatable="false">https://www.patreon.com/PeterCxy</string>
 
     <!-- Toast Long Texts -->
-    <string name="device_admin_toast">You have to grant Device Admin permission for Shelter to work. Please try again.</string>
-    <string name="provision_still_pending">Please wait while we prepare Shelter profile for you &#8230;</string>
-    <string name="provision_finished">Shelter setup complete. Now restarting Shelter. If Shelter didn\'t start automatically, you may launch it again from your launcher.</string>
+    <string name="device_admin_toast">You have to grant Device Admin permission for Dual Screen to work. Please try again.</string>
+    <string name="provision_still_pending">Please wait while we prepare Dual Screen profile for you &#8230;</string>
+    <string name="provision_finished">Dual Screen setup complete. Now restarting Dual Screen. If Dual Screen didn\'t start automatically, you may launch it again from your launcher.</string>
     <string name="msg_device_unsupported">Permission is denied or Unsupported device</string>
     <string name="work_profile_not_found">Work profile not found. Please restart the app to re-provision the profile.</string>
-    <string name="work_profile_provision_failed">Cannot provision work profile. You may try again by restarting Shelter.</string>
-    <string name="work_mode_disabled">It looks like you have disabled Work Mode while starting Shelter. If you have enabled it now, please start Shelter again.</string>
+    <string name="work_profile_provision_failed">Cannot provision work profile. You may try again by restarting Dual Screen.</string>
+    <string name="work_mode_disabled">It looks like you have disabled Work Mode while starting Dual Screen. If you have enabled it now, please start Dual Screen again.</string>
     <string name="clone_success">Application \"%s\" cloned successfully</string>
     <string name="uninstall_success">Application \"%s\" uninstalled successfully</string>
     <string name="freeze_success">Application \"%s\" frozen successfully</string>
     <string name="unfreeze_success">Application \"%s\" unfrozen successfully</string>
-    <string name="clone_fail_system_app">Cannot clone system apps to a profile that Shelter has no control of.</string>
-    <string name="uninstall_fail_system_app">Cannot uninstall system apps in a profile thaẞt Shelter has no control of.</string>
+    <string name="clone_fail_system_app">Cannot clone system apps to a profile that Dual Screen has no control of.</string>
+    <string name="uninstall_fail_system_app">Cannot uninstall system apps in a profile thaẞt Dual Screen has no control of.</string>
     <string name="unsupported_launcher">Cannot add shortcuts to your launcher. Please contact the developer for more information.</string>
     <string name="app_context_menu_title">Operations for %s</string>
     <string name="freeze_all_success">All apps in \"Auto Freeze\" list have been frozen successfully.</string>
     <string name="shortcut_create_success">Shortcut created on your launcher.</string>
-    <string name="request_usage_stats">Shelter needs <b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Shelter apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
+    <string name="request_usage_stats">Dual Screen needs <b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Dual Screen apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
     <string name="launch_app_fail">Cannot launch app %s because it has no GUI.</string>
 
     <!-- MIUI -->

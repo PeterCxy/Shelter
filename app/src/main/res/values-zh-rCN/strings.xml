@@ -1,27 +1,29 @@
 <resources>
-    <string name="first_run_alert">您正在使用 Shelter。\n\n这个应用依赖于 Android 的 <b>工作用户</b> 功能来隔离 App。如果你使用的厂商 / 自定义 ROM 破坏了这个功能 (如 MIUI)，您应该立即 <b>退出</b> 并且 <b>停止使用</b> 本应用。\n\n如果你选择继续，Shelter 将为您初始化工作用户。\n\n如果您是开发者并且希望将 Shelter 带到那些目前不能使用的 ROM 上，欢迎您提交 Pull Request。本应用的开发者对您在不兼容的 ROM 上运行该 App 带来的任何后果 <b>不负任何责任</b>。</string>
+    <string name="app_name">孖屏</string>
+    <string name="first_run_alert">您正在使用孖屏。\n\n这个应用依赖于 Android 的 <b>工作用户</b> 功能来隔离 App。如果你使用的厂商 / 自定义 ROM 破坏了这个功能 (如 MIUI)，您应该立即 <b>退出</b> 并且 <b>停止使用</b> 本应用。\n\n如果你选择继续，孖屏将为您初始化工作用户。\n\n如果您是开发者并且希望将孖屏带到那些目前不能使用的 ROM 上，欢迎您提交 Pull Request。本应用的开发者对您在不兼容的 ROM 上运行该 App 带来的任何后果 <b>不负任何责任</b>。</string>
     <string name="first_run_alert_cancel">再见</string>
     <string name="first_run_alert_continue">继续</string>
-    <string name="device_admin_desc">App 隔离服务</string>
-    <string name="device_admin_explanation">Shelter 需要成为设备管理员才能正常进行 App 隔离等操作。</string>
+    <string name="device_admin_label">孖屏</string>
+    <string name="device_admin_desc">将 APP 同时显示在两块屏幕上</string>
+    <string name="device_admin_explanation">孖屏需要成为设备管理员才能正常进行 App 隔离等操作。</string>
     <string name="camera_proxy_activity">选择图片文件</string>
 
     <!-- Notifications -->
-    <string name="service_title">Shelter 服务</string>
-    <string name="service_desc">Shelter 正在运行 &#8230;</string>
+    <string name="service_title">孖屏服务</string>
+    <string name="service_desc">孖屏正在运行 &#8230;</string>
     <string name="service_auto_freeze_title">自动冻结等待中</string>
-    <string name="service_auto_freeze_desc">Shelter 将会在您下次锁屏时自动冻结使用 \"解冻并运行\" 启动的应用</string>
+    <string name="service_auto_freeze_desc">孖屏将会在您下次锁屏时自动冻结使用 \"解冻并运行\" 启动的应用</string>
     <string name="service_auto_freeze_now">立刻冻结</string>
 
     <!-- Main UI -->
     <string name="fragment_profile_main">主用户</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_work">孖屏</string>
     <string name="list_item_disabled">[已冻结] %s</string>
     <string name="batch_operation">批量操作</string>
 
     <!-- App Context Menu -->
     <string name="search">搜索</string>
-    <string name="clone_to_work_profile">克隆到 Shelter (工作用户)</string>
+    <string name="clone_to_work_profile">克隆到孖屏(工作用户)</string>
     <string name="clone_to_main_profile">克隆到主用户</string>
     <string name="uninstall_app">卸载</string>
     <string name="freeze_app">冻结</string>
@@ -36,16 +38,16 @@
     <string name="freeze_all">批量冻结</string>
     <string name="create_freeze_all_shortcut">创建批量冻结快捷方式</string>
     <string name="freeze_all_shortcut">冻结</string>
-    <string name="install_app_to_profile">安装 APK 到 Shelter</string>
+    <string name="install_app_to_profile">安装 APK 到孖屏</string>
     <string name="install_app_to_profile_success">已成功在工作用户内安装 APK</string>
     <string name="show_all">显示全部应用</string>
-    <string name="show_all_warning">对列表中默认隐藏的应用执行操作可能导致崩溃以及其他各种无法预料的行为。但是，当您的手机厂商没有正确在工作用户中开启所有必要的系统组件应用的时候，这个功能可以帮助您解决问题。如果您选择继续，您确保您了解您在做什么，Shelter 无法提供任何保证。</string>
+    <string name="show_all_warning">对列表中默认隐藏的应用执行操作可能导致崩溃以及其他各种无法预料的行为。但是，当您的手机厂商没有正确在工作用户中开启所有必要的系统组件应用的时候，这个功能可以帮助您解决问题。如果您选择继续，您确保您了解您在做什么，孖屏无法提供任何保证。</string>
 
     <!-- Settings Options -->
     <string name="settings">设置</string>
     <string name="settings_interaction">交互</string>
     <string name="settings_cross_profile_file_chooser">文件穿梭</string>
-    <string name="settings_cross_profile_file_chooser_desc">打开以后，您将可以且仅可以从系统的 Documents UI (启动器上的名称为 文件 或 下载) 或支持 Documents UI 的 APP 中 浏览 / 查看 / 选择 / 复制 Shelter 内的文件到主用户，反之亦然。这不会影响对文件系统的隔离。即使是支持 Documents UI 的 App 也只能临时获取您选择的文件的访问权限。</string>
+    <string name="settings_cross_profile_file_chooser_desc">打开以后，您将可以且仅可以从系统的 Documents UI (启动器上的名称为 文件 或 下载) 或支持 Documents UI 的 APP 中 浏览 / 查看 / 选择 / 复制孖屏内的文件到主用户，反之亦然。这不会影响对文件系统的隔离。即使是支持 Documents UI 的 App 也只能临时获取您选择的文件的访问权限。</string>
     <string name="settings_camera_proxy">图片选择器伪装为相机</string>
     <string name="settings_camera_proxy_desc">向其他 App 提供一个伪装的相机 App，允许您从 Documents UI (包括 "文件穿梭" 功能) 选择任意文件作为 "拍摄结果"。这将使您能够在任何支持调用系统相机的 App 中选择来自 "文件穿梭" 的文件，无论 App 本身是否支持 Documents UI。</string>
     <string name="settings_services">服务</string>
@@ -60,24 +62,24 @@
     <string name="settings_bug_report">Bug 报告</string>
 
     <!-- Toast Long Texts -->
-    <string name="device_admin_toast">Shelter 必须拥有设备管理员权限以正常工作，请再试一次</string>
-    <string name="provision_still_pending">正在为您准备 Shelter, 请稍候 &#8230;</string>
-    <string name="provision_finished">Shelter 已初始化完成，正在启动 Shelter。如果 Shelter 没有自动启动，请您从启动器手动启动它</string>
+    <string name="device_admin_toast">孖屏必须拥有设备管理员权限以正常工作，请再试一次</string>
+    <string name="provision_still_pending">正在为您准备孖屏, 请稍候 &#8230;</string>
+    <string name="provision_finished">孖屏已初始化完成，正在启动孖屏。如果孖屏没有自动启动，请您从启动器手动启动它</string>
     <string name="msg_device_unsupported">权限不足 / 设备不兼容</string>
-    <string name="work_profile_not_found">工作用户不可用，请重新启动 Shelter 以重新初始化</string>
-    <string name="work_profile_provision_failed">无法创建工作用户，您可以重启 Shelter 并再试一次</string>
-    <string name="work_mode_disabled">工作模式 (Work Mode) 已被您关闭，请开启后再启动 Shelter</string>
+    <string name="work_profile_not_found">工作用户不可用，请重新启动孖屏以重新初始化</string>
+    <string name="work_profile_provision_failed">无法创建工作用户，您可以重启孖屏并再试一次</string>
+    <string name="work_mode_disabled">工作模式 (Work Mode) 已被您关闭，请开启后再启动孖屏</string>
     <string name="clone_success">应用 \"%s\" 克隆成功</string>
     <string name="uninstall_success">应用 \"%s\" 卸载成功</string>
     <string name="freeze_success">应用 \"%s\" 冻结成功</string>
     <string name="unfreeze_success">应用 \"%s\" 解冻成功</string>
-    <string name="clone_fail_system_app">无法将系统应用克隆到 Shelter 无权管理的用户下</string>
-    <string name="uninstall_fail_system_app">无法在 Shelter 无权管理的用户下卸载系统应用</string>
+    <string name="clone_fail_system_app">无法将系统应用克隆到孖屏无权管理的用户下</string>
+    <string name="uninstall_fail_system_app">无法在孖屏无权管理的用户下卸载系统应用</string>
     <string name="unsupported_launcher">无法在您的启动器上添加快捷方式，请联系开发者</string>
     <string name="app_context_menu_title">%s 可用操作</string>
     <string name="freeze_all_success">所有在 \"自动冻结\" 列表中的应用都已经冻结成功</string>
     <string name="shortcut_create_success">快捷方式已创建</string>
-    <string name="request_usage_stats">Shelter 需要 <b>使用情况数据</b> 来做这件事。请在按 \"确定\" 后出现的窗口中，对 <b>两个</b> Shelter <b>都</b> 打开此权限。如果没有全部打开，该功能将无法正确运作。</string>
+    <string name="request_usage_stats">孖屏需要 <b>使用情况数据</b> 来做这件事。请在按 \"确定\" 后出现的窗口中，对 <b>两个</b>孖屏<b>都</b> 打开此权限。如果没有全部打开，该功能将无法正确运作。</string>
     <string name="launch_app_fail">无法启动没有用户界面的应用 %s</string>
 
     <!-- MIUI -->
