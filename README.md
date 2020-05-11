@@ -1,9 +1,11 @@
-![Shelter](https://git.angry.im/PeterCxy/Shelter/raw/branch/master/art/ic_launcher_egg-web.png)
+![Shelter](https://github.com/PeterCxy/Shelter/raw/master/art/ic_launcher_egg-web.png)
 
 <a href='https://play.google.com/store/apps/details?id=net.typeblog.shelter&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="80"/></a>
 <a href="https://f-droid.org/app/net.typeblog.shelter"><img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"></a>
 
-Note: the GitHub repository is merely a mirror. Although I also accept pull requests and issues from GitHub, I'd recommend you to go to the main repository at <https://git.angry.im/PeterCxy/Shelter>
+<s>Note: the GitHub repository is merely a mirror. Although I also accept pull requests and issues from GitHub, I'd recommend you to go to the main repository at https://git.angry.im/PeterCxy/Shelter</s>
+
+Note: the former main repository listed above has now closed due to an unexpected data store failure combined with the rising costs of maintaining a whole Github-like server.  Due to this, this Github repository is now acting as the main code repository.  Maybe Peter Cai will make another mirror (like on gitlab) in the future, but until then I'm just updating info here.
 
 Note: The F-Droid version is automatically built and signed by the F-Droid server on each update of Shelter. The build is not managed by the author and could lag behind the updates from Play Store and this repository for several days due to high server load.
 
@@ -51,7 +53,7 @@ FAQS
 **A**: 1) Go to Settings -> Accounts to remove the work profile; 2) Go to Settings -> Security -> Advanced -> Device admin apps to remove Shelter from Device Admin apps; 3) Uninstall Shelter normally.
 
 **Q**: If I encounter bugs, how do I report them?  
-**A**: You could file an issue on either the main repository at <https://git.angry.im/PeterCxy/Shelter> or the mirror repository at <https://github.com/PeterCxy/Shelter>. Please include your system information as well as a logcat if possible.
+**A**: Please file a **detailed** issue here on this Github repository <https://github.com/PeterCxy/Shelter>. Please include your system information as well as a logcat if possible.
 
 **Q**: How do I support the project?  
 **A**: You can submit issues if you find a bug or have an idea about features of Shelter; you may also contribute code to this project if you can code; providing translations is also welcomed. If you have some extra money lying around, you can also [support me on Patreon](https://www.patreon.com/PeterCxy).
