@@ -22,7 +22,16 @@ Features / Use Cases
 
 1. Run "Big Brother" apps inside the isolated profile so they cannot access your data / files outside the profile
 2. "Freeze" (disable) background-heavy, tracking-heavy or seldom-used apps when you don't need them. This is especially true if you use apps from Chinese companies like Baidu, Alibaba, Tencent.
-3. Clone apps to use two accounts on one device
+3. Clone apps to use two accounts on one device(currently broken, use "install apk into shelter" instead)
+4. Beware of split-apks from Play Store as you may never be able to remove them without rooting (Whatsapp etc)
+
+Usage
+===
+
+1. Install Shelter from internal storage and follow instructions and click notification to finish process
+2. In top right corner use "Install APK into Shelter" with package manager apk (ie f-droid or aurora store)
+3. Any installed app inside work profile has a lock symbol. Restart if needed.
+4. Data transfer between system and work profile may be used with Setting->File Shuttle, external services or installed service handlers
 
 Caveats
 ===
