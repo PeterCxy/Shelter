@@ -3,7 +3,14 @@
 <a href='https://play.google.com/store/apps/details?id=net.typeblog.shelter&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="80"/></a>
 <a href="https://f-droid.org/app/net.typeblog.shelter"><img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"></a>
 
-Note: the GitHub repository is merely a mirror. Although I also accept pull requests and issues from GitHub, I'd recommend you to go to the main repository at <https://git.angry.im/PeterCxy/Shelter>
+Note: main repository: <https://cgit.typeblog.net/Shelter/>. __The GitHub repository is only a mirror__. I do not guarantee the GitHub repository will be up-to-date.
+
+For bug reports and patches (pull requests), please use the following contact methods:
+
+- Mailing List (SourceHut): <https://lists.sr.ht/~petercxy/shelter>
+- Matrix Chat Room: #shelter:neo.angry.im
+
+On GitHub, any new issues or pull requests will not be read or accepted. Please use the contacts listed above.
 
 Note: The F-Droid version is automatically built and signed by the F-Droid server on each update of Shelter. The build is not managed by the author and could lag behind the updates from Play Store and this repository for several days due to high server load.
 
