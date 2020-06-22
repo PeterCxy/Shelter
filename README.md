@@ -31,6 +31,14 @@ Features / Use Cases
 2. "Freeze" (disable) background-heavy, tracking-heavy or seldom-used apps when you don't need them. This is especially true if you use apps from Chinese companies like Baidu, Alibaba, Tencent.
 3. Clone apps to use two accounts on one device
 
+Known Issues
+===
+
+1. "Split APKs" (APKs that consist of multiple sub-packages) cannot be cloned properly. This includes a lot of applications on the Play Store (e.g. WhatsApp). When possible, use "Install APK into Shelter" from the menu instead.
+2. File Shuttle is not supported on Android 10
+3. Shelter must be installed in INTERNAL STORAGE, otherwise the initialization process will fail.
+4. You have to click a notification in order to finish the initialization process due to the limitations of background apps introduced since Android 10. When initializing, please make sure you are not in "Do Not Disturb" mode.
+
 Caveats
 ===
 
