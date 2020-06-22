@@ -4,6 +4,7 @@
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
+/.idea/jarRepositories.xml
 .DS_Store
 /app/release
 /build
