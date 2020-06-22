@@ -3,6 +3,7 @@ package net.typeblog.shelter.ui;
 import android.Manifest;
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -15,10 +16,14 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.StrictMode;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
@@ -29,6 +34,7 @@ import net.typeblog.shelter.services.IFileShuttleService;
 import net.typeblog.shelter.services.IFileShuttleServiceCallback;
 import net.typeblog.shelter.util.AuthenticationUtility;
 import net.typeblog.shelter.util.FileProviderProxy;
+import net.typeblog.shelter.util.InstallationProgressListener;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
@@ -314,20 +320,40 @@ public class DummyActivity extends Activity {
         PackageInstaller.SessionParams params = new PackageInstaller.SessionParams(
                 PackageInstaller.SessionParams.MODE_FULL_INSTALL);
         int sessionId = pi.createSession(params);
+
+        // Show the progress dialog first
+        pi.registerSessionCallback(new InstallationProgressListener(this, pi, sessionId));
+
         PackageInstaller.Session session = pi.openSession(sessionId);
+        doInstallPackageQ(uri, session, () -> {
+            // We have finished piping the streams, show the progress as 10%
+            session.setStagingProgress(0.1f);
 
-        InputStream is = getContentResolver().openInputStream(uri);
-        OutputStream os = session.openWrite(UUID.randomUUID().toString(), 0, is.available());
-        Utility.pipe(is, os);
-        session.fsync(os);
-        os.close();
-        is.close();
+            // Commit the session
+            Intent intent = new Intent(this, DummyActivity.class);
+            intent.setAction(PACKAGEINSTALLER_CALLBACK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                    intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            session.commit(pendingIntent.getIntentSender());
+        });
+    }
 
-        Intent intent = new Intent(this, DummyActivity.class);
-        intent.setAction(PACKAGEINSTALLER_CALLBACK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        session.commit(pendingIntent.getIntentSender());
+    // The background part of the installation process on Q (reading APKs etc)
+    // that must be executed on another thread
+    // Put them in background to avoid stalling the UI thread
+    private void doInstallPackageQ(Uri uri, PackageInstaller.Session session, Runnable callback) {
+        new Thread(() -> {
+            try (InputStream is = getContentResolver().openInputStream(uri);
+                 OutputStream os = session.openWrite(UUID.randomUUID().toString(), 0, is.available())
+            ) {
+                Utility.pipe(is, os);
+                session.fsync(os);
+            } catch (IOException e) {
+
+            }
+
+            runOnUiThread(callback);
+        }).start();
     }
 
     private void actionUninstallPackage() {
