@@ -62,9 +62,9 @@
     <string name="settings_about">About</string>
     <string name="settings_version">Version</string>
     <string name="settings_source_code">Source Code</string>
-    <string name="settings_source_code_url" translatable="false">https://git.angry.im/PeterCxy/Shelter</string>
+    <string name="settings_source_code_url" translatable="false">https://cgit.typeblog.net/Shelter</string>
     <string name="settings_bug_report">Bug Report / Issue Tracker</string>
-    <string name="settings_bug_report_url" translatable="false">https://git.angry.im/PeterCxy/Shelter/issues</string>
+    <string name="settings_bug_report_url" translatable="false">https://lists.sr.ht/~petercxy/shelter</string>
     <string name="settings_patreon" translatable="false">Patreon</string>
     <string name="settings_patreon_url" translatable="false">https://www.patreon.com/PeterCxy</string>
 
