@@ -43,6 +43,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -294,7 +295,12 @@ public class DummyActivity extends Activity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             try {
-                actionInstallPackageQ(uri);
+                // For Q, since we use the more "manual" method of installation,
+                // we have to also pass the split APKs ("Configuration APKs" as Google calls it)
+                // Although these are available since API 26, we don't need to
+                // take care of them for versions before Q since we don't actually
+                // install the APKs before Q.
+                actionInstallPackageQ(uri, getIntent().getStringArrayExtra("split_apks"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -315,7 +321,7 @@ public class DummyActivity extends Activity {
     // We have to switch to using PackageInstaller for the job, which isn't quite
     // as elegant because now we really need to read the entire apk and write to it
     // Keep this case only for Q for now.
-    private void actionInstallPackageQ(Uri uri) throws IOException {
+    private void actionInstallPackageQ(Uri uri, String[] split_apks) throws IOException {
         PackageInstaller pi = getPackageManager().getPackageInstaller();
         PackageInstaller.SessionParams params = new PackageInstaller.SessionParams(
                 PackageInstaller.SessionParams.MODE_FULL_INSTALL);
@@ -325,7 +331,7 @@ public class DummyActivity extends Activity {
         pi.registerSessionCallback(new InstallationProgressListener(this, pi, sessionId));
 
         PackageInstaller.Session session = pi.openSession(sessionId);
-        doInstallPackageQ(uri, session, () -> {
+        doInstallPackageQ(uri, split_apks, session, () -> {
             // We have finished piping the streams, show the progress as 10%
             session.setStagingProgress(0.1f);
 
@@ -341,15 +347,25 @@ public class DummyActivity extends Activity {
     // The background part of the installation process on Q (reading APKs etc)
     // that must be executed on another thread
     // Put them in background to avoid stalling the UI thread
-    private void doInstallPackageQ(Uri uri, PackageInstaller.Session session, Runnable callback) {
-        new Thread(() -> {
-            try (InputStream is = getContentResolver().openInputStream(uri);
-                 OutputStream os = session.openWrite(UUID.randomUUID().toString(), 0, is.available())
-            ) {
-                Utility.pipe(is, os);
-                session.fsync(os);
-            } catch (IOException e) {
+    private void doInstallPackageQ(Uri baseUri, String[] split_apks, PackageInstaller.Session session, Runnable callback) {
+        ArrayList<Uri> uris = new ArrayList<>();
+        uris.add(baseUri);
+        if (split_apks != null && split_apks.length > 0) {
+            for (String apk : split_apks) {
+                uris.add(Uri.fromFile(new File(apk)));
+            }
+        }
 
+        new Thread(() -> {
+            for (Uri uri : uris) {
+                try (InputStream is = getContentResolver().openInputStream(uri);
+                     OutputStream os = session.openWrite(UUID.randomUUID().toString(), 0, is.available())
+                ) {
+                    Utility.pipe(is, os);
+                    session.fsync(os);
+                } catch (IOException e) {
+
+                }
             }
 
             runOnUiThread(callback);
