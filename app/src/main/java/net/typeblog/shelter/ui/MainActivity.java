@@ -32,6 +32,7 @@ import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IAppInstallCallback;
 import net.typeblog.shelter.services.IShelterService;
+import net.typeblog.shelter.services.IStartActivityProxy;
 import net.typeblog.shelter.services.KillerService;
 import net.typeblog.shelter.util.AuthenticationUtility;
 import net.typeblog.shelter.util.LocalStorageManager;
@@ -257,6 +258,33 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    private void registerStartActivityProxies() {
+        try {
+            mServiceMain.setStartActivityProxy(new IStartActivityProxy.Stub() {
+                @Override
+                public void startActivity(Intent intent) throws RemoteException {
+                    MainActivity.this.startActivity(intent);
+                }
+            });
+
+            mServiceWork.setStartActivityProxy(new IStartActivityProxy.Stub() {
+                @Override
+                public void startActivity(Intent intent) throws RemoteException {
+                    // Using the full intent may cause the package manager to
+                    // fail to find the DummyActivity inside profile.
+                    // Instead we try to use an empty intent with only the action
+                    // and then extract the correct component name
+                    Intent dummyIntent = new Intent(intent.getAction());
+                    Utility.transferIntentToProfileUnsigned(MainActivity.this, dummyIntent);
+                    intent.setComponent(dummyIntent.getComponent());
+                    MainActivity.this.startActivity(intent);
+                }
+            });
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -442,6 +470,7 @@ public class MainActivity extends AppCompatActivity {
             Bundle extra = data.getBundleExtra("extra");
             IBinder binder = extra.getBinder("service");
             mServiceWork = IShelterService.Stub.asInterface(binder);
+            registerStartActivityProxies();
             startKiller();
             buildView();
         } else if (requestCode == REQUEST_SET_DEVICE_ADMIN) {

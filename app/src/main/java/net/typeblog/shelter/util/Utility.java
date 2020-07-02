@@ -151,6 +151,17 @@ public class Utility {
                 new IntentFilter(DummyActivity.SYNCHRONIZE_PREFERENCE),
                 DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
 
+        // Needed by ShelterService and has to be proxied by the MainActivity in main profile
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
+                new IntentFilter(DummyActivity.INSTALL_PACKAGE),
+                DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
+
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
+                new IntentFilter(DummyActivity.UNINSTALL_PACKAGE),
+                DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
+
         // Allow ACTION_SEND and ACTION_SEND_MULTIPLE to cross from managed to parent
         // TODO: Make this configurable
         IntentFilter actionSendFilter = new IntentFilter();
