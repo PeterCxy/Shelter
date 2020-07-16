@@ -1,5 +1,5 @@
 <resources>
-    <string name="first_run_alert">您正在使用 Shelter。\n\n这个应用依赖于 Android 的 <b>工作用户</b> 功能来隔离 App。如果你使用的厂商 / 自定义 ROM 破坏了这个功能 (如 MIUI)，您应该立即 <b>退出</b> 并且 <b>停止使用</b> 本应用。\n\n如果你选择继续，Shelter 将为您初始化工作用户。\n\n如果您是开发者并且希望将 Shelter 带到那些目前不能使用的 ROM 上，欢迎您提交 Pull Request。本应用的开发者对您在不兼容的 ROM 上运行该 App 带来的任何后果 <b>不负任何责任</b>。</string>
+    <string name="first_run_alert">您正在使用 Shelter。\n\n这个应用依赖于 Android 的 <b>工作用户</b> 功能来隔离 App。如果你使用的厂商 / 自定义 ROM 破坏了这个功能 (如 MIUI)，您应该立即 <b>退出</b> 并且 <b>停止使用</b> 本应用。\n\n如果你选择继续，Shelter 将为您初始化工作用户。\n\n如果您是开发者并且希望将 Shelter 带到那些目前不能使用的 ROM 上，欢迎您提交 Pull Request。本应用的开发者对您在不兼容的 ROM 上运行该 App 带来的任何后果 <b>不负任何责任</b>。\n\n您将需要通过点击通知来完成初始化过程，请确保您的设备<b>没有开启</b>免打扰模式。</string>
     <string name="first_run_alert_cancel">再见</string>
     <string name="first_run_alert_continue">继续</string>
     <string name="device_admin_desc">App 隔离服务</string>
