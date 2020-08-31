@@ -180,13 +180,22 @@ public class Utility {
         
         // Browser intents are allowed from work profile to parent
         // TODO: Make this configurable, just as ALLOW_PARENT_PROFILE_APP_LINKING in the next function
-        IntentFilter i = new IntentFilter(Intent.ACTION_VIEW);
-        i.addCategory(Intent.CATEGORY_BROWSABLE);
-        i.addDataScheme("http");
-        i.addDataScheme("https");
+        IntentFilter browsableIntentFilter = new IntentFilter(Intent.ACTION_VIEW);
+        browsableIntentFilter.addCategory(Intent.CATEGORY_BROWSABLE);
+        browsableIntentFilter.addDataScheme("http");
+        browsableIntentFilter.addDataScheme("https");
         manager.addCrossProfileIntentFilter(
                 adminComponent,
-                i,
+                browsableIntentFilter,
+                DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
+        IntentFilter browsableDefaultIntentFilter = new IntentFilter(Intent.ACTION_VIEW);
+        browsableDefaultIntentFilter.addCategory(Intent.CATEGORY_BROWSABLE);
+        browsableDefaultIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        browsableDefaultIntentFilter.addDataScheme("http");
+        browsableDefaultIntentFilter.addDataScheme("https");
+        manager.addCrossProfileIntentFilter(
+                adminComponent,
+                browsableDefaultIntentFilter,
                 DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
 
         manager.setProfileEnabled(adminComponent);
