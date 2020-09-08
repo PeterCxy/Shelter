@@ -1,5 +1,7 @@
 package net.typeblog.shelter.ui;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -88,6 +90,14 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         // Disable FileSuttle on Q for now
         // Supported on R and beyond
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+            mPrefCrossProfileFileChooser.setEnabled(false);
+        }
+
+        // Disable FileShuttle for Android Go
+        // as it requires SYSTEM_ALERT_WINDOW which
+        // is not allowed on Go devices
+        ActivityManager am = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        if (am.isLowRamDevice()) {
             mPrefCrossProfileFileChooser.setEnabled(false);
         }
     }
