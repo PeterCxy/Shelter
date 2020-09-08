@@ -122,28 +122,28 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     @Override
     public boolean onPreferenceChange(Preference preference, Object newState) {
         if (preference == mPrefCrossProfileFileChooser) {
+            boolean enabled = (boolean) newState;
+            if (!enabled) {
+                mManager.setCrossProfileFileChooserEnabled(false);
+                return true;
+            }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 // Request all files permission on R and beyond
-                boolean hasPermission = false;
-                try {
-                    hasPermission = mServiceWork.hasAllFileAccessPermission() && Utility.checkAllFileAccessPermission();
-                } catch (RemoteException e) {
-
-                }
+                boolean hasPermission = ensureSpecialAccessPermission(() -> {
+                    try {
+                        return mServiceWork.hasAllFileAccessPermission() && Utility.checkAllFileAccessPermission();
+                    } catch (RemoteException e) {
+                        return false;
+                    }
+                }, R.string.request_storage_manager, Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
 
                 if (!hasPermission) {
-                    new AlertDialog.Builder(getContext())
-                            .setMessage(R.string.request_storage_manager)
-                            .setPositiveButton(android.R.string.ok,
-                                    (dialog, which) -> startActivity(new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)))
-                            .setNegativeButton(android.R.string.cancel,
-                                    (dialog, which) -> dialog.dismiss())
-                            .show();
                     return false;
                 }
             }
 
-            mManager.setCrossProfileFileChooserEnabled((boolean) newState);
+            mManager.setCrossProfileFileChooserEnabled(true);
             return true;
         } else if (preference == mPrefCameraProxy) {
             mManager.setCameraProxyEnabled(((boolean) newState));
@@ -153,27 +153,45 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             return true;
         } else if (preference == mPrefSkipForeground) {
             boolean enabled = (boolean) newState;
-            boolean hasPermission = false;
-            try {
-                hasPermission = mServiceWork.hasUsageStatsPermission() && Utility.checkUsageStatsPermission(getContext());
-            } catch (RemoteException e) {
-
-            }
-            if (!enabled || hasPermission) {
-                mManager.setSkipForegroundEnabled(enabled);
+            if (!enabled) {
+                mManager.setSkipForegroundEnabled(false);
                 return true;
-            } else {
-                new AlertDialog.Builder(getContext())
-                        .setMessage(R.string.request_usage_stats)
-                        .setPositiveButton(android.R.string.ok,
-                                (dialog, which) -> startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)))
-                        .setNegativeButton(android.R.string.cancel,
-                                (dialog, which) -> dialog.dismiss())
-                        .show();
-                return false;
             }
+
+            boolean hasPermission = ensureSpecialAccessPermission(() -> {
+                try {
+                    return mServiceWork.hasUsageStatsPermission() && Utility.checkUsageStatsPermission(getContext());
+                } catch (RemoteException e) {
+                    return false;
+                }
+            }, R.string.request_usage_stats, Settings.ACTION_USAGE_ACCESS_SETTINGS);
+
+            if (!hasPermission)
+                return false;
+
+            mManager.setSkipForegroundEnabled(true);
+            return true;
         } else {
             return false;
+        }
+    }
+
+    private interface CheckPermissionCallback {
+        boolean check();
+    }
+
+    private boolean ensureSpecialAccessPermission(CheckPermissionCallback checkPermission, int alertRes, String settingsAction) {
+        if (!checkPermission.check()) {
+            new AlertDialog.Builder(getContext())
+                    .setMessage(alertRes)
+                    .setPositiveButton(android.R.string.ok,
+                            (dialog, which) -> startActivity(new Intent(settingsAction)))
+                    .setNegativeButton(android.R.string.cancel,
+                            (dialog, which) -> dialog.dismiss())
+                    .show();
+            return false;
+        } else {
+            return true;
         }
     }
 
