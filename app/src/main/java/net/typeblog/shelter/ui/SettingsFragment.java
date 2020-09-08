@@ -141,6 +141,25 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
                 if (!hasPermission) {
                     return false;
                 }
+
+                // Also needs system alert window permission
+                // because File Shuttle needs to start activities in the background
+                // We cannot do the same notification trick as in initial setup
+                // because it would be too annoying having to click a notification
+                // every time a user tries to use File Shuttle.
+                // NOTE: Enabling this permission may mask some bugs with background
+                // activities. Always test with this disabled.
+                hasPermission = ensureSpecialAccessPermission(() -> {
+                    try {
+                        return mServiceWork.hasSystemAlertPermission() && Utility.checkSystemAlertPermission(getContext());
+                    } catch (RemoteException e) {
+                        return false;
+                    }
+                }, R.string.request_system_alert, Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+
+                if (!hasPermission) {
+                    return false;
+                }
             }
 
             mManager.setCrossProfileFileChooserEnabled(true);

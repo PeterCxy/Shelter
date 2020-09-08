@@ -546,7 +546,7 @@ public class DummyActivity extends Activity {
         } else {
             // The all file access permission should have been granted when enabling File Shuttle
             // since Android R.
-            if (Utility.checkAllFileAccessPermission()) {
+            if (Utility.checkAllFileAccessPermission() && Utility.checkSystemAlertPermission(this)) {
                 doStartFileShuttle();
             } else {
                 finish();

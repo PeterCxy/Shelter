@@ -241,6 +241,11 @@ public class ShelterService extends Service {
         }
 
         @Override
+        public boolean hasSystemAlertPermission() {
+            return Utility.checkSystemAlertPermission(ShelterService.this);
+        }
+
+        @Override
         public boolean hasAllFileAccessPermission() {
             return Utility.checkAllFileAccessPermission();
         }
