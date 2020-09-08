@@ -86,8 +86,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefSkipForeground.setOnPreferenceChangeListener(this);
 
         // Disable FileSuttle on Q for now
-        // TODO: Refactor FileShuttle and remove this
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        // Supported on R and beyond
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
             mPrefCrossProfileFileChooser.setEnabled(false);
         }
     }
@@ -122,6 +122,27 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     @Override
     public boolean onPreferenceChange(Preference preference, Object newState) {
         if (preference == mPrefCrossProfileFileChooser) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                // Request all files permission on R and beyond
+                boolean hasPermission = false;
+                try {
+                    hasPermission = mServiceWork.hasAllFileAccessPermission() && Utility.checkAllFileAccessPermission();
+                } catch (RemoteException e) {
+
+                }
+
+                if (!hasPermission) {
+                    new AlertDialog.Builder(getContext())
+                            .setMessage(R.string.request_storage_manager)
+                            .setPositiveButton(android.R.string.ok,
+                                    (dialog, which) -> startActivity(new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)))
+                            .setNegativeButton(android.R.string.cancel,
+                                    (dialog, which) -> dialog.dismiss())
+                            .show();
+                    return false;
+                }
+            }
+
             mManager.setCrossProfileFileChooserEnabled((boolean) newState);
             return true;
         } else if (preference == mPrefCameraProxy) {

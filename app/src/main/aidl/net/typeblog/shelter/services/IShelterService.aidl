@@ -21,6 +21,7 @@ interface IShelterService {
     void freezeApp(in ApplicationInfoWrapper app);
     void unfreezeApp(in ApplicationInfoWrapper app);
     boolean hasUsageStatsPermission();
+    boolean hasAllFileAccessPermission();
     List<String> getCrossProfileWidgetProviders();
     boolean setCrossProfileWidgetProviderEnabled(String pkgName, boolean enabled);
     void setStartActivityProxy(in IStartActivityProxy proxy);

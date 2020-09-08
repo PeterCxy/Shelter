@@ -536,11 +536,21 @@ public class DummyActivity extends Activity {
     }
 
     private void actionStartFileShuttle() {
-        // This requires the permission WRITE_EXTERNAL_STORAGE
-        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            doStartFileShuttle();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            // This requires the permission WRITE_EXTERNAL_STORAGE
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                doStartFileShuttle();
+            } else {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_EXTERNAL_STORAGE);
+            }
         } else {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_EXTERNAL_STORAGE);
+            // The all file access permission should have been granted when enabling File Shuttle
+            // since Android R.
+            if (Utility.checkAllFileAccessPermission()) {
+                doStartFileShuttle();
+            } else {
+                finish();
+            }
         }
     }
 

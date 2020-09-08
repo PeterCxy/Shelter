@@ -23,6 +23,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.os.Environment;
 import android.os.UserManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -376,6 +377,12 @@ public class Utility {
     // Check if USAGE_STATS is granted
     public static boolean checkUsageStatsPermission(Context context) {
         return checkSpecialAccessPermission(context, AppOpsManager.OPSTR_GET_USAGE_STATS);
+    }
+
+    // Check if all file access r/w is granted
+    @TargetApi(Build.VERSION_CODES.R)
+    public static boolean checkAllFileAccessPermission() {
+        return Environment.isExternalStorageManager();
     }
 
     // Check special access permission through AppOps
