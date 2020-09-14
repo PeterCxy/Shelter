@@ -84,4 +84,5 @@
     <string name="app_installing">正在安装……</string>
     <string name="request_storage_manager">File Shuttle 需要访问 <b>全部文件</b> 的权限。请在接下来的对话框中对 <b>两个 Shelter</b> (工作用户内 / 外) 都启用该权限。</string>
     <string name="request_system_alert">File Shuttle 需要 <b>悬浮窗</b> 权限才能在 Shelter 不在运行时正常启动。请在接下来的对话框中对 <b>两个 Shelter</b> (工作用户内 / 外) 都打开该权限。</string>
+    <string name="settings_translate">翻译</string>
 </resources>
