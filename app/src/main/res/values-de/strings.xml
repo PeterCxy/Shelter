@@ -2,18 +2,20 @@
 <resources>
     <string name="first_run_alert_cancel">Beenden</string>
     <string name="first_run_alert_continue">Fortsetzen</string>
-    <string name="first_run_alert">"Sie sind dabei, Shelter (dt. \"Bunker\") zu installieren./n/nDiese Anwendung verwendet die Androidfunktion &lt;b&gt;Arbeits-Profil&lt;/b&gt;, um Apps vom verwendeten Hauptsystem zu isolieren. Wenn sie ein Hersteller/Custom ROM verwenden, das nicht standardkonform ist (z.B. MIUI), sollten Sie die Installation &lt;b&gt;ABBRECHEN&lt;/b&gt; und diese Anwendung &lt;b&gt;NICHT&lt;/b&gt; benutzen.
+    <string name="first_run_alert">Sie sind dabei, Shelter (dt. \"Bunker\") zu installieren.
+\n
+\nDiese Anwendung verwendet die Androidfunktion <b>Arbeits-Profil</b>, um Apps vom verwendeten Hauptsystem zu isolieren. Wenn sie ein Hersteller/Custom ROM verwenden, das nicht standardkonform ist (z.B. MIUI), sollten Sie die Installation <b>ABBRECHEN</b> und diese Anwendung <b>NICHT</b> benutzen.
 \n
 \nWenn Sie fortfahren, wird Shelter ein Arbeits-Profil für Sie einrichten.
 \n
-\nWennmSie Entwickler sind und Shelter mit ihrem inkompatiblen ROM wie MIUI laufen soll können sie gerne eine Anfragen stellen. Der Entwickler übernimmt &lt;b&gt;ABSOLUT KEINE VERANTWORTUNG&lt;/b&gt; wenn sie durch Verwendung eines inkompatiblen ROM ihr Gerät zerstören.
+\nWenn Sie Entwickler sind und Shelter mit ihrem inkompatiblen ROM wie MIUI laufen soll können sie gerne eine Anfrage stellen. Der Entwickler übernimmt <b>ABSOLUT KEINE VERANTWORTUNG</b> wenn sie durch Verwendung eines inkompatiblen ROM ihr Gerät zerstören.
 \n
-\nWährend der Installation werden Sie eine Benachrichtigung erhalten, stellen Sie also sicher, das Ihr Gerät &lt;b&gt;NICHT&lt;/b&gt; im \"Bitte nicht stören\" Modus ist. "<b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Shelter will set up Work Profile for you.\n\nIf you are a developer and would like to make Shelter work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.\n\nYou will need to receive a notification in order to finish setup, please make sure your device is <b>NOT</b> on Do Not Disturb mode.</string>
+\nIm Laufe der Installation werden Sie eine Benachrichtigung zum Installationsabschluss erhalten, stellen Sie also sicher, das Ihr Gerät <b>NICHT</b> im \"Bitte nicht stören\" Modus ist.</string>
     <string name="device_admin_desc">App Isolations-Dienst</string>
     <string name="device_admin_explanation">Shelter muss Geräte-Administrator werden, um Apps isolieren zu können.</string>
     <string name="camera_proxy_activity">Wählen sie eine Bild-Datei aus</string>
     <string name="notifications_important">Shelter - Achtung</string>
-    <string name="finish_provision_title">Klicken Sie hier, um die Installation von Shelter abzuschliessen.</string>
+    <string name="finish_provision_title">Klicken Sie hier, um die Installation von Shelter abzuschliessen</string>
     <string name="finish_provision_desc">Glückwunsch! Nur noch ein Klick und die Installation von Shelter ist abgeschlossen.</string>
     <string name="service_title">Shelter Dienst</string>
     <string name="service_desc">Shelter läuft jetzt …</string>
@@ -47,39 +49,41 @@
     <string name="settings_interaction">Interaktion</string>
     <string name="settings_cross_profile_file_chooser">File Shuttle</string>
     <string name="settings_cross_profile_file_chooser_desc">File Shuttle ermöglicht den Zugriff auf Dateien des persönlichen Profils vom Arbeits-Profil und umgekehrt. Man kann Dateien durchsuchen/ansehen/auswählen/kopieren. Dazu kann der systemeigene Datei-Manager oder auch Apps benutzt werden, die über diesen Dateizugriff haben. Diese Apps erhalten lediglich temporären Zugriff auf die ausgewählten Dateien, die eigentliche Dateisystem-Isolation bleibt bestehen.</string>
-    <string name="settings_camera_proxy">Image Chooser as Fake Camera</string>
-    <string name="settings_camera_proxy_desc">Present a fake camera app to other apps, allowing you to choose an arbitrary image from Documents UI (and File Shuttle if enabled) as the taken picture. This enables File Shuttle for any app that supports invoking other camera apps to take a picture, even if they don\'t support Documents UI natively.</string>
+    <string name="settings_camera_proxy">Bildauswahl als vorgetäuschte Kamera verwenden</string>
+    <string name="settings_camera_proxy_desc">Wenn sie anderen Apps eine Pseudo-Kamera \"vorgaukeln\" kann Shelter ein beliebiges Bild aus dem Datei-Manager (und File Shuttle, sofern aktiviert) auswählen und dieses anderen Apps als \"aufgenommenes Bild\" präsentieren. Dies ermöglicht File Shuttle für jede Anwendung, die das Aufrufen anderer Kameraanwendungen unterstützt, ein Bild aufzunehmen, auch wenn diese einen Datei-Manager nicht nativ unterstützen. Sozusagen ein \"Umsetzer\".</string>
     <string name="settings_services">Dienste</string>
     <string name="settings_auto_freeze_service">Auto-Frost Dienst</string>
-    <string name="settings_auto_freeze_service_desc">Bei Bildschirmsperre automatisch Apps einfrosten, die über die Verknüpfung für Auftauen und/oder Starten gestartet wurden.</string>
+    <string name="settings_auto_freeze_service_desc">Bei Bildschirmsperre automatisch Apps einfrosten, die über die Verknüpfung für \"Auftauen &amp; Starten\" gestartet wurden.</string>
     <string name="settings_auto_freeze_delay">Auto-Frost Verzögerung</string>
     <string name="settings_dont_freeze_foreground">Apps, die im Vordergrund laufen nicht einfrosten</string>
     <string name="settings_dont_freeze_foreground_desc">Apps, die im Vordergrund mit sichtbarer Aktivität laufen, NICHT bei Bildschirmsperre einfrosten. Dies kann für Apps wie Music-Player nützlich sein. Nachträglich können diese über die Verknüpfung \"Batch Freeze Shortcut\" manuell eingefrostet werden.</string>
-    <string name="settings_about">Über</string>
+    <string name="settings_about">Über das Programm</string>
     <string name="settings_version">Version</string>
     <string name="settings_source_code">Quelltext</string>
     <string name="settings_bug_report">Fehler melden / Probleme lösen</string>
-    <string name="device_admin_toast">Shelter benötigt Geräteverwaltungs-Rechte. Bitte versuchen sie es noch einmal.</string>
+    <string name="device_admin_toast">Shelter benötigt Geräteadministrator-Rechte. Bitte versuchen sie es noch einmal.</string>
     <string name="provision_still_pending">Bitte warten sie, bis Ihr Shelter Profil eingerichtet wurde …</string>
-    <string name="provision_finished">Die Einrichtung von Shelter ist abgeschlossen. Das Programm wird jetzt neu gestartet. Sollte Shelter nicht automatisch starten, rufen Sie das Programm manuell über das Shelter-Symbol auf.</string>
+    <string name="provision_finished">Die Einrichtung von Shelter ist abgeschlossen. Das Programm wird jetzt neu gestartet. Sollte Shelter nicht automatisch starten, rufen Sie das Programm erneut manuell über das Shelter-Symbol auf.</string>
     <string name="msg_device_unsupported">Zugriff verweigert oder nicht unterstütztes Gerät</string>
     <string name="work_profile_not_found">Das Arbeits-Profil wurde nicht gefunden. Bitte starten Sie die App nochmals, um das Profil erneut bereitzustellen.</string>
     <string name="work_profile_provision_failed">Das Arbeits-Profil konnte nicht bereitgestellt werden. Bitte starten Sie Shelter erneut.</string>
-    <string name="work_mode_disabled">Es scheint, das sie das Arbeits-Profil während des Startens von Shelter abgeschaltet haben. Sofern Sie es jetzt eingeschaltet haben, starten Sie Shelter erneut.</string>
+    <string name="work_mode_disabled">Anscheinend haben Sie das Arbeits-Profil vor dem Starten von Shelter abgeschaltet. Sofern Sie es jetzt eingeschaltet haben, starten Sie Shelter erneut.</string>
     <string name="clone_success">Die Anwendung \"%s\" wurde erfolgreich geklont</string>
     <string name="uninstall_success">Die Anwendung \"%s\" wurde erfolgreich deinstalliert</string>
     <string name="freeze_success">Die Anwendung \"%s\" wurde erfolgreich eingefrostet</string>
     <string name="unfreeze_success">Die Anwendung \"%s\" wurde erfolgreich aufgetaut</string>
     <string name="clone_fail_system_app">Das Klonen von System-Apps in ein Profil, auf das Shelter keinen Zugriff hat ist fehlgeschlagen.</string>
     <string name="uninstall_fail_system_app">Die Deinstallation von System-Apps aus einem Profil, auf das Shelter keinen Zugriff hat ist fehlgeschlagen.</string>
-    <string name="unsupported_launcher">Das Hinzufügen einer Verknüpfung zu Ihrem Launcher ist fehlgeschlagen. Bitte kontaktieren sie den Entwickler, um weitere Informationen zu erhalten.</string>
-    <string name="app_context_menu_title">Operations for %s</string>
+    <string name="unsupported_launcher">Das Hinzufügen einer Verknüpfung zu Ihrem Startprogramm ist fehlgeschlagen. Bitte kontaktieren sie den Entwickler, um weitere Informationen zu erhalten.</string>
+    <string name="app_context_menu_title">Aktionen für %s</string>
     <string name="freeze_all_success">Alle Anwendungen aus der \"Auto-Frost\" Liste wurden erfolgreich eingefrostet.</string>
     <string name="shortcut_create_success">Eine Verknüpfung wurde Ihrem Startprogramm hinzugefügt.</string>
-    <string name="request_usage_stats">Shelter needs &lt;b&gt;Usage Stats&lt;/b&gt; permission to do this. Please enable the permission for &lt;b&gt;BOTH OF THE TWO&lt;/b&gt; Shelter apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.<b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Shelter apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
+    <string name="request_usage_stats">Shelter benötigt Zugriffsrechte auf <b>Nutzungs-Statistiken</b>. Bitte erteilen Sie die nötigen Zugriffsrechte für <b>BEIDE</b> Shelter Apps, die nach Klick auf \"OK\" im folgenden Dialog angezeigt werden. Bei Nichterteilung der Zugriffsrechte kann diese Programmfunktion nicht korrekt ausgeführt werden.</string>
     <string name="launch_app_fail">Die Anwendung %s konnte nicht gestartet werden, das sie keine grafische Benutzeroberfläche hat.</string>
     <string name="request_storage_manager">Shelter benötigt Zugriff auf &lt;b&gt;Alle Dateien&lt;/b&gt; um File Shuttle benutzen zu können. Bitte erteilen sie die notwendigen Zugriffsrechte für &lt;b&gt;BEIDE&lt;/b&gt; (Persönliches-Profil / Arbeits-Profil) Shelter Apps, die nach dem Klick auf \"OK\" in der nachfolgenden Meldung angezeigt werden.<b>All Files</b> for File Shuttle. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Shelter apps shown in the dialog after you press \"Ok\".</string>
-    <string name="request_system_alert">" Damit File Shuttle korrekt funktioniert, muss Shelter über anderen Anwendungen eingeblendet werden können. Bitte erteilen sie die notwendigen Zugriffsrechte für &lt;b&gt;BEIDE&lt;/b&gt; (Persönliches-Profil / Arbeits-Profil) Shelter Apps, die nach dem Klick auf \"Ok\" in der nachfolgenden Meldung angezeigt werden. Diese Berechtigung wird benutzt, um die File Shuttle Dienste im Hintergrund starten zu können."<b>Draw over Other Apps</b> in order for File Shuttle to function correctly. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Shelter apps shown in the dialog after you press \"Ok\". This permission is used to start File Shuttle services in the background.</string>
-    <string name="miui_cannot_clone">" Das Klonen von Nicht-System-Apps in das Arbeits-Profil ist derzeit unter MIUI nicht möglich. Bitte klonen sie den App-Store Ihres Systems (z.B. &lt;b&gt;Play Store&lt;/b&gt;) in ihr Arbeits-Profil und installieren sie ihre benötigten Anwendungen von dort aus."<b>Play Store</b>) into the other profile and then install apps from there.</string>
+    <string name="request_system_alert">Damit File Shuttle korrekt funktioniert, muss Shelter über anderen Anwendungen eingeblendet werden können. Bitte erteilen sie die notwendigen Zugriffsrechte für <b>BEIDE</b> (Persönliches-Profil / Arbeits-Profil) Shelter Apps, die nach dem Klick auf \"OK\" in der nachfolgenden Meldung angezeigt werden. Diese Berechtigung wird genutzt, um die File Shuttle Dienste im Hintergrund starten zu können.</string>
+    <string name="miui_cannot_clone">Das Klonen von Nicht-System-Apps in das Arbeits-Profil ist derzeit unter MIUI nicht möglich. Bitte klonen sie den App-Store Ihres Systems (z.B. <b>Play Store</b>) in ihr Arbeits-Profil und installieren sie ihre benötigten Anwendungen von dort aus.</string>
     <string name="continue_anyway">Trotzdem fortsetzen</string>
+    <string name="settings_translate">Übersetzung</string>
+    <string name="documents_ui">Datei-Manager Oberfläche</string>
 </resources>
