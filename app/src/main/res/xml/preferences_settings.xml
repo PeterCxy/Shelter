@@ -51,6 +51,11 @@
             android:summary="@string/settings_source_code_url" />
 
         <androidx.preference.Preference
+            android:key="settings_translate"
+            android:title="@string/settings_translate"
+            android:summary="@string/settings_translate_url" />
+
+        <androidx.preference.Preference
             android:key="settings_bug_report"
             android:title="@string/settings_bug_report"
             android:summary="@string/settings_bug_report_url" />
