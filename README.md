@@ -10,6 +10,8 @@ For bug reports and patches (pull requests), please use the following contact me
 - Mailing List (SourceHut): <https://lists.sr.ht/~petercxy/shelter>
 - Matrix Chat Room: #shelter:neo.angry.im
 
+For translations, please use our Weblate interface at <https://weblate.typeblog.net/projects/shelter/shelter/> to submit new translated strings for Shelter.
+
 On GitHub, any new issues or pull requests will not be read or accepted. Please use the contacts listed above.
 
 Note: The F-Droid version is automatically built and signed by the F-Droid server on each update of Shelter. The build is not managed by the author and could lag behind the updates from Play Store and this repository for several days due to high server load.
