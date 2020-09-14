@@ -46,6 +46,7 @@
     <string name="install_app_to_profile_success">Application installation finished in work profile.</string>
     <string name="show_all">Show All Apps</string>
     <string name="show_all_warning">Manipulating apps that are hidden from the list could cause crashes and all sorts of unexpected behavior. However, this feature can be useful when faulty vendor-customized ROMs does not enable all necessary system apps in work profile by default. If you continue, you are on your own.</string>
+    <string name="documents_ui">Open Documents UI</string>
 
     <!-- Settings Options -->
     <string name="settings">Settings</string>

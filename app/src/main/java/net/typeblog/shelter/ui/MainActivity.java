@@ -424,6 +424,11 @@ public class MainActivity extends AppCompatActivity {
                     update.run();
                 }
                 return true;
+            case R.id.main_menu_documents_ui:
+                Intent documentsUiIntent = new Intent(Intent.ACTION_VIEW);
+                documentsUiIntent.setDataAndType(null, "vnd.android.document/root");
+                startActivity(documentsUiIntent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
