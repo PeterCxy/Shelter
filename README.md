@@ -3,6 +3,10 @@
 <a href='https://play.google.com/store/apps/details?id=net.typeblog.shelter&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="80"/></a>
 <a href="https://f-droid.org/app/net.typeblog.shelter"><img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"></a>
 
+<a href="http://weblate.typeblog.net/engage/shelter/?utm_source=widget">
+  <img src="http://weblate.typeblog.net/widgets/shelter/-/shelter/multi-auto.svg" alt="Translation status" />
+</a>
+
 Note: main repository: <https://cgit.typeblog.net/Shelter/>. __The GitHub repository is only a mirror__. I do not guarantee the GitHub repository will be up-to-date.
 
 For bug reports and patches (pull requests), please use the following contact methods:
