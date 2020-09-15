@@ -73,7 +73,7 @@
     <string name="freeze_success">Die Anwendung \"%s\" wurde erfolgreich eingefrostet</string>
     <string name="unfreeze_success">Die Anwendung \"%s\" wurde erfolgreich aufgetaut</string>
     <string name="clone_fail_system_app">Das Klonen von System-Apps in ein Profil, auf das Shelter keinen Zugriff hat ist fehlgeschlagen.</string>
-    <string name="uninstall_fail_system_app">Die Deinstallation von System-Apps aus einem Profil, auf das Shelter keinen Zugriff hat ist fehlgeschlagen.</string>
+    <string name="uninstall_fail_system_app">Die Deinstallation von System-Apps in einem Profil, auf das Shelter keinen Zugriff hat, ist fehlgeschlagen.</string>
     <string name="unsupported_launcher">Das Hinzufügen einer Verknüpfung zu Ihrem Startprogramm ist fehlgeschlagen. Bitte kontaktieren sie den Entwickler, um weitere Informationen zu erhalten.</string>
     <string name="app_context_menu_title">Aktionen für %s</string>
     <string name="freeze_all_success">Alle Anwendungen aus der \"Auto-Frost\" Liste wurden erfolgreich eingefrostet.</string>
