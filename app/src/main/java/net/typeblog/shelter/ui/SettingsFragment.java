@@ -96,6 +96,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             mPrefCrossProfileFileChooser.setEnabled(false);
         }
 
+        // Disable fake camera on R because third-party camera activities are now unsupported
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            mPrefCameraProxy.setEnabled(false);
+        }
+
         // Disable FileShuttle for Android Go
         // as it requires SYSTEM_ALERT_WINDOW which
         // is not allowed on Go devices
