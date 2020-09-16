@@ -2,26 +2,26 @@
 <resources>
     <string name="settings_services">服務</string>
     <string name="settings_auto_freeze_service">自動凍結服務</string>
-    <string name="settings_auto_freeze_service_desc">在您鎖定螢幕時，自動凍結您通過 “解除凍結並啟動” 啓動的應用。</string>
+    <string name="settings_auto_freeze_service_desc">在您鎖定螢幕時，自動凍結您通過「解除凍結並啟動」啓動的應用。</string>
     <string name="settings_auto_freeze_delay">自動凍結延遲</string>
     <string name="settings_about">關於</string>
     <string name="settings_version">版本</string>
     <string name="settings_source_code">原始碼</string>
     <string name="settings_translate">翻譯</string>
     <string name="settings_bug_report">錯誤報告/問題追蹤</string>
-    <string name="device_admin_toast">您必須授予 “裝置管理員” 權限才能使 Shelter 正常工作。請重試。</string>
+    <string name="device_admin_toast">您必須授予「裝置管理員」權限才能使 Shelter 正常工作。請重試。</string>
     <string name="provision_still_pending">我們正在爲您準備 Shelter 帳戶，請稍候……</string>
     <string name="msg_device_unsupported">權限不足或裝置不相容</string>
     <string name="work_profile_not_found">沒有找到工作資料夾，請重新啓動應用程式以重新佈建帳戶。</string>
     <string name="work_profile_provision_failed">無法佈建工作資料夾，您可能需要重啓 Shelter 並重試。</string>
-    <string name="uninstall_success">應用程式 “%s” 解除安裝成功</string>
-    <string name="clone_success">應用程式 “%s” 克隆成功</string>
-    <string name="freeze_success">應用程式 “%s” 凍結成功</string>
-    <string name="unfreeze_success">應用程式 “%s” 解除凍結成功</string>
+    <string name="uninstall_success">應用程式「%s」解除安裝成功</string>
+    <string name="clone_success">應用程式「%s」克隆成功</string>
+    <string name="freeze_success">應用程式「%s」凍結成功</string>
+    <string name="unfreeze_success">應用程式「%s」解除凍結成功</string>
     <string name="clone_fail_system_app">無法將系統應用程式克隆至 Shelter 沒有管理權限的帳戶中。</string>
     <string name="uninstall_fail_system_app">無法在 Shelter 沒有管理權限的帳戶中解除安裝系統應用程式。</string>
     <string name="app_context_menu_title">%s 可用作業</string>
-    <string name="freeze_all_success">所有在 “自動凍結” 列表內的應用程式均已成功凍結。</string>
+    <string name="freeze_all_success">所有在「自動凍結」列表內的應用程式均已成功凍結。</string>
     <string name="launch_app_fail">無法啓動沒有 GUI 的應用程式 %s。</string>
     <string name="miui_cannot_clone">當前無法在 MIUI 上將非系統應用程式克隆到其他帳戶。請將系統的應用商店（如 &lt;b&gt; Play 商店&lt;/b&gt;）克隆到其他帳戶中，然後從那里安裝應用程式。<b>Play Store</b>) into the other profile and then install apps from there.</string>
     <string name="continue_anyway">忽略並繼續</string>
@@ -29,22 +29,22 @@
     <string name="settings_camera_proxy_desc">向其他應用程式提供一個僞裝爲相機的應用程式，允許您從 Documents UI（包括 檔案穿梭 功能）選擇任意檔案作爲拍攝結果。這將是您能在其他支援調用相機的應用中選擇來自 檔案穿梭 的檔案，即使他們不支援 Documents UI。</string>
     <string name="provision_finished">Shelter 設定完成。現在需要重新啟動 Shelter。如果 Shelter 沒有自動啟動，您可能需要從啟動器中再次啟動它。</string>
     <string name="settings_dont_freeze_foreground">跳過前台應用程式</string>
-    <string name="first_run_alert">您即將開始設定 Shelter。
-\n
-\n此應用程式基於 Android 的 &lt;b&gt;工作資料夾&lt;/b&gt; 功能以隔離應用程式。如果您正在使用的廠商/客製化 ROM 破壞了此功能（如 MIUI），您應該立即 &lt;b&gt;退出&lt;/b&gt; 並 &lt;b&gt;不要&lt;/b&gt; 使用此應用程式。
-\n
-\n如果您選擇繼續，Shelter 將爲您創建工作資料夾。
-\n
-\n如果您是開發者並希望使 Shelter 在 MIUI 等不相容的 ROM 上工作，歡迎提交 pull request。如果您的裝置在運行不相容的 ROM 時損毀，開發者將 &lt;b&gt;不承擔任何責任&lt;/b&gt; 。
-\n
-\n您將在完成設定後收到一則通知，請確定您的裝置 &lt;b&gt;不在&lt;/b&gt; 勿擾模式中。<b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Shelter will set up Work Profile for you.\n\nIf you are a developer and would like to make Shelter work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.\n\nYou will need to receive a notification in order to finish setup, please make sure your device is <b>NOT</b> on Do Not Disturb mode.</string>
+    <string name="first_run_alert">您即將開始設定 Shelter。 
+\n 
+\n此應用程式基於 Android 的 <b>工作資料夾</b> 功能以隔離應用程式。如果您正在使用的廠商/客製化 ROM 破壞了此功能（如 MIUI），您應該立即 <b>退出</b> 並 <b>不要</b> 使用此應用程式。 
+\n 
+\n如果您選擇繼續，Shelter 將爲您創建工作資料夾。 
+\n 
+\n如果您是開發者並希望使 Shelter 在 MIUI 等不相容的 ROM 上工作，歡迎提交 pull request。如果您的裝置在運行不相容的 ROM 時損毀，開發者將 <b>不承擔任何責任</b> 。 
+\n 
+\n您將在完成設定後收到一則通知，請確定您的裝置 <b>不在</b> 勿擾模式中。</string>
     <string name="settings_cross_profile_file_chooser_desc">啓用後，您將可以且僅可以從系統的 Documents UI（啓動器上的名稱爲 檔案）或支援 Documents UI 的應用程式中瀏覽、查看、選擇、複製 Shelter 內的檔案至主帳戶，反之亦然。這不會影響對檔案系統的隔離。</string>
-    <string name="settings_dont_freeze_foreground_desc">不在您鎖定螢幕時凍結前台應用程式（有可見活動）。這對於音樂播放器等應用來說很有用，但您需要手動使用 “批次凍結捷徑” 凍結它們。</string>
+    <string name="settings_dont_freeze_foreground_desc">不在您鎖定螢幕時凍結前台應用程式（有可見活動）。這對於音樂播放器等應用來說很有用，但您需要手動使用「批次凍結捷徑」凍結它們。</string>
     <string name="work_mode_disabled">您似乎在啓動 Shelter 的同時停用了工作資料夾，如果您現在已經啓用了工作資料夾，請重新啓動 Shelter。</string>
     <string name="shortcut_create_success">已在您的啓動器上創建捷徑。</string>
-    <string name="request_usage_stats">Shelter 需要 &lt;b&gt;使用記錄存取權&lt;/b&gt; 來做這件事，請在點按 “確定” 後出現的窗口中爲 &lt;b&gt;兩個&lt;/b&gt; Shelter 應用程式均授予此權限，如果沒有授權會導致此功能無法正常運作。<b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Shelter apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
-    <string name="request_storage_manager">Shelter 需要訪問 &lt;b&gt;全部檔案&lt;/b&gt; 的權限以啓用檔案穿梭。請在點按 “確定” 後出現的窗口中爲 &lt;b&gt;兩個&lt;/b&gt; Shelter 應用程式均授予此權限。<b>All Files</b> for File Shuttle. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Shelter apps shown in the dialog after you press \"Ok\".</string>
-    <string name="request_system_alert">Shelter 需要 &lt;b&gt;顯示在其他應用上層&lt;/b&gt; 的權限以正常使用檔案穿梭。請在點按 “確定” 後出現的窗口中爲 &lt;b&gt;兩個&lt;/b&gt; Shelter 應用程式均授予此權限，此權限用於在後台啟動檔案穿梭服務。<b>Draw over Other Apps</b> in order for File Shuttle to function correctly. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Shelter apps shown in the dialog after you press \"Ok\". This permission is used to start File Shuttle services in the background.</string>
+    <string name="request_usage_stats">Shelter 需要 <b>使用記錄存取權</b> 來做這件事，請在點按「確定」後出現的窗口中爲 <b>兩個</b> Shelter 應用程式均授予此權限，如果沒有授權會導致此功能無法正常運作。</string>
+    <string name="request_storage_manager">Shelter 需要訪問 <b>全部檔案</b> 的權限以啓用檔案穿梭。請在點按「確定」後出現的窗口中爲 <b>兩個</b> Shelter 應用程式均授予此權限。</string>
+    <string name="request_system_alert">Shelter 需要 <b>顯示在其他應用上層</b> 的權限以正常使用檔案穿梭。請在點按「確定」後出現的窗口中爲 <b>兩個</b> Shelter 應用程式均授予此權限，此權限用於在後台啟動檔案穿梭服務。</string>
     <string name="batch_operation">批次作業</string>
     <string name="clone_to_work_profile">克隆到 Shelter （工作資料夾）</string>
     <string name="unsupported_launcher">無法新增捷徑至您的啓動器。請連絡開發者以獲得更多資訊。</string>
@@ -62,7 +62,7 @@
     <string name="app_installing">正在安裝……</string>
     <string name="fragment_profile_main">主帳戶</string>
     <string name="list_item_disabled">「已凍結」 %s</string>
-    <string name="service_auto_freeze_desc">Shelter 將會在下一次鎖定螢幕時凍結使用 “解除凍結並啟動” 的應用程式。</string>
+    <string name="service_auto_freeze_desc">Shelter 將會在下一次鎖定螢幕時凍結使用「解除凍結並啟動」的應用程式。</string>
     <string name="fragment_profile_work">Shelter</string>
     <string name="notifications_important">Shelter 重要通知</string>
     <string name="clone_to_main_profile">克隆到主帳戶</string>
@@ -86,4 +86,6 @@
     <string name="settings_cross_profile_file_chooser">檔案穿梭</string>
     <string name="settings_camera_proxy">圖片選擇器僞裝爲相機</string>
     <string name="create_freeze_all_shortcut">創建批次凍結的捷徑</string>
+    <string name="settings_block_contacts_searching">封鎖聯絡人搜尋</string>
+    <string name="settings_block_contacts_searching_desc">阻止主帳戶中的應用程式存取工作資料夾中的連絡人。</string>
 </resources>
