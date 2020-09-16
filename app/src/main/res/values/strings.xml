@@ -55,6 +55,8 @@
     <string name="settings_cross_profile_file_chooser_desc">When enabled, you\'ll be able to browse / view / pick / copy files in Shelter from main profile and vice-versa, ONLY through Documents UI (named Files or Documents on your launcher) or apps with Documents UI support (they only gain temporary access to files you choose in Documents UI), while still pertaining the filesystem isolation.</string>
     <string name="settings_camera_proxy">Image Chooser as Fake Camera</string>
     <string name="settings_camera_proxy_desc">Present a fake camera app to other apps, allowing you to choose an arbitrary image from Documents UI (and File Shuttle if enabled) as the taken picture. This enables File Shuttle for any app that supports invoking other camera apps to take a picture, even if they don\'t support Documents UI natively.</string>
+    <string name="settings_block_contacts_searching">Block Contacts Searching</string>
+    <string name="settings_block_contacts_searching_desc">Deny access from main profile to contacts inside work profile.</string>
     <string name="settings_services">Services</string>
     <string name="settings_auto_freeze_service">Auto Freeze Service</string>
     <string name="settings_auto_freeze_service_desc">When the screen is locked, automatically freeze apps launched from \"Unfreeze &amp; Launch Shortcut\".</string>

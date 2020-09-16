@@ -92,6 +92,17 @@ public class SettingsManager {
         return mStorage.getBoolean(LocalStorageManager.PREF_CAMERA_PROXY);
     }
 
+    // Set the blocked state of cross-profile contacts searching
+    public void setBlockContactsSearchingEnabled(boolean enabled) {
+        mStorage.setBoolean(LocalStorageManager.PREF_BLOCK_CONTACTS_SEARCHING, enabled);
+        syncSettingsToProfileBool(LocalStorageManager.PREF_BLOCK_CONTACTS_SEARCHING, enabled);
+    }
+
+    // Get the blocked state of cross-profile contacts searching
+    public boolean getBlockContactsSearchingEnabled() {
+        return mStorage.getBoolean(LocalStorageManager.PREF_BLOCK_CONTACTS_SEARCHING);
+    }
+
     // Set the enabled state of the auto freeze service
     // This does NOT need to be synchronized nor applied across profile
     public void setAutoFreezeServiceEnabled(boolean enabled) {

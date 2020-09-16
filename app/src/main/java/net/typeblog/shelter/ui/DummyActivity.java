@@ -588,6 +588,11 @@ public class DummyActivity extends Activity {
         }
         // TODO: Cases for other types
         SettingsManager.getInstance().applyAll();
+        if (mIsProfileOwner) {
+            // Refresh profile policies because
+            // settings may have been changed
+            Utility.enforceWorkProfilePolicies(this);
+        }
         finish();
     }
 }

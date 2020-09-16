@@ -199,6 +199,10 @@ public class Utility {
                 browsableDefaultIntentFilter,
                 DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
 
+        // Block contacts searching optionally
+        manager.setCrossProfileContactsSearchDisabled(adminComponent,
+                SettingsManager.getInstance().getBlockContactsSearchingEnabled());
+
         manager.setProfileEnabled(adminComponent);
     }
 

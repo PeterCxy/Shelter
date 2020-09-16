@@ -17,6 +17,7 @@ public class LocalStorageManager {
     public static final String PREF_DONT_FREEZE_FOREGROUND = "dont_freeze_foreground";
     public static final String PREF_AUTO_FREEZE_DELAY = "auto_freeze_delay";
     public static final String PREF_CAMERA_PROXY = "camera_proxy";
+    public static final String PREF_BLOCK_CONTACTS_SEARCHING = "block_contacts_searching";
 
     private static final String LIST_DIVIDER = ",";
 

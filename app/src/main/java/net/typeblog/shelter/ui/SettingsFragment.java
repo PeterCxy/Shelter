@@ -32,6 +32,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_PATREON = "settings_patreon";
     private static final String SETTINGS_CROSS_PROFILE_FILE_CHOOSER = "settings_cross_profile_file_chooser";
     private static final String SETTINGS_CAMERA_PROXY = "settings_camera_proxy";
+    private static final String SETTINGS_BLOCK_CONTACTS_SEARCHING = "settings_block_contacts_searching";
     private static final String SETTINGS_AUTO_FREEZE_SERVICE = "settings_auto_freeze_service";
     private static final String SETTINGS_AUTO_FREEZE_DELAY = "settings_auto_freeze_delay";
     private static final String SETTINGS_SKIP_FOREGROUND = "settings_dont_freeze_foreground";
@@ -41,6 +42,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
 
     private CheckBoxPreference mPrefCrossProfileFileChooser = null;
     private CheckBoxPreference mPrefCameraProxy = null;
+    private CheckBoxPreference mPrefBlockContactsSearching = null;
     private CheckBoxPreference mPrefAutoFreezeService = null;
     private CheckBoxPreference mPrefSkipForeground = null;
 
@@ -78,6 +80,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefCameraProxy = (CheckBoxPreference) findPreference(SETTINGS_CAMERA_PROXY);
         mPrefCameraProxy.setChecked(mManager.getCameraProxyEnabled());
         mPrefCameraProxy.setOnPreferenceChangeListener(this);
+        mPrefBlockContactsSearching = (CheckBoxPreference) findPreference(SETTINGS_BLOCK_CONTACTS_SEARCHING);
+        mPrefBlockContactsSearching.setChecked(mManager.getBlockContactsSearchingEnabled());
+        mPrefBlockContactsSearching.setOnPreferenceChangeListener(this);
 
         // === Services ===
         mPrefAutoFreezeService = (CheckBoxPreference) findPreference(SETTINGS_AUTO_FREEZE_SERVICE);
@@ -184,6 +189,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             return true;
         } else if (preference == mPrefCameraProxy) {
             mManager.setCameraProxyEnabled(((boolean) newState));
+            return true;
+        } else if (preference == mPrefBlockContactsSearching) {
+            mManager.setBlockContactsSearchingEnabled((boolean) newState);
             return true;
         } else if (preference == mPrefAutoFreezeService) {
             mManager.setAutoFreezeServiceEnabled((boolean) newState);
