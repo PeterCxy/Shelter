@@ -1,2 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="first_run_alert">Você esta a ponto de configurar o Shelter.
+\n
+\nEste aplicativo depende de &lt;b&gt;Perfil de trabalho&lt;/b&gt; funcionalidade do Android que permite isolar os aplicativos. Se você usa um Stock / ROM personalizado que interfere nesta funcionalidade (e.g. MIUI), você deve &lt;b&gt;SAIR AGORA&lt;/b&gt; e &lt;b&gt;NÃO&lt;/b&gt; usar este app.
+\n
+\nSe você optar por continuar, Shelter criará Perfil de trabalho para você.
+\n
+\nSe você é um desenvolvedor e gostaria de fazer Shelter compatível com ROMs como MIUI, faça Pull Requests sua ajuda é bem-vinda. O desenvolvedor não assume &lt;b&gt;ABSOLUTAMENTE NENHUMA RESPONSABILIDADE&lt;/b&gt; se você quebrar sua sistema operacional de Android executando Shelter numa ROM incompatível.
+\n}Você precisará receber uma notificação para finalizar a configuração, por favor, certifique-se de que seu dispositivo &lt;b&gt;NÃO ESTÁ&lt;/b&gt; no modo Não Perturbe.<b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Shelter will set up Work Profile for you.\n\nIf you are a developer and would like to make Shelter work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.\n\nYou will need to receive a notification in order to finish setup, please make sure your device is <b>NOT</b> on Do Not Disturb mode.</string>
+    <string name="first_run_alert_cancel">Tchau</string>
+    <string name="first_run_alert_continue">Continuar</string>
+    <string name="device_admin_desc">Serviço de Isolamento</string>
+    <string name="device_admin_explanation">Shelter precisa tornar-se Administrador de dispositivo a fim de realizar suas tarefas de isolamento.</string>
+    <string name="camera_proxy_activity">Escolha um arquivo de imagem</string>
+    <string name="notifications_important">Shelter Importante</string>
+    <string name="finish_provision_title">Clique aqui para terminar a configuração de Shelter</string>
+    <string name="finish_provision_desc">Parabéns! Você está a um clique de concluir a configuração de Shelter.</string>
+    <string name="service_title">Serviço Shelter</string>
+    <string name="service_desc">Shelter está em funcionamento …</string>
+    <string name="service_auto_freeze_title">Auto-suspensão pendente</string>
+    <string name="service_auto_freeze_desc">Shelter auto-suspenderá aplicativos executados de \"Ativar de novo &amp; Executar\" no próximo evento de bloqueio de tela.</string>
+    <string name="service_auto_freeze_now">Suspender Agora</string>
+    <string name="app_installing">Instalando...</string>
+    <string name="fragment_profile_main">Principal</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[Suspenso] %s</string>
+    <string name="batch_operation">Operação Batch</string>
+    <string name="clone_to_work_profile">Clonar para Shelter (Perfil de trabalho)</string>
+    <string name="clone_to_main_profile">Clonar para Perfil Principal</string>
+    <string name="uninstall_app">Desinstalar</string>
+    <string name="freeze_app">Suspender</string>
+    <string name="unfreeze_app">Ativar</string>
+    <string name="launch">Iniciar</string>
+    <string name="create_unfreeze_shortcut">Criar Ativar e/ou Create Unfreeze and/or Atalho de lançamento</string>
+    <string name="unfreeze_and_launch">Ativar e Iniciar</string>
+    <string name="auto_freeze">Auto-Suspender</string>
+    <string name="allow_cross_profile_widgets">Permitir Widgets no Perfil Principal</string>
+    <string name="search">Buscar</string>
+    <string name="freeze_all">Suspensão Batch</string>
+    <string name="create_freeze_all_shortcut">Criar atalho para Suspensão Batch</string>
+    <string name="freeze_all_shortcut">Suspender</string>
+    <string name="install_app_to_profile">Instalar APK no Shelter</string>
+    <string name="install_app_to_profile_success">Instalação de aplicativo no perfil de trabalho foi bem-sucedido</string>
+    <string name="show_all">Mostrar todos os aplicativos</string>
+    <string name="show_all_warning">Manipular aplicativos que estão ocultos da lista pode causar falhas e todo tipo de comportamento inesperado. Entretanto, este recurso pode ser útil quando ROMs personalizados com defeito não habilitam todos os aplicativos de sistema necessárias no perfil de trabalho por padrão. Se você continuar, você está com sua própria sorte.</string>
+    <string name="settings">Configurações</string>
+    <string name="settings_cross_profile_file_chooser">Traslado De Arquivos</string>
+    <string name="settings_cross_profile_file_chooser_desc">Quando ativado, você será capaz de navegar / ver / escolher / copiar arquivos no Shelter de perfil principal e vice-versa, SOMENTE através da Interface de Usuário de Documentos (Arquivos ou Documentos em seu lançador) ou aplicativos com suporte da Interface de Usuário de Documentos (eles só ganham acesso temporário aos arquivos que você escolher na Interface de Usuário de Documentos), enquanto ainda pertencem ao isolamento do sistema de arquivos.</string>
+    <string name="settings_camera_proxy">Selecionador de imagens como câmera falsa</string>
+    <string name="settings_camera_proxy_desc">Apresente um aplicativo de câmera falsa para outros aplicativos, permitindo que você escolha uma imagem arbitrária da Interface de Documentos (e do Traslado De Arquivos, se ativado) como a foto tirada. Isto permite que o Traslado De Arquivos coopera com qualquer aplicativo que suporte a invocação de outros aplicativos de câmera para tirar uma foto, mesmo que eles não suportem a Document UI nativamente.</string>
+    <string name="settings_services">Serviços</string>
+    <string name="settings_auto_freeze_service">Serviço de Auto-Suspensão</string>
+    <string name="settings_auto_freeze_service_desc">Quando a tela é bloqueada, suspende automaticamente os aplicativos lançados de \"Ativar &amp; Atalho de lançamento\".</string>
+    <string name="settings_auto_freeze_delay">Atraso de Auto Suspensão</string>
+    <string name="settings_dont_freeze_foreground">Omitir aplicativos em primeiro plano</string>
+    <string name="settings_dont_freeze_foreground_desc">NÃO suspende aplicativos em primeiro plano (com atividade visível) quando você bloqueia sua tela. Isto pode ser útil para aplicativos como reprodutor de música, mas você precisará suspender ele manualmente através do Atalho de Suspensão Batch depois.</string>
+    <string name="settings_about">Sobre</string>
+    <string name="settings_version">Versão</string>
+    <string name="settings_source_code">Código Fonte</string>
+    <string name="provision_still_pending">Favor, aguarde enquanto nos preparamos perfil de Shelter para você …</string>
+    <string name="provision_finished">Configuração de Shelter concluída. Reiniciando Shelter. Se Shelter não começou automaticamente, você pode lançá-lo novamente de seu lançador.</string>
+    <string name="msg_device_unsupported">Ou a permissão é negada ou dispositivo não é suportado</string>
+    <string name="work_profile_not_found">Perfil de trabalho não encontrado. Favor reiniciar o aplicativo para reprovisionar o perfil.</string>
+    <string name="work_profile_provision_failed">Não é possível fornecer perfil de trabalho. Você pode tentar novamente reiniciando Shelter.</string>
+    <string name="work_mode_disabled">Parece que você desativou o Modo de Trabalho ao iniciar Shelter. Se você ativou agora, por favor, inicie de novo o Shelter.</string>
+    <string name="uninstall_success">Aplicativo \"%s\" desinstalado com êxito</string>
+    <string name="freeze_success">Aplicativo \"%s\" suspenso com êxito</string>
+    <string name="unfreeze_success">Aplicativo \"%s\" activo novamente</string>
+    <string name="clone_fail_system_app">Não é possível clonar aplicativos do sistema num perfil sobre qual Shelter não tem controle.</string>
+    <string name="uninstall_fail_system_app">Não é possível desinstalar aplicativos de sistema num perfil sobre qual Shelter não tem controle.</string>
+    <string name="unsupported_launcher">Não é possível adicionar atalhos ao seu lançador. Favor entrar em contato com o desenvolvedor para mais informações.</string>
+    <string name="app_context_menu_title">Operações para %s</string>
+    <string name="freeze_all_success">Todos os aplicativos na lista de \"Auto-Suspensão\" foram suspensos com êxito.</string>
+    <string name="shortcut_create_success">Atalho criado em seu lançador.</string>
+    <string name="request_usage_stats">Shelter precisa &lt;b&gt;Estatísticas de uso&lt;/b&gt; permissão para fazer isso. Favor, ative a permissão para &lt;b&gt;AMBOS DOS DOIS&lt;/b&gt; aplicativos de Shelter mostradas no diálogo depois que você pressionar \"Ok\". Se isso não for feito, essa funcionalidade não executará adequadamente.<b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Shelter apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
+    <string name="launch_app_fail">Não pode iniciar aplicativo %s porque não tem GUI.</string>
+    <string name="miui_cannot_clone">A clonagem de aplicativos para outro perfil não é atualmente possível no MIUI. Favor, clone a loja de aplicativos de seu sistema (por exemplo &lt;b&gt;Play Store&lt;/b&gt;) no outro perfil e depois instale os aplicativos a partir daí.<b>Play Store</b>) into the other profile and then install apps from there.</string>
+    <string name="settings_interaction">Interação</string>
+    <string name="device_admin_toast">Tem que conceder permissão de administração do dispositivo para que Shelter funcione bem. Favor, tente de novo.</string>
+    <string name="clone_success">Aplicativo \"%s\" clonado com êxito</string>
+</resources>
