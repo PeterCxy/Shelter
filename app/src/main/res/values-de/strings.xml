@@ -80,10 +80,12 @@
     <string name="shortcut_create_success">Eine Verknüpfung wurde Ihrem Startprogramm hinzugefügt.</string>
     <string name="request_usage_stats">Shelter benötigt Zugriffsrechte auf <b>Nutzungs-Statistiken</b>. Bitte erteilen Sie die nötigen Zugriffsrechte für <b>BEIDE</b> Shelter Apps, die nach Klick auf \"OK\" im folgenden Dialog angezeigt werden. Bei Nichterteilung der Zugriffsrechte kann diese Programmfunktion nicht korrekt ausgeführt werden.</string>
     <string name="launch_app_fail">Die Anwendung %s konnte nicht gestartet werden, das sie keine grafische Benutzeroberfläche hat.</string>
-    <string name="request_storage_manager">Shelter benötigt Zugriff auf &lt;b&gt;Alle Dateien&lt;/b&gt; um File Shuttle benutzen zu können. Bitte erteilen sie die notwendigen Zugriffsrechte für &lt;b&gt;BEIDE&lt;/b&gt; (Persönliches-Profil / Arbeits-Profil) Shelter Apps, die nach dem Klick auf \"OK\" in der nachfolgenden Meldung angezeigt werden.<b>All Files</b> for File Shuttle. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Shelter apps shown in the dialog after you press \"Ok\".</string>
+    <string name="request_storage_manager">Shelter benötigt Zugriff auf <b>Alle Dateien</b> um File Shuttle benutzen zu können. Bitte erteilen sie die notwendigen Zugriffsrechte für <b>BEIDE</b> (Persönliches-Profil / Arbeits-Profil) Shelter Apps, die nach dem Klick auf \"OK\" in der nachfolgenden Meldung angezeigt werden.</string>
     <string name="request_system_alert">Damit File Shuttle korrekt funktioniert, muss Shelter über anderen Anwendungen eingeblendet werden können. Bitte erteilen sie die notwendigen Zugriffsrechte für <b>BEIDE</b> (Persönliches-Profil / Arbeits-Profil) Shelter Apps, die nach dem Klick auf \"OK\" in der nachfolgenden Meldung angezeigt werden. Diese Berechtigung wird genutzt, um die File Shuttle Dienste im Hintergrund starten zu können.</string>
     <string name="miui_cannot_clone">Das Klonen von Nicht-System-Apps in das Arbeits-Profil ist derzeit unter MIUI nicht möglich. Bitte klonen sie den App-Store Ihres Systems (z.B. <b>Play Store</b>) in ihr Arbeits-Profil und installieren sie ihre benötigten Anwendungen von dort aus.</string>
     <string name="continue_anyway">Trotzdem fortsetzen</string>
     <string name="settings_translate">Übersetzung</string>
     <string name="documents_ui">Datei-Manager Oberfläche</string>
+    <string name="settings_block_contacts_searching">Blockiere Suche nach Kontakten</string>
+    <string name="settings_block_contacts_searching_desc">Zugriff vom persönlichen Profil zu den Kontakten im Arbeits-Profil blockieren.</string>
 </resources>
