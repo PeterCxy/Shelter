@@ -2,22 +2,22 @@
 <resources>
     <string name="first_run_alert_cancel">Beenden</string>
     <string name="first_run_alert_continue">Fortsetzen</string>
-    <string name="first_run_alert">Sie sind dabei, Shelter (dt. \"Bunker\") zu installieren.
-\n
-\nDiese Anwendung verwendet die Androidfunktion <b>Arbeits-Profil</b>, um Apps vom verwendeten Hauptsystem zu isolieren. Wenn sie ein Hersteller/Custom ROM verwenden, das nicht standardkonform ist (z.B. MIUI), sollten Sie die Installation <b>ABBRECHEN</b> und diese Anwendung <b>NICHT</b> benutzen.
-\n
-\nWenn Sie fortfahren, wird Shelter ein Arbeits-Profil für Sie einrichten.
-\n
-\nWenn Sie Entwickler sind und Shelter mit ihrem inkompatiblen ROM wie MIUI laufen soll können sie gerne eine Anfrage stellen. Der Entwickler übernimmt <b>ABSOLUT KEINE VERANTWORTUNG</b> wenn sie durch Verwendung eines inkompatiblen ROM ihr Gerät zerstören.
-\n
-\nIm Laufe der Installation werden Sie eine Benachrichtigung zum Installationsabschluss erhalten, stellen Sie also sicher, das Ihr Gerät <b>NICHT</b> im \"Bitte nicht stören\" Modus ist.</string>
-    <string name="device_admin_desc">App Isolations-Dienst</string>
+    <string name="first_run_alert">Sie sind dabei, Shelter (dt. \"Bunker\") zu installieren. 
+\n 
+\nDiese Anwendung verwendet die Android-Funktion <b>Arbeitsprofil</b>, um Apps vom verwendeten Hauptsystem zu isolieren. Wenn sie ein Hersteller-/Custom-ROM verwenden, das nicht standardkonform ist (z. B. MIUI), sollten Sie die Installation <b>ABBRECHEN</b> und diese Anwendung <b>NICHT</b> benutzen. 
+\n 
+\nWenn Sie fortfahren, wird Shelter ein Arbeitsprofil für Sie einrichten. 
+\n 
+\nWenn Sie Entwickler sind und Shelter mit ihrem inkompatiblen ROM wie MIUI laufen soll, können Sie gern eine Anfrage stellen. Der Entwickler übernimmt <b>ABSOLUT KEINE VERANTWORTUNG</b>, wenn Sie durch Verwendung eines inkompatiblen ROMs Ihr Gerät zerstören. 
+\n 
+\nIm Laufe der Installation werden Sie eine Benachrichtigung zum Installationsabschluss erhalten, stellen Sie also sicher, dass Ihr Gerät <b>NICHT</b> im \"Bitte nicht stören\"-Modus ist.</string>
+    <string name="device_admin_desc">App-Isolations-Dienst</string>
     <string name="device_admin_explanation">Shelter muss Geräte-Administrator werden, um Apps isolieren zu können.</string>
     <string name="camera_proxy_activity">Wählen sie eine Bild-Datei aus</string>
     <string name="notifications_important">Shelter - Achtung</string>
     <string name="finish_provision_title">Klicken Sie hier, um die Installation von Shelter abzuschliessen</string>
     <string name="finish_provision_desc">Glückwunsch! Nur noch ein Klick und die Installation von Shelter ist abgeschlossen.</string>
-    <string name="service_title">Shelter Dienst</string>
+    <string name="service_title">Shelter-Dienst</string>
     <string name="service_desc">Shelter läuft jetzt …</string>
     <string name="service_auto_freeze_title">Auto-Frost ausstehend</string>
     <string name="service_auto_freeze_desc">Bei der nächsten Bildschirmsperre wird Shelter die Apps automatisch einfrosten, die durch \"Auftauen &amp; Starten\" gestartet wurden.</string>
@@ -62,7 +62,7 @@
     <string name="settings_source_code">Quelltext</string>
     <string name="settings_bug_report">Fehler melden / Probleme lösen</string>
     <string name="device_admin_toast">Shelter benötigt Geräteadministrator-Rechte. Bitte versuchen sie es noch einmal.</string>
-    <string name="provision_still_pending">Bitte warten sie, bis Ihr Shelter Profil eingerichtet wurde …</string>
+    <string name="provision_still_pending">Bitte warten Sie, bis Ihr Shelter-Profil eingerichtet wurde …</string>
     <string name="provision_finished">Die Einrichtung von Shelter ist abgeschlossen. Das Programm wird jetzt neu gestartet. Sollte Shelter nicht automatisch starten, rufen Sie das Programm erneut manuell über das Shelter-Symbol auf.</string>
     <string name="msg_device_unsupported">Zugriff verweigert oder nicht unterstütztes Gerät</string>
     <string name="work_profile_not_found">Das Arbeits-Profil wurde nicht gefunden. Bitte starten Sie die App nochmals, um das Profil erneut bereitzustellen.</string>
@@ -85,7 +85,7 @@
     <string name="miui_cannot_clone">Das Klonen von Nicht-System-Apps in das Arbeits-Profil ist derzeit unter MIUI nicht möglich. Bitte klonen sie den App-Store Ihres Systems (z.B. <b>Play Store</b>) in ihr Arbeits-Profil und installieren sie ihre benötigten Anwendungen von dort aus.</string>
     <string name="continue_anyway">Trotzdem fortsetzen</string>
     <string name="settings_translate">Übersetzung</string>
-    <string name="documents_ui">Datei-Manager Oberfläche</string>
+    <string name="documents_ui">Datei-Manager-Oberfläche</string>
     <string name="settings_block_contacts_searching">Blockiere Suche nach Kontakten</string>
-    <string name="settings_block_contacts_searching_desc">Zugriff vom persönlichen Profil zu den Kontakten im Arbeits-Profil blockieren.</string>
+    <string name="settings_block_contacts_searching_desc">Zugriff vom persönlichen Profil zu den Kontakten im Arbeitsprofil blockieren.</string>
 </resources>
