@@ -1,2 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="first_run_alert_cancel">Ciao</string>
+    <string name="first_run_alert_continue">Continua</string>
+    <string name="device_admin_desc">Servizio di isolazione app</string>
+    <string name="device_admin_explanation">Shelter ha bisogno di diventare un Amministratore Dispositivo per riuscire nell\'isolamento delle app.</string>
+    <string name="camera_proxy_activity">Scegli un\'immagine</string>
+    <string name="notifications_important">Notifiche importanti</string>
+    <string name="finish_provision_title">Premi qui per finire la configurazione di Shelter</string>
+    <string name="finish_provision_desc">Congratulazioni! Ti manca una sola pressione per finire la configurazione di Shelter.</string>
+    <string name="service_title">Servizio Shelter</string>
+    <string name="service_desc">Shelter sta girando …</string>
+    <string name="service_auto_freeze_title">Blocco automatico in attesa</string>
+    <string name="settings_bug_report">Segnala un bug / Controllo del problema</string>
+    <string name="service_auto_freeze_now">Blocca adesso</string>
+    <string name="app_installing">Installazione...</string>
+    <string name="fragment_profile_main">Pagina principale</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="clone_to_work_profile">Clona a Shelter (Profilo lavorativo)</string>
+    <string name="clone_to_main_profile">Clona al Profilo principale</string>
+    <string name="uninstall_app">Disinstalla</string>
+    <string name="freeze_app">Blocca</string>
+    <string name="unfreeze_app">Sblocca</string>
+    <string name="launch">Lancia</string>
+    <string name="unfreeze_and_launch">Sblocca e Lancia</string>
+    <string name="auto_freeze">Auto-blocco</string>
+    <string name="allow_cross_profile_widgets">Permetti i Widgets nel Profilo principale</string>
+    <string name="search">Cerca</string>
+    <string name="freeze_all">Blocca il processo di background</string>
+    <string name="freeze_all_shortcut">Blocca</string>
+    <string name="show_all">Mostra tutte le app</string>
+    <string name="settings">Impostazioni</string>
+    <string name="documents_ui">Apri Documenti</string>
+    <string name="settings_interaction">Interazione</string>
+    <string name="settings_cross_profile_file_chooser">Lancia il file</string>
+    <string name="settings_camera_proxy">Seleziona l\'immagine per la falsa Camera</string>
+    <string name="device_admin_toast">Serve i permessi di Amministratore Dispositivo per far funzionare Shelter. Riprovare.</string>
+    <string name="settings_block_contacts_searching">Blocca la ricerca dei contatti</string>
+    <string name="settings_block_contacts_searching_desc">Blocca l\'accesso dal profilo principale ai contatti dentro il profilo lavorativo.</string>
+    <string name="settings_services">Servizi</string>
+    <string name="settings_auto_freeze_service">Auto-blocca servizio</string>
+    <string name="settings_auto_freeze_service_desc">Quando lo schermo e\' bloccato, blocca automaticamente le app lanciate da \"Sblocca e Lancia il collegamento\".</string>
+    <string name="settings_auto_freeze_delay">Ritarda l\'auto-blocco</string>
+    <string name="settings_dont_freeze_foreground">Tralascia le app in esecuzione</string>
+    <string name="settings_version">Versione</string>
+    <string name="settings_source_code">Codice sorgente</string>
+    <string name="settings_translate">Traduci</string>
+    <string name="provision_still_pending">Attendi mentre Shelter prepara il profilo per te …</string>
+    <string name="msg_device_unsupported">Permesso negato o Dispositivo non supportato</string>
+    <string name="work_profile_not_found">Profilo lavorativo non trovato. Si prega di riavviare l\'app per ripescare il profilo.</string>
+    <string name="work_profile_provision_failed">Non e\' possibile ripescare il profilo lavorativo. Riprova riavviando Shelter.</string>
+    <string name="clone_success">L\'app \"%s\" clonata con successo</string>
+    <string name="uninstall_success">L\'app \"%s\" disinstallata con successo</string>
+    <string name="freeze_success">L\'app \"%s\" bloccata con successo</string>
+    <string name="unfreeze_success">L\'app \"%s\" sbloccata con successo</string>
+    <string name="clone_fail_system_app">Non e\' possibile clonare le app di sistema su un profilo di cui Shelter non ha controllo.</string>
+    <string name="unsupported_launcher">Non e\' possibile aggiungere un collegamento. Si prega di contattare lo sviluppatore per maggiori informazioni(solo in inglese).</string>
+    <string name="app_context_menu_title">Operazioni per %s</string>
+    <string name="freeze_all_success">Tutte le app nella lista \"Auto-blocco\" sono state bloccate con successo.</string>
+    <string name="shortcut_create_success">Collegamento creato con successo.</string>
+    <string name="launch_app_fail">Non e\' possibile lanciare l\'app %s perche\' non ha alcuna interfaccia utente.</string>
+    <string name="request_system_alert">Shelter ha bisogno del permesso di &lt;b&gt;Disegnare sopra le altre Applicazioni&lt;/b&gt; per far funzionare Lancia File correttamente. Si prega di abilitare &lt;b&gt;ENTRAMBE&lt;/b&gt; (Personale / Lavorativa) le app di Shelter mostrate nel dialogo dopo la pressione di \"Ok\". Questo permesso e\' usato per i servizi di background di Lancia File.<b>Draw over Other Apps</b> in order for File Shuttle to function correctly. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Shelter apps shown in the dialog after you press \"Ok\". This permission is used to start File Shuttle services in the background.</string>
+    <string name="continue_anyway">Continua comunque</string>
+    <string name="first_run_alert">Stai per configurare Shelter.
+\n
+\nQuest\'app dipende dal &lt;b&gt;Profilo lavorativo&lt;/b&gt; di Android per isolare le app. Se il brand o la ROM personalizzata rompe questa funzionalita(es. Xiaomi/MIUI), &lt;b&gt;USCITE&lt;/b&gt; adesso e &lt;b&gt;NON&lt;/b&gt; usate quest\'app.
+\n
+\nSe si sceglie di continuare, Shelter impostera\' un profilo di lavoro per te.
+\n
+\n(Se sei uno sviluppatore e ti piacerebbe rendere Shelter funzionante su ROM incompatibili come MIUI, il contrinuto al codice e\' benvenuto. Lo sviluppatore &lt;b&gt;NON SI ASSUME ALCUNA RESPONSABILITA\'&lt;/b&gt; se si rompe il dispositivo che fa girare l\'app su ROM incompatibili.)
+\n
+\nC\'e\' bisogno di ricevere una notifica per finire la configurazione, assicurarsi che il dispositivo &lt;b&gt;NON&lt;/b&gt; e\' in modalita Silenziosa.<b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Shelter will set up Work Profile for you.\n\nIf you are a developer and would like to make Shelter work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.\n\nYou will need to receive a notification in order to finish setup, please make sure your device is <b>NOT</b> on Do Not Disturb mode.</string>
+    <string name="show_all_warning">Manipolare le app nascoste dalla lista puo\' causare crash e ogni tipo di comportamento inaspettato. Pero\' questa funzionalita\' puo\' essere utile quando il brand/ROM non abilita tutte le app predefinite necessarie per il buon funzionamento del profilo lavorativo. Se continui, ti assumi la responsabilita\' delle tue azioni.</string>
+    <string name="provision_finished">Configurazione di Shelter completata. Adesso si sta riavviando Shelter. Se Shelter non si riapre automaticamento, rilanciarlo manualmente.</string>
+    <string name="miui_cannot_clone">La clonazione delle app non di sistema su un\'altro profilo non e\' possibile su MIUI. Si prega di clonare il negozio delle app nell\'altro profilo e poi installarle da li\'.</string>
+    <string name="service_auto_freeze_desc">Shelter blocchera\' in automatico le app lanciate da \"Sblocca e Lancia\" al prossimo blocco schermo.</string>
+    <string name="settings_cross_profile_file_chooser_desc">Quando abilitato sarai capace di navigare/vedere/selezionare/copiare i file in Shelter dal profilo principale e vice-versa, SOLO tramite l\'interfaccia dei Documenti o le app con il supporto dell\'interfaccia dei Documenti, mantenendo al contempo l\'isolamento del sistema dei file.</string>
+    <string name="work_mode_disabled">Sembra che hai disabilitato la modalita\' lavorativa mentre lanciavi Shelter. Se lo abiliti adesso, si prega di riavviare Shelter.</string>
+    <string name="list_item_disabled">[Frozen] %i</string>
+    <string name="uninstall_fail_system_app">Non e\' possibile disinstallare le app di sistema in un profilo che Shelter non ha controllo.</string>
+    <string name="batch_operation">Operazione in background</string>
+    <string name="create_unfreeze_shortcut">Crea un collegamento di Sblocco e/o Lancio</string>
+    <string name="create_freeze_all_shortcut">Crea un collegamento di blocco del processo di background</string>
+    <string name="settings_camera_proxy_desc">Presenta una falsa app per la Camera alle altre app, permettendoti di scegliere qualunque immagine dai Documenti(se Lancia File e\' abilitato) come se fosse un\'immagine scattata.</string>
+    <string name="install_app_to_profile">Installa l\'APK in Shelter</string>
+    <string name="settings_dont_freeze_foreground_desc">NON bloccare le app attive quando si blocca lo schermo. Questo puo\' essere utile per le app tipo lettori musicali, ma servira\' bloccarle manualmente dopo tramite \"Collegamento del blocco del processo di background\".</string>
+    <string name="request_usage_stats">Shelter ha bisogno dei permessi di &lt;b&gt;Statistiche d\'uso&lt;/b&gt; per farlo. Si prega di abilitare il permesso pee &lt;b&gt;ENTRAMBE&lt;/b&gt; le app di Shelter mostrate nel dialogo dopo che premete \"Ok\". Altrimenti questa funzionalita\' non funzionera\' propriamente.<b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Shelter apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
+    <string name="install_app_to_profile_success">L\'installazione dell\'app nel profilo lavorativo e\' finita.</string>
+    <string name="settings_about">Sull\'app</string>
+    <string name="request_storage_manager">Shelter ha bisogno dell\'accesso a &lt;b&gt;Tutti i file&lt;/b&gt; per il Lancio File. Si prega di abilitare il permesso su &lt;b&gt;ENTRAMBE&lt;/b&gt; (Personale / Lavorativo) le app di Shelter mostrate nel dialogo dopo che premete \"Ok\".<b>All Files</b> for File Shuttle. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Shelter apps shown in the dialog after you press \"Ok\".</string>
+</resources>
