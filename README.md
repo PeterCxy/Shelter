@@ -3,6 +3,8 @@
 <a href='https://play.google.com/store/apps/details?id=net.typeblog.shelter&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="80"/></a>
 <a href="https://f-droid.org/app/net.typeblog.shelter"><img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"></a>
 
+You can also download APKs released and signed directly by me [here](https://github.com/PeterCxy/Shelter/releases), in case you want the full-featured version but do not want to go through uninstalling the Google Play version and re-installing the F-Droid version.
+
 <a href="http://weblate.typeblog.net/engage/shelter/?utm_source=widget">
   <img src="http://weblate.typeblog.net/widgets/shelter/-/shelter/multi-auto.svg" alt="Translation status" />
 </a>
