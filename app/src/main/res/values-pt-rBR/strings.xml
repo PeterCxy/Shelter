@@ -2,12 +2,13 @@
 <resources>
     <string name="first_run_alert">Você esta a ponto de configurar o Shelter.
 \n
-\nEste aplicativo depende de &lt;b&gt;Perfil de trabalho&lt;/b&gt; funcionalidade do Android que permite isolar os aplicativos. Se você usa um Stock / ROM personalizado que interfere nesta funcionalidade (e.g. MIUI), você deve &lt;b&gt;SAIR AGORA&lt;/b&gt; e &lt;b&gt;NÃO&lt;/b&gt; usar este app.
+\nEste aplicativo depende de <b>Perfil de Trabalho</b> recurso do Android que permite isolar os aplicativos. Se você usa um Stock / ROM personalizado que interfere nesta funcionalidade (por ex. MIUI), você deve <b>SAIR</b> agora e <b>NÃO</b> usar este app.
 \n
-\nSe você optar por continuar, Shelter criará Perfil de trabalho para você.
+\nSe você optar por continuar, o Shelter criará Perfil de Trabalho para você.
 \n
-\nSe você é um desenvolvedor e gostaria de fazer Shelter compatível com ROMs como MIUI, faça Pull Requests sua ajuda é bem-vinda. O desenvolvedor não assume &lt;b&gt;ABSOLUTAMENTE NENHUMA RESPONSABILIDADE&lt;/b&gt; se você quebrar sua sistema operacional de Android executando Shelter numa ROM incompatível.
-\n}Você precisará receber uma notificação para finalizar a configuração, por favor, certifique-se de que seu dispositivo &lt;b&gt;NÃO ESTÁ&lt;/b&gt; no modo Não Perturbe.<b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Shelter will set up Work Profile for you.\n\nIf you are a developer and would like to make Shelter work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.\n\nYou will need to receive a notification in order to finish setup, please make sure your device is <b>NOT</b> on Do Not Disturb mode.</string>
+\nSe você é um desenvolvedor e gostaria de fazer o Shelter compatível com os ROMs como MIUI, faça Pull Request, sua ajuda é bem-vinda. O desenvolvedor não assume <b>ABSOLUTAMENTE NENHUMA RESPONSABILIDADE</b> se você quebrar seu dispositivo executando o Shelter num ROM incompatível.
+\n
+\nVocê precisará receber uma notificação para finalizar a configuração, por favor, certifique-se de que seu dispositivo <b>NÃO</b> está no modo Não Perturbe.</string>
     <string name="first_run_alert_cancel">Tchau</string>
     <string name="first_run_alert_continue">Continuar</string>
     <string name="device_admin_desc">Serviço de Isolamento</string>
@@ -41,7 +42,7 @@
     <string name="create_freeze_all_shortcut">Criar atalho para Suspensão Batch</string>
     <string name="freeze_all_shortcut">Suspender</string>
     <string name="install_app_to_profile">Instalar APK no Shelter</string>
-    <string name="install_app_to_profile_success">Instalação de aplicativo no perfil de trabalho foi bem-sucedido</string>
+    <string name="install_app_to_profile_success">Instalação do aplicativo no perfil de trabalho foi concluído.</string>
     <string name="show_all">Mostrar todos os aplicativos</string>
     <string name="show_all_warning">Manipular aplicativos que estão ocultos da lista pode causar falhas e todo tipo de comportamento inesperado. Entretanto, este recurso pode ser útil quando ROMs personalizados com defeito não habilitam todos os aplicativos de sistema necessárias no perfil de trabalho por padrão. Se você continuar, você está com sua própria sorte.</string>
     <string name="settings">Configurações</string>
@@ -79,4 +80,12 @@
     <string name="settings_interaction">Interação</string>
     <string name="device_admin_toast">Tem que conceder permissão de administração do dispositivo para que Shelter funcione bem. Favor, tente de novo.</string>
     <string name="clone_success">Aplicativo \"%s\" clonado com êxito</string>
+    <string name="documents_ui">Abrir IU de Documentos</string>
+    <string name="settings_block_contacts_searching">Bloquear a Busca em Contatos</string>
+    <string name="settings_block_contacts_searching_desc">Negar o acesso do perfil principal aos contatos dentro do perfil de trabalho.</string>
+    <string name="settings_translate">Traduzir</string>
+    <string name="settings_bug_report">Relatório de Erros / Problemas</string>
+    <string name="request_storage_manager">O Shelter precisa ter acesso a <b>Todos os arquivos</b> para poder usar o Traslado De Arquivos. Favor ativar a permissão para <b>Ambos</b> (Principal / Trabalho) aplicativos de Shelter que aparecerá no diálogo depois de pressionar \"Ok\".</string>
+    <string name="request_system_alert">O Shelter precisa <b>Exibir sobre Outros Aplicativos</b> para que o Traslado De Arquivos funcione corretamente. Favor ativar a permissão para <b>Ambos</b> (Principal / Trabalho) aplicativos de Shelter que aparecerá no diálogo depois de pressionar \"Ok\". Esta permissão é usada para iniciar os serviços de Traslado De Arquivos em segundo plano.</string>
+    <string name="continue_anyway">Continuar, sim</string>
 </resources>
