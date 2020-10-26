@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="first_run_alert_cancel">Anuluj</string>
+    <string name="first_run_alert_continue">Kontynuuj</string>
+    <string name="device_admin_desc">Usługa izolowania aplikacji</string>
+    <string name="device_admin_explanation">Shelter musi zostać administratorem urządzenia, aby wykonywać zadania związane z izolacją.</string>
+    <string name="camera_proxy_activity">Wybierz plik obrazka</string>
+    <string name="finish_provision_title">Kliknij tu, aby zakończyć konfigurację Shelter</string>
+    <string name="finish_provision_desc">Gratulacje! Jesteś jedno kliknięcie od skończenia konfiguracji Shelter.</string>
+    <string name="service_title">Usługa Shelter</string>
+    <string name="service_desc">Shelter jest uruchomiony…</string>
+    <string name="service_auto_freeze_title">Auto-zamrożenie w trakcie</string>
+    <string name="service_auto_freeze_desc">Shelter automatycznie zamrozi aplikacje uruchomione przez \"Odmróź i uruchom\" na następnym zablokowaniu ekranu.</string>
+    <string name="service_auto_freeze_now">Zamróź teraz</string>
+    <string name="app_installing">Instalowanie...</string>
+    <string name="fragment_profile_main">Główny</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[Zamrożone] %s</string>
+    <string name="first_run_alert">Zamierzasz skonfigurować Shelter.
+\n
+\nTa aplikacja polega na wykorzystaniu funkcji &lt;b&gt;Profil Służbowy&lt;/b&gt; w Androidzie, aby izolować aplikacje. Jeżeli korzystasz z systemu zmodyfikowanego przez producenta telefonu (np. MIUI), należy &lt;b&gt;ZAMKNĄĆ&lt;/b&gt; Shelter i &lt;b&gt;NIE UŻYWAĆ&lt;/b&gt; tej aplikacji.
+\n
+\nJeżeli kontynuujesz, Shelter ustawi dla Profil Służbowy dla Ciebie.
+\n
+\nJeśli jesteś programistą i chcesz wprowadzić obsługę dla niewspieranych ROMów, jak np. MIUI, pull requesty są mile widziane. Programiści nie biorą &lt;b&gt;ABSOLUTNIE ŻADNEJ ODPOWIEDZIALNOŚCI&lt;/b&gt; w wypadku uszkodzenia urządzenia z niewspieranym systemem.
+\n
+\nOtrzymasz powiadomienie wymagane do dokończenia konfiguracji, upewnij się, że twoje urządzenie &lt;b&gt;NIE&lt;/b&gt; jest w trybie Nie przeszkadzać.<b>Work Profile</b> feature of Android to isolate the apps. If you use a vendor / custom ROM that breaks related features (e.g. MIUI), you should now <b>QUIT</b> and <b>DO NOT</b> use this app.\n\nIf you choose to continue, Shelter will set up Work Profile for you.\n\nIf you are a developer and would like to make Shelter work on those incompatible ROMs like MIUI, pull requests are always welcome. The developer takes <b>ABSOLUTELY NO RESPONSIBILITY</b> if you break your device running an incompatible ROM.\n\nYou will need to receive a notification in order to finish setup, please make sure your device is <b>NOT</b> on Do Not Disturb mode.</string>
+    <string name="unfreeze_and_launch">Odmróź i uruchom</string>
+</resources>
