@@ -1,2 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="first_run_alert_cancel">Tot ziens</string>
+    <string name="first_run_alert_continue">Verdergaan</string>
+    <string name="device_admin_explanation">Shelter moet beheerder van dit apperaat worden om zijn isolatietaken uit te voeren.</string>
+    <string name="camera_proxy_activity">Kies een beeldsbestand</string>
+    <string name="notifications_important">Shelter belangrijk</string>
+    <string name="finish_provision_title">Druk hier om het instellen van Shelter te beëindigen</string>
+    <string name="finish_provision_desc">Gefeliciteerd! Je bent een klik verwijderd om het instellen van Shelter te beëindigen.</string>
+    <string name="device_admin_desc">App isolatiedienst</string>
+    <string name="service_title">Shelter Dienst</string>
+    <string name="service_desc">Shelter is nu actief …</string>
+    <string name="auto_freeze">Bevries automatisch</string>
+    <string name="allow_cross_profile_widgets">Widgets toestaan in Hoofdprofiel</string>
+    <string name="search">Zoek</string>
+    <string name="freeze_all">Reeks Bevriezen</string>
+    <string name="create_freeze_all_shortcut">Creëer Reeks Bevriezing Snelkoppeling</string>
+    <string name="freeze_all_shortcut">Bevries</string>
+    <string name="install_app_to_profile">Installeer APK in Shelter</string>
+    <string name="show_all">Toon Alle Apps</string>
+    <string name="install_app_to_profile_success">Installatie applicatie voltooid in werkprofiel.</string>
+    <string name="first_run_alert">Je staat op het punt om Shelter in te stellen.
+\n
+\nDeze app hang af van de <b>Werkmodus</b> functie van Android om apps te isoleren. Als je een verkoper / op maat gemaakte ROM die deze functie breekt (bv. MIUI) , zou je nu moeten <b>VERLATEN</b> en gebruik <b>NIET</b> deze app.
+\n
+\nAls je beslist om verder te gaan, zal Shelter een Werkmodus voor je opstellen.
+\n
+\nAls je en ontwikkerlaar bent en graag Shelter wilt laten werken op deze onverenigbare ROMs zoals MIUI, pull requests zijn altijd welkom. De ontwikkelaar neemt <b>ABSOLUUT GEEN VERANTWOORDELIJKHEID</b> op als je je apperaat met een onverenigbare ROM breekt.
+\n
+\nJe zal een melding moeten krijgen om je instelling af te ronden, zorg er alsjeblieft voor dat je apperaat <b>NIET</b> op Niet Storen staat.</string>
+</resources>
