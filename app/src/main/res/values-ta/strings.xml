@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="first_run_alert">நீங்கள் இப்பொழுது ஷெல்டர் ஆப் செட் பண்ண போகிறீர்கள்
+\n
+\nஇந்த ஆப் உங்கள் போனில் உள்ள <b>வொர்க் ப்ரோஃபைல்</b> வசதியை பயன்படுத்தி மத்த ஆப்களை ஐசலேட் பண்ணும்</string>
+</resources>
