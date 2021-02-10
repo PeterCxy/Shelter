@@ -1,2 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="first_run_alert_cancel">終了</string>
+    <string name="first_run_alert_continue">続行</string>
+    <string name="device_admin_desc">アプリ隔離サービス</string>
+    <string name="device_admin_explanation">隔離処理を行うためにShelterをデバイス管理者に設定する必要があります。</string>
+    <string name="camera_proxy_activity">画像ファイルを選択</string>
+    <string name="notifications_important">Shelterの重要な通知</string>
+    <string name="finish_provision_title">タップしてShelterのセットアップを完了してください</string>
+    <string name="finish_provision_desc">おめでとうございます！Shelterのセットアップ完了まであと一歩です。</string>
+    <string name="service_title">Shelterサービス</string>
+    <string name="service_desc">Shelterは実行中です…</string>
+    <string name="service_auto_freeze_title">自動凍結は保留中です</string>
+    <string name="service_auto_freeze_now">今すぐ凍結</string>
+    <string name="service_auto_freeze_desc">Shelterは、次の画面ロック時に「凍結解除＆起動」から実行したアプリを自動でフリーズさせます。</string>
+    <string name="app_installing">インストール中...</string>
+    <string name="fragment_profile_main">メイン</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[凍結中%s]</string>
+    <string name="batch_operation">一括処理</string>
+    <string name="clone_to_main_profile">標準プロファイルに複製</string>
+    <string name="uninstall_app">アンインストール</string>
+    <string name="freeze_app">凍結</string>
+    <string name="unfreeze_app">凍結解除</string>
+    <string name="launch">起動</string>
+    <string name="unfreeze_and_launch">凍結解除して起動</string>
+    <string name="auto_freeze">自動凍結</string>
+    <string name="allow_cross_profile_widgets">メインプロファイル内でウィジェットの作成を許可する</string>
+    <string name="search">検索</string>
+    <string name="freeze_all">一括凍結</string>
+    <string name="create_freeze_all_shortcut">自動凍結するショートカットを作成</string>
+    <string name="freeze_all_shortcut">凍結</string>
+    <string name="install_app_to_profile">APKをShelter内にインストール</string>
+    <string name="show_all">全てのアプリを表示</string>
+    <string name="documents_ui">標準ファイラーを開く</string>
+    <string name="settings">設定</string>
+    <string name="settings_camera_proxy">フェイクカメラで使用する画像を選択</string>
+    <string name="settings_block_contacts_searching">連絡先の検索をブロック</string>
+    <string name="settings_services">サービス</string>
+    <string name="settings_auto_freeze_service">自動凍結サービス</string>
+    <string name="settings_dont_freeze_foreground">フォアグラウンドで実行中のアプリをスキップ</string>
+    <string name="settings_about">このアプリについて</string>
+    <string name="settings_version">バージョン</string>
+    <string name="settings_source_code">ソースコード</string>
+    <string name="settings_translate">翻訳</string>
+    <string name="settings_interaction">対話型</string>
+    <string name="settings_auto_freeze_delay">自動凍結する時間</string>
+    <string name="show_all_warning">リストから非表示になっているアプリを操作すると、クラッシュや予期せぬ動作を引き起こす可能性があります。この機能は、ベンダーによって欠陥のあるカスタマイズされたROMがデフォルトで作業プロファイルで必要なシステムアプリをすべて有効にしていない場合に便利です。自己責任で続行してください。</string>
+    <string name="settings_auto_freeze_service_desc">画面ロック中に「凍結解除＆起動」のショートカットから実行されたアプリを自動的に凍結します。</string>
+    <string name="device_admin_toast">Shelterが正常に動作するためにデバイス管理者として設定する必要があります。再試行してください。</string>
+    <string name="provision_still_pending">Shelterがプロファイルを準備しています。しばらくお待ちください…</string>
+    <string name="provision_finished">Shelterのセットアップが完了しました。Shelterを再起動しています。Shelterが自動的に再度立ち上がらない場合ランチャーから手動で起動してください。</string>
+    <string name="msg_device_unsupported">権限が付与されてないか未対応の端末です</string>
+    <string name="continue_anyway">無視して続行</string>
+    <string name="work_profile_not_found">仕事用プロファイルが見つかりません。プロファイルを再生成するためにアプリを再起動してください。</string>
+    <string name="work_profile_provision_failed">プロファイルを生成できませんでした。Shelterを再起動して再試行できます。</string>
+    <string name="work_mode_disabled">Shelterの実行中に仕事用プロファイルが無効になりました。再度有効にした後Shelterを再起動してください。</string>
+    <string name="clone_success">アプリ「%s」は正常に複製されました</string>
+    <string name="uninstall_success">アプリ「%s」は正常にアンインストールされました</string>
+    <string name="freeze_success">アプリ「%s」は正常に凍結されました</string>
+    <string name="unfreeze_success">アプリ「%s」は正常に凍結解除されました</string>
+    <string name="clone_fail_system_app">Shelterに制御できないシステムアプリを複製することができませんでした。</string>
+    <string name="uninstall_fail_system_app">Shelterに制御できないシステムアプリをアンインストールすることができませんでした。</string>
+    <string name="unsupported_launcher">ホーム画面ショートカットを追加できませんでした。詳細な情報は開発者にご確認ください。</string>
+    <string name="app_context_menu_title">%sの操作</string>
+    <string name="freeze_all_success">自動凍結リストにある全てのアプリは正常に凍結されました。</string>
+    <string name="shortcut_create_success">ショートカットがホーム画面に作成されました。</string>
+    <string name="request_usage_stats">この操作を行うためにはShelterに<b>使用状況へのアクセス</b>を許可する必要があります。OKをタップした後、表示されるShelterアプリの<b>二つとも</b>に権限を付与してください。これを行わないとこの機能は正常に動作しません。</string>
+    <string name="launch_app_fail">GUIが見つからないためアプリ%sを起動することができません。</string>
+    <string name="request_storage_manager">ファイル同期を利用するにはShelterに<b>全てのファイルへのアクセス</b>を許可する必要があります。OKをタップした後、表示されるShelterアプリの個人用/仕事用の<b>二つとも</b>に権限を付与してください。</string>
+    <string name="miui_cannot_clone">MIUIでは現在非システムアプリを別のプロファイルに複製できません。システムのアプリストア（<b>Playストア</b>など）を別のプロファイルに複製してそこからアプリをインストールしてください。</string>
+    <string name="first_run_alert">Shelterのセットアップを開始しようとしています。
+\n
+\nこのアプリはAndroidの<b>仕事用プロファイル</b>機能を使用することでアプリの隔離を行います。あなたの端末のベンダーの（またはカスタム）ROMがこの機能と競合する場合、（MIUIなど）はこのアプリを<b>使用せず終了</b>してください。
+\n
+\n続行すると、Shelterは仕事用プロファイルのセットアップを行います。
+\n
+\nもしあなたが開発者でShelterをMIUIのような未対応のROMに対応させたいならば、プルリクエストを歓迎します。未対応のROMでこのアプリを使用しようとして、端末に損害が生じても私は<b>一切の責任を負いません</b>
+\n
+\nセットアップの完了のために通知を受け取る必要があるためDND（マナーモード）を一時的に無効にしてください。</string>
+    <string name="clone_to_work_profile">Shelter(仕事用プロファイル)内に複製</string>
+    <string name="create_unfreeze_shortcut">凍結解除・起動するショートカットを作成する</string>
+    <string name="install_app_to_profile_success">仕事用プロファイル内にアプリがインストールされました。</string>
+    <string name="settings_block_contacts_searching_desc">メインプロファイルから仕事用プロファイル内の連絡先へのアクセスを拒否します。</string>
+    <string name="settings_bug_report">バグレポート/イシュートラッカー</string>
+    <string name="settings_cross_profile_file_chooser">ファイル同期</string>
+    <string name="settings_cross_profile_file_chooser_desc">有効にした場合、メインプロファイルからShelter内のファイルを管理できるようになります。Shelter内のファイルへはDocument UI（標準ファイラー）のみから隔離されたファイルシステムにアクセスできます。</string>
+    <string name="request_system_alert">ファイル同期が正常に機能するためにShelterに<b>他のアプリに重ねて表示</b>を許可する必要があります。OKをタップした後、表示されるShelterアプリの個人用/仕事用の<b>二つとも</b>に権限を付与してください。この権限はファイル同期サービスがバックグラウンドで動作するために使われます。</string>
+</resources>
