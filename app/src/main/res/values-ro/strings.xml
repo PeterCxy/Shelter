@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="first_run_alert_cancel">Pa pa</string>
+    <string name="first_run_alert_continue">Continuă</string>
+    <string name="device_admin_desc">Serviciu de izolare a aplicațiilor</string>
+</resources>
