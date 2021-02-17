@@ -3,4 +3,17 @@
     <string name="first_run_alert_cancel">Pa pa</string>
     <string name="first_run_alert_continue">Continuă</string>
     <string name="device_admin_desc">Serviciu de izolare a aplicațiilor</string>
+    <string name="settings_auto_freeze_delay">Intarziere Auto Inghetare</string>
+    <string name="settings_dont_freeze_foreground">Sariti aplicatiile din prim plan</string>
+    <string name="settings_about">Despre</string>
+    <string name="settings_version">Versiune</string>
+    <string name="settings_source_code">Codul Sursa</string>
+    <string name="settings_translate">Traducere</string>
+    <string name="settings_bug_report">Raportare eroare / Urmarirea erorilor</string>
+    <string name="device_admin_toast">Trebuie sa permiteti permisiunea de Administrator Dispozitiv pentru ca Shelter sa funcționeze. Va rugam sa incercati din nou.</string>
+    <string name="provision_still_pending">Va rugam sa asteptati in timp ce va pregătim profilul Shelter pentru dvs. …</string>
+    <string name="msg_device_unsupported">Permisiunea este refuzata sau dispozitivul nu este acceptat</string>
+    <string name="clone_success">Aplicatia \"%s\" a fost clonata cu succes</string>
+    <string name="settings_dont_freeze_foreground_desc">NU ingheta aplicatiile din prim plan (cu activitate vizibila) cand blocati ecranul. Acest lucru poate fi util pentru aplicatii precum playere de muzica, dar va trebui să le înghetati manual prin „Batch Freeze Shortcut” dupa aceea.</string>
+    <string name="provision_finished">Configurarea Shelter s-a incheiat. Acum reporniti Shelter. Daca Shelter nu a pornit automat, il puteți porni din nou manual.</string>
 </resources>
