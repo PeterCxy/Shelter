@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="first_run_alert_cancel">Pa pa</string>
+    <string name="first_run_alert_cancel">La revedere</string>
     <string name="first_run_alert_continue">Continuă</string>
     <string name="device_admin_desc">Serviciu de izolare a aplicațiilor</string>
     <string name="settings_auto_freeze_delay">Intarziere Auto Inghetare</string>
-    <string name="settings_dont_freeze_foreground">Sariti aplicatiile din prim plan</string>
+    <string name="settings_dont_freeze_foreground">Sariti Aplicatiile din Prim-Plan</string>
     <string name="settings_about">Despre</string>
     <string name="settings_version">Versiune</string>
     <string name="settings_source_code">Codul Sursa</string>
@@ -14,6 +14,78 @@
     <string name="provision_still_pending">Va rugam sa asteptati in timp ce va pregătim profilul Shelter pentru dvs. …</string>
     <string name="msg_device_unsupported">Permisiunea este refuzata sau dispozitivul nu este acceptat</string>
     <string name="clone_success">Aplicatia \"%s\" a fost clonata cu succes</string>
-    <string name="settings_dont_freeze_foreground_desc">NU ingheta aplicatiile din prim plan (cu activitate vizibila) cand blocati ecranul. Acest lucru poate fi util pentru aplicatii precum playere de muzica, dar va trebui să le înghetati manual prin „Batch Freeze Shortcut” dupa aceea.</string>
+    <string name="settings_dont_freeze_foreground_desc">NU ingheta aplicatiile din Prim-Plan (cu activitate vizibila) cand blocati ecranul. Acest lucru poate fi util pentru aplicatii precum playere de muzica, dar va trebui să le înghetati manual prin „Comandă rapidă de Inghetare Grup(lot)” dupa aceea.</string>
     <string name="provision_finished">Configurarea Shelter s-a incheiat. Acum reporniti Shelter. Daca Shelter nu a pornit automat, il puteți porni din nou manual.</string>
+    <string name="show_all_warning">Manipularea aplicațiilor ascunse din listă ar putea provoca blocări și tot felul de comportamente neașteptate. De asemenea această caracteristică poate fi utilă atunci când ROM-urile defecte personalizate de furnizor nu activează în mod implicit toate aplicațiile de sistem necesare în profilul de lucru. Dacă continuați, sunteți pe cont propriu.</string>
+    <string name="settings_cross_profile_file_chooser_desc">Când este activat, veți putea răsfoi / vizualiza / alege / copia fișiere în Shelter din profilul principal și invers, DOAR prin interfața de utilizare a documentelor (denumită Fișiere sau documente pe launcher-ul dvs.) sau aplicații cu suport pentru interfața de utilizare a documentelor (acestea câștigă numai acces temporar la fișierele pe care le alegeți în interfața de utilizare Documente), în timp ce aparține încă izolării sistemului de fișiere.</string>
+    <string name="request_usage_stats">Shelter are nevoie de permisiunea <b> Statistici de utilizare </b> pentru a face acest lucru. Activați permisiunea pentru <b> AMBELE </b> aplicații Shelter afișate în casetă de dialog după ce apăsați „Ok”. În caz contrar, această caracteristică nu va funcționa corect.</string>
+    <string name="request_system_alert">Shelter trebuie să <b> Afiseze peste alte aplicații </b> pentru ca File Shuttle să funcționeze corect. Vă rugăm să activați permisiunea pentru <b> AMBELE </b> (Principal / Lucru) aplicații Shelter afișate în caseta de dialog după ce apăsați „Ok”. Această permisiune este utilizată pentru a porni serviciile File Shuttle în fundal.</string>
+    <string name="first_run_alert">Ești pe cale să configurezi Shelter.
+\n
+\nAceastă aplicație depinde de funcția <b> Profil de lucru </b> a Android pentru a izola aplicațiile. Dacă utilizați un furnizor / ROM personalizat care întrerupe funcțiile conexe (de exemplu, MIUI), ar trebui să <b> RENUNTATI </b> si sa <b> NU </b> utilizați această aplicație
+\n
+\nDacă alegeți să continuați, Shelter vă va configura profilul de lucru.
+\n
+\nDacă sunteți dezvoltator și doriți să faceți Shelter să funcționeze pe acele ROM-uri incompatibile precum MIUI, solicitările sunt întotdeauna binevenite. Dezvoltatorul <b> NU ISI ASUMA ABSOLUT NICI O RESPONSABILITATE </b> dacă vă stricati dispozitivul care rulează un ROM incompatibil.
+\n
+\nVa trebui să primiți o notificare pentru a finaliza configurarea, vă rugăm să vă asigurați că dispozitivul dvs. <b> NU </b> este în modul Nu deranjați.</string>
+    <string name="create_freeze_all_shortcut">Creați o comandă rapidă de Inghetare Grup(lot)</string>
+    <string name="camera_proxy_activity">Alegeți un fișier de imagine</string>
+    <string name="notifications_important">Shelter Important</string>
+    <string name="finish_provision_title">Click aici pentru a finaliza configurarea Shelter</string>
+    <string name="service_title">Serviciul Shelter</string>
+    <string name="service_desc">Shelter ruleaza acum …</string>
+    <string name="service_auto_freeze_title">Auto-inghetare în așteptare</string>
+    <string name="service_auto_freeze_desc">Shelter va îngheța automat aplicațiile lansate din „Deblocați și lansați” la următorul eveniment de blocare a ecranului.</string>
+    <string name="service_auto_freeze_now">Îngheață acum</string>
+    <string name="app_installing">Se instalează ...</string>
+    <string name="fragment_profile_main">Principal</string>
+    <string name="list_item_disabled">[S-a Inghetat] %s</string>
+    <string name="clone_to_work_profile">Clonați la Shelter (profilul de lucru)</string>
+    <string name="uninstall_app">Dezinstalați</string>
+    <string name="freeze_app">Îngheaţa</string>
+    <string name="unfreeze_app">Dezghețați</string>
+    <string name="launch">Porneste</string>
+    <string name="unfreeze_and_launch">Dezgheața și Porniti</string>
+    <string name="search">Cauta</string>
+    <string name="freeze_all_shortcut">Îngheaţa</string>
+    <string name="install_app_to_profile">Instalați APK în Shelter</string>
+    <string name="settings">Setări</string>
+    <string name="settings_interaction">Interacţiune</string>
+    <string name="settings_cross_profile_file_chooser">File Shuttle</string>
+    <string name="settings_camera_proxy">Activeaza Camera Falsa</string>
+    <string name="device_admin_explanation">Shelter trebuie să devină Administrator de Dispozitiv pentru a-și îndeplini sarcinile de izolare.</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="clone_to_main_profile">Clonați la Profilul Principal</string>
+    <string name="auto_freeze">Înghețare Automată</string>
+    <string name="allow_cross_profile_widgets">Permiteți widgeturile în Profilul Principal</string>
+    <string name="freeze_all">Înghețare in Grup(lot)</string>
+    <string name="install_app_to_profile_success">Instalarea aplicației a fost finalizată în Profilul de Lucru.</string>
+    <string name="show_all">Afișați toate Aplicațiile</string>
+    <string name="documents_ui">Deschideți Interfața de Utilizare a Documentelor</string>
+    <string name="work_mode_disabled">Se pare că ați dezactivat Profilul de Lucru în timp ce porniți Shelter. Dacă l-ați activat acum, porniți din nou Shelter.</string>
+    <string name="request_storage_manager">Shelter are nevoie de acces la <b> Toate fișierele </b> pentru File Shuttle. Vă rugăm să activați permisiunea pentru <b> AMBELE </b> (Principal/ Lucru) aplicații Shelter afișate în caseta de dialog după ce apăsați „Ok”.</string>
+    <string name="settings_camera_proxy_desc">Prezentați o aplicație de cameră falsă altor aplicații, permițându-vă să alegeți o imagine arbitrară din interfața de utilizare a documentelor (și File Shuttle dacă este activată) ca fotografie făcută. Aceasta permite File Shuttle pentru orice aplicație care acceptă invocarea altor aplicații de cameră pentru a face o fotografie, chiar dacă acestea nu acceptă Documente UI în mod nativ.</string>
+    <string name="settings_block_contacts_searching">Blocați Căutarea Contactelor</string>
+    <string name="settings_services">Servicii</string>
+    <string name="uninstall_success">Aplicația \"%s\" a fost dezinstalată cu succes</string>
+    <string name="freeze_success">Aplicația \"%s\" s-a inghetat cu succes</string>
+    <string name="unfreeze_success">Aplicația \"%s\" s-a dezghetat cu succes</string>
+    <string name="clone_fail_system_app">Nu pot clona aplicațiile de sistem la un profil pe care Shelter nu îl controlează.</string>
+    <string name="uninstall_fail_system_app">Nu se pot dezinstala aplicațiile de sistem într-un profil pe care Shelter nu îl controlează.</string>
+    <string name="unsupported_launcher">Nu se pot adăuga comenzi rapide la launcher-ul dvs. Vă rugăm să contactați dezvoltatorul pentru mai multe informații.</string>
+    <string name="app_context_menu_title">Operații pentru %s</string>
+    <string name="freeze_all_success">Toate aplicațiile din lista „Inghetare Automata” au fost înghețate cu succes.</string>
+    <string name="shortcut_create_success">Comandă rapidă creată pe launcher.</string>
+    <string name="launch_app_fail">Nu se poate porni %s deoarece nu are GUI.</string>
+    <string name="settings_block_contacts_searching_desc">Refuzați accesul din Profilul Principal la contactele din Profilul de Lucru.</string>
+    <string name="settings_auto_freeze_service">Serviciu de înghețare Automată</string>
+    <string name="settings_auto_freeze_service_desc">Când ecranul este blocat, înghețați automat aplicațiile pornite din „Deblocați și Porniti comanda rapidă”.</string>
+    <string name="work_profile_not_found">Profilul de Lucru nu a fost găsit. Reporniți aplicația pentru a re-furniza profilul.</string>
+    <string name="work_profile_provision_failed">Nu se poate furniza Profilul de Lucru. Puteți încerca din nou repornind Shelter.</string>
+    <string name="miui_cannot_clone">Clonarea aplicațiilor non-sistem pe un alt profil nu este momentan posibilă pe MIUI. Vă rugăm să clonați magazinul de aplicații al sistemului (de ex. <b> Magazin Play </b>) în celălalt profil și apoi instalați aplicații de acolo.</string>
+    <string name="continue_anyway">Continua oricum</string>
+    <string name="finish_provision_desc">Felicitări! Sunteți la un click distanță de finalizarea configurării Shelter.</string>
+    <string name="batch_operation">Operatiune in grup(lot)</string>
+    <string name="create_unfreeze_shortcut">Creați Dezgheata și/sau Pornire comandă rapidă</string>
 </resources>
