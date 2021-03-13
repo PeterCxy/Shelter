@@ -64,10 +64,6 @@ public class MainActivity extends AppCompatActivity {
     private IShelterService mServiceMain = null;
     private IShelterService mServiceWork = null;
 
-    // Views
-    private ViewPager2 mPager = null;
-    private TabLayout mTabs = null;
-
     // Show all applications or not
     // default to false
     boolean mShowAll = false;
@@ -207,17 +203,34 @@ public class MainActivity extends AppCompatActivity {
     private void buildView() {
         // Finally we can build the view
         // Find all the views
-        mPager = findViewById(R.id.main_pager);
-        mTabs = findViewById(R.id.main_tablayout);
+        ViewPager2 pager = findViewById(R.id.main_pager);
+        TabLayout tabs = findViewById(R.id.main_tablayout);
 
         // Initialize the ViewPager and the tab
         // All the remaining work will be done in the fragments
-        mPager.setAdapter(new AppListFragmentStateAdapter());
+        pager.setAdapter(new FragmentStateAdapter(this) {
+            @NonNull
+            @Override
+            public Fragment createFragment(int position) {
+                if (position == 0) {
+                    return AppListFragment.newInstance(mServiceMain, false);
+                } else if (position == 1) {
+                    return AppListFragment.newInstance(mServiceWork, true);
+                } else {
+                    return null;
+                }
+            }
+
+            @Override
+            public int getItemCount() {
+                return 2;
+            }
+        });
         String[] pageTitles = new String[]{
                 getString(R.string.fragment_profile_main),
                 getString(R.string.fragment_profile_work)
         };
-        new TabLayoutMediator(mTabs, mPager, (tab, position) ->
+        new TabLayoutMediator(tabs, pager, (tab, position) ->
                 tab.setText(pageTitles[position])).attach();
     }
 
@@ -513,29 +526,6 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
-    private class AppListFragmentStateAdapter extends FragmentStateAdapter {
-        AppListFragmentStateAdapter() {
-            super(MainActivity.this);
-        }
-
-        @NonNull
-        @Override
-        public Fragment createFragment(int position) {
-            if (position == 0) {
-                return AppListFragment.newInstance(mServiceMain, false);
-            } else if (position == 1) {
-                return AppListFragment.newInstance(mServiceWork, true);
-            } else {
-                return null;
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return 2;
         }
     }
 }
