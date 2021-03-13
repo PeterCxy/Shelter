@@ -15,17 +15,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private IShelterService mServiceWork = null;
 
     // Views
-    private ViewPager mPager = null;
+    private ViewPager2 mPager = null;
     private TabLayout mTabs = null;
 
     // Show all applications or not
@@ -211,8 +212,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize the ViewPager and the tab
         // All the remaining work will be done in the fragments
-        mPager.setAdapter(new AppListFragmentAdapter(getSupportFragmentManager()));
-        mTabs.setupWithViewPager(mPager);
+        mPager.setAdapter(new AppListFragmentStateAdapter());
+        String[] pageTitles = new String[]{
+                getString(R.string.fragment_profile_main),
+                getString(R.string.fragment_profile_work)
+        };
+        new TabLayoutMediator(mTabs, mPager, (tab, position) ->
+                tab.setText(pageTitles[position])).attach();
     }
 
     private boolean isWorkProfileAvailable() {
@@ -510,37 +516,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private class AppListFragmentAdapter extends FragmentPagerAdapter {
-        AppListFragmentAdapter(FragmentManager fm) {
-            super(fm);
+    private class AppListFragmentStateAdapter extends FragmentStateAdapter {
+        AppListFragmentStateAdapter() {
+            super(MainActivity.this);
         }
 
+        @NonNull
         @Override
-        public int getCount() {
-            return 2;
-        }
-
-        @Override
-        public Fragment getItem(int i) {
-            if (i == 0) {
+        public Fragment createFragment(int position) {
+            if (position == 0) {
                 return AppListFragment.newInstance(mServiceMain, false);
-            } else if (i == 1) {
+            } else if (position == 1) {
                 return AppListFragment.newInstance(mServiceWork, true);
             } else {
                 return null;
             }
         }
 
-        @Nullable
         @Override
-        public CharSequence getPageTitle(int i) {
-            if (i == 0) {
-                return getString(R.string.fragment_profile_main);
-            } else if (i == 1) {
-                return getString(R.string.fragment_profile_work);
-            } else {
-                return null;
-            }
+        public int getItemCount() {
+            return 2;
         }
     }
 }
