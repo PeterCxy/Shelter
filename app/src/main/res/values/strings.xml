@@ -75,7 +75,6 @@
     <string name="settings_patreon_url" translatable="false">https://www.patreon.com/PeterCxy</string>
 
     <!-- Toast Long Texts -->
-    <string name="device_admin_toast">You have to grant Device Admin permission for Shelter to work. Please try again.</string>
     <string name="provision_still_pending">Shelter is still being set up. You should be seeing a notification soon from Shelter, which you <b>must click on</b> to finish the setup process. If you do not see the notification, please disable Do Not Disturb mode and try again.</string>
     <string name="provision_finished">Shelter setup complete. Now restarting Shelter. If Shelter didn\'t start automatically, you may launch it again from your launcher.</string>
     <string name="msg_device_unsupported">Permission is denied or Unsupported device</string>

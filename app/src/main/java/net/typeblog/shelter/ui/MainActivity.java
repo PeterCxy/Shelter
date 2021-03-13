@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_PROVISION_PROFILE = 1;
     private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
-    private static final int REQUEST_SET_DEVICE_ADMIN = 3;
     private static final int REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE = 4;
     private static final int REQUEST_DOCUMENTS_CHOOSE_APK = 5;
 
@@ -497,14 +496,6 @@ public class MainActivity extends AppCompatActivity {
             registerStartActivityProxies();
             startKiller();
             buildView();
-        } else if (requestCode == REQUEST_SET_DEVICE_ADMIN) {
-            if (resultCode == RESULT_OK) {
-                // Device Admin is now set, go ahead to provisioning (or initialization)
-                init();
-            } else {
-                Toast.makeText(this, getString(R.string.device_admin_toast), Toast.LENGTH_LONG).show();
-                finish();
-            }
         } else if (requestCode == REQUEST_DOCUMENTS_CHOOSE_APK && resultCode == RESULT_OK && data != null) {
             Uri uri = data.getData();
             UriForwardProxy proxy = new UriForwardProxy(getApplicationContext(), uri);
