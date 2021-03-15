@@ -5,16 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <TextView
+        android:id="@+id/setup_wizard_generic_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/setup_wizard_generic_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="40dp" />
-
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp" />
 
 </com.android.setupwizardlib.SetupWizardLayout>
