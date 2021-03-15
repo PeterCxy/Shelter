@@ -95,10 +95,40 @@ public class SetupWizardActivity extends AppCompatActivity {
         }
 
         @Override
+        public void onNavigateNext() {
+            super.onNavigateNext();
+            mActivity.switchToFragment(new PermissionsFragment());
+        }
+
+        @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             mWizard.setHeaderText(R.string.setup_wizard_welcome);
             mWizard.getNavigationBar().getBackButton().setVisibility(View.GONE);
+        }
+    }
+
+    public static class PermissionsFragment extends TextWizardFragment {
+        @Override
+        protected int getLayoutResource() {
+            return R.layout.fragment_setup_wizard_generic_text;
+        }
+
+        @Override
+        protected int getTextRes() {
+            return R.string.setup_wizard_permissions_text;
+        }
+
+        @Override
+        public void onNavigateBack() {
+            super.onNavigateBack();
+            mActivity.switchToFragment(new WelcomeFragment());
+        }
+
+        @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            mWizard.setHeaderText(R.string.setup_wizard_permissions);
         }
     }
 }

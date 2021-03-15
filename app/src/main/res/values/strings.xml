@@ -10,7 +10,9 @@
 
     <!-- Setup Wizard -->
     <string name="setup_wizard_welcome">Welcome to Shelter</string>
-    <string name="setup_wizard_welcome_text">Shelter is an application to help you run other applications in an isolated profile. It does so by making use of the <b>Work Profile</b> feature of Android.\n\nClick "Next", and we will provide you with more information about Shelter, and guide you through the setup process.</string>
+    <string name="setup_wizard_welcome_text">Shelter is an application to help you run other applications in an isolated profile. It does so by making use of the <b>Work Profile</b> feature of Android.\n\nClick "Next", and we will provide you with more information about Shelter, and guide you through the setup process.\n\nWe suggest that you read through all of the following pages carefully.</string>
+    <string name="setup_wizard_permissions">A word on permissions</string>
+    <string name="setup_wizard_permissions_text">By default, Shelter will not ask for any individual permissions. However, once you proceed with the setup process, Shelter will try to set up a Work Profile and hence become the <b>profile manager</b> of said profile.\n\nThis will grant Shelter an extensive list of permissions inside the profile, comparable to that of a Device Admin, albeit confined to the profile. Being the profile manager is necessary for most of Shelter\'s functionality.\n\nSome advanced features of Shelter may require more permissions <b>outside</b> the Work Profile. When needed, Shelter will ask for those permissions separately when you enable the corresponding features.</string>
 
     <!-- Notifications -->
     <string name="notifications_important">Shelter Important</string>
