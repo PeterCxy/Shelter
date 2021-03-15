@@ -8,6 +8,10 @@
     <string name="device_admin_explanation">Shelter needs to become Device Admin in order to perform its isolation tasks.</string>
     <string name="camera_proxy_activity">Choose an Image File</string>
 
+    <!-- Setup Wizard -->
+    <string name="setup_wizard_welcome">Welcome to Shelter</string>
+    <string name="setup_wizard_welcome_text">Shelter is an application to help you run other applications in an isolated profile. It does so by making use of the <b>Work Profile</b> feature of Android.\n\nClick "Next", and we will provide you with more information about Shelter, and guide you through the setup process.</string>
+
     <!-- Notifications -->
     <string name="notifications_important">Shelter Important</string>
     <string name="finish_provision_title">Click here to finish setting up Shelter</string>

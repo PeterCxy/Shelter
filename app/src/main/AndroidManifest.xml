@@ -43,6 +43,11 @@
             </intent-filter>
         </activity>
 
+        <!-- Setup Wizard -->
+        <activity android:name=".ui.SetupWizardActivity"
+            android:theme="@style/SuwThemeMaterial.Light"
+            android:launchMode="singleTask" />
+
         <!-- The Settings activity -->
         <activity android:name=".ui.SettingsActivity"
             android:label="@string/settings" />

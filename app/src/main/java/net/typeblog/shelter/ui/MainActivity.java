@@ -102,16 +102,17 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
             // Reset the authentication key first
-            AuthenticationUtility.reset();
+            //AuthenticationUtility.reset();
             // If not set up yet, we have to provision the profile first
-            new AlertDialog.Builder(this)
+            /*new AlertDialog.Builder(this)
                     .setCancelable(false)
                     .setMessage(R.string.first_run_alert)
                     .setPositiveButton(R.string.first_run_alert_continue,
                             (dialog, which) -> setupProfile())
                     .setNegativeButton(R.string.first_run_alert_cancel,
                             (dialog, which) -> finish())
-                    .show();
+                    .show();*/
+            startActivity(new Intent(this, SetupWizardActivity.class));
         } else {
             // Initialize the settings
             SettingsManager.getInstance().applyAll();
