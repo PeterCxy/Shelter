@@ -23,12 +23,22 @@ public class SetupWizardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_wizard);
-        switchToFragment(new WelcomeFragment());
-    }
-
-    private<T extends BaseWizardFragment> void switchToFragment(T fragment) {
+        // Don't use switchToFragment for the first time
+        // because we don't want animation for the first fragment
+        // (it would have nothing to animate upon, resulting in a black background)
         getSupportFragmentManager()
                 .beginTransaction()
+                .replace(R.id.setup_wizard_container, new WelcomeFragment())
+                .commit();
+    }
+
+    private<T extends BaseWizardFragment> void switchToFragment(T fragment, boolean reverseAnimation) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(
+                        reverseAnimation ? R.anim.slide_in_from_left : R.anim.slide_in_from_right,
+                        reverseAnimation ? R.anim.slide_out_to_right : R.anim.slide_out_to_left
+                )
                 .replace(R.id.setup_wizard_container, fragment)
                 .commit();
     }
@@ -97,7 +107,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public void onNavigateNext() {
             super.onNavigateNext();
-            mActivity.switchToFragment(new PermissionsFragment());
+            mActivity.switchToFragment(new PermissionsFragment(), false);
         }
 
         @Override
@@ -122,7 +132,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public void onNavigateBack() {
             super.onNavigateBack();
-            mActivity.switchToFragment(new WelcomeFragment());
+            mActivity.switchToFragment(new WelcomeFragment(), true);
         }
 
         @Override
