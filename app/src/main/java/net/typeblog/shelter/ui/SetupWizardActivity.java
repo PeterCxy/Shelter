@@ -166,9 +166,39 @@ public class SetupWizardActivity extends AppCompatActivity {
         }
 
         @Override
+        public void onNavigateNext() {
+            super.onNavigateNext();
+            mActivity.switchToFragment(new ReadyFragment(), false);
+        }
+
+        @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             mWizard.setHeaderText(R.string.setup_wizard_compatibility);
+        }
+    }
+
+    public static class ReadyFragment extends TextWizardFragment {
+        @Override
+        protected int getLayoutResource() {
+            return R.layout.fragment_setup_wizard_generic_text;
+        }
+
+        @Override
+        protected int getTextRes() {
+            return R.string.setup_wizard_ready_text;
+        }
+
+        @Override
+        public void onNavigateBack() {
+            super.onNavigateBack();
+            mActivity.switchToFragment(new CompatibilityFragment(), true);
+        }
+
+        @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            mWizard.setHeaderText(R.string.setup_wizard_ready);
         }
     }
 }
