@@ -29,6 +29,11 @@ import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
 public class SetupWizardActivity extends AppCompatActivity {
+    // RESUME_SETUP should be used when MainActivity detects the provisioning has been
+    // finished by the system, but the Shelter inside the profile has never been brought up
+    // due to the user having not clicked on the notification yet.
+    public static final String ACTION_RESUME_SETUP = "net.typeblog.shelter.RESUME_SETUP";
+
     private DevicePolicyManager mPolicyManager = null;
     private LocalStorageManager mStorage = null;
 
@@ -46,7 +51,9 @@ public class SetupWizardActivity extends AppCompatActivity {
         // (it would have nothing to animate upon, resulting in a black background)
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.setup_wizard_container, new WelcomeFragment())
+                .replace(R.id.setup_wizard_container,
+                        ACTION_RESUME_SETUP.equals(getIntent().getAction()) ?
+                                new ActionRequiredFragment() : new WelcomeFragment())
                 .commit();
     }
 
@@ -119,6 +126,21 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public Intent createIntent(@NonNull Context context, Void input) {
             return new Intent(context, SetupWizardActivity.class);
+        }
+
+        @Override
+        public Boolean parseResult(int resultCode, @Nullable Intent intent) {
+            return resultCode == RESULT_OK;
+        }
+    }
+
+    public static class ResumeSetupContract extends ActivityResultContract<Void, Boolean> {
+        @NonNull
+        @Override
+        public Intent createIntent(@NonNull Context context, Void input) {
+            Intent intent = new Intent(context, SetupWizardActivity.class);
+            intent.setAction(ACTION_RESUME_SETUP);
+            return intent;
         }
 
         @Override

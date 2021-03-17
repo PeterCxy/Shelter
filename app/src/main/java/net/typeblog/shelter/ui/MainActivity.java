@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final ActivityResultLauncher<Void> mStartSetup =
             registerForActivityResult(new SetupWizardActivity.SetupWizardContract(), this::setupWizardCb);
+    private final ActivityResultLauncher<Void> mResumeSetup =
+            registerForActivityResult(new SetupWizardActivity.ResumeSetupContract(), this::setupWizardCb);
 
     private LocalStorageManager mStorage = null;
     private DevicePolicyManager mPolicyManager = null;
@@ -85,9 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         if (mStorage.getBoolean(LocalStorageManager.PREF_IS_SETTING_UP) && !Utility.isWorkProfileAvailable(this)) {
-            // Provision is still going on...
-            Toast.makeText(this, R.string.provision_still_pending, Toast.LENGTH_SHORT).show();
-            finish();
+            // System has already finished provisioning, but Shelter still
+            // needs to be brought up inside the work profile
+            mResumeSetup.launch(null);
         } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
             mStartSetup.launch(null);
         } else {
