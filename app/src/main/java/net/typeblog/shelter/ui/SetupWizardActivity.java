@@ -33,6 +33,7 @@ public class SetupWizardActivity extends AppCompatActivity {
     // finished by the system, but the Shelter inside the profile has never been brought up
     // due to the user having not clicked on the notification yet.
     public static final String ACTION_RESUME_SETUP = "net.typeblog.shelter.RESUME_SETUP";
+    public static final String ACTION_PROFILE_PROVISIONED = "net.typeblog.shelter.PROFILE_PROVISIONED";
 
     private DevicePolicyManager mPolicyManager = null;
     private LocalStorageManager mStorage = null;
@@ -43,6 +44,16 @@ public class SetupWizardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // The user could click on the "finish provisioning" notification while having removed
+        // this activity from the recents stack, in which case the notification will start a new
+        // instance of activity
+        if (ACTION_PROFILE_PROVISIONED.equals(getIntent().getAction()) && Utility.isWorkProfileAvailable(this)) {
+            // ...in which case we should finish immediately and go back to MainActivity
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_setup_wizard);
         mPolicyManager = getSystemService(DevicePolicyManager.class);
         mStorage = LocalStorageManager.getInstance();
@@ -62,7 +73,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         // DummyActivity will start this activity with an empty intent
         // once the provision is finalized
-        if (Utility.isWorkProfileAvailable(this))
+        if (ACTION_PROFILE_PROVISIONED.equals(intent.getAction()) && Utility.isWorkProfileAvailable(this))
             finishWithResult(true);
     }
 
