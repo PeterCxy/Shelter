@@ -239,7 +239,7 @@ public class DummyActivity extends Activity {
             LocalStorageManager.getInstance()
                     .setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, false);
             Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.setComponent(new ComponentName(this, MainActivity.class));
+            intent.setComponent(new ComponentName(this, SetupWizardActivity.class));
             startActivity(intent);
             Toast.makeText(this, getString(R.string.provision_finished), Toast.LENGTH_LONG).show();
             finish();

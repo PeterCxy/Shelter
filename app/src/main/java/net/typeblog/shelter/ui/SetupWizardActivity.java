@@ -1,5 +1,6 @@
 package net.typeblog.shelter.ui;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,6 +9,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.app.admin.DevicePolicyManager;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,15 +23,22 @@ import com.android.setupwizardlib.SetupWizardLayout;
 import com.android.setupwizardlib.view.NavigationBar;
 
 import net.typeblog.shelter.R;
+import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.util.LocalStorageManager;
 
 public class SetupWizardActivity extends AppCompatActivity {
     private DevicePolicyManager mPolicyManager = null;
+    private LocalStorageManager mStorage = null;
+
+    private final ActivityResultLauncher<Void> mProvisionProfile =
+            registerForActivityResult(new ProfileProvisionContract(), this::setupProfileCb);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_wizard);
         mPolicyManager = getSystemService(DevicePolicyManager.class);
+        mStorage = LocalStorageManager.getInstance();
         // Don't use switchToFragment for the first time
         // because we don't want animation for the first fragment
         // (it would have nothing to animate upon, resulting in a black background)
@@ -36,6 +46,15 @@ public class SetupWizardActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.setup_wizard_container, new WelcomeFragment())
                 .commit();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        // DummyActivity will start this activity with an empty intent
+        // once the provision is finalized
+        // TODO: should verify if the work profile is available at this point
+        finishWithResult(true);
     }
 
     private<T extends BaseWizardFragment> void switchToFragment(T fragment, boolean reverseAnimation) {
@@ -55,8 +74,30 @@ public class SetupWizardActivity extends AppCompatActivity {
     }
 
     private void setupProfile() {
-        // Placeholder
-        switchToFragment(new FailedFragment(), false);
+        if (!mPolicyManager.isProvisioningAllowed(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE)) {
+            switchToFragment(new FailedFragment(), false);
+            return;
+        }
+
+        try {
+            mProvisionProfile.launch(null);
+        } catch (ActivityNotFoundException e) {
+            // How could this fail???
+            switchToFragment(new FailedFragment(), false);
+        }
+    }
+
+    private void setupProfileCb(Boolean result) {
+        if (result) {
+            // Provisioning finished, but we still need to tell the user
+            // to click on the notification to bring up Shelter inside the
+            // profile. Otherwise, the setup will not be complete
+            // TODO: should handle the case when the profile setup is already complete
+            mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, true);
+            switchToFragment(new ActionRequiredFragment(), false);
+        } else {
+            switchToFragment(new FailedFragment(), false);
+        }
     }
 
     public static class SetupWizardContract extends ActivityResultContract<Void, Boolean> {
@@ -64,6 +105,23 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public Intent createIntent(@NonNull Context context, Void input) {
             return new Intent(context, SetupWizardActivity.class);
+        }
+
+        @Override
+        public Boolean parseResult(int resultCode, @Nullable Intent intent) {
+            return resultCode == RESULT_OK;
+        }
+    }
+
+    private static class ProfileProvisionContract extends ActivityResultContract<Void, Boolean> {
+        @NonNull
+        @Override
+        public Intent createIntent(@NonNull Context context, Void input) {
+            ComponentName admin = new ComponentName(context.getApplicationContext(), ShelterDeviceAdminReceiver.class);
+            Intent intent = new Intent(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE);
+            intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_SKIP_ENCRYPTION, true);
+            intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME, admin);
+            return intent;
         }
 
         @Override
@@ -259,6 +317,28 @@ public class SetupWizardActivity extends AppCompatActivity {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             mWizard.setHeaderText(R.string.setup_wizard_please_wait);
+            mWizard.setProgressBarColor(view.getContext().getColorStateList(R.color.setup_wizard_progress_bar));
+            mWizard.setProgressBarShown(true);
+            mWizard.getNavigationBar().getBackButton().setVisibility(View.GONE);
+            mWizard.getNavigationBar().getNextButton().setVisibility(View.GONE);
+        }
+    }
+
+    public static class ActionRequiredFragment extends TextWizardFragment {
+        @Override
+        protected int getLayoutResource() {
+            return R.layout.fragment_setup_wizard_generic_text;
+        }
+
+        @Override
+        protected int getTextRes() {
+            return R.string.setup_wizard_action_required_text;
+        }
+
+        @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            mWizard.setHeaderText(R.string.setup_wizard_action_required);
             mWizard.setProgressBarColor(view.getContext().getColorStateList(R.color.setup_wizard_progress_bar));
             mWizard.setProgressBarShown(true);
             mWizard.getNavigationBar().getBackButton().setVisibility(View.GONE);
