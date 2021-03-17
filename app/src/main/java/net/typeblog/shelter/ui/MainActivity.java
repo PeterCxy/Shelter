@@ -1,6 +1,5 @@
 package net.typeblog.shelter.ui;
 
-import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -15,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -30,12 +30,10 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
-import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IAppInstallCallback;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.IStartActivityProxy;
 import net.typeblog.shelter.services.KillerService;
-import net.typeblog.shelter.util.AuthenticationUtility;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.UriForwardProxy;
@@ -45,16 +43,17 @@ public class MainActivity extends AppCompatActivity {
     public static final String BROADCAST_CONTEXT_MENU_CLOSED = "net.typeblog.shelter.broadcast.CONTEXT_MENU_CLOSED";
     public static final String BROADCAST_SEARCH_FILTER_CHANGED = "net.typeblog.shelter.broadcast.SEARCH_FILTER_CHANGED";
 
-    private static final int REQUEST_PROVISION_PROFILE = 1;
     private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
     private static final int REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE = 4;
     private static final int REQUEST_DOCUMENTS_CHOOSE_APK = 5;
 
+    private final ActivityResultLauncher<Void> mStartSetup =
+            registerForActivityResult(new SetupWizardActivity.SetupWizardContract(), this::setupWizardCb);
+    private final ActivityResultLauncher<Void> mResumeSetup =
+            registerForActivityResult(new SetupWizardActivity.ResumeSetupContract(), this::setupWizardCb);
+
     private LocalStorageManager mStorage = null;
     private DevicePolicyManager mPolicyManager = null;
-
-    // The "please wait" dialog when creating profile
-    private ProgressDialog mProgressDialog = null;
 
     // Flag to avoid double-killing our services while restarting
     private boolean mRestarting = false;
@@ -86,32 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        if (mProgressDialog != null && isWorkProfileAvailable()) {
-            mProgressDialog.dismiss();
-            init();
-        }
-    }
-
     private void init() {
-        if (mStorage.getBoolean(LocalStorageManager.PREF_IS_SETTING_UP) && !isWorkProfileAvailable()) {
-            // Provision is still going on...
-            Toast.makeText(this, R.string.provision_still_pending, Toast.LENGTH_SHORT).show();
-            finish();
+        if (mStorage.getBoolean(LocalStorageManager.PREF_IS_SETTING_UP) && !Utility.isWorkProfileAvailable(this)) {
+            // System has already finished provisioning, but Shelter still
+            // needs to be brought up inside the work profile
+            mResumeSetup.launch(null);
         } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
-            // Reset the authentication key first
-            AuthenticationUtility.reset();
-            // If not set up yet, we have to provision the profile first
-            new AlertDialog.Builder(this)
-                    .setCancelable(false)
-                    .setMessage(R.string.first_run_alert)
-                    .setPositiveButton(R.string.first_run_alert_continue,
-                            (dialog, which) -> setupProfile())
-                    .setNegativeButton(R.string.first_run_alert_cancel,
-                            (dialog, which) -> finish())
-                    .show();
+            mStartSetup.launch(null);
         } else {
             // Initialize the settings
             SettingsManager.getInstance().applyAll();
@@ -120,23 +100,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setupProfile() {
-        // Build the provisioning intent first
-        ComponentName admin = new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class);
-        Intent intent = new Intent(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE);
-        intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_SKIP_ENCRYPTION, true);
-        intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME, admin);
-
-        // Check if provisioning is allowed
-        if (!mPolicyManager.isProvisioningAllowed(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE)
-                || getPackageManager().resolveActivity(intent, 0) == null) {
-            Toast.makeText(this,
-                    getString(R.string.msg_device_unsupported), Toast.LENGTH_LONG).show();
+    private void setupWizardCb(Boolean result) {
+        if (result)
+            init();
+        else
             finish();
-        }
-
-        // Start provisioning
-        startActivityForResult(intent, REQUEST_PROVISION_PROFILE);
     }
 
     private void bindServices() {
@@ -231,26 +199,6 @@ public class MainActivity extends AppCompatActivity {
         };
         new TabLayoutMediator(tabs, pager, (tab, position) ->
                 tab.setText(pageTitles[position])).attach();
-    }
-
-    private boolean isWorkProfileAvailable() {
-        // Determine if the work profile is already available
-        // If so, return true and set all the corresponding flags to true
-        // This is for scenarios where the asynchronous part of the
-        // setup process might be finished before the synchronous part
-        Intent intent = new Intent(DummyActivity.TRY_START_SERVICE);
-        try {
-            // DO NOT sign this request, because this won't be actually sent to work profile
-            // If this is signed, and is the first request to be signed,
-            // then the other side would never receive the auth_key
-            Utility.transferIntentToProfileUnsigned(this, intent);
-            mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, false);
-            mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
-            return true;
-        } catch (IllegalStateException e) {
-            // If any exception is thrown, this means that the profile is not available
-            return false;
-        }
     }
 
     // Get the service on the other side
@@ -453,30 +401,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == REQUEST_PROVISION_PROFILE) {
-            if (resultCode == RESULT_OK) {
-                if (isWorkProfileAvailable()) {
-                    // For pre-Oreo, or post-Oreo on some circumstances,
-                    // by the time this is received, the whole process
-                    // should have completed.
-                    recreate();
-                    return;
-                }
-                // The sync part of the setup process is completed
-                // Wait for the provisioning to complete
-                mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, true);
-
-                // However, we still have to wait for DummyActivity in work profile to finish
-                mProgressDialog = new ProgressDialog(this);
-                mProgressDialog.setMessage(getString(R.string.provision_still_pending));
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
-            } else {
-                Toast.makeText(this,
-                        getString(R.string.work_profile_provision_failed), Toast.LENGTH_LONG).show();
-                finish();
-            }
-        } else if (requestCode == REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE) {
+        if (requestCode == REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE) {
             if (resultCode == RESULT_OK) {
                 // RESULT_OK is from DummyActivity. The work profile is enabled!
                 bindWorkService();

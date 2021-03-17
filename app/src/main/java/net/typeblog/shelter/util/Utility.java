@@ -93,6 +93,27 @@ public class Utility {
         }
     }
 
+    // Determine if the work profile is already available
+    // If so, return true and set all the corresponding flags to true
+    // This is for scenarios where the asynchronous part of the
+    // setup process might be finished before the synchronous part
+    public static boolean isWorkProfileAvailable(Context context) {
+        LocalStorageManager storage = LocalStorageManager.getInstance();
+        Intent intent = new Intent(DummyActivity.TRY_START_SERVICE);
+        try {
+            // DO NOT sign this request, because this won't be actually sent to work profile
+            // If this is signed, and is the first request to be signed,
+            // then the other side would never receive the auth_key
+            Utility.transferIntentToProfileUnsigned(context, intent);
+            storage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, false);
+            storage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, true);
+            return true;
+        } catch (IllegalStateException e) {
+            // If any exception is thrown, this means that the profile is not available
+            return false;
+        }
+    }
+
     // Enforce policies and configurations in the work profile
     public static void enforceWorkProfilePolicies(Context context) {
         DevicePolicyManager manager = context.getSystemService(DevicePolicyManager.class);
