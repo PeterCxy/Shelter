@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
     private static final int REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE = 4;
     private static final int REQUEST_DOCUMENTS_CHOOSE_APK = 5;
+
+    private final ActivityResultLauncher<Void> mStartSetup =
+            registerForActivityResult(new SetupWizardActivity.SetupWizardContract(), this::setupWizardCb);
 
     private LocalStorageManager mStorage = null;
     private DevicePolicyManager mPolicyManager = null;
@@ -85,18 +89,20 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.provision_still_pending, Toast.LENGTH_SHORT).show();
             finish();
         } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
-            registerForActivityResult(new SetupWizardActivity.SetupWizardContract(), (Boolean result) -> {
-                if (result)
-                    init();
-                else
-                    finish();
-            }).launch(null);
+            mStartSetup.launch(null);
         } else {
             // Initialize the settings
             SettingsManager.getInstance().applyAll();
             // Initialize the app (start by binding the services)
             bindServices();
         }
+    }
+
+    private void setupWizardCb(Boolean result) {
+        if (result)
+            init();
+        else
+            finish();
     }
 
     private void bindServices() {
