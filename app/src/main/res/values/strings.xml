@@ -22,7 +22,7 @@
     <string name="setup_wizard_failed">Setup failed</string>
     <string name="setup_wizard_failed_text">We regret to inform you that we were not able to set up Shelter for you.\n\nIf you did not cancel the setup manually, then the reason for the failure is most commonly due to a heavily modified system, or a conflict between Shelter and other Work Profile managers. Unfortunately, there is not much that we could do about this.\n\nClick "Next" to exit.</string>
     <string name="setup_wizard_action_required">Action required</string>
-    <string name="setup_wizard_action_required_text">You should now be seeing a notification from Shelter. <b>Please click on that notification</b> to finish the setup process.\n\nIf you do not see the notification, make sure your device is not in Do Not Disturb mode and try again.\n\nTo reset Shelter and start over, you can clear the data of Shelter in Settings.</string>
+    <string name="setup_wizard_action_required_text">You should now be seeing a notification from Shelter. <b>Please click on that notification</b> to finish the setup process.\n\nIf you do not see the notification, make sure your device is not in Do Not Disturb mode and try pulling down the notification center.\n\nTo reset Shelter and start over, you can clear the data of Shelter in Settings.</string>
 
     <!-- Notifications -->
     <string name="notifications_important">Shelter Important</string>
