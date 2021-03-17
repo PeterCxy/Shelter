@@ -24,6 +24,7 @@ import com.android.setupwizardlib.view.NavigationBar;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
+import net.typeblog.shelter.util.AuthenticationUtility;
 import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
@@ -79,6 +80,11 @@ public class SetupWizardActivity extends AppCompatActivity {
             switchToFragment(new FailedFragment(), false);
             return;
         }
+
+        // The user may have aborted provisioning before without clearing data
+        // This can cause issues if the authentication utility thinks we
+        // could do authentication due to the presence of keys
+        AuthenticationUtility.reset();
 
         try {
             mProvisionProfile.launch(null);
