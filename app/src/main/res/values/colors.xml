@@ -3,6 +3,7 @@
     <color name="colorPrimary">#FAFAFA</color>
     <color name="colorPrimaryDark">#C2C2C2</color>
     <color name="colorAccent">#009688</color>
+    <color name="colorAccentSetupWizard">#FFC107</color>
     <color name="black">#333333</color>
     <color name="grey">#999999</color>
     <color name="disabledAppBackground">#E0F2F1</color>

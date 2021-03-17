@@ -1,12 +1,15 @@
 package net.typeblog.shelter.ui;
 
+import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.app.admin.DevicePolicyManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +22,13 @@ import com.android.setupwizardlib.view.NavigationBar;
 import net.typeblog.shelter.R;
 
 public class SetupWizardActivity extends AppCompatActivity {
+    private DevicePolicyManager mPolicyManager = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_wizard);
+        mPolicyManager = getSystemService(DevicePolicyManager.class);
         // Don't use switchToFragment for the first time
         // because we don't want animation for the first fragment
         // (it would have nothing to animate upon, resulting in a black background)
@@ -43,6 +49,30 @@ public class SetupWizardActivity extends AppCompatActivity {
                 .commit();
     }
 
+    private void finishWithResult(boolean succeeded) {
+        setResult(succeeded ? RESULT_OK : RESULT_CANCELED);
+        finish();
+    }
+
+    private void setupProfile() {
+        // Placeholder
+        switchToFragment(new FailedFragment(), false);
+    }
+
+    public static class SetupWizardContract extends ActivityResultContract<Void, Boolean> {
+        @NonNull
+        @Override
+        public Intent createIntent(@NonNull Context context, Void input) {
+            return new Intent(context, SetupWizardActivity.class);
+        }
+
+        @Override
+        public Boolean parseResult(int resultCode, @Nullable Intent intent) {
+            return resultCode == RESULT_OK;
+        }
+    }
+
+    // ==== SetupWizard steps ====
     private static abstract class BaseWizardFragment extends Fragment implements NavigationBar.NavigationBarListener {
         protected SetupWizardActivity mActivity = null;
         protected SetupWizardLayout mWizard = null;
@@ -196,9 +226,68 @@ public class SetupWizardActivity extends AppCompatActivity {
         }
 
         @Override
+        public void onNavigateNext() {
+            super.onNavigateNext();
+            mActivity.switchToFragment(new PleaseWaitFragment(), false);
+        }
+
+        @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             mWizard.setHeaderText(R.string.setup_wizard_ready);
+        }
+    }
+
+    public static class PleaseWaitFragment extends TextWizardFragment {
+        @Override
+        protected int getLayoutResource() {
+            return R.layout.fragment_setup_wizard_generic_text;
+        }
+
+        @Override
+        protected int getTextRes() {
+            return R.string.setup_wizard_please_wait_text;
+        }
+
+        @Override
+        public void onAttach(@NonNull Context context) {
+            super.onAttach(context);
+            mActivity.setupProfile();
+        }
+
+        @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            mWizard.setHeaderText(R.string.setup_wizard_please_wait);
+            mWizard.setProgressBarColor(view.getContext().getColorStateList(R.color.setup_wizard_progress_bar));
+            mWizard.setProgressBarShown(true);
+            mWizard.getNavigationBar().getBackButton().setVisibility(View.GONE);
+            mWizard.getNavigationBar().getNextButton().setVisibility(View.GONE);
+        }
+    }
+
+    public static class FailedFragment extends TextWizardFragment {
+        @Override
+        protected int getLayoutResource() {
+            return R.layout.fragment_setup_wizard_generic_text;
+        }
+
+        @Override
+        protected int getTextRes() {
+            return R.string.setup_wizard_failed_text;
+        }
+
+        @Override
+        public void onNavigateNext() {
+            super.onNavigateNext();
+            mActivity.finishWithResult(false);
+        }
+
+        @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            mWizard.setHeaderText(R.string.setup_wizard_failed);
+            mWizard.getNavigationBar().getBackButton().setVisibility(View.GONE);
         }
     }
 }

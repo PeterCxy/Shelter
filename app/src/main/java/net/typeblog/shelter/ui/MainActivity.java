@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -112,7 +113,12 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton(R.string.first_run_alert_cancel,
                             (dialog, which) -> finish())
                     .show();*/
-            startActivity(new Intent(this, SetupWizardActivity.class));
+            registerForActivityResult(new SetupWizardActivity.SetupWizardContract(), (Boolean result) -> {
+                if (result)
+                    init();
+                else
+                    finish();
+            }).launch(null);
         } else {
             // Initialize the settings
             SettingsManager.getInstance().applyAll();
