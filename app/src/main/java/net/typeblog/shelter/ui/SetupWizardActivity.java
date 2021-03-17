@@ -25,6 +25,7 @@ import com.android.setupwizardlib.view.NavigationBar;
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.util.LocalStorageManager;
+import net.typeblog.shelter.util.Utility;
 
 public class SetupWizardActivity extends AppCompatActivity {
     private DevicePolicyManager mPolicyManager = null;
@@ -53,8 +54,8 @@ public class SetupWizardActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         // DummyActivity will start this activity with an empty intent
         // once the provision is finalized
-        // TODO: should verify if the work profile is available at this point
-        finishWithResult(true);
+        if (Utility.isWorkProfileAvailable(this))
+            finishWithResult(true);
     }
 
     private<T extends BaseWizardFragment> void switchToFragment(T fragment, boolean reverseAnimation) {
@@ -89,10 +90,17 @@ public class SetupWizardActivity extends AppCompatActivity {
 
     private void setupProfileCb(Boolean result) {
         if (result) {
+            if (Utility.isWorkProfileAvailable(this)) {
+                // On pre-Oreo, and sometimes on post-Oreo
+                // the setup could be already finalized at this point
+                // There is no need for more action
+                finishWithResult(true);
+                return;
+            }
+
             // Provisioning finished, but we still need to tell the user
             // to click on the notification to bring up Shelter inside the
             // profile. Otherwise, the setup will not be complete
-            // TODO: should handle the case when the profile setup is already complete
             mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, true);
             switchToFragment(new ActionRequiredFragment(), false);
         } else {
