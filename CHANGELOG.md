@@ -1,3 +1,8 @@
+Unreleased
+===
+
+- Revamped the initial setup process to include a full setup guide for better clarity and less confusion.
+
 1.6
 ===
 
