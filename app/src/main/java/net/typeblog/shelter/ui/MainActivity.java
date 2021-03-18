@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -45,12 +46,17 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
     private static final int REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE = 4;
-    private static final int REQUEST_DOCUMENTS_CHOOSE_APK = 5;
 
     private final ActivityResultLauncher<Void> mStartSetup =
             registerForActivityResult(new SetupWizardActivity.SetupWizardContract(), this::setupWizardCb);
     private final ActivityResultLauncher<Void> mResumeSetup =
             registerForActivityResult(new SetupWizardActivity.ResumeSetupContract(), this::setupWizardCb);
+    private final ActivityResultLauncher<Void> mSelectApk =
+            registerForActivityResult(
+                    new Utility.ActivityResultContractInputWrapper<>(
+                            new ActivityResultContracts.OpenDocument(),
+                            new String[]{"application/vnd.android.package-archive"}),
+                    this::onApkSelected);
 
     private LocalStorageManager mStorage = null;
 
@@ -364,10 +370,7 @@ public class MainActivity extends AppCompatActivity {
                         "shelter-freeze-all", getString(R.string.freeze_all_shortcut));
                 return true;
             case R.id.main_menu_install_app_to_profile:
-                Intent openApkIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                openApkIntent.addCategory(Intent.CATEGORY_OPENABLE);
-                openApkIntent.setType("application/vnd.android.package-archive");
-                startActivityForResult(openApkIntent, REQUEST_DOCUMENTS_CHOOSE_APK);
+                mSelectApk.launch(null);
                 return true;
             case R.id.main_menu_show_all:
                 Runnable update = () -> {
@@ -397,6 +400,27 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void onApkSelected(Uri uri) {
+        if (uri == null) return;
+        UriForwardProxy proxy = new UriForwardProxy(getApplicationContext(), uri);
+
+        try {
+            mServiceWork.installApk(proxy, new IAppInstallCallback.Stub() {
+                @Override
+                public void callback(int result) {
+                    runOnUiThread(() -> {
+                        // The other side will have closed the Fd for us
+                        if (result == RESULT_OK)
+                            Toast.makeText(MainActivity.this,
+                                    R.string.install_app_to_profile_success, Toast.LENGTH_LONG).show();
+                    });
+                }
+            });
+        } catch (RemoteException e) {
+            // Well, I don't know what to do then
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE) {
@@ -419,26 +443,7 @@ public class MainActivity extends AppCompatActivity {
             registerStartActivityProxies();
             startKiller();
             buildView();
-        } else if (requestCode == REQUEST_DOCUMENTS_CHOOSE_APK && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            UriForwardProxy proxy = new UriForwardProxy(getApplicationContext(), uri);
-
-            try {
-                mServiceWork.installApk(proxy, new IAppInstallCallback.Stub() {
-                    @Override
-                    public void callback(int result) {
-                        runOnUiThread(() -> {
-                            // The other side will have closed the Fd for us
-                            if (result == RESULT_OK)
-                                Toast.makeText(MainActivity.this,
-                                        R.string.install_app_to_profile_success, Toast.LENGTH_LONG).show();
-                        });
-                    }
-                });
-            } catch (RemoteException e) {
-                // Well, I don't know what to do then
-            }
-        } else {
+        }  else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }

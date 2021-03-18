@@ -29,6 +29,10 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
 import net.typeblog.shelter.services.IShelterService;
@@ -500,5 +504,29 @@ public class Utility {
                 .setContentText(desc)
                 .setSmallIcon(icon)
                 .build();
+    }
+
+    // A wrapper over arbitrary ActivityResultContract that provides
+    // hardcoded input parameters and do not accept input with launch()
+    public static class ActivityResultContractInputWrapper<I, O, T extends ActivityResultContract<I, O>>
+            extends ActivityResultContract<Void, O> {
+        private final T mInner;
+        private final I mInput;
+
+        public ActivityResultContractInputWrapper(T inner, I input) {
+            mInner = inner;
+            mInput = input;
+        }
+
+        @NonNull
+        @Override
+        public Intent createIntent(@NonNull Context context, Void input) {
+            return mInner.createIntent(context, mInput);
+        }
+
+        @Override
+        public O parseResult(int resultCode, @Nullable Intent intent) {
+            return mInner.parseResult(resultCode, intent);
+        }
     }
 }
