@@ -443,7 +443,7 @@ public class MainActivity extends AppCompatActivity {
             registerStartActivityProxies();
             startKiller();
             buildView();
-        }  else {
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
