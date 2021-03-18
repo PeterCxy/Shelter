@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
             registerForActivityResult(new SetupWizardActivity.ResumeSetupContract(), this::setupWizardCb);
 
     private LocalStorageManager mStorage = null;
-    private DevicePolicyManager mPolicyManager = null;
 
     // Flag to avoid double-killing our services while restarting
     private boolean mRestarting = false;
@@ -72,9 +71,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.main_toolbar));
         mStorage = LocalStorageManager.getInstance();
-        mPolicyManager = getSystemService(DevicePolicyManager.class);
 
-        if (mPolicyManager.isProfileOwnerApp(getPackageName())) {
+        if (getSystemService(DevicePolicyManager.class).isProfileOwnerApp(getPackageName())) {
             // We are now in our own profile
             // We should never start the main activity here.
             android.util.Log.d("MainActivity", "started in user profile. stopping.");
