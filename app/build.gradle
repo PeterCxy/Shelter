@@ -28,6 +28,7 @@ android {
     lintOptions {
         // We have community-contributed translations. Do not let them block releases.
         disable 'MissingTranslation'
+        disable 'ExtraTranslation'
         // We don't need Google App Indexing
         disable 'GoogleAppIndexingWarning'
         // Some dependencies still pull in Fragment 1.2.x
