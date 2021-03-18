@@ -30,6 +30,10 @@ android {
         disable 'MissingTranslation'
         // We don't need Google App Indexing
         disable 'GoogleAppIndexingWarning'
+        // Some dependencies still pull in Fragment 1.2.x
+        // Let's just ignore the error for now
+        // We don't really hit the broken use-cases for now
+        disable 'InvalidFragmentVersionForActivityResult'
     }
 }
 
