@@ -25,7 +25,7 @@ Discussion & Support
 - [Mailing List](https://lists.sr.ht/~petercxy/shelter)
 - Matrix Chat Room: #shelter:neo.angry.im
 
-__The GitHub Issue list is not checked regularly. Please use the mailing list instead.__
+__The GitHub Issue list and pull requests are not checked regularly. Please use the mailing list instead.__
 
 Caveats & Known Issues
 ===
