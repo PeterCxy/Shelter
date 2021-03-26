@@ -1,2 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="service_title">Servicio Shelter</string>
+    <string name="service_desc">Shelter se esta ejecutando actualmente…</string>
+    <string name="service_auto_freeze_title">Suspensión automática pendiente</string>
+    <string name="first_run_alert_cancel">Adios</string>
+    <string name="first_run_alert_continue">Continuar</string>
+    <string name="device_admin_desc">Servicio de aislamiento</string>
+    <string name="device_admin_explanation">Shelter necesita convertirse en el administrador del dispositivo para realizar tareas de aislamiento.</string>
+    <string name="camera_proxy_activity">Elige un archivo de imagen</string>
+    <string name="notifications_important">Importante</string>
+    <string name="finish_provision_title">Haz click aquí para finalizar la configuración de Shelter</string>
+    <string name="show_all_warning">Manipular aplicaciones ocultas en la lista podría causar fallos y toda clase de comportamientos inesperados. Sin embargo, esta característica podría ser de utilidad cuando las ROMs personalizadas del fabricante no habilitan todas las aplicaciones del sistema necesarias dentro del perfil de trabajo por defecto. Si continuas, estas por tu cuenta.</string>
+    <string name="documents_ui">Abrir interfaz de documentos</string>
+    <string name="settings">Configuraciones</string>
+    <string name="settings_interaction">Interacción</string>
+    <string name="settings_cross_profile_file_chooser">Pasarela de archivos</string>
+    <string name="finish_provision_desc">Felicitaciones! Se encuentra a un click de terminar la configuración de Shelter.</string>
+    <string name="provision_finished">Configuración de Shelter completa. Reiniciando Shelter a continuación. Si Shelter no se inicia de manera automática puedes iniciarlo nuevamente desde tu lanzador de aplicaciones.</string>
+    <string name="msg_device_unsupported">Permiso denegado o dispositivo no soportado</string>
+    <string name="work_profile_not_found">Perfil de trabajo no encontrado. Por favor reinicia la aplicación para aprovisionar el perfil.</string>
+    <string name="work_profile_provision_failed">No se puede proveer un perfil de trabajo. Puedes intentar de nuevo reiniciando Shelter.</string>
+    <string name="work_mode_disabled">Parece que has deshabilitado el modo de trabajo mientras Shelter se reiniciaba. Si lo has habilitado ahora, por favor reinicia Shelter de nuevo.</string>
+    <string name="clone_success">Aplicación \"%s\" clonada exitosamente</string>
+    <string name="uninstall_success">Aplicación \"%s\" desinstalada exitosamente</string>
+    <string name="freeze_success">Aplicación \"%s\" suspendida exitosamente</string>
+    <string name="unfreeze_success">Aplicación \"%s\" reiniciada exitosamente</string>
+    <string name="service_auto_freeze_desc">Shelter va a suspender de manera automática las aplicaciones iniciadas con \"Descongelar e iniciar\" en el siguiente bloqueo de pantalla.</string>
+    <string name="clone_fail_system_app">No se pueden clonar aplicaciones del sistema a un perfil del cual Shelter no tiene el control.</string>
+    <string name="freeze_all_success">Todas las aplicaciones en la lista de \"suspensión automática\" han sido suspendidas exitosamente.</string>
+    <string name="miui_cannot_clone">Clonar aplicaciones que no son del sistema a otro perfil actualmente no es posible en MIUI. Por favor clona la tienda de aplicaciones del sistema (ej: <b>Play Store</b>) dentro del otro perfil e instala aplicaciones desde ahí.</string>
+    <string name="setup_wizard_permissions_text">Por defecto, Shelter no te solicitará permisos individuales. Sin embargo, una vez que procedas con el proceso de instalación, Shelter tratara de configurar un perfil de trabajo y por lo tanto se convertirá en <b>administrador de dicho perfil</b>.
+\n
+\nEsto proporcionara a Shelter una lista extensa de permisos dentro del perfil, comparables a los del administrador del dispositivo, aunque confinado al perfil. Ser el administrador de perfil es necesario para la mayoría de la funcionalidad de Shelter.
+\n
+\nAlgunas características avanzadas de Shelter podrían requerir mas permisos <b>fuera</b> del perfil de trabajo. Cuando sean necesarios, Shelter te solicitara esos permisos de manera individual cuando habilites tales características.</string>
+    <string name="setup_wizard_compatibility_text">Shelter es desarrollado y probado en derivados de Android AOSP. Esto incluye AOSP(Android Open Source Project), Google Android(en Pixel) y <b> la mayoría de las ROMs basadas en Android AOSP</b> como LineageOS. Si tu dispositivo esta ejecutando alguno de los derivados de Android listados anteriormente, ¡felicitaciones! Shelter probablemente funcionara correctamente en tu dispositivo.
+\n
+\nAlgunos fabricantes de dispositivos introducen personalizaciones demasiado invasivas dentro del código fuente de Android lo cual resulta en conflictos, incompatibilidades y comportamientos inesperados. Algunas ROMs personalizadas también pueden introducir cambios que rompen con la compatibilidad pero generalmente son raros en comparación con las incompatibilidades introducidas por los fabricantes.
+\n
+\nShelter es únicamente una interfaz a la característica del perfil de trabajo provista por el sistema. Si la característica provista por el sistema esta dañada o no es estandar <b>Shelter no puede resolver el problema mágicamente por si mismo</b>. Si actualmente estas usando una versión de Android modificada por el fabricante de la cual se sabe que incumple con los perfiles de trabajo <b>has sido advertido</b>. Puedes proceder de todos modos, pero no hay garantia de que Shelter se comporte de manera adecuada bajo esas circunstancias.</string>
+    <string name="settings_camera_proxy_desc">Presenta una aplicación de cámara falsa a otras aplicaciones, permitiéndote elegir una imagen arbitraria de la interfaz de documentos (y a la pasarela de archivos, si se encuentra habilitado) como la fotografía tomada. Esto habilita la pasarela de archivos para cualquier aplicaciones que tenga soporte para invocar otras aplicaciones para tomar una fotografía incluso si no soportan la interfaz de documentos de manera nativa.</string>
+    <string name="uninstall_fail_system_app">No se pueden desinstalar aplicaciones del sistema en un perfil del cual Shelter no tiene control.</string>
+    <string name="unsupported_launcher">No se pueden agregar accesos directos a tu lanzador de aplicaciones. Por favor contacta al desarrollador para mas información.</string>
+    <string name="app_context_menu_title">Operaciones para \"%s\"</string>
+    <string name="setup_wizard_please_wait">Por favor espera…</string>
+    <string name="setup_wizard_please_wait_text">Estamos tratando de inicializar el perfil de trabajo y configurar Shelter en tu dispositivo.</string>
+    <string name="setup_wizard_failed">La configuración falló</string>
+    <string name="setup_wizard_ready_text">Ahora estamos listos para configurar Shelter para ti. Por favor primero asegurate de que tu dispositivo <b>no</b> se encuentra en modo no molestar debido a que necesitaras <b> hacer click en una notificación</b> mas tarde para finalizar el proceso de instalación.
+\n
+\nCuando estés listo, haz click en \"Siguiente\" para iniciar el proceso de instalación.</string>
+    <string name="setup_wizard_failed_text">Lamentamos informarte que no fuimos capaces de configurar Shelter para ti.
+\n
+\nSi no cancelaste la instalación de manera manual, entonces una de las razones del fallo es comúnmente debido a un sistema fuertemente modificado o a un conflicto entre Shlter y otros administradores del perfil de trabajo. Desafortunadamente, no hay mucho que podamos hacer sobre esto.
+\n
+\nHaz click en Siguiente para Salir.</string>
+    <string name="setup_wizard_action_required">Acción requerida</string>
+    <string name="setup_wizard_action_required_text">Ahora debieras estar viendo la notificación de Shelter. <b> Por favor haz click en esa notificación</b> para finalizar el proceso de configuración.
+\n
+\nSi no ves la notificación, asegúrate de que tu dispositivo no esta en modo No molestar y trata de abrir el centro de notificaciones.
+\n
+\nPara reiniciar Shelter e iniciar de nuevo, puedes limpiar los datos de Shelter en la configuración.</string>
+    <string name="service_auto_freeze_now">Suspender ahora</string>
+    <string name="app_installing">Instalando...</string>
+    <string name="fragment_profile_main">Principal</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[Suspendida]%s</string>
+    <string name="batch_operation">Operación en lote</string>
+    <string name="clone_to_work_profile">Clonar a Shelter (perfil de trabajo)</string>
+    <string name="clone_to_main_profile">Clonar al perfil principal</string>
+    <string name="uninstall_app">Desinstalar</string>
+    <string name="freeze_app">Suspender</string>
+    <string name="unfreeze_app">Reanudar</string>
+    <string name="launch">Iniciar</string>
+    <string name="create_unfreeze_shortcut">Crear un acceso directo para suspender y/o iniciar</string>
+    <string name="unfreeze_and_launch">Reanudar e iniciar</string>
+    <string name="auto_freeze">Auto suspender</string>
+    <string name="allow_cross_profile_widgets">Permitir Widgets en el perfil principal</string>
+    <string name="settings_cross_profile_file_chooser_desc">Cuando esta habilitado, seras capaz de buscar / ver / seleccionar / copiar archivos dentro de Shelter del perfil principal y viceversa. Únicamente a través de la interfaz de documentos (llamada Archivos o Documentos en tu lanzador de aplicaciones) o aplicaciones con soporte para interfaz de archivos (únicamente obtienen acceso temporal a los archivos que escogiste en la interfaz de documentos), mientras aun pertenecen al sistema de archivos aislado.</string>
+    <string name="settings_camera_proxy">Selector de imágenes como simulador de cámara</string>
+    <string name="settings_block_contacts_searching">Bloquear búsqueda de contactos</string>
+    <string name="settings_block_contacts_searching_desc">Denegar acceso del perfil principal a los contactos dentro del perfil de trabajo.</string>
+    <string name="settings_services">Servicios</string>
+    <string name="settings_auto_freeze_delay">Retraso de la suspensión automática</string>
+    <string name="settings_dont_freeze_foreground_desc">NO suspendas aplicaciones en el fondo (con actividad visible) cuando bloquees la pantalla. Esto puede ser útil para aplicaciones como reproductores de música, pero vas a necesitar suspenderlas a través de \"Acceso directo a suspensión por lote\" más tarde.</string>
+    <string name="settings_version">Versión</string>
+    <string name="settings_source_code">Código fuente</string>
+    <string name="settings_translate">Traducir</string>
+    <string name="settings_bug_report">Reporte de errores/ Seguimiento de problemas</string>
+    <string name="shortcut_create_success">Acceso directo creado en tu lanzador de aplicaciones.</string>
+    <string name="request_usage_stats">Shelter necesita el permiso <b> Estadísticas de uso</b> para hacer esto. Por favor habilita el permiso para <b>AMBAS</b> de las aplicaciones Shelter mostradas en la ventana siguiente a que presiones \"Ok\". No hacerlo causara que esta característica no funcione adecuadamente.</string>
+    <string name="launch_app_fail">No se puede lanzar la aplicación %s por que no tiene interfaz gráfica.</string>
+    <string name="request_storage_manager">Shelter necesita acceder a <b>Todos los archivos</b> para el selector de archivos. Por favor habilita el permiso para <b>AMBAS</b> aplicaciones Shelter (Personal / Trabajo) en la ventana siguiente al presionar \"Ok\".</string>
+    <string name="request_system_alert">Shelter necesita <b>Mostrarse sobre otras aplicaciones</b> para que la función de pasarela de archivos funciones correctamente. Por favor habilita el permiso para <b>AMBAS</b> aplicaciones Shelter mostradas en la ventana después de que hagas click en \"Ok\". Este permiso es usado para iniciar el servicio de pasarela en segundo plano.</string>
+    <string name="continue_anyway">Continuar de todos modos</string>
+    <string name="setup_wizard_welcome">Bienvenido a Shelter</string>
+    <string name="setup_wizard_welcome_text">Shelter es una aplicación que te ayuda a ejecutar otras aplicaciones en un perfil aislado. Lo hace haciendo uso de la característica <b>Perfil de trabajo</b> de Android.
+\n
+\nHaz click en \"Siguiente\" y te proveeremos con mas información sobre Shelter y te guiaremos a través del proceso de instalación
+\n
+\nTe sugerimos que leas todas las paginas siguientes cuidadosamente.</string>
+    <string name="setup_wizard_permissions">Sobre los permisos</string>
+    <string name="setup_wizard_ready">¿Listo\?</string>
+    <string name="setup_wizard_compatibility">Compatibilidad</string>
+    <string name="search">Buscar</string>
+    <string name="freeze_all">Suspensión en lote</string>
+    <string name="create_freeze_all_shortcut">Crear un acceso directo a suspensión en lote</string>
+    <string name="freeze_all_shortcut">Suspender</string>
+    <string name="install_app_to_profile">Instalar APK dentro de Shelter</string>
+    <string name="install_app_to_profile_success">Instalación de aplicación en perfil de trabajo finalizada.</string>
+    <string name="show_all">Mostrar todas las aplicaciones</string>
+    <string name="settings_auto_freeze_service">Servicio de auto suspensión</string>
+    <string name="settings_auto_freeze_service_desc">Cuando la pantalla esta bloqueada, automáticamente suspende las aplicaciones iniciadas con \"Acceso directo a Reanudar e iniciar\".</string>
+    <string name="settings_dont_freeze_foreground">Omitir aplicaciones de fondo</string>
+    <string name="settings_about">Acerca de</string>
+</resources>
