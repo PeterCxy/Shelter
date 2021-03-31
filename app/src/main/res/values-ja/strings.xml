@@ -86,4 +86,16 @@
     <string name="settings_cross_profile_file_chooser">ファイル同期</string>
     <string name="settings_cross_profile_file_chooser_desc">有効にした場合、メインプロファイルからShelter内のファイルを管理できるようになります。Shelter内のファイルへはDocument UI（標準ファイラー）のみから隔離されたファイルシステムにアクセスできます。</string>
     <string name="request_system_alert">ファイル同期が正常に機能するためにShelterに<b>他のアプリに重ねて表示</b>を許可する必要があります。OKをタップした後、表示されるShelterアプリの個人用/仕事用の<b>二つとも</b>に権限を付与してください。この権限はファイル同期サービスがバックグラウンドで動作するために使われます。</string>
+    <string name="setup_wizard_welcome_text">Shelterはアプリを隔離されたプロファイル内で実行するためのツールです。このアプリではAndroidの <b>仕事用プロファイル</b> 機能を利用しています。
+\n
+\n「次へ」をタップするとShelterの詳細が表示されセットアップに進みます。
+\n
+\n次のページの項目をよく読んでおくことを推奨します。</string>
+    <string name="setup_wizard_compatibility">互換性</string>
+    <string name="setup_wizard_ready">準備はよろしいですか？</string>
+    <string name="setup_wizard_please_wait">しばらくお待ちください…</string>
+    <string name="setup_wizard_please_wait_text">仕事用プロファイルを設定してShelterをセットアップしようとしています。</string>
+    <string name="setup_wizard_failed">セットアップに失敗しました</string>
+    <string name="setup_wizard_action_required">操作が必要です</string>
+    <string name="setup_wizard_welcome">Shelterへようこそ</string>
 </resources>
