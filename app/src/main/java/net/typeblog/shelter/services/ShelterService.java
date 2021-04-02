@@ -291,6 +291,16 @@ public class ShelterService extends Service {
         return mBinder;
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        // Stop our foreground notification (if it was created at all) when
+        // all clients have disconnected.
+        // This helps to ensure no notification is left when the Shelter activity
+        // is closed.
+        stopForeground(true);
+        return false;
+    }
+
     private boolean isHidden(String packageName) {
         return mIsProfileOwner && mPolicyManager.isApplicationHidden(mAdminComponent, packageName);
     }
