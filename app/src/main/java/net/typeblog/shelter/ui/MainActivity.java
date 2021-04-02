@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -44,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String BROADCAST_CONTEXT_MENU_CLOSED = "net.typeblog.shelter.broadcast.CONTEXT_MENU_CLOSED";
     public static final String BROADCAST_SEARCH_FILTER_CHANGED = "net.typeblog.shelter.broadcast.SEARCH_FILTER_CHANGED";
 
-    private static final int REQUEST_START_SERVICE_IN_WORK_PROFILE = 2;
-    private static final int REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE = 4;
-
     private final ActivityResultLauncher<Void> mStartSetup =
             registerForActivityResult(new SetupWizardActivity.SetupWizardContract(), this::setupWizardCb);
     private final ActivityResultLauncher<Void> mResumeSetup =
@@ -57,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
                             new ActivityResultContracts.OpenDocument(),
                             new String[]{"application/vnd.android.package-archive"}),
                     this::onApkSelected);
+    // Logic of the following intents are quite complicated; use the generic contract for more control
+    private final ActivityResultLauncher<Intent> mTryStartWorkService =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::tryStartWorkServiceCb);
+    private final ActivityResultLauncher<Intent> mBindWorkService =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::bindWorkServiceCb);
 
     private LocalStorageManager mStorage = null;
 
@@ -147,7 +150,22 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return;
         }
-        startActivityForResult(intent, REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE);
+        mTryStartWorkService.launch(intent);
+    }
+
+    private void tryStartWorkServiceCb(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK) {
+            // RESULT_OK is from DummyActivity. The work profile is enabled!
+            bindWorkService();
+        } else {
+            // In this case, the user has been presented with a prompt
+            // to enable work mode, but we have no means to distinguish
+            // "ok" and "cancel", so the only way is to tell the user
+            // to start again.
+            Toast.makeText(this,
+                    getString(R.string.work_mode_disabled), Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
     private void bindWorkService() {
@@ -155,7 +173,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(DummyActivity.START_SERVICE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         Utility.transferIntentToProfile(this, intent);
-        startActivityForResult(intent, REQUEST_START_SERVICE_IN_WORK_PROFILE);
+        mBindWorkService.launch(intent);
+    }
+
+    private void bindWorkServiceCb(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+            Bundle extra = result.getData().getBundleExtra("extra");
+            IBinder binder = extra.getBinder("service");
+            mServiceWork = IShelterService.Stub.asInterface(binder);
+            registerStartActivityProxies();
+            startKiller();
+            buildView();
+        }
     }
 
     private void startKiller() {
@@ -418,33 +447,6 @@ public class MainActivity extends AppCompatActivity {
             });
         } catch (RemoteException e) {
             // Well, I don't know what to do then
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == REQUEST_TRY_START_SERVICE_IN_WORK_PROFILE) {
-            if (resultCode == RESULT_OK) {
-                // RESULT_OK is from DummyActivity. The work profile is enabled!
-                bindWorkService();
-            } else {
-                // In this case, the user has been presented with a prompt
-                // to enable work mode, but we have no means to distinguish
-                // "ok" and "cancel", so the only way is to tell the user
-                // to start again.
-                Toast.makeText(this,
-                        getString(R.string.work_mode_disabled), Toast.LENGTH_LONG).show();
-                finish();
-            }
-        } else if (requestCode == REQUEST_START_SERVICE_IN_WORK_PROFILE && resultCode == RESULT_OK) {
-            Bundle extra = data.getBundleExtra("extra");
-            IBinder binder = extra.getBinder("service");
-            mServiceWork = IShelterService.Stub.asInterface(binder);
-            registerStartActivityProxies();
-            startKiller();
-            buildView();
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 }
