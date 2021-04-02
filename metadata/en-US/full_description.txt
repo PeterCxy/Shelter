@@ -1,0 +1,11 @@
+Shelter is a Free and Open-Source (FOSS) app that leverages the "Work Profile" feature of Android to provide an isolated space that you can install or clone apps into.
+
+For a full description, please read <https://cgit.typeblog.net/Shelter/about/> from the Git repository of Shelter. A summary is provided below.
+
+The main use-cases of Shelter include:
+
+- Installing apps inside a work profile for isolation
+- "Freeze" apps inside the work profile to prevent them from running or being woken up when you are not actively using them
+- Installing two copies of the same app on the same device
+
+Note that Shelter depends on the Work Profile feature of the Android system, so any bugs related to Work Profiles in the Android-derived system you are using will affect Shelter. In addition, Shelter can only be as secure as the Work Profile implementation.
