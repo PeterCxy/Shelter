@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (position == 1) {
                     return AppListFragment.newInstance(mServiceWork, true);
                 } else {
-                    return null;
+                    throw new RuntimeException("How did this happen?");
                 }
             }
 
