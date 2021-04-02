@@ -375,58 +375,59 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.main_menu_freeze_all:
-                // This is the same as clicking on the batch freeze shortcut
-                // so we just forward the request to DummyActivity
-                Intent intent = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);
-                intent.setComponent(new ComponentName(this, DummyActivity.class));
-                startActivity(intent);
-                return true;
-            case R.id.main_menu_settings:
-                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-                Bundle extras = new Bundle();
-                extras.putBinder("profile_service", mServiceWork.asBinder());
-                settingsIntent.putExtra("extras", extras);
-                startActivity(settingsIntent);
-                return true;
-            case R.id.main_menu_create_freeze_all_shortcut:
-                Intent launchIntent = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);
-                launchIntent.setComponent(new ComponentName(this, DummyActivity.class));
-                launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                Utility.createLauncherShortcut(this, launchIntent,
-                        Icon.createWithResource(this, R.mipmap.ic_freeze),
-                        "shelter-freeze-all", getString(R.string.freeze_all_shortcut));
-                return true;
-            case R.id.main_menu_install_app_to_profile:
-                mSelectApk.launch(null);
-                return true;
-            case R.id.main_menu_show_all:
-                Runnable update = () -> {
-                    mShowAll = !item.isChecked();
-                    item.setChecked(mShowAll);
-                    LocalBroadcastManager.getInstance(this)
-                            .sendBroadcast(new Intent(AppListFragment.BROADCAST_REFRESH));
-                };
+        int itemId = item.getItemId();
+        if (itemId == R.id.main_menu_freeze_all) {
+            // This is the same as clicking on the batch freeze shortcut
+            // so we just forward the request to DummyActivity
+            Intent intent = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);
+            intent.setComponent(new ComponentName(this, DummyActivity.class));
+            startActivity(intent);
+            return true;
+        } else if (itemId == R.id.main_menu_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            Bundle extras = new Bundle();
+            extras.putBinder("profile_service", mServiceWork.asBinder());
+            settingsIntent.putExtra("extras", extras);
+            startActivity(settingsIntent);
+            return true;
+        } else if (itemId == R.id.main_menu_create_freeze_all_shortcut) {
+            Intent launchIntent = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);
+            launchIntent.setComponent(new ComponentName(this, DummyActivity.class));
+            launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Utility.createLauncherShortcut(this, launchIntent,
+                    Icon.createWithResource(this, R.mipmap.ic_freeze),
+                    "shelter-freeze-all", getString(R.string.freeze_all_shortcut));
+            return true;
+        } else if (itemId == R.id.main_menu_install_app_to_profile) {
+            mSelectApk.launch(null);
+            return true;
+        } else if (itemId == R.id.main_menu_show_all) {
+            Runnable update = () -> {
+                mShowAll = !item.isChecked();
+                item.setChecked(mShowAll);
+                LocalBroadcastManager.getInstance(this)
+                        .sendBroadcast(new Intent(AppListFragment.BROADCAST_REFRESH));
+            };
 
-                if (!item.isChecked()) {
-                    new AlertDialog.Builder(this)
-                            .setMessage(R.string.show_all_warning)
-                            .setPositiveButton(R.string.first_run_alert_continue,
-                                    (dialog, which) -> update.run())
-                            .setNegativeButton(R.string.first_run_alert_cancel, null)
-                            .show();
-                } else {
-                    update.run();
-                }
-                return true;
-            case R.id.main_menu_documents_ui:
-                Intent documentsUiIntent = new Intent(Intent.ACTION_VIEW);
-                documentsUiIntent.setDataAndType(null, "vnd.android.document/root");
-                startActivity(documentsUiIntent);
-                return true;
+            if (!item.isChecked()) {
+                new AlertDialog.Builder(this)
+                        .setMessage(R.string.show_all_warning)
+                        .setPositiveButton(R.string.first_run_alert_continue,
+                                (dialog, which) -> update.run())
+                        .setNegativeButton(R.string.first_run_alert_cancel, null)
+                        .show();
+            } else {
+                update.run();
+            }
+            return true;
+        } else if (itemId == R.id.main_menu_documents_ui) {
+            Intent documentsUiIntent = new Intent(Intent.ACTION_VIEW);
+            documentsUiIntent.setDataAndType(null, "vnd.android.document/root");
+            startActivity(documentsUiIntent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     private void onApkSelected(Uri uri) {
