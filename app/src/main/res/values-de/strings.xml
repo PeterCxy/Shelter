@@ -85,7 +85,7 @@
     <string name="documents_ui">Datei-Manager-Oberfläche</string>
     <string name="settings_block_contacts_searching">Blockiere Suche nach Kontakten</string>
     <string name="settings_block_contacts_searching_desc">Zugriff vom persönlichen Profil zu den Kontakten im Arbeitsprofil blockieren.</string>
-    <string name="setup_wizard_ready">Bereit\?</string>
+    <string name="setup_wizard_ready">Bereit?</string>
     <string name="setup_wizard_please_wait">Bitte warten…</string>
     <string name="setup_wizard_please_wait_text">Wir versuchen, das Arbeitsprofil zu initialisieren und Shelter auf deinem Gerät einzurichten.</string>
     <string name="setup_wizard_failed">Einrichtung fehlgeschlagen</string>
