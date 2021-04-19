@@ -88,4 +88,40 @@
     <string name="documents_ui">Datei-Manager-Oberfläche</string>
     <string name="settings_block_contacts_searching">Blockiere Suche nach Kontakten</string>
     <string name="settings_block_contacts_searching_desc">Zugriff vom persönlichen Profil zu den Kontakten im Arbeitsprofil blockieren.</string>
+    <string name="setup_wizard_ready">Bereit\?</string>
+    <string name="setup_wizard_please_wait">Bitte warten…</string>
+    <string name="setup_wizard_please_wait_text">Wir versuchen, das Arbeitsprofil zu initialisieren und Shelter auf deinem Gerät einzurichten.</string>
+    <string name="setup_wizard_failed">Einrichtung fehlgeschlagen</string>
+    <string name="setup_wizard_action_required">Handeln erforderlich</string>
+    <string name="setup_wizard_action_required_text">Du solltest nun eine Benachrichtigung von Shelter sehen. <b>Bitte tippe auf diese Benachrichtigung</b>, um den Einrichtungsprozess abzuschließen.
+\n
+\nWenn du die Benachrichtigung nicht siehst stelle sicher, dass dein Gerät nicht im \"Nicht stören\"-Modus ist und versuche, das Benachrichtigungspanel herunterzuziehen.
+\n
+\nUm Shelter zurückzusetzen und von vorne zu beginnen kannst du die Daten von Shelter in den Einstellungen löschen.</string>
+    <string name="setup_wizard_compatibility_text">Shelter wurde auf AOSP-ähnlichen Android-Derivaten entwickelt und getestet. Diese schließen AOSP (Android Open Sourcr Project), Google Android (auf Pixels) sowie <b>die meisten auf AOSP basierenden open-source-Custom-ROMs</b> wie beispielsweise LineageOS ein. Wenn auf deinem Telefon eines der oben genannten Android-Derivate läuft, dann Glückwunsch! Shelter wird wahrscheinlich korrekt auf deinem Gerät funktionieren.
+\n
+\nEinige Geräteanbieter fügen dem Android-Basiscode sehr tiefgehende Anpassungen hinzu, welche in Konflikten, Inkompatibilität und unerwartetem Verhalten enden können. Einige Custom-ROMs fügen ebenfalls kompatibilitätshindernde Änderungen hinzu, wobei diese seltener vorzufinden sind als anbieterverursachte Inkompatibilitäten.
+\n
+\nShelter ist lediglich eine Schnittstelle zur Arbeitsprofil-Funktion die das System bereitstellt. Wenn diese Systemfunktion kaputt oder nicht standardisiert ist, <b>kann Shelter dieses Problem nicht auf magische Weise selbstständig beheben.</b> Wenn du momentan eine durch den Anbieter modifizierte Androidversion nutzt, die für das Kaputtmachen der Arbeitsprofilfunktion bekannt ist: <b>Du wurdest gewarnt</b>. Du kannst trotzdem fortfahren, aber es gibt keine Garantie, dass Shelter unter diesen Umständen korrekt funktioniert.</string>
+    <string name="setup_wizard_ready_text">Wir sind nun bereit, Shelter für dich einzurichten. Bitte stelle zuerst sicher, dass sich dein Gerät <b>nicht</b> im \"Nicht stören\"-Modus befindet, da du später <b>eine Benachrichtigung antippen</b> musst, um den Einrichtungsprozess abzuschließen.
+\n
+\nWenn du bereit bist, tippe auf \"Weiter\", um den Einrichtungsprozess zu starten.</string>
+    <string name="setup_wizard_failed_text">Es tut uns leid dir mitzuteilen, dass es uns nicht gelungen ist, Shelter für dich einzurichten.
+\n
+\nWenn du die Einrichtung nicht selbstständig abgebrochen hast ist der Grund für das Fehlschlagen höchstwahrscheinlich ein stark modifiziertes System oder ein Konflikt zwischen Shelter und anderen Arbeitsprofilverwaltern. Leider gibt es nicht viel, das wir diesbezüglich unternehmen können.
+\n
+\nTippe auf Weiter zum Beenden.</string>
+    <string name="setup_wizard_welcome">Willkommen bei Shelter</string>
+    <string name="setup_wizard_welcome_text">Shelter ist eine Anwendung, die dir dabei hilft, andere Anwendungen in einem isolierten Profil auszuführen. Dies geschieht durch Nutzung der <b>Arbeitsprofil</b>-Funktionalität von Android.
+\n
+\nTippe auf \"Weiter\" und wir teilen dir mehr Informationen über Shelter mit und führen dich durch den Einrichtungsprozess.
+\n
+\nWir empfehlen, dass du dir alle der folgenden Seiten aufmerksam durchliest.</string>
+    <string name="setup_wizard_permissions_text">Standardmäßig wird Shelter nicht nach irgendwelchen individuellen Berechtigungen fragen. Allerdings wird Shelter, nachdem du den Einrichtungsprozess beginnst, versuchen ein Arbeitsprofil einzurichten und wird infolgedessen <b>Profilverwalter</b> dieses Profils.
+\n
+\nDies gibt Shelter eine umfangreiche Liste an Berechtigungen innerhalb des Profils, vergleichbar mit denen eines Geräteadministrators, allerdings beschränkt auf das Profil. Profilverwalter zu sein ist für die meisten Funktionen von Shelter zwingend nötig.
+\n
+\nEinige erweiterte Funktionen von Shelter benötigen eventuell mehr Berechtigungen <b>außerhalb</b> des Arbeitsprofils. Shelter wird beim Aktivieren der entsprechenden Funktionen separat nach diesen Berechtigungen fragen, sofern nötig.</string>
+    <string name="setup_wizard_compatibility">Kompatibilität</string>
+    <string name="setup_wizard_permissions">Ein Wort zu den Berechtigungen</string>
 </resources>
