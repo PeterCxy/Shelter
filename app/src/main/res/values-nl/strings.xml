@@ -12,10 +12,10 @@
     <string name="service_desc">Shelter is nu actief …</string>
     <string name="auto_freeze">Bevries automatisch</string>
     <string name="allow_cross_profile_widgets">Widgets toestaan in Hoofdprofiel</string>
-    <string name="search">Zoek</string>
+    <string name="search">Zoeken</string>
     <string name="freeze_all">Reeks Bevriezen</string>
     <string name="create_freeze_all_shortcut">Creëer Reeks Bevriezing Snelkoppeling</string>
-    <string name="freeze_all_shortcut">Bevries</string>
+    <string name="freeze_all_shortcut">Bevriezen</string>
     <string name="install_app_to_profile">Installeer APK in Shelter</string>
     <string name="show_all">Toon Alle Apps</string>
     <string name="install_app_to_profile_success">Installatie applicatie voltooid in werkprofiel.</string>
@@ -28,4 +28,55 @@
 \nAls je en ontwikkerlaar bent en graag Shelter wilt laten werken op deze onverenigbare ROMs zoals MIUI, pull requests zijn altijd welkom. De ontwikkelaar neemt <b>ABSOLUUT GEEN VERANTWOORDELIJKHEID</b> op als je je apperaat met een onverenigbare ROM breekt.
 \n
 \nJe zal een melding moeten krijgen om je instelling af te ronden, zorg er alsjeblieft voor dat je apperaat <b>NIET</b> op Niet Storen staat.</string>
+    <string name="setup_wizard_compatibility_text">Shelter is ontwikkeld en getest op AOSP-achtige Android afgeleiden. Dit omvat AOSP (Android Open Source Project), Google Android (op Pixels), en <b>de meeste op AOSP gebaseerde open-source custom ROMs</b> zoals LineageOS. Als je telefoon draait op een van de Android afgeleiden hierboven vermeld, dan gefeliciteerd! Shelter zal waarschijnlijk correct werken op je telefoon.
+\n
+\nSommige leveranciers van toestellen voegen zeer ingrijpende aanpassingen aan de Android code base toe, wat resulteert in conflicten, incompatibiliteit en onverwacht gedrag. Sommige aangepaste ROM\'s kunnen ook compatibiliteits-brekende veranderingen toevoegen, maar over het algemeen zijn dit zeldzamere voorvallen in vergelijking met door de telefoonleverancier toegevoegde incompatibiliteiten.
+\n
+\nShelter is slechts een interface naar de functie Werkprofiel die door het systeem wordt geleverd. Als de functie die door het systeem wordt geleverd kapot of niet standaard is, kan <b>Shelter het probleem niet op magische wijze zelf oplossen</b>. Als je momenteel een door de leverancier aangepaste Android-versie gebruikt waarvan bekend is dat deze werkprofielen verbreekt, dan <b>ben je gewaarschuwd</b>. Je kunt toch doorgaan, maar er is geen garantie dat Shelter zich onder deze omstandigheden correct zou gedragen.</string>
+    <string name="service_auto_freeze_desc">Shelter zal automatisch apps invriezen die zijn gestart vanuit \"Ontdooien &amp; Start\" bij de volgende schermvergrendelingsgebeurtenis.</string>
+    <string name="create_unfreeze_shortcut">Snelkoppeling voor ontdooien en/of starten maken</string>
+    <string name="unfreeze_and_launch">Ontdooien en starten</string>
+    <string name="setup_wizard_welcome">Welkom bij Shelter</string>
+    <string name="setup_wizard_welcome_text">Shelter is een applicatie om je te helpen andere applicaties te draaien in een geïsoleerd profiel. Het doet dit door gebruik te maken van de <b>Werkprofiel</b> functie van Android.
+\n
+\nKlik op \"Volgende\", en we zullen je meer informatie geven over Shelter en je door het installatieproces leiden.
+\n
+\nWe raden u aan alle volgende pagina\'s zorgvuldig door te lezen.</string>
+    <string name="setup_wizard_permissions">Een woord over rechten</string>
+    <string name="setup_wizard_permissions_text">Shelter zal standaard niet om individuele rechten vragen. Echter, zodra je verder gaat met het installatieproces, zal Shelter proberen een Werkprofiel op te zetten en daarmee de <b>profielmanager</b> van dat profiel worden.
+\n
+\nDit geeft Shelter een uitgebreide lijst van rechten binnen het profiel, vergelijkbaar met die van een apparaatbeheerder, maar gewoon beperkt tot het profiel. Profielbeheerder zijn is noodzakelijk voor de meeste functies van Shelter.
+\n
+\nSommige geavanceerde functies van Shelter kunnen meer rechten <b>buiten</b> het werkprofiel vereisen. Indien nodig, zal Shelter apart om die rechten vragen wanneer u de betreffende functies inschakelt.</string>
+    <string name="setup_wizard_compatibility">Compatibiliteit</string>
+    <string name="setup_wizard_ready">Klaar\?</string>
+    <string name="setup_wizard_ready_text">We zijn nu klaar om Shelter voor je in te stellen. Zorg er eerst voor dat jouw toestel <b>niet</b> in Niet Storen modus staat, omdat je later <b>op een melding moet klikken</b> om het installatieproces af te ronden.
+\n
+\nAls je klaar bent, klik op \"Volgende\" om het installatieproces te beginnen.</string>
+    <string name="setup_wizard_please_wait">Wacht alstublieft…</string>
+    <string name="setup_wizard_please_wait_text">We proberen het Werkprofiel te initialiseren en Shelter op jouw toestel in te stellen.</string>
+    <string name="setup_wizard_failed">Setup mislukt</string>
+    <string name="setup_wizard_failed_text">Tot onze spijt moeten wij u meedelen dat wij niet in staat waren Shelter voor je in te stellen.
+\n
+\nAls je de setup niet handmatig heeft geannuleerd, dan is de reden voor het mislukken meestal te wijten aan een sterk gewijzigd systeem of een conflict tussen Shelter en andere werkprofiel-managers. Helaas is hier niet veel aan te doen.
+\n
+\nKlik op Volgende om af te sluiten.</string>
+    <string name="setup_wizard_action_required">Actie vereist</string>
+    <string name="setup_wizard_action_required_text">Je zou nu een melding van Shelter moeten zien. <b>Klik op die melding</b> om het installatieproces te voltooien.
+\n
+\nAls je de melding niet ziet, controleer dan of je toestel niet in de Niet storen modus staat en probeer het meldingencentrum naar beneden te trekken.
+\n
+\nOm Shelter te resetten en opnieuw te beginnen, kun je de gegevens van Shelter wissen in Instellingen.</string>
+    <string name="service_auto_freeze_now">Nu bevriezen</string>
+    <string name="app_installing">Installeren...</string>
+    <string name="fragment_profile_main">Hoofd</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[Bevroren] %s</string>
+    <string name="batch_operation">Batchbewerking</string>
+    <string name="clone_to_work_profile">Kloon naar Shelter (Werkprofiel)</string>
+    <string name="clone_to_main_profile">Kloon naar Hoofdprofiel</string>
+    <string name="uninstall_app">Verwijderen</string>
+    <string name="freeze_app">Bevriezen</string>
+    <string name="unfreeze_app">Ontdooien</string>
+    <string name="launch">Starten</string>
 </resources>
