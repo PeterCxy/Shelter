@@ -48,7 +48,7 @@
 \n
 \nSommige geavanceerde functies van Shelter kunnen meer toegangsrechten <b>buiten</b> het werkprofiel vereisen. Indien nodig, zal Shelter apart om die rechten vragen wanneer u de betreffende functies inschakelt.</string>
     <string name="setup_wizard_compatibility">Compatibiliteit</string>
-    <string name="setup_wizard_ready">Klaar\?</string>
+    <string name="setup_wizard_ready">Klaar?</string>
     <string name="setup_wizard_ready_text">We zijn nu klaar om Shelter voor je in te stellen. Zorg er eerst voor dat jouw toestel <b>niet</b> in Niet Storen modus staat, omdat je later <b>op een melding moet klikken</b> om het installatieproces af te ronden.
 \n
 \nAls je klaar bent, klik op \"Volgende\" om het installatieproces te beginnen.</string>
