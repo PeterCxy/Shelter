@@ -88,4 +88,40 @@
     <string name="settings_dont_freeze_foreground_desc">NIE zamrażaj aplikacji na wierzchu (z widoczną aktywnością) gdy zablokujesz ekran. To może być przydatne dla np. odtwarzaczy muzyki, ale musisz je zamrozić ręcznie poprzez \"skrót do masowego zamrażania\".</string>
     <string name="request_usage_stats">Shelter aby to zrobić wymaga uprawnienia <b>dostępu do danych o użyciu</b>. Proszę nadać uprawnienie <b>OBU Z DWÓCH</b> aplikacji Shelter na liście pokazanej po naciśnięciu \"Ok\". Nie nadanie uprawnienia spowoduje, że funkcja nie będzie działać prawidłowo.</string>
     <string name="request_system_alert">Shelter wymaga uprawnienia do <b>Wyświetlania nad innymi aplikacji</b>, aby mostek plików działał poprawnie. Proszę nadać uprawnienie <b>OBU Z DWÓCH</b> (Główna / Służbowa) aplikacjom Shelter na liście pokazanej po naciśnięciu \"Ok\". To uprawnienie jest używane aby uruchamiać usługę mostka plików w tle.</string>
+    <string name="setup_wizard_welcome">Witaj w Shelter</string>
+    <string name="setup_wizard_welcome_text">Shelter to aplikacja, która pozwala uruchamiać inne aplikacje w wyizolowanym profilu. Jest to możliwe dzięki funkcji Androida <b>profil roboczy</b>.
+\n
+\nNaciśnij \"Dalej\", by otrzymać więcej informacji o Shelterze oraz by otrzymać wsparcie w konfigurowaniu aplikacji.
+\n
+\nZalecamy przeczytać wszystko uważnie.</string>
+    <string name="setup_wizard_permissions">Uprawnienia</string>
+    <string name="setup_wizard_permissions_text">Domyślnie Shelter nie prosi o żadne uprawnienia. Jednak gdy skończysz konfigurację Shelter spróbuje stworzyć profil roboczy i stać się menadżerem tego profilu.
+\n
+\nTo przyzna Shelterowi obszerną listę uprawnień dotyczących profilu, porównywalnych do administratora urządzenia, jednak skupionych tylko na tym profilu. Bycie menadżerem profilu jest wymagane przez większość funkcji Sheltera.
+\n
+\nNiektóre zaawansowane funkcje Sheltera mogą wymagać więcej uprawnień <b>poza</b> profilem roboczym. Gdy zajdzie taka potrzeba, Shelter poprosi o uprawnienia konieczne do działania wybranej funkcji.</string>
+    <string name="setup_wizard_compatibility">Kompatybilność</string>
+    <string name="setup_wizard_compatibility_text">Shelter jest tworzony i testowany na pochodnych AOSP. Zaliczają się do nich: AOSP (Android Open Source Project), Google Android (na Pixelach oraz &lt;b&gt;większość opartych na AOSP otwartoźródłowych systemów,&lt;/b&gt; takich jak LineageOS. Jeśli na swoim telefonie masz jedną z wersji Androida wymienionych powyżej — gratulacje! Shelter prawdopodobnie zadziała poprawnie na twoim urządzeniu.
+\n
+\nNiektórzy producenci urządzeń przeprowadzają bardzo inwazyjne zmiany w bazowym kodzie Androida, doprowadzając do konfliktów, niezgodności i nieprzewidywalnych zachowań. Niektóre systemy niezwiązane z producentami również mogą wprowadzać zmiany psujące kompatybilność, ale generalnie zdarza się to rzadziej niż problemy z modyfikacjami producentów.
+\n
+\nShelter jest zaledwie interfejsem dla profilu roboczego zapewnionego przez system. Jeśli funkcja dostarczona przez system jest popsuta lub niestandardowa, &lt;b&gt;Shelter tego magicznie nie naprawi./b&gt; Jeśli używasz zmodyfikowanej przez producenta wersji Androida, która znana jest z psucia profili roboczych, &lt;b&gt;otrzymałeś/aś ostrzeżenie.&lt;/b&gt; Oczywiście, możesz kontynuować, ale nie ma żadnej gwarancji, że Shelter będzie funkcjonować poprawnie w takich warunkach.</string>
+    <string name="setup_wizard_failed_text">Przykro nam, ale nie udało nam się skonfigurować Sheltera dla ciebie.
+\n
+\nJeśli nie anulowałeś konfiguracji ręcznie, powodem niepowodzenia jest najczęściej mocno zmodyfikowany system lub konflikt pomiędzy Shelterem a innymi menadżerami profilu roboczego. Niestety nie możemy z tym nic zrobić.
+\n
+\nNaciśnij Dalej by wyjść.</string>
+    <string name="setup_wizard_ready_text">Jesteśmy gotowi by skonfigurować Sheltera dla ciebie. Najpierw upewnij się, że urządzenie <b>nie jest</b> w trybie Nie Przeszkadzać, ponieważ konieczne będzie <b>kliknięcie na powiadomienie</b> w celu zakończenia konfiguracji.
+\n
+\nGdy będziesz gotowy/a, naciśnij \"Dalej\" by rozpocząć proces konfiguracji.</string>
+    <string name="setup_wizard_please_wait">Proszę czekać…</string>
+    <string name="setup_wizard_please_wait_text">Próbujemy przygotować profil roboczy i skonfigurować Shelter na twoim urządzeniu.</string>
+    <string name="setup_wizard_failed">Konfiguracja nieudana</string>
+    <string name="setup_wizard_action_required">Wymagane działanie</string>
+    <string name="setup_wizard_action_required_text">Powinieneś teraz widzieć powiadomienie od Sheltera. <b>Naciśnij na to powiadomienie</b> by zakończyć proces konfiguracji.
+\n
+\nJeśli nie widzisz powiadomienia upewnij się, że nie masz włączonego trybu Nie Przeszkadzać lub spróbuj rozwinąć centrum powiadomień.
+\n
+\nBy zresetować Sheltera i zacząć od nowa możesz wyczyścić dane Sheltera w Ustawieniach.</string>
+    <string name="setup_wizard_ready">Gotowy/a\?</string>
 </resources>
