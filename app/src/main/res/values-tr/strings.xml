@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="setup_wizard_compatibility">Uyumluluk</string>
+    <string name="setup_wizard_permissions">İzinler hakkında</string>
+    <string name="setup_wizard_action_required">Eylem gerekli</string>
+    <string name="setup_wizard_ready">Hazır mısınız\?</string>
+    <string name="settings">Ayarlar</string>
+    <string name="settings_version">Sürüm</string>
+    <string name="settings_about">Hakkında</string>
+    <string name="setup_wizard_please_wait">Lütfen bekleyin…</string>
+    <string name="settings_source_code">Kaynak Kodu</string>
+    <string name="settings_services">Hizmetler</string>
+</resources>
