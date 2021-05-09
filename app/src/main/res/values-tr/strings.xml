@@ -10,4 +10,11 @@
     <string name="setup_wizard_please_wait">Lütfen bekleyin…</string>
     <string name="settings_source_code">Kaynak Kodu</string>
     <string name="settings_services">Hizmetler</string>
+    <string name="setup_wizard_welcome">Shelter\'a hoş geldiniz</string>
+    <string name="search">Ara</string>
+    <string name="freeze_all_shortcut">Dondur</string>
+    <string name="settings_translate">Çeviri</string>
+    <string name="clone_success">\"%s\" uygulaması başarıyla klonlandı</string>
+    <string name="uninstall_success">\"%s\" uygulaması başarıyla kaldırıldı</string>
+    <string name="first_run_alert_continue">Devam et</string>
 </resources>
