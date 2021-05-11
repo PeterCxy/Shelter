@@ -1,2 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="setup_wizard_failed_text">Chúng tôi rất tiếc phải thông báo cho bạn rằng chúng tôi đã không thể thiết lập Shelter cho bạn.
+\n
+\nNếu bạn đã không huỷ thiết lập theo cách thủ công, thì lý do của sự thất bại thường là một hệ thống bị sửa đổi sâu, hoặc có xung đột giữa Shelter và các trình quản lý Hồ sơ công việc khác. Không may mắn là chúng tôi không thể làm gì nhiều về điều này.
+\n
+\nNhấn Tiếp để thoát.</string>
+    <string name="setup_wizard_action_required_text">Bây giờ, bạn rất có thể đang thấy một thông báo từ Shelter. <b>Vui lòng nhấn vào thông báo đó</b> để hoàn thành quá trình thiết lập.
+\n
+\nNếu bạn không thấy thông báo đó, hãy chắc chắn là thiết bị của bạn đang không ở chế độ Không làm phiền và thử kéo trung tâm thông báo xuống.
+\n
+\nĐể đặt lại Shelter và bắt đầu lại, bạn có thể xoá dữ liệu của Shelter trong Cài đặt.</string>
+    <string name="finish_provision_desc">Chúc mừng! Bạn còn một cú nhấn nữa để hoàn tất thiết lập Shelter.</string>
+    <string name="service_auto_freeze_desc">Shelter sẽ tự động đóng băng các ứng dụng được chạy từ \"Huỷ đóng băng &amp; Chạy\" vào sự kiện khoá màn hình tiếp theo.</string>
+    <string name="unfreeze_app">Huỷ đóng băng</string>
+    <string name="allow_cross_profile_widgets">Cho phép tiện ích trong Hồ sơ chính</string>
+    <string name="install_app_to_profile_success">Đã hoàn thành cài đặt ứng dụng trong hồ sơ công việc.</string>
+    <string name="show_all_warning">Việc điều khiển các ứng dụng bị ẩn khỏi danh sách có thể sẽ gây ra dừng đột ngột và nhiều hành vi không mong đợi. Tuy nhiên, tính năng này có thể hữu ích khi các bản ROM có lỗi do hãng tuỳ biến không bật tất cả các ứng dụng hệ thống cần thiết trong hồ sơ công việc theo mặc định. Nếu bạn tiếp tục, bạn tự chịu trách nhiệm.</string>
+    <string name="first_run_alert_continue">Tiếp tục</string>
+    <string name="device_admin_desc">Dịch vụ cô lập ứng dụng</string>
+    <string name="device_admin_explanation">Shelter cần trở thành Quản trị viên thiết bị để thực hiện các công việc cô lập của nó.</string>
+    <string name="camera_proxy_activity">Chọn tệp hình ảnh</string>
+    <string name="setup_wizard_permissions">Một lời về các quyền</string>
+    <string name="setup_wizard_compatibility">Sự tương thích</string>
+    <string name="setup_wizard_ready">Sẵn sàng chưa\?</string>
+    <string name="setup_wizard_please_wait">Vui lòng đợi…</string>
+    <string name="setup_wizard_failed">Thiết lập thất bại</string>
+    <string name="setup_wizard_action_required">Yêu cầu hành động</string>
+    <string name="notifications_important">Shelter - Quan trọng</string>
+    <string name="finish_provision_title">Nhấn vào đây để hoàn tất thiết lập Shelter</string>
+    <string name="service_title">Dịch vụ Shelter</string>
+    <string name="service_desc">Shelter hiện đang chạy…</string>
+    <string name="service_auto_freeze_title">Đang chờ tự động đóng băng</string>
+    <string name="service_auto_freeze_now">Đóng băng ngay</string>
+    <string name="app_installing">Đang cài đặt…</string>
+    <string name="fragment_profile_main">Chính</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[Đã đóng băng] %s</string>
+    <string name="batch_operation">Hoạt động hàng loạt</string>
+    <string name="clone_to_work_profile">Nhân bản vào Shelter (Hồ sơ công việc)</string>
+    <string name="clone_to_main_profile">Nhân bản vào Hồ sơ chính</string>
+    <string name="uninstall_app">Gỡ cài đặt</string>
+    <string name="freeze_app">Đóng băng</string>
+    <string name="launch">Chạy</string>
+    <string name="create_unfreeze_shortcut">Tạo lối tắt Huỷ đóng băng và/hoặc Chạy</string>
+    <string name="unfreeze_and_launch">Huỷ đóng băng và Chạy</string>
+    <string name="auto_freeze">Tự động đóng băng</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="freeze_all">Đóng băng hàng loạt</string>
+    <string name="create_freeze_all_shortcut">Tạo lối tắt Đóng băng hàng loạt</string>
+    <string name="freeze_all_shortcut">Đóng băng</string>
+    <string name="install_app_to_profile">Cài đặt APK vào Shelter</string>
+    <string name="show_all">Hiện tất cả ứng dụng</string>
+    <string name="documents_ui">Mở giao diện Tài liệu</string>
+    <string name="settings">Cài đặt</string>
+    <string name="settings_interaction">Tương tác</string>
+    <string name="first_run_alert_cancel">Tạm biệt</string>
+    <string name="setup_wizard_welcome">Chào mừng đến Shelter</string>
+    <string name="setup_wizard_welcome_text">Shelter là một ứng dụng giúp bạn chạy các ứng dụng khác trong một hồ sơ được cô lập. Nó làm vậy bằng cách sử dụng tính năng <b>Hồ sơ công việc</b> của Android.
+\n
+\nNhấn \"Tiếp\", và chúng tôi sẽ cung cấp cho bạn thêm thông tin về Shelter, và hướng dẫn bạn qua quá trình thiết lập.
+\n
+\nChúng tôi khuyên bạn đọc tất cả những trang sau đây một cách cẩn thận.</string>
+    <string name="setup_wizard_permissions_text">Theo mặc định, Shelter sẽ không hỏi bất kỳ quyền riêng biệt nào. Tuy nhiên, khi bạn tiếp tục quá trình thiết lập, Shelter sẽ cố thiết lập một Hồ sơ công việc và do đó trở thành <b>người quản lý hồ sơ</b> của hồ sơ đó.
+\n
+\nViệc này sẽ cấp cho Shelter một danh sách dài các quyền ở trong hồ sơ, có thể so sánh với một Quản trị viên thiết bị, mặc dù bị giới hạn trong hồ sơ đó. Việc làm người quản lý hồ sơ là cần thiết cho đa số chức năng của Shelter.
+\n
+\nMột số tính năng nâng cao của Shelter có thể sẽ yêu cầu nhiều quyền hơn <b>ở ngoài</b> Hồ sơ công việc. Khi cần, Shelter sẽ hỏi các quyền đó một cách riêng biệt khi bạn bật các tính năng tương ứng.</string>
+    <string name="setup_wizard_compatibility_text">Shelter được phát triển và thử nghiệm trên các biến thể Android giống AOSP. Những biến thể này bao gồm AOSP (Android Open Source Project), Google Android (trên các thiết bị Pixel), và <b>đa số các bản ROM tuỳ chỉnh mã nguồn mở dựa trên AOSP</b> như là LineageOS. Nếu điện thoại của bạn đang chạy một trong số những biến thể Android được liệt kê ở trên, thì chúc mừng! Shelter có thể sẽ hoạt động đúng trên thiết bị của bạn.
+\n
+\nMột số hãng thiết bị giới thiệu những tuỳ biến rất gây xâm hại vào mã nguồn của Android, việc này dẫn đến sự xung đột, không tương thích và hành vi không mong đợi. Một số bản ROM tuỳ chỉnh cũng có thể giới thiệu các thay đổi phá vỡ sự tương thích, nhưng nói chung thì chúng xảy ra hiếm hơn so với những sự không tương thích do hãng điện thoại gây ra.
+\n
+\nShelter chỉ là một giao diện vào tính năng Hồ sơ công việc được hệ thống cung cấp. Nếu tính năng được hệ thống cung cấp bị hỏng hoặc phi tiêu chuẩn, <b>Shelter không thể tự giải quyết vấn đề một cách nhiệm màu</b>. Nếu bạn hiện đang sử dụng một phiên bản Android được hãng sửa đổi được biết là làm hỏng Hồ sơ công việc, <b>bạn đã được cảnh báo</b>. Bạn có thể vẫn tiếp tục, nhưng không có đảm bảo rằng Shelter sẽ hoạt động đúng dưới hoàn cảnh này.</string>
+    <string name="setup_wizard_ready_text">Chúng tôi bây giờ đã sẵn sàng thiết lập Shelter cho bạn. Trước hết, vui lòng chắc chắn rằng thiết bị của bạn đang <b>không</b> ở trong chế độ Không làm phiền, vì bạn sẽ cần phải <b>nhấn vào một thông báo</b> vào lúc sau để hoàn thành quá trình thiết lập.
+\n
+\nKhi bạn đã sẵn sàng, hãy nhấn vào \"Tiếp\" để bắt đầu quá trình thiết lập.</string>
+    <string name="setup_wizard_please_wait_text">Chúng tôi đang cố khởi tạo Hồ sơ công việc và thiết lập Shelter trên thiết bị của bạn.</string>
+</resources>
