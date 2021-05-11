@@ -75,4 +75,42 @@
 \n
 \nKhi bạn đã sẵn sàng, hãy nhấn vào \"Tiếp\" để bắt đầu quá trình thiết lập.</string>
     <string name="setup_wizard_please_wait_text">Chúng tôi đang cố khởi tạo Hồ sơ công việc và thiết lập Shelter trên thiết bị của bạn.</string>
+    <string name="settings_camera_proxy_desc">Trưng bày một ứng dụng máy ảnh giả cho các ứng dụng khác, việc này cho phép bạn chọn một hình ảnh bất kỳ từ Giao diện Tài liệu (và Chia sẻ tệp nếu được bật) làm bức ảnh được chụp. Việc này sẽ bật Chia sẻ tệp cho bất kỳ ứng dụng nào hỗ trợ việc gọi các ứng dụng máy ảnh khác để chụp ảnh, kể cả nếu chúng không trực tiếp hỗ trợ Giao diện Tài liệu.</string>
+    <string name="settings_auto_freeze_delay">Độ trễ tự động đóng băng</string>
+    <string name="settings_dont_freeze_foreground">Bỏ qua các ứng dụng ở trước</string>
+    <string name="settings_dont_freeze_foreground_desc">KHÔNG đóng băng các ứng dụng ở trước (có hoạt động có thể nhìn thấy được) khi bạn khoá màn hình. Việc này có thể hữu ích đối với các ứng dụng như trình phát nhạc, nhưng sau đó bạn sẽ cần phải đóng băng chúng theo cách thủ công qua \"Lối tắt Đóng băng hàng loạt\".</string>
+    <string name="settings_translate">Phiên dịch</string>
+    <string name="settings_bug_report">Báo cáo lỗi / Trình theo dõi vấn đề</string>
+    <string name="provision_finished">Thiết lập Shelter hoàn tất. Bây giờ đang khởi động lại Shelter. Nếu Shelter không tự động khởi động, bạn có thể chạy nó lại từ launcher của bạn.</string>
+    <string name="work_profile_not_found">Không tìm thấy hồ sơ công việc. Vui lòng khởi động lại ứng dụng để quản lý lại hồ sơ.</string>
+    <string name="work_mode_disabled">Có vẻ như bạn đã tắt Chế độ công việc trong khi đang khởi động Shelter. Nếu bạn đã bật nó ngay bây giờ, vui lòng khởi động lại Shelter.</string>
+    <string name="freeze_success">Đã đóng băng ứng dụng \"%s\" thành công</string>
+    <string name="clone_fail_system_app">Không thể nhân bản ứng dụng hệ thống vào một hồ sơ mà Shelter không thể kiểm soát.</string>
+    <string name="uninstall_fail_system_app">Không thể gỡ cài đặt ứng dụng hệ thống trong một hồ sơ mà Shelter không thể kiểm soát.</string>
+    <string name="freeze_all_success">Tất cả ứng dụng trong danh sách \"Tự động đóng băng\" đã được đóng băng thành công.</string>
+    <string name="request_usage_stats">Shelter cần quyền <b>Thống kê sử dụng</b> để làm việc này. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Shelter được hiện trong hộp thoại sau khi bạn nhấn \"Ok\". Tính năng này sẽ không hoạt động đúng nếu bạn không làm vậy.</string>
+    <string name="settings_cross_profile_file_chooser">Chia sẻ tệp</string>
+    <string name="settings_cross_profile_file_chooser_desc">Khi được bật, bạn sẽ có thể duyệt / xem / chọn / sao chép các tệp trong Shelter từ hồ sơ chính và ngược lại, CHỈ qua Giao diện Tài liệu (có tên là Tệp hoặc Tài liệu trên launcher của bạn) hoặc các ứng dụng có hỗ trợ Giao diện Tài liệu (chúng chỉ có quyền truy cập tạm thời vào các tệp bạn chọn trong Giao diện Tài liệu), trong khi vẫn giữ sự cô lập hệ thống tệp.</string>
+    <string name="settings_camera_proxy">Trình chọn hình ảnh dưới dạng máy ảnh giả</string>
+    <string name="settings_block_contacts_searching">Chặn tìm kiếm danh bạ</string>
+    <string name="settings_block_contacts_searching_desc">Từ chối quyền truy cập danh bạ từ hồ sơ chính trong hồ sơ công việc.</string>
+    <string name="settings_services">Dịch vụ</string>
+    <string name="settings_auto_freeze_service">Dịch vụ tự động đóng băng</string>
+    <string name="settings_auto_freeze_service_desc">Khi màn hình bị khoá, tự động đóng băng các ứng dụng được chạy từ \"Lối tắt Huỷ đóng băng &amp; Chạy\".</string>
+    <string name="settings_about">Giới thiệu</string>
+    <string name="settings_version">Phiên bản</string>
+    <string name="settings_source_code">Mã nguồn</string>
+    <string name="msg_device_unsupported">Quyền bị từ chối hoặc thiết bị không được hỗ trợ</string>
+    <string name="work_profile_provision_failed">Không thể quản lý hồ sơ công việc. Bạn có thể thử lại bằng cách khởi động lại Shelter.</string>
+    <string name="clone_success">Đã nhân bản ứng dụng \"%s\" thành công</string>
+    <string name="uninstall_success">Đã gỡ cài đặt ứng dụng \"%s\" thành công</string>
+    <string name="unfreeze_success">Đã huỷ đóng băng ứng dụng \"%s\" thành công</string>
+    <string name="unsupported_launcher">Không thể thêm lối tắt vào launcher. Vui lòng liên hệ với nhà phát triển để biết thêm thông tin.</string>
+    <string name="app_context_menu_title">Hoạt động cho %s</string>
+    <string name="shortcut_create_success">Đã tạo lối tắt trên launcher.</string>
+    <string name="launch_app_fail">Không thể chạy ứng dụng %s vì nó không có giao diện đồ hoạ.</string>
+    <string name="request_storage_manager">Shelter cần quyền truy cập <b>Tất cả tệp</b> cho Chia sẻ tệp. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Shelter (Cá nhân / Công việc) được hiện trong hộp thoại sau khi bạn nhấn \"Ok\".</string>
+    <string name="request_system_alert">Shelter cần <b>Hiện trên các ứng dụng khác</b> để Chia sẻ tệp hoạt động đúng. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Shelter (Cá nhân / Công việc) được hiện trong hộp thoại sau khi bạn nhấn \"Ok\". Quyền này được sử dụng để khởi động các dịch vụ Chia sẻ tệp trong nền.</string>
+    <string name="miui_cannot_clone">Việc nhân bản các ứng dụng không phải hệ thống vào một hồ sơ khác hiện chưa làm được trên MIUI. Vui lòng nhân bản cửa hàng ứng dụng của hệ thống (vd: <b>CH Play</b>) vào hồ sơ khác đó và sau đó là cài đặt các ứng dụng từ đó.</string>
+    <string name="continue_anyway">Vẫn tiếp tục</string>
 </resources>
