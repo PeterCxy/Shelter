@@ -23,7 +23,7 @@
     <string name="device_admin_explanation">Shelter cần trở thành Quản trị viên thiết bị để thực hiện các công việc cô lập của nó.</string>
     <string name="setup_wizard_permissions">Một lời về các quyền</string>
     <string name="setup_wizard_compatibility">Sự tương thích</string>
-    <string name="setup_wizard_ready">Sẵn sàng chưa\?</string>
+    <string name="setup_wizard_ready">Sẵn sàng chưa?</string>
     <string name="setup_wizard_please_wait">Vui lòng đợi…</string>
     <string name="setup_wizard_failed">Thiết lập thất bại</string>
     <string name="setup_wizard_action_required">Yêu cầu hành động</string>
