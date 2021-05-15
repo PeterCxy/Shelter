@@ -47,4 +47,28 @@
     <string name="msg_device_unsupported">İzin reddedildi veya cihazınız desteklenmiyor</string>
     <string name="freeze_all_success">\"Otomatik Dondur\" listesindeki tüm uygulamalar başarıyla donduruldu.</string>
     <string name="launch_app_fail">%s uygulaması grafiksel arayüze sahip olmadığı için açılamadı.</string>
+    <string name="install_app_to_profile">APK dosyası yükleyin</string>
+    <string name="batch_operation">Çoklu İşlem</string>
+    <string name="install_app_to_profile_success">Uygulama iş profiline yüklendi.</string>
+    <string name="finish_provision_title">Shelter kurulumunu tamamlamak için buraya tıklayın</string>
+    <string name="settings_interaction">Etkileşim</string>
+    <string name="documents_ui">Dosya Gezginini aç</string>
+    <string name="finish_provision_desc">Tebrikler! Shelter kurulumu bitmek üzere.</string>
+    <string name="service_auto_freeze_now">Şimdi Dondur</string>
+    <string name="create_freeze_all_shortcut">Çoklu Dondurma Kısayolu Oluştur</string>
+    <string name="freeze_all">Çoklu Dondurma</string>
+    <string name="settings_block_contacts_searching">Rehber Erişimini Engelle</string>
+    <string name="settings_camera_proxy">Görüntü Seçiciyi kamera uygulaması gibi göster</string>
+    <string name="freeze_success">\"%s\" uygulaması başarıyla donduruldu</string>
+    <string name="unfreeze_success">\"%s\" uygulaması başarıyla aktifleştirildi</string>
+    <string name="app_context_menu_title">%s için İşlemler</string>
+    <string name="shortcut_create_success">Kısayol, ana ekrana eklendi.</string>
+    <string name="unsupported_launcher">Ana ekran uygulamanıza kısayol eklenemiyor. Detaylı bilgi için lütfen geliştirici ile iletişime geçin.</string>
+    <string name="continue_anyway">Devam et</string>
+    <string name="setup_wizard_compatibility_text">Shelter, AOSP gibi Android türevleri için geliştirilmiştir. Bu türevlere AOSP (Android Open Source Project), Google Android (Pixel model cihazlarda) ve LineageOS gibi <b> AOSP-tabanlı açık kaynak ROM\'ların çoğu</b> dahildir. Eğer telefonunuzda bu Android türevlerinden biri yüklüyse Shelter büyük ihtimalle telefonunuzda sorunsuz bir şekilde çalışacaktır.
+\n
+\nBazı cihaz üreticilerinin Android\'in temel koduna koyduğu aşırı müdahaleci özelleştirmeler cihazda çakışmalara, uyumsuzluklara ve beklenmeyen hatalara yol açabilir. Bazı özel ROM\'lar da uyumluluğu bozan değişiklere sebep olabilir ancak bu durum telefon üreticilerinden kaynaklanan hatalara göre daha nadir görülür.
+\n
+\nShelter, sistem tarafından sağlanan İş Profili özelliği için kullanılabilen bir arayüzden ibarettir. Sistem tarafından sağlanan bu özellik hatalı veya standart dışı ise <b> Shelter bu sorunlara kendi başına çözüm getiremez</b>. İş Profili özelliğini bozduğu bilinen üretici sürümü bir Android kullanan kullanıclarımızın <b>bu uyarıyı dikkate almalarını tavsiye ederiz</b>. Shelter, bu koşullar altında düzgün çalışacağını garanti etmez.</string>
+    <string name="settings_block_contacts_searching_desc">Ana profilin iş profiline bağlı olan rehbere erişimini engelle.</string>
 </resources>
