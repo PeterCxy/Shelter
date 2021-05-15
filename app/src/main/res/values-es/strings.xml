@@ -3,7 +3,7 @@
     <string name="service_title">Servicio Shelter</string>
     <string name="service_desc">Shelter se esta ejecutando actualmente…</string>
     <string name="service_auto_freeze_title">Suspensión automática pendiente</string>
-    <string name="first_run_alert_cancel">Adios</string>
+    <string name="first_run_alert_cancel">Adiós</string>
     <string name="first_run_alert_continue">Continuar</string>
     <string name="device_admin_desc">Servicio de aislamiento</string>
     <string name="device_admin_explanation">Shelter necesita convertirse en el administrador del dispositivo para realizar tareas de aislamiento.</string>
