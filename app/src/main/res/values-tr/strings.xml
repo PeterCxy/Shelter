@@ -71,4 +71,18 @@
 \n
 \nShelter, sistem tarafından sağlanan İş Profili özelliği için kullanılabilen bir arayüzden ibarettir. Sistem tarafından sağlanan bu özellik hatalı veya standart dışı ise <b> Shelter bu sorunlara kendi başına çözüm getiremez</b>. İş Profili özelliğini bozduğu bilinen üretici sürümü bir Android kullanan kullanıclarımızın <b>bu uyarıyı dikkate almalarını tavsiye ederiz</b>. Shelter, bu koşullar altında düzgün çalışacağını garanti etmez.</string>
     <string name="settings_block_contacts_searching_desc">Ana profilin iş profiline bağlı olan rehbere erişimini engelle.</string>
+    <string name="service_auto_freeze_title">Bekleyen otomatik dondurma</string>
+    <string name="service_auto_freeze_desc">Ekranınızı kilitlediğinizde \"Aktifleştir &amp; Çalıştır\" seçeneği üzerinden başlatılan uygulamalar otomatik olarak dondurulacaktır.</string>
+    <string name="settings_cross_profile_file_chooser">Dosya Köprüsü</string>
+    <string name="settings_auto_freeze_service_desc">Ekranınızı kilitlediğinizde, \"Aktifleştir &amp; Çalıştır\" kısayolu üzerinden başlatılan uygulamalar otomatik olarak dondurulacaktır.</string>
+    <string name="work_profile_provision_failed">İş profili atanamadı. Tekrar denemek için Shelter\'ı yeniden başlatın.</string>
+    <string name="miui_cannot_clone">MIUI yüklü cihazlarda sistem dışı uygulamaların klonlanması henüz mümkün değildir. Lütfen sisteminizde yüklü olan uygulama mağazasını (örn. <b>Google Play Store</b>) iş profilinize klonlayın ve sistem dışı uygulamaları bu klon mağaza üzerinden yükleyin.</string>
+    <string name="clone_fail_system_app">Shelter, yetkisi dışında kalan bir profile sistem uygulamalarını klonlayamaz.</string>
+    <string name="uninstall_fail_system_app">Shelter, yetkisi dışında kalan bir profilde sistem uygulamalarını kaldıramaz.</string>
+    <string name="work_profile_not_found">İş profili bulunamadı. İş profilini tekrar atamak için lütfen Shelter\'ı yeniden başlatın.</string>
+    <string name="setup_wizard_welcome_text">Shelter, Android\'in <b>İş Profili</b> özelliğini kullanarak diğer uygulamaları izole bir profilde çalıştırmanızı sağlayan bir uygulamadır.
+\n
+\n\"İleri\" seçeneğine tıklarsanız sizi Shelter ve kurulum süreci hakkında detaylı bir şekilde bilgilendireceğiz.
+\n
+\nTüm bilgileri dikkatlice okumanızı tavsiye ederiz.</string>
 </resources>
