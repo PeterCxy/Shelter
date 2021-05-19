@@ -102,7 +102,7 @@
     <string name="setup_wizard_welcome">Bienvenue dans Shelter</string>
     <string name="setup_wizard_permissions">Un point sur les permissions</string>
     <string name="setup_wizard_compatibility">Compatibilité</string>
-    <string name="setup_wizard_ready">Prêt(e) \?</string>
+    <string name="setup_wizard_ready">Prêt(e) ?</string>
     <string name="setup_wizard_welcome_text">Shelter est une application permettant d\'exécuter d\'autres application à l\'intérieur d\'un compartiment isolé. Pour cela, elle utilise la fonctionnalité &lt;b&gt;Profil Professionnel&lt;b&gt; d\'Android.
 \n
 \nAppuyez sur \"Suivant\", afin que nous puissions vous fournir de plus amples informations sur Shelter et vous guider dans le processus de configuration.
