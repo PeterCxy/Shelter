@@ -88,4 +88,40 @@
     <string name="miui_cannot_clone">Le clonage d\'applications non système vers un autre profil n\'est actuellement pas possible sur MIUI. Veuillez cloner la boutique d\'applications de votre système (par exemple, &lt;b&gt;Play Store&lt;/b&gt;) dans l\'autre profil, puis installer les applications à partir de là.<b>Play Store</b>) into the other profile and then install apps from there.</string>
     <string name="continue_anyway">Continuer quand même</string>
     <string name="settings_cross_profile_file_chooser">Navigation de Documents</string>
+    <string name="setup_wizard_please_wait">Veuillez patienter…</string>
+    <string name="setup_wizard_failed">Échec de l\'installation</string>
+    <string name="setup_wizard_action_required">Action requise</string>
+    <string name="setup_wizard_action_required_text">Vous devriez maintenant voir une notification de Shelter. <b>Veuillez cliquer sur cette notification</b> pour terminer le processus d\'installation.
+\n
+\nSi vous ne voyez pas la notification, assurez-vous que votre appareil n\'est pas en mode Ne pas déranger et essayez de tirer le centre de notifications vers le bas.
+\n
+\nPour réinitialiser Shelter et recommencer, vous pouvez vider l\'espace de stockage de Shelter dans les paramètres de votre téléphone.</string>
+    <string name="setup_wizard_please_wait_text">Nous essayons d\'initialiser le profil professionnel et de configurer Shelter sur votre appareil.</string>
+    <string name="setup_wizard_failed_text">Nous avons le regret de vous informer que nous n\'avons pas réussi à configurer Shelter.
+\n
+\nSi vous n\'avec pas annulé manuellement la configuration, alors l\'origine de cet échec est probablement liée à une version d\'Android trop lourdement modifiée, ou bien à un conflit entre Shelter et d\'autres gestionnaires de Profil professionnel. Malheureusement, nous ne pouvons pas y faire grand chose.
+\n
+\nAppuyez sur \"Suivant\" pour sortir.</string>
+    <string name="setup_wizard_welcome">Bienvenue dans Shelter</string>
+    <string name="setup_wizard_permissions">Un point sur les permissions</string>
+    <string name="setup_wizard_compatibility">Compatibilité</string>
+    <string name="setup_wizard_ready">Prêt(e) \?</string>
+    <string name="setup_wizard_welcome_text">Shelter est une application permettant d\'exécuter d\'autres application à l\'intérieur d\'un compartiment isolé. Pour cela, elle utilise la fonctionnalité &lt;b&gt;Profil Professionnel&lt;b&gt; d\'Android.
+\n
+\nAppuyez sur \"Suivant\", afin que nous puissions vous fournir de plus amples informations sur Shelter et vous guider dans le processus de configuration.
+\n
+\nNous vous suggérons de lire attentivement l\'intégralité des informations suivantes.</string>
+    <string name="setup_wizard_permissions_text">Par défaut, Shelter ne demandera pas de permissions spécifiques. Cependant, une fois que vous aurez terminé le processus de configuration, Shelter essaiera de créer un profil de travail et en deviendra donc le <b>gestionnaire de profil</b>.
+\n
+\nCela accordera à Shelter une liste étendue d\'autorisations à l\'intérieur du profil, comparable à celle d\'un Administrateur de l\'appareil, mais bien limitée au profil. Le statut de gestionnaire de profil est indispensable à la plupart des fonctionnalités de Shelter.
+\n
+\nCertaines fonctionnalités avancées de Shelter peuvent nécessiter davantage de permissions <b>en dehors</b> du profil de travail. Au besoin, Shelter demandera ces autorisations séparément lorsque vous activerez les fonctionnalités correspondantes.</string>
+    <string name="setup_wizard_compatibility_text">Shelter est développé et testé sur des dérivés d\'Android de type AOSP. Cela inclut AOSP (Android Open Source Project), Google Android (sur la gamme Google Pixel), et &lt;b&gt;la plupart des ROM customisées open-source basées sur AOSP&lt;/b&gt; comme LineageOS. Si votre téléphone exécute l\'un des dérivés d\'Android énumérés ci-dessus, alors félicitations ! Shelter va probablement fonctionner correctement sur votre appareil.
+\n
+\nCertains fabricants de téléphones introduisent des éléments personnalisés très envahissants dans la base de code Android, ce qui entraîne des conflits, une incompatibilité et un comportement inattendu. Certaines ROM customisées peuvent également introduire des modifications qui compromettent le bon fonctionnement de Shelter, mais celles-ci sont généralement plus rares que les incompatibilités liées aux fabricants.
+\n
+\nShelter est simplement une interface permettant de contrôler la fonctionnalité d\'Android \"Profil professionnel\". Si celle-ci est défaillante ou non-conforme, &lt;/b&gt;Shelter sera incapable de résoudre le problème tout seul&lt;/b&gt;. Si vous utilisez actuellement une version d\'Android modifiée par le fabricant qui est connue pour altérer le fonctionnement du Profil professionnel, &lt;/b&gt;vous êtes prévenu(e)&lt;/b&gt;. Vous pouvez quand même continuer, mais il n\'est pas garanti que Shelter fonctionne normalement dans ces circonstances.</string>
+    <string name="setup_wizard_ready_text">Nous sommes maintenant prêts à configurer Shelter pour vous. Veuillez d\'abord vous assurer que votre appareil n\'est <b>pas</b> en mode Ne pas déranger, car vous devrez <b>cliquer sur une notification</b> plus tard pour finaliser le processus de configuration.
+\n
+\nLorsque vous serez prêt(e), cliquez sur \"Suivant\" pour commencer le processus de configuration.</string>
 </resources>
