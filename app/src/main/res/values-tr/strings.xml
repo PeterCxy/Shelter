@@ -85,4 +85,9 @@
 \n\"İleri\" seçeneğine tıklarsanız sizi Shelter ve kurulum süreci hakkında detaylı bir şekilde bilgilendireceğiz.
 \n
 \nTüm bilgileri dikkatlice okumanızı tavsiye ederiz.</string>
+    <string name="setup_wizard_failed_text">Üzgünüz, Shelter kurulumu başarısız.
+\n
+\nEğer kurulumu iptal etmediyseniz, kurulumun başarısız olmasının sebebi yüksek ihtimalle Shelter ile başka bir İş Profili yöneticisinin çakışması veya sisteminizin büyük ölçüde değiştirilmiş olmasıdır. Shelter maalesef bu tip sorunlara çözüm getiremez.
+\n
+\nÇıkmak için İleri seçeneğine tıklayın.</string>
 </resources>
