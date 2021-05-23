@@ -90,4 +90,21 @@
 \nEğer kurulumu iptal etmediyseniz, kurulumun başarısız olmasının sebebi yüksek ihtimalle Shelter ile başka bir İş Profili yöneticisinin çakışması veya sisteminizin büyük ölçüde değiştirilmiş olmasıdır. Shelter maalesef bu tip sorunlara çözüm getiremez.
 \n
 \nÇıkmak için İleri seçeneğine tıklayın.</string>
+    <string name="setup_wizard_permissions_text">Shelter, çalışmak için herhangi bir izne ihityaç duymaz ancak kurulum sürecini başlattığınızda Shelter bir İş Profili oluşturmayı deneyecek ve bu İş Profilinin <b>profil yöneticisi</b> olacaktır.
+\n
+\nProfil yöneticisi, bir Cihaz Yöneticisi kadar kapsamlı yetkilere sahiptir fakat bu yetkiler sadece yönetilen profil için geçerlidir. Bu yetkiler Shelter\'ın sorunsuz bir şekilde çalışması için gereklidir.
+\n
+\nShelter, bazı gelişmiş özellikler için iş profili <b>dışında</b> başka izinlere ihtiyaç duyabilir. Bu özellikleri kullandığınız zaman Shelter sizden bu izinleri isteyecektir.</string>
+    <string name="setup_wizard_ready_text">Kurulum için hazırlık tamamlandı. Kurulumun son aşamasında <b>bir bildirime tıklamanız</b> gerekiyor. Devam etmeden önce lütfen cihazınızın Rahatsız Etmeyin modunda <b>olmadığından</b> emin olun.
+\n
+\nHazır olduğunuzda kurulum sürecini başlatmak için \"İleri\" seçeneğine tıklayın.</string>
+    <string name="setup_wizard_action_required_text">Shelter tarafından bir bildirim gelmiş olması lazım. Kurulumu tamamlamak için <b>lütfen bu bildirime tıklayın</b>.
+\n
+\nEğer bir bildirim gelmediyse, lütfen cihazınızın Rahatsız Etmeyin modunda olmadığından emin olun ve bildirim çekmecenize bakın.
+\n
+\nKurulum sürecine baştan başlamak isterseniz lütfen uygulama verilerini sıfırlayın ve uygulamayı yeniden başlatın.</string>
+    <string name="setup_wizard_please_wait_text">İş Profili oluşturuluyor ve Shelter kurulumu yapılıyor.</string>
+    <string name="settings_dont_freeze_foreground">Önplandaki Uygulamalar Dondurulmasın</string>
+    <string name="provision_finished">Kurulum tamamlandı. Shelter yeniden başlatılıyor. Eğer yeniden başlatma otomatik olarak gerçekleşmezse, lütfen Shelter\'ı ana ekran uygulamanız üzerinden tekrar başlatın.</string>
+    <string name="settings_dont_freeze_foreground_desc">Ekranınızı kilitlediğinizde önplanda çalışan ve görünür etkinliğe sahip uygulamalar dondurulmaz. Bu özellik müzik çalar gibi uygulamaları daha rahat kullanmak için işinize yarayabilir ancak sonrasında bu uygulamaları \"Çoklu Dondurma Kısayolu\" üzerinden dondurmanız gerekir.</string>
 </resources>
