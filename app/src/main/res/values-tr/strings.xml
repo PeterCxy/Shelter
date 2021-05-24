@@ -107,4 +107,5 @@
     <string name="settings_dont_freeze_foreground">Önplandaki Uygulamalar Dondurulmasın</string>
     <string name="provision_finished">Kurulum tamamlandı. Shelter yeniden başlatılıyor. Eğer yeniden başlatma otomatik olarak gerçekleşmezse, lütfen Shelter\'ı ana ekran uygulamanız üzerinden tekrar başlatın.</string>
     <string name="settings_dont_freeze_foreground_desc">Ekranınızı kilitlediğinizde önplanda çalışan ve görünür etkinliğe sahip uygulamalar dondurulmaz. Bu özellik müzik çalar gibi uygulamaları daha rahat kullanmak için işinize yarayabilir ancak sonrasında bu uygulamaları \"Çoklu Dondurma Kısayolu\" üzerinden dondurmanız gerekir.</string>
+    <string name="work_mode_disabled">Uygulama başlatılırken İş Profilinin devre dışı bırakıldığı tespit edildi. İş Profilini etkinleştirdiyseniz, değişikliklerin uygulanması için lütfen Shelter\'ı yeniden başlatın.</string>
 </resources>
