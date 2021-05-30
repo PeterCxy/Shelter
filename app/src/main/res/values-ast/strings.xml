@@ -1,2 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="setup_wizard_permissions">Falemos de los permisos</string>
+    <string name="setup_wizard_compatibility">Compatibilidá</string>
+    <string name="provision_finished">Completóse la configuración de Shelter y va reaniciase. Si Shelter nun s\'anició automáticamente, pues volver llanzalu dende\'l llanzador.</string>
+    <string name="msg_device_unsupported">Negóse\'l permisu o\'l preséu nun ta sofitáu</string>
+    <string name="work_profile_not_found">Nun s\'atopó\'l perfil de trabayu. Volvi aniciar l\'aplicación pa volver fornir el perfil, por favor.</string>
+    <string name="work_profile_provision_failed">Nun pue fornise\'l perfil de trabayu. Pues volver tentalo reaniciando Shelter.</string>
+    <string name="first_run_alert_cancel">Marchar d\'equí</string>
+    <string name="first_run_alert_continue">Siguir</string>
+    <string name="device_admin_desc">Serviciu d\'aislamientu d\'aplicaciones</string>
+    <string name="device_admin_explanation">Shelter ha convertise n\'alministrador del preséu pa facer les xeres d\'aislamientu.</string>
+    <string name="camera_proxy_activity">Escoyer una imaxe</string>
+    <string name="setup_wizard_welcome">Afáyate en Shelter</string>
+    <string name="setup_wizard_welcome_text">Shelter ye una aplicación que t\'ayuda a executar aplicaciones nun perfil aisláu. Esto ye posible per duana de la carauterística <b>Perfil de trabayu</b> d\'Android.
+\n
+\nCalca «Siguiente» pa consiguir más información tocante a Shelter y guiate pel procesu de configuración.
+\n
+\nSuxerímoste que lleas con atención les páxines que vienen darréu.</string>
+    <string name="setup_wizard_compatibility_text">Shelter desendólcase pa y pruébase en derivaos d\'Android asemeyaos a AOSP. Estos derivaos inclúin a AOSP (Android Open Source Project), Google Android (en móviles Pixel) y <b>la mayoría de ROMs personalizaes basaes n\'AOSP</b> como LineageOS. Si esti preséu executa un deriváu d\'estos, entós ye mui probable que Shelter funcione correutamente.
+\n
+\nDalgunos fabricantes y ROMs personalizaes introducen cambeos invasivos nel códigu d\'Android qu\'orixinen conflictos, incompatibilidaes y comportamientos inesperaos. Sicasí, nel casu de les ROMs personalizaes, ye raro que xurdan fallos.
+\n
+\nShelter ye namás una interfaz pa la carauterística «Perfil de trabayu» fornida pol sistema. Si esta carauterística la forne un sistema incompatible o que nun ye estándar, <b>Shelter nun pue funcionar máxicamente</b>. Si uses una versión d\'Android modificada pol fabricante y conocida por nun ser compatible con «Perfil de trabayu», <b>sentímoslo</b>. Pues siguir si quies, mas nun hai garantíes de que Shelter se comporte correutamente baxo estes circunstancies.</string>
+    <string name="setup_wizard_ready">Prepárate</string>
+    <string name="setup_wizard_ready_text">Yá pues configurar Shelter. Asegúrate primero de que\'l preséu <b>nun</b> ta nel mou «Nun molestar» porque tienes de <b>calcar nun avisu</b> namás finar el procesu de configuración.
+\n
+\nCuando quieras, calca «Siguiente» pa comenzar el procesu de configuración.</string>
+    <string name="setup_wizard_please_wait">Espera…</string>
+    <string name="setup_wizard_please_wait_text">Tamos aniciando\'l perfil de trabayu y configurando Shelter nel preséu.</string>
+    <string name="setup_wizard_failed">La configuración falló</string>
+    <string name="setup_wizard_failed_text">Llamentamos informate de que nun fuimos a configurar Shelter.
+\n
+\nSi nun encaboxesti la configuración, entós el problema ye qu\'hai incompatibilidaes col sistema o hai conflictos ente Shelter y otros xestores del perfil de trabayu. Desafortunadamente, nun podemos facer muncho más.
+\n
+\nCalca «Siguiente» pa colar.</string>
+    <string name="setup_wizard_action_required">Cuasi acabemos</string>
+    <string name="setup_wizard_action_required_text">Agora habríes ver un avisu de Shelter.<b>Calca nel avisu</b> pa finar el procesu de configuración, por favor.
+\n
+\nSi nun ves esti avisu, asegúrate de que\'l preséu nun ta nel mou «Nun molestar» y espande\'l centru d\'avisos.
+\n
+\nPa reafitar Shelter y volver comenzar, pues llimpiar los datos de Shelter n\'Axustes.</string>
+    <string name="notifications_important">Avisu importante</string>
+    <string name="finish_provision_title">Calca equí pa finar la configuración de Shelter</string>
+    <string name="finish_provision_desc">¡Norabona! Tas a un calcu de finar la configuración de Shelter.</string>
+    <string name="service_title">Serviciu d\'aislamientu</string>
+    <string name="service_desc">Shelter ta n\'execución…</string>
+    <string name="service_auto_freeze_title">Desactivación automática pendiente</string>
+    <string name="service_auto_freeze_desc">Shelter va desactivar les aplicaciones llanzaes dende «Activar y llanzar» la próxima vegada que se bloquie la pantalla.</string>
+    <string name="service_auto_freeze_now">Desactivar agora</string>
+    <string name="app_installing">Instalando…</string>
+    <string name="fragment_profile_main">Perfil principal</string>
+    <string name="fragment_profile_work">Perfil aisláu</string>
+    <string name="list_item_disabled">[Desactivóse] %s</string>
+    <string name="batch_operation">Operación per llotes</string>
+    <string name="clone_to_work_profile">Clonar al perfil aisláu</string>
+    <string name="clone_to_main_profile">Clonar al perfil principal</string>
+    <string name="uninstall_app">Desinstalar</string>
+    <string name="freeze_app">Desactivar</string>
+    <string name="unfreeze_app">Activar</string>
+    <string name="launch">Llanzar</string>
+    <string name="create_unfreeze_shortcut">Crear l\'atayu d\'activar y/o llanzar</string>
+    <string name="unfreeze_and_launch">Activar y llanzar</string>
+    <string name="auto_freeze">Desactivación automática</string>
+    <string name="allow_cross_profile_widgets">Widgets nel perfil principal</string>
+    <string name="search">Buscar</string>
+    <string name="freeze_all">Desactivación per llotes</string>
+    <string name="create_freeze_all_shortcut">Crear l\'atayu de desactivación per llotes</string>
+    <string name="freeze_all_shortcut">Desactivación</string>
+    <string name="install_app_to_profile">Instalar una APK en Shelter</string>
+    <string name="install_app_to_profile_success">La instalación d\'aplicaciones nel perfil de trabayu finó.</string>
+    <string name="show_all">Amosar toles aplicaciones</string>
+    <string name="show_all_warning">Maricar les aplicaciones que s\'anubren pue causar casques y comportamientos inesperaos. Por embargu, esta carauterística pue ser útil cuando, por defeutu, una ROM nun activa toles aplicaciones precises nel perfil de trabayu. Si sigues, failo baxo la to responsabilidá.</string>
+    <string name="documents_ui">Abrir la interfaz de Documentos</string>
+    <string name="settings">Axustes</string>
+    <string name="settings_interaction">Interaición</string>
+    <string name="settings_cross_profile_file_chooser">Pasera de ficheros</string>
+    <string name="settings_cross_profile_file_chooser_desc">Al activar la opción, vas ser a restolar/ver/escoyer/copiar ficheros en Shelter dende\'l perfil principal y viceversa. NAMÁS pente la interfaz de Documentos (col nome de Ficheros o Documentos nel llanzador), o pente aplicaciones con sofitu pa la interfaz de Documentos qu\'acceden temporalmente a los ficheros qu\'escueyas nesa interfaz, ensin dexar de tar nel aislamientu del sistema de ficheros.</string>
+    <string name="settings_camera_proxy">Selector d\'imáxenes como «Cámara»</string>
+    <string name="settings_camera_proxy_desc">Presenta una aplicación de cámara falsa que te permite escoyer una imaxe dende la interfaz de Documentos (y la pasera de ficheros si ta activada) como la semeya fecha. Esto activa la pasera de ficheros pa cualesquier aplicación que sofite l\'usu d\'aplicaciones de cámara pa facer semeyes, magar que nun sofiten nativamente la interfaz de Documentos.</string>
+    <string name="settings_block_contacts_searching">Bloquiar la busca de contautos</string>
+    <string name="settings_block_contacts_searching_desc">Niega l\'accesu dende\'l perfil principal a los contautos del perfil de trabayu.</string>
+    <string name="settings_services">Servicios</string>
+    <string name="settings_auto_freeze_service">Serviciu de desactivación automática</string>
+    <string name="settings_auto_freeze_service_desc">Al bloquiar la pantalla, desactiva automáticamente les aplicaciones llanzaes dende l\'atayu «Desactivar y llanzar».</string>
+    <string name="settings_auto_freeze_delay">Retrasu de la desactivación automática</string>
+    <string name="settings_dont_freeze_foreground">Omitir les aplicaciones en primer planu</string>
+    <string name="settings_dont_freeze_foreground_desc">NUN desactiva les aplicaciones en primer planu (con actividá visible) al bloquiar la pantalla. Esto pue ser útil p\'aplicaciones como reproductores multimedia, mas dempués vas tener de desactivales pente l\'atayu de «Desactivación per llotes».</string>
+    <string name="settings_about">Tocante a</string>
+    <string name="settings_version">Versión</string>
+    <string name="settings_source_code">Códigu fonte</string>
+    <string name="settings_translate">Traducción</string>
+    <string name="settings_bug_report">Rastrexador de fallos</string>
+    <string name="work_mode_disabled">Paez que desactivesti\'l perfil de trabayu mentanto s\'aniciaba Shelter. Si actives el perfil agora, volvi aniciar Shelter.</string>
+    <string name="clone_success">L\'aplicación «%s» clonóse con ésitu</string>
+    <string name="uninstall_success">L\'aplicación «%s» desinstalóse con ésitu</string>
+    <string name="freeze_success">L\'aplicación «%s» desactivóse con ésitu</string>
+    <string name="unfreeze_success">L\'aplicación «%s» activóse con ésitu</string>
+    <string name="clone_fail_system_app">Nun puen clonase les aplicaciones del sistema a un perfil nel que Shellter nun tien el control.</string>
+    <string name="uninstall_fail_system_app">Nun puen desinstalase les aplicaciones d\'un perfil nel que Shelter nun tien el control.</string>
+    <string name="unsupported_launcher">Nun puen amestase atayos al llanzador. Ponte en contautu col desendolcador pa consiguir más información, por favor.</string>
+    <string name="app_context_menu_title">Operaciones pa %s</string>
+    <string name="freeze_all_success">Toles aplicaciones de la llista «Desactivación automática» desactiváronse con ésitu.</string>
+    <string name="shortcut_create_success">L\'atayu creóse nel llanzador.</string>
+    <string name="request_usage_stats">Shelter precisa\'l permisu <b>Estadísitques d\'usu</b> pa facer esto. Activa\'l permisu pa les instancies de Shelter <b>NOS DOS PERFILES</b> nel diálogu dempués de primir «D\'acuerdu». Si nun lo faes, carauterística nun va funcionar afayadizamente.</string>
+    <string name="launch_app_fail">Nun pue llanzase l\'aplicación %s porque nun tien nenguna interfaz gráfica.</string>
+    <string name="request_storage_manager">Shelter tien d\'acceder a <b>Tolos ficheros</b> pa la pasera de ficheros. Activa\'l permisu pa les instancies de Shelter <b>NOS DOS PERFILES</b> nel diálogu dempués de primir «D\'acuerdu».</string>
+    <string name="request_system_alert">Shelter tien de <b>superponese a otres aplicaciones</b> pa que la pasera de ficheros funcione correutamente. Activa\'l permisu pa les instancies de Shelter <b>NOS DOS PERFILES</b> nel diálogu dempués de primir «D\'acuerdu». Esti permisu úsase p\'aniciar los servicios de la pasera de ficheros en segundu planu.</string>
+    <string name="miui_cannot_clone">Anguaño, en MIUI, nun ye posible la clonación de les aplicaciones que nun son del sistema a otru perfil. Clona la tienda d\'aplicaciones del sistema al perfil aisláu y dempués instala les aplicaciones dende ehí, por favor.</string>
+    <string name="continue_anyway">Siguir de toes toes</string>
+    <string name="setup_wizard_permissions_text">Por defeutu, Shelter nun pide nengún permisu. Por embargu, al siguir col procesu de configuración, Shelter va configurar el perfil de trabayu y convertise nel <b>xestor d\'esi perfil</b>.
+\n
+\nEsto concede a Shelter una llista estensa de permisos dientro del perfil, comparable al d\'un xestor del preséu, magar que aislaos nesi perfil. Ser el xestor del perfil ye un requirimientu pa la mayoría de funciones de Shelter.
+\n
+\nDalgunes carauterístiques de Shelter puen riquir más permisos <b>fuera</b> del perfil de trabayu. Cuando seya\'l momentu, Shelter va pidir esos permisos per separtao al activar les carauterístiques correspondientes.</string>
+</resources>
