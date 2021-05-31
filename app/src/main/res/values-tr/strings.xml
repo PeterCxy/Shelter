@@ -69,7 +69,7 @@
 \n
 \nBazı cihaz üreticilerinin Android\'in temel koduna koyduğu aşırı müdahaleci özelleştirmeler cihazda çakışmalara, uyumsuzluklara ve beklenmeyen hatalara yol açabilir. Bazı özel ROM\'lar da uyumluluğu bozan değişikliklere sahip olabilir ancak bu durum telefon üreticilerinden kaynaklanan hatalara göre daha nadir görülür.
 \n
-\nShelter, sistemin sağladığı İş Profili özelliği için kullanılabilen bir arayüzden ibarettir. Sistem tarafından sağlanan bu özellik standart dışı ise veya hatalar barındırıyorsa, <b>Shelter bu sorunlara kendi başına çözüm getiremez</b>. İş Profili özelliğini bozduğu bilinen üretici sürümü bir Android kullanıyorsanız <b>bu uyarıyı dikkate almalarını tavsiye ederiz</b>. Shelter, bu koşullar altında düzgün çalışacağını garanti etmez.</string>
+\nShelter, sistemin sağladığı İş Profili özelliği için kullanılabilen bir arayüzden ibarettir. Sistem tarafından sağlanan bu özellik standart dışı ise veya hatalar barındırıyorsa, <b>Shelter bu sorunlara kendi başına çözüm getiremez</b>. İş Profili özelliğini bozduğu bilinen üretici sürümü bir Android kullanıyorsanız <b>bu uyarıyı dikkate almanızı tavsiye ederiz</b>. Shelter, bu koşullar altında düzgün çalışacağını garanti etmez.</string>
     <string name="settings_block_contacts_searching_desc">Ana profilin iş profiline bağlı olan rehbere erişimini engelle.</string>
     <string name="service_auto_freeze_title">Bekleyen otomatik dondurma</string>
     <string name="service_auto_freeze_desc">Ekranınızı kilitlediğinizde \"Aktifleştir &amp; Çalıştır\" seçeneği üzerinden başlatılan uygulamalar otomatik olarak dondurulacaktır.</string>
