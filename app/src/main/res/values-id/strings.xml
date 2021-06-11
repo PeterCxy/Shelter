@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="first_run_alert_cancel">Selamat tinggal</string>
+    <string name="first_run_alert_continue">Lanjutkan</string>
+    <string name="device_admin_explanation">Shelter harus menjadi Admin Perangkat untuk melakukan tugas isolasinya.</string>
+    <string name="device_admin_desc">Layanan Isolasi Aplikasi</string>
+    <string name="camera_proxy_activity">Pilih File Gambar</string>
+    <string name="setup_wizard_welcome">Selamat datang di Shelter</string>
+    <string name="setup_wizard_permissions">Sepatah kata tentang izin</string>
+    <string name="setup_wizard_welcome_text">Shelter adalah aplikasi untuk membantu Anda menjalankan aplikasi lain dalam profil yang terisolasi. Ia melakukannya dengan memanfaatkan fitur <b>Profil Kerja</b> Android.
+\n
+\nKlik \"Selanjutnya\", dan kami akan memberi Anda informasi tentang Shelter dan petunjuk untuk menyelesaikan proses pengaturan.
+\n
+\nKami menyarankan Anda membaca semua halaman berikut dengan cermat.</string>
+</resources>
