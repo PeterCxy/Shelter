@@ -101,7 +101,7 @@
 \n
 \nClique no \"Próximo\" para sair.</string>
     <string name="setup_wizard_action_required">Ação necessária</string>
-    <string name="setup_wizard_ready">Pronto\?</string>
+    <string name="setup_wizard_ready">Pronto?</string>
     <string name="setup_wizard_please_wait_text">Estamos tentando criar o Perfil de Trabalho e configurar o Shelter no seu dispositivo.</string>
     <string name="setup_wizard_welcome_text">O Shelter é um app que ajuda a executar outros apps em um perfil isolado. Para isto ele usa o recurso de <b>Perfil de Trabalho</b> no Android.
 \n
