@@ -108,7 +108,7 @@
     <string name="setup_wizard_welcome">Benvenuti in Shelter</string>
     <string name="setup_wizard_permissions">Una parola in merito alle autorizzazioni</string>
     <string name="setup_wizard_compatibility">Compatibilità</string>
-    <string name="setup_wizard_ready">Iniziamo\?</string>
+    <string name="setup_wizard_ready">Iniziamo?</string>
     <string name="setup_wizard_please_wait">Attendere prego…</string>
     <string name="setup_wizard_please_wait_text">Stiamo provando a inizializzare il Profilo di Lavoro e configurare Shelter sul tuo dispositivo.</string>
     <string name="setup_wizard_welcome_text">Shelter è un\'app che ti permette di usare altre applicazioni in un profilo isolato. Tutto questo viene fatto sfruttando la funzione <b>Profilo di Lavoro</b> di Android.
