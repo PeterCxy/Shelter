@@ -88,4 +88,40 @@
     <string name="create_freeze_all_shortcut">創建批次凍結的捷徑</string>
     <string name="settings_block_contacts_searching">封鎖聯絡人搜尋</string>
     <string name="settings_block_contacts_searching_desc">阻止主帳戶中的應用程式存取工作資料夾中的連絡人。</string>
+    <string name="setup_wizard_welcome">歡迎來到 Shelter</string>
+    <string name="setup_wizard_welcome_text">Shelter 可以幫助你隔離某些應用程式，透過使用 <b>Work Profile</b> 來創建一個新profile, 與你現正使用的profile是隔絕的。
+\n
+\n如欲了解詳情並開始準備安裝，請按\"Next\"。
+\n
+\n請小心留意下幾頁的須知。</string>
+    <string name="setup_wizard_permissions_text">Shelter 本身不會要求權限，但創建Work Profile 後，會成為<b>Work Profile 的管理員</b>。
+\n
+\nShelter 將會在Work Profile 內取得相當於管理員的權限，為了令Shelter 正常運作，這些權限是必須的。
+\n
+\n某些先進功能或需要在<b>Work Profile 外</b>徵求額外權限。如有需要，Shelter 將會在您開啟該功能時，邀請你提供該權限。</string>
+    <string name="setup_wizard_compatibility_text">Shelter 為基於Android Open Source Project (AOSP) 的Android 作業系統而設，包括Google 版本 (Pixel 系列)的Android, 及<b>大部數基於AOSP 的開源作業系統</b>，如LineageOS, Calyx OS等。如果你使用上述作業系統，Shelter 很大機會可以正常運作。
+\n
+\n某些公司會大幅修改 Android, 可能會導致不兼容，衝突，或其他未知反應。間中，某些作業系統亦會作出一些導致不兼容的變化。
+\n
+\nShelter 僅提供創建Work Profile 的版面， <b>並不能解決</b>非標準或有問題的軟件或硬件。如果你的Android 版本不符合上述描述, <b>請注意：</b>你可以安全地使用Shelter, 但Shelter 未必可以正常運作。</string>
+    <string name="setup_wizard_action_required_text">Shelter 已經發出了一則通知。<b>請按該通知</b>以完成設置。
+\n
+\n如果該通知沒有出現，請確保電話現在沒有使用勿擾模式，並再次檢查所有通知。
+\n
+\n欲重設Shelter，可以去電話設定清除Shelter 的數據。</string>
+    <string name="setup_wizard_permissions">關於Shelter 所需的權限</string>
+    <string name="setup_wizard_compatibility">兼容性</string>
+    <string name="setup_wizard_failed">設置失敗</string>
+    <string name="setup_wizard_please_wait_text">Shelter 正在啟動 Work Profile。</string>
+    <string name="setup_wizard_please_wait">請稍候…</string>
+    <string name="setup_wizard_ready">準備好未？</string>
+    <string name="setup_wizard_ready_text">請確保電話現在<b>沒有</b>使用勿擾模式，以容許一則通知出現，以作完成設置Shelter。請<b>按該則通知</b>。
+\n
+\n完成後，請按下頁。</string>
+    <string name="setup_wizard_failed_text">遺憾地，Shelter 未能正常運作。
+\n
+\n如果您沒有取消設定Work Profile，失敗原因可能是因為電話的作業系統與AOSP 分別太大，或者其他Work Profile管理員與Shelter 不兼容。很抱歉，Shelter 對此無能為力。
+\n
+\n按Next 離開。</string>
+    <string name="setup_wizard_action_required">需要你的輸入</string>
 </resources>
