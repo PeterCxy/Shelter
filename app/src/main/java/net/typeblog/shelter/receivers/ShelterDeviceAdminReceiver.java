@@ -30,8 +30,8 @@ public class ShelterDeviceAdminReceiver extends DeviceAdminReceiver {
                 context.getString(R.string.finish_provision_desc),
                 R.drawable.ic_notification_white_24dp);
         notification.contentIntent = PendingIntent.getActivity(context, 0, i,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        notification.flags |= Notification.FLAG_AUTO_CANCEL | Notification.FLAG_ONGOING_EVENT;
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
         context.getSystemService(NotificationManager.class)
                 .notify(NOTIFICATION_ID, notification);
     }
