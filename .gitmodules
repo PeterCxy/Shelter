@@ -1,4 +1,4 @@
 [submodule "libs/SetupWizardLibrary"]
 	path = libs/SetupWizardLibrary
-	url = https://cgit.typeblog.net/SetupWizardLibrary.git
+	url = https://gitea.angry.im/PeterCxy/SetupWizardLibrary.git
 	branch = android11-dev
