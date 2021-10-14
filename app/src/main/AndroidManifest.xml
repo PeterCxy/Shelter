@@ -36,7 +36,8 @@
 
         <!-- The main activity for UI -->
         <activity android:name=".ui.MainActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -46,7 +47,8 @@
         <!-- Setup Wizard -->
         <activity android:name=".ui.SetupWizardActivity"
             android:theme="@style/SuwThemeMaterial.Light"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:exported="false"/>
 
         <!-- The Settings activity -->
         <activity android:name=".ui.SettingsActivity"
@@ -57,7 +59,8 @@
         <activity android:name=".ui.DummyActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.AppCompat.Translucent.NoTitleBar">
+            android:theme="@style/Theme.AppCompat.Translucent.NoTitleBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="net.typeblog.shelter.action.FINALIZE_PROVISION" />
                 <action android:name="net.typeblog.shelter.action.START_SERVICE" />
@@ -82,7 +85,8 @@
         <activity android:name=".ui.CameraProxyActivity"
             android:excludeFromRecents="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/camera_proxy_activity">
+            android:label="@string/camera_proxy_activity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.media.action.IMAGE_CAPTURE" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -93,7 +97,8 @@
         <receiver android:name=".receivers.ShelterDeviceAdminReceiver"
             android:label="@string/device_admin_label"
             android:description="@string/device_admin_desc"
-            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
             <meta-data android:name="android.app.device_admin"
                 android:resource="@xml/device_admin" />
             <intent-filter>

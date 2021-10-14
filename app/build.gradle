@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "net.typeblog.shelter"
         minSdkVersion 24
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 18
         versionName "1.7-dev1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
