@@ -163,7 +163,7 @@ public class FreezeService extends Service {
         notification.actions = new Notification.Action[] {
                 new Notification.Action.Builder(
                         null, getString(R.string.service_auto_freeze_now),
-                        PendingIntent.getActivity(this, 0, intentFreeze, 0)
+                        PendingIntent.getActivity(this, 0, intentFreeze, PendingIntent.FLAG_IMMUTABLE)
                 ).build()
         };
 

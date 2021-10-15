@@ -316,7 +316,7 @@ public class Utility {
                         .build();
                 Intent addIntent = shortcutManager.createShortcutResultIntent(info);
                 shortcutManager.requestPinShortcut(info,
-                        PendingIntent.getBroadcast(context, 0, addIntent, 0).getIntentSender());
+                        PendingIntent.getBroadcast(context, 0, addIntent, PendingIntent.FLAG_IMMUTABLE).getIntentSender());
             } else {
                 // TODO: Maybe implement this for launchers without pin shortcut support?
                 // TODO: Should be the same with the fallback for Android < O
