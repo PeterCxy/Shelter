@@ -339,7 +339,7 @@ public class DummyActivity extends Activity {
             Intent intent = new Intent(this, DummyActivity.class);
             intent.setAction(PACKAGEINSTALLER_CALLBACK);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-                    intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    intent, PendingIntent.FLAG_MUTABLE);
             session.commit(pendingIntent.getIntentSender());
         });
     }
@@ -395,7 +395,7 @@ public class DummyActivity extends Activity {
         Intent intent = new Intent(this, DummyActivity.class);
         intent.setAction(PACKAGEINSTALLER_CALLBACK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                intent, PendingIntent.FLAG_MUTABLE);
         pi.uninstall(getIntent().getStringExtra("package"), pendingIntent.getIntentSender());
     }
 
