@@ -1,7 +1,10 @@
-Unreleased
+1.7
 ===
 
 - Revamped the initial setup process to include a full setup guide for better clarity and less confusion.
+- Upgraded targetSDK to 31 (Android 12) with compatibility fixes.
+- Upgraded dependencies.
+- Translation updates thanks to our wonderful community.
 
 1.6
 ===
