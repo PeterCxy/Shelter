@@ -81,7 +81,7 @@
     <string name="settings_about">About</string>
     <string name="settings_version">Version</string>
     <string name="settings_source_code">Source Code</string>
-    <string name="settings_source_code_url" translatable="false">https://cgit.typeblog.net/Shelter</string>
+    <string name="settings_source_code_url" translatable="false">https://gitea.angry.im/PeterCxy/Shelter</string>
     <string name="settings_translate">Translate</string>
     <string name="settings_translate_url" translatable="false">https://weblate.typeblog.net/projects/shelter/shelter/</string>
     <string name="settings_bug_report">Bug Report / Issue Tracker</string>
