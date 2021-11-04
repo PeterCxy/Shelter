@@ -6,7 +6,7 @@
     <string name="device_admin_desc">خدمة عزل التطبيقات</string>
     <string name="device_admin_explanation">يحتاج العازل إلى أن يصبح مسؤول الجهاز من أجل تنفيذ مهام العزل الخاصة به.</string>
     <string name="service_title">خدمة العزل</string>
-    <string name="service_desc">العازل يعمل الآن &#8230;</string>
+    <string name="service_desc">العازل يعمل الآن …</string>
     <string name="fragment_profile_main">الرئيسيه</string>
     <string name="fragment_profile_work">العازل</string>
     <string name="list_item_disabled">%s [مجمد]</string>
@@ -28,7 +28,7 @@
     <string name="settings_source_code">كود المصدر</string>
     <string name="settings_bug_report">الإبلاغ عن الأخطاء / تتبع المشاكل</string>
     <string name="device_admin_toast">يجب منح إذن إدارة الجهاز لالعازل للعمل. حاول مرة اخرى.</string>
-    <string name="provision_still_pending">&#8230;الرجاء الانتظار بينما نقوم بإعداد ملف عمل العازل لك </string>
+    <string name="provision_still_pending">…الرجاء الانتظار بينما نقوم بإعداد ملف عمل العازل لك </string>
     <string name="provision_finished">اكتمل إعداد العازل. جاري إعادة تشغيل العازل الآن. إذا لم يبدأ العازل تلقائيًا ، يمكنك بدءه مرة أخرى.</string>
     <string name="msg_device_unsupported">تم رفض الإذن أو جهاز غير مدعوم</string>
     <string name="work_profile_not_found">لم يتم العثور على ملف العمل. يرجى إعادة تشغيل التطبيق لإعادة توفير الملف الشخصي.</string>
@@ -67,4 +67,6 @@
     <string name="show_all">إظهار كل التطبيقات</string>
     <string name="show_all_warning">قد يتسبب التلاعب بالتطبيقات المخفية من القائمة في حدوث أعطال وكل أنواع السلوك غير المتوقع. على الرغم من ذلك ، يمكن أن تكون هذه الميزة مفيدة عندما لا يقوم ROM المخصص بتمكين جميع تطبيقات النظام الضرورية في الملف العمل بشكل افتراضي. إذا تابعت ، فهذا علي مسؤليتك الخاصه.</string>
     <string name="settings_auto_freeze_delay">تأخير التجميد التلقائي</string>
+    <string name="setup_wizard_failed">فشل التثبيت</string>
+    <string name="app_installing">تثبيت...</string>
 </resources>
