@@ -87,9 +87,11 @@
 \nTüm bilgileri dikkatlice okumanızı tavsiye ederiz.</string>
     <string name="setup_wizard_failed_text">Üzgünüz, Shelter kurulumu başarısız.
 \n
-\nEğer kurulumu iptal etmediyseniz, kurulumun başarısız olmasının sebebi yüksek ihtimalle Shelter ile başka bir İş Profili yöneticisinin çakışması veya sisteminizin büyük ölçüde değiştirilmiş olmasıdır. Shelter bu tip sorunları maalesef kendi başına çözemez.
+\nCihazınızda eski bir Shelter sürümünün veya başka bir uygulamanın oluşturduğu bir İş Profili varsa devam etmek için lütfen bu profili kaldırın (İş Profiline \"Ayarlar -&gt; Hesap\" menüsünden ulaşabilirsiniz).
 \n
-\nÇıkmak için İleri seçeneğine tıklayın.</string>
+\nEğer eski bir İş Profiliniz yoksa ve kurulumu iptal etmediyseniz, kurulumun başarısız olmasının sebebi yüksek ihtimalle Shelter ile başka bir İş Profili yöneticisinin çakışması veya sisteminizin büyük ölçüde değiştirilmiş olmasıdır. Shelter bu tip sorunları maalesef kendi başına çözemez.
+\n
+\nÇıkmak için \"İleri\" seçeneğine tıklayın.</string>
     <string name="setup_wizard_permissions_text">Shelter, çalışmak için herhangi bir izne ihityaç duymaz ancak kurulum sürecini başlattığınızda Shelter bir İş Profili oluşturmayı deneyecek ve bu İş Profilinin <b>profil yöneticisi</b> olacaktır.
 \n
 \nProfil yöneticisi, bir Cihaz Yöneticisi kadar kapsamlı yetkilere sahiptir fakat bu yetkiler sadece yönetilen profil için geçerlidir. Bu yetkiler Shelter\'ın sorunsuz bir şekilde çalışması için gereklidir.
