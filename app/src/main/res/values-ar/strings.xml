@@ -71,4 +71,5 @@
     <string name="app_installing">تثبيت...</string>
     <string name="setup_wizard_ready">مستعد؟</string>
     <string name="setup_wizard_compatibility">توافق</string>
+    <string name="service_auto_freeze_now">تجميد الآن</string>
 </resources>
