@@ -118,10 +118,12 @@
     <string name="setup_wizard_ready_text">請確保電話現在<b>沒有</b>使用勿擾模式，以容許一則通知出現，以作完成設置Shelter。請<b>按該則通知</b>。
 \n
 \n完成後，請按下頁。</string>
-    <string name="setup_wizard_failed_text">遺憾地，Shelter 未能正常運作。
+    <string name="setup_wizard_failed_text">很遺憾地通知您，我們無法為您設置 Shelter。
 \n
-\n如果您沒有取消設定Work Profile，失敗原因可能是因為電話的作業系統與AOSP 分別太大，或者其他Work Profile管理員與Shelter 不兼容。很抱歉，Shelter 對此無能為力。
+\n如果您的設備已經有一個工作配置文件，無論是來自以前安裝的 Shelter 還是來自其他應用程序，您必須在設置 -&gt; 帳戶中刪除該配置文件，然後 Shelter 才能繼續。
 \n
-\n按Next 離開。</string>
+\n否則，如果您沒有手動取消設置，那麼失敗的原因最常見的原因是系統進行了大量修改，或者 Shelter 與其他工作配置文件管理器之間存在衝突。 不幸的是，我們對此無能為力。
+\n
+\n點擊“下一步”退出。</string>
     <string name="setup_wizard_action_required">需要你的輸入</string>
 </resources>
