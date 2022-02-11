@@ -53,7 +53,7 @@
     <string name="install_app_to_profile_success">انتهى تركيب التطبيق في ملف العمل.</string>
     <string name="settings_interaction">التفاعل</string>
     <string name="settings_cross_profile_file_chooser">مكوك الملفات</string>
-    <string name="settings_cross_profile_file_chooser_desc">عند التمكين، ستتمكن من تصفح / عرض / اختيار / نسخ الملفات من العازل الي الملف الرئيسي والعكس، عن طريق المستندات (المسماة الملفات أو المستندات الموجودة على منصة الإطلاق) أو التطبيقات التي تحتوي على دعم واجهة مستخدم المستندات (لا تحصل إلا على الوصول المؤقت إلى الملفات التي تختارها في واجهة مستخدم المستندات)، في حين لا تزال تمتلك عزل نظام الملفات.</string>
+    <string name="settings_cross_profile_file_chooser_desc">عند التمكين، ستتمكن من تصفح / عرض / اختيار / نسخ الملفات من العازل إلى الملف الرئيسي والعكس، عن طريق المستندات (المسماة الملفات أو المستندات الموجودة على منصة الإطلاق) أو التطبيقات التي تحتوي على دعم واجهة مستخدم المستندات (لا تحصل إلا على الوصول المؤقت إلى الملفات التي تختارها في واجهة مستخدم المستندات)، في حين لا تزال تمتلك عزل نظام الملفات.</string>
     <string name="settings_camera_proxy">اختيار صورة كاميرا وهمية</string>
     <string name="settings_camera_proxy_desc">قدم تطبيق كاميرا مزيفًا إلى تطبيقات أخرى، مما يسمح لك باختيار صورة عشوائية من واجهة المستندات (و مكوك الملفات إذا تم تمكينه) كصورة ملتقطة. يؤدي ذلك إلى تمكين ميزة \"نقل الملفات\" لأي تطبيق يدعم استخدام تطبيقات كاميرا أخرى لالتقاط صورة، حتى إذا كانت لا تدعم واجهة المستندات.</string>
     <string name="settings_services">خدمات</string>
@@ -74,4 +74,6 @@
     <string name="service_auto_freeze_now">تجميد الآن</string>
     <string name="setup_wizard_please_wait">من فضلك انتظر…</string>
     <string name="documents_ui">افتح واجهة المستندات</string>
+    <string name="setup_wizard_welcome">مرحبًا بك في Shelter</string>
+    <string name="search">بحث</string>
 </resources>
