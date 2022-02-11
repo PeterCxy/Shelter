@@ -73,7 +73,8 @@
     <string name="setup_wizard_compatibility">توافق</string>
     <string name="service_auto_freeze_now">تجميد الآن</string>
     <string name="setup_wizard_please_wait">من فضلك انتظر…</string>
-    <string name="documents_ui">افتح واجهة المستندات</string>
+    <string name="documents_ui">فتح واجهة المستندات</string>
     <string name="setup_wizard_welcome">مرحبًا بك في Shelter</string>
     <string name="search">بحث</string>
+    <string name="settings_translate">ترجمة</string>
 </resources>
