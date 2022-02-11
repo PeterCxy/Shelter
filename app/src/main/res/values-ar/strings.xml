@@ -77,4 +77,5 @@
     <string name="setup_wizard_welcome">مرحبًا بك في Shelter</string>
     <string name="search">بحث</string>
     <string name="settings_translate">ترجمة</string>
+    <string name="settings_block_contacts_searching">منع البحث عن جهات الاتصال</string>
 </resources>
