@@ -72,4 +72,6 @@
     <string name="setup_wizard_ready">مستعد؟</string>
     <string name="setup_wizard_compatibility">توافق</string>
     <string name="service_auto_freeze_now">تجميد الآن</string>
+    <string name="setup_wizard_please_wait">من فضلك انتظر…</string>
+    <string name="documents_ui">افتح واجهة المستندات</string>
 </resources>
