@@ -75,7 +75,7 @@
     <string name="work_profile_provision_failed">Det går inte att tillhandahålla arbetsprofil. Du kan försöka igen genom att starta om Shelter.</string>
     <string name="work_mode_disabled">Det verkar som att arbetsprofilen var inaktiverad när Shelter startades. Om du nu har aktiverat det, starta om Shelter.</string>
     <string name="clone_fail_system_app">Det går inte att klona systemappar till en profil som Shelter inte har kontroll över.</string>
-    <string name="setup_wizard_ready">Redo\?</string>
+    <string name="setup_wizard_ready">Redo?</string>
     <string name="setup_wizard_please_wait">Vänta…</string>
     <string name="setup_wizard_please_wait_text">Vi försöker initiera Work Profile och konfigurera Shelter på din enhet.</string>
     <string name="setup_wizard_failed">Konfigurationen misslyckades</string>
