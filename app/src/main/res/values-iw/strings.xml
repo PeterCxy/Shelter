@@ -1,2 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="first_run_alert_continue">להמשיך</string>
+    <string name="camera_proxy_activity">בחר קובץ תמונה</string>
+    <string name="setup_wizard_welcome">ברוכים הבאים Shelter</string>
+    <string name="setup_wizard_permissions">מילה על הרשאות</string>
+    <string name="setup_wizard_compatibility">תאימות</string>
+    <string name="first_run_alert_cancel">ביי</string>
+    <string name="device_admin_desc">שירות בידוד אפליקציות</string>
+    <string name="device_admin_explanation">Shelter צריך להפוך ל-מנהל המכשיר כדי לבצע את משימות הבידוד שלו.</string>
+    <string name="setup_wizard_welcome_text">Shelter הוא יישום שעוזר לך להפעיל יישומים אחרים בפרופיל מבודד. זה עושה זאת על ידי שימוש בתכונה <b>פרופיל עבודה</b> של Android.
+\n
+\nלחץ על \"הבא\", ואנו נספק לך מידע נוסף על Shelter, וננחה אותך בתהליך ההגדרה.
+\n
+\nאנו ממליצים לקרוא בעיון את כל העמודים הבאים.</string>
+    <string name="allow_cross_profile_widgets">אפשר ווידג\'טים בפרופיל הראשי</string>
+    <string name="install_app_to_profile_success">התקנת האפליקציה הסתיימה בפרופיל העבודה.</string>
+    <string name="setup_wizard_ready">מוכן\?</string>
+    <string name="setup_wizard_ready_text">כעת אנו מוכנים להקים עבורך את Shelter. תחילה ודא שהמכשיר שלך <b>לא</b> במצב \'נא לא להפריע\', מכיוון שתצטרך <b>ללחוץ על הודעה</b> מאוחר יותר כדי לסיים את תהליך ההגדרה.
+\n
+\nכשתהיה מוכן, לחץ על \"הבא\" כדי להתחיל בתהליך ההגדרה.</string>
+    <string name="setup_wizard_please_wait">נא להמתין…</string>
+    <string name="setup_wizard_please_wait_text">אנחנו מנסים לאתחל את פרופיל העבודה ולהגדיר את Shelter במכשיר שלך.</string>
+    <string name="setup_wizard_failed">ההגדרה נכשלה</string>
+    <string name="setup_wizard_action_required">פעולה נדרשת</string>
+    <string name="setup_wizard_action_required_text">כעת אתה אמור לראות הודעה מ-Shelter. <b>אנא לחץ על הודעה זו</b> כדי לסיים את תהליך ההגדרה.
+\n
+\nאם אינך רואה את ההתראה, ודא שהמכשיר שלך אינו במצב \'נא לא להפריע\' ונסה למשוך את מרכז ההתראות כלפי מטה.
+\n
+\nכדי לאפס את Shelter ולהתחיל מחדש, אתה יכול לנקות את הנתונים של Shelter בהגדרות.</string>
+    <string name="notifications_important">מקלט חשוב</string>
+    <string name="finish_provision_title">לחץ כאן כדי לסיים את הגדרת מקלט</string>
+    <string name="finish_provision_desc">מזל טוב! אתה במרחק קליק אחד מסיום ההגדרה של Shelter.</string>
+    <string name="service_desc">Shelter פועל כעת…</string>
+    <string name="service_auto_freeze_title">הקפאה אוטומטית בהמתנה</string>
+    <string name="service_title">שירות Shelter</string>
+    <string name="service_auto_freeze_desc">Shelter יקפיא אוטומטית אפליקציות שהושקו מ-\"Unfreeze &amp; Launch\" באירוע נעילת המסך הבא.</string>
+    <string name="service_auto_freeze_now">להקפיא עכשיו</string>
+    <string name="app_installing">מתקין...</string>
+    <string name="fragment_profile_main">ראשי</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[מוקפא] %s</string>
+    <string name="batch_operation">תפעול אצווה</string>
+    <string name="clone_to_work_profile">שיכפול ל-Shelter (פרופיל עבודה)</string>
+    <string name="clone_to_main_profile">שיכפול לפרופיל ראשי</string>
+    <string name="uninstall_app">הסר התקנה</string>
+    <string name="freeze_app">הקפאה</string>
+    <string name="launch">הרץ</string>
+    <string name="unfreeze_app">להפשיר</string>
+    <string name="create_unfreeze_shortcut">צור בטל הקפאה ו/או הפעל קיצור דרך</string>
+    <string name="unfreeze_and_launch">בטל את ההקפאה והפעל</string>
+    <string name="auto_freeze">הקפאה אוטומטית</string>
+    <string name="freeze_all">הקפאת אצווה</string>
+    <string name="search">חיפוש</string>
+    <string name="create_freeze_all_shortcut">צור קיצור דרך להקפאת אצווה</string>
+    <string name="freeze_all_shortcut">הקפאה</string>
+    <string name="install_app_to_profile">התקן APK לתוך Shelter</string>
+    <string name="setup_wizard_permissions_text">כברירת מחדל, Shelter לא יבקש הרשאות בודדות. עם זאת, לאחר שתמשיך בתהליך ההגדרה, Shelter ינסה להגדיר פרופיל עבודה ולפיכך יהפוך ל<b>מנהל הפרופיל</b> של הפרופיל האמור.
+\n
+\nזה יעניק ל-Shelter רשימה נרחבת של הרשאות בתוך הפרופיל, הדומה לזו של מנהל מכשיר, אם כי מוגבלת לפרופיל. להיות מנהל הפרופילים הכרחי עבור רוב הפונקציונליות של Shelter.
+\n
+\nחלק מהתכונות המתקדמות של Shelter עשויות לדרוש הרשאות נוספות <b>מחוץ</b> לפרופיל העבודה. בעת הצורך, Shelter יבקש את ההרשאות הללו בנפרד כאשר תפעיל את התכונות המתאימות.</string>
+    <string name="setup_wizard_compatibility_text">Shelter פותח ונבדק על נגזרות אנדרואיד דמויות AOSP. זה כולל AOSP (Android Open Source Project), Google Android (על פיקסלים), ו<b>רוב ה-ROMs המותאמים אישית מבוססי AOSP</b> כגון LineageOS. אם בטלפון שלך פועלת אחת מנגזרות האנדרואיד המפורטות למעלה, אז מזל טוב! Shelter כנראה הולך לעבוד כראוי במכשיר שלך.
+\n
+\nספקי מכשירים מסוימים מציגים התאמות אישיות פולשניות מאוד לבסיס הקוד של אנדרואיד, וכתוצאה מכך התנגשויות, חוסר תאימות והתנהגות בלתי צפויה. חלק מה-ROMs המותאמים אישית יכולים גם להציג שינויים שוברי תאימות, אך בדרך כלל אלו מקרים נדירים יותר בהשוואה לאי תאימות שהוצגו על ידי ספקי הטלפון.
+\n
+\nShelter הוא רק ממשק לתכונת פרופיל העבודה שמסופקת על ידי המערכת. אם התכונה שסופקה על ידי המערכת פגומה או לא סטנדרטית, <b>Shelter לא הצליח לפתור את הבעיה בכוחות עצמו</b>. אם אתה משתמש כעת בגרסת אנדרואיד ששונתה על ידי הספק, שידוע שהיא מפרה את פרופילי העבודה, <b>הוזהרתם</b>. אתה יכול להמשיך בכל מקרה, אבל אין ערובה ששלטר יתנהג נכון בנסיבות אלה.</string>
+    <string name="setup_wizard_failed_text">אנו מצטערים להודיע לך שלא הצלחנו להקים עבורך את מקלט.
+\n
+\nאם למכשיר שלך כבר היה פרופיל עבודה, מהתקנה קודמת של Shelter או מאפליקציה אחרת, תצטרך להסיר את הפרופיל הזה בהגדרות -&gt; חשבון לפני ש-Shelter יוכל להמשיך.
+\n
+\nאחרת, אם לא ביטלת את ההגדרה באופן ידני, הסיבה לכשל נובעת לרוב ממערכת ששונתה מאוד, או התנגשות בין Shelter ומנהלי פרופיל עבודה אחרים. למרבה הצער, אין הרבה מה שאנחנו יכולים לעשות בנידון.
+\n
+\nלחץ על \"הבא\" כדי לצאת.</string>
+</resources>
