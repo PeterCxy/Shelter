@@ -72,4 +72,47 @@
 \nאחרת, אם לא ביטלת את ההגדרה באופן ידני, הסיבה לכשל נובעת לרוב ממערכת ששונתה מאוד, או התנגשות בין Shelter ומנהלי פרופיל עבודה אחרים. למרבה הצער, אין הרבה מה שאנחנו יכולים לעשות בנידון.
 \n
 \nלחץ על \"הבא\" כדי לצאת.</string>
+    <string name="show_all">הצג את כל האפליקציות</string>
+    <string name="documents_ui">פתח את ממשק המשתמש של מסמכים</string>
+    <string name="settings">הגדרות</string>
+    <string name="settings_interaction">אינטראקציה</string>
+    <string name="settings_cross_profile_file_chooser">מעבורת קבצים</string>
+    <string name="settings_camera_proxy">בוחר תמונה כמצלמה מזויפת</string>
+    <string name="uninstall_fail_system_app">לא ניתן להסיר את ההתקנה של אפליקציות מערכת בפרופיל של-Shelter אין שליטה עליו.</string>
+    <string name="settings_block_contacts_searching">חסום חיפוש אנשי קשר</string>
+    <string name="settings_services">שירותים</string>
+    <string name="settings_auto_freeze_service">שירות הקפאה אוטומטית</string>
+    <string name="settings_auto_freeze_delay">השהיית הקפאה אוטומטית</string>
+    <string name="settings_dont_freeze_foreground">דלג על אפליקציות חזית</string>
+    <string name="settings_about">אודות</string>
+    <string name="settings_version">גירסה</string>
+    <string name="settings_translate">תרגם</string>
+    <string name="settings_bug_report">דוח באגים / מעקב אחר בעיות</string>
+    <string name="work_profile_provision_failed">לא ניתן להקצות פרופיל עבודה. תוכל לנסות שוב על ידי הפעלה מחדש של Shelter.</string>
+    <string name="uninstall_success">היישום \"%s\" הוסר בהצלחה</string>
+    <string name="freeze_success">האפליקציה \"%s\" הוקפאה בהצלחה</string>
+    <string name="unsupported_launcher">לא ניתן להוסיף קיצורי דרך למפעיל שלך. אנא צור קשר עם המפתח לקבלת מידע נוסף.</string>
+    <string name="app_context_menu_title">פעולות עבור %s</string>
+    <string name="shortcut_create_success">קיצור דרך נוצר על הלאנצר שלך.</string>
+    <string name="launch_app_fail">לא ניתן להפעיל את האפליקציה %s כי אין לה GUI.</string>
+    <string name="miui_cannot_clone">שכפול אפליקציות שאינן מערכתיות לפרופיל אחר אינו אפשרי כרגע ב-MIUI. נא לשכפל את חנות האפליקציות של המערכת שלך (למשל <b>חנות Play</b>) לפרופיל האחר ולאחר מכן התקן אפליקציות משם.</string>
+    <string name="continue_anyway">המשך בכל זאת</string>
+    <string name="freeze_all_success">כל האפליקציות ברשימת \"הקפאה אוטומטית\" הוקפאו בהצלחה.</string>
+    <string name="work_mode_disabled">נראה שהשבתת את מצב עבודה בזמן הפעלת Shelter. אם הפעלת את זה עכשיו, הפעל שוב את Shelter.</string>
+    <string name="provision_finished">הגדרת המקלט הושלמה. כעת מפעיל מחדש את Shelter. אם Shelter לא הופעל אוטומטית, תוכל להפעיל אותו שוב מהמפעיל שלך.</string>
+    <string name="msg_device_unsupported">ההרשאה נדחתה או מכשיר לא נתמך</string>
+    <string name="clone_success">היישום \"%s\" שוכפל בהצלחה</string>
+    <string name="work_profile_not_found">פרופיל עבודה לא נמצא. אנא הפעל מחדש את האפליקציה כדי להקצות מחדש את הפרופיל.</string>
+    <string name="settings_dont_freeze_foreground_desc">אל תקפיא אפליקציות בחזית (עם פעילות גלויה) כאשר אתה נועל את המסך. זה יכול להיות שימושי עבור אפליקציות כמו נגני מוזיקה, אבל תצטרך להקפיא אותן באופן ידני באמצעות \"קיצור דרך להקפאת אצווה\" לאחר מכן.</string>
+    <string name="settings_source_code">קוד מקור</string>
+    <string name="settings_block_contacts_searching_desc">דחיית גישה מהפרופיל הראשי לאנשי קשר בתוך פרופיל העבודה.</string>
+    <string name="unfreeze_success">האפליקציה \"%s\" הופשרה בהצלחה</string>
+    <string name="clone_fail_system_app">לא ניתן לשכפל אפליקציות מערכת לפרופיל של-Shelter אין שליטה עליו.</string>
+    <string name="settings_auto_freeze_service_desc">כאשר המסך נעול, הקפיא אוטומטית אפליקציות שהופעלו מ\"בטל הקפאה והפעל קיצור דרך\".</string>
+    <string name="show_all_warning">מניפולציה של אפליקציות המוסתרות מהרשימה עלולה לגרום לקריסות ולכל מיני התנהגות בלתי צפויה. עם זאת, תכונה זו יכולה להיות שימושית כאשר ROMs פגומים המותאמים אישית של ספקים אינם מפעילים את כל אפליקציות המערכת הנחוצות בפרופיל העבודה כברירת מחדל. אם תמשיך, אתה לבד.</string>
+    <string name="settings_cross_profile_file_chooser_desc">כאשר מופעל, תוכל לדפדף / להציג / לבחור / להעתיק קבצים ב-Shelter מהפרופיל הראשי ולהיפך, רק דרך ממשק המשתמש של מסמכים (ששמו קבצים או מסמכים במפעיל שלך) או אפליקציות עם תמיכה בממשק המשתמש של מסמכים (הם רק מרוויחים גישה זמנית לקבצים שתבחר בממשק המשתמש של מסמכים), תוך שמירה על בידוד מערכת הקבצים.</string>
+    <string name="settings_camera_proxy_desc">הצג אפליקציית מצלמה מזויפת לאפליקציות אחרות, מה שמאפשר לך לבחור תמונה שרירותית מממשק המשתמש של המסמכים (ומעבורת הקבצים אם מופעלת) בתור התמונה שצולמה. זה מאפשר העברת קבצים עבור כל אפליקציה שתומכת בהפעלת אפליקציות מצלמה אחרות כדי לצלם תמונה, גם אם הן אינן תומכות בממשק המשתמש המקורי של מסמכים</string>
+    <string name="request_usage_stats">Shelter זקוק להרשאת <b>סטטיסטיקות שימוש</b> כדי לעשות זאת. אנא הפעל את ההרשאה עבור אפליקציות מקלט <b>שתיים</b> המוצגות בתיבת הדו-שיח לאחר לחיצה על \"אישור\". אם לא תעשה זאת, תכונה זו לא תפעל כראוי.</string>
+    <string name="request_storage_manager">Shelter זקוק לגישה אל <b>כל הקבצים</b> עבור סייר הקבצים. אנא הפעל את ההרשאה עבור יישומי מקלט <b>שניים </b> (אישי / עבודה) המוצגים בתיבת הדו-שיח לאחר לחיצה על \"אישור\".</string>
+    <string name="request_system_alert">Shelter צריך <b>לצייר מעל אפליקציות אחרות</b> כדי ש-File Shuttle יפעל כהלכה. אנא הפעל את ההרשאה עבור יישומי מקלט <b>שניים </b> (אישי / עבודה) המוצגים בתיבת הדו-שיח לאחר לחיצה על \"אישור\". הרשאה זו משמשת להפעלת שירותי File Shuttle ברקע.</string>
 </resources>
