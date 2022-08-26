@@ -1,5 +1,14 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    //noinspection JcenterRepositoryObsolete
+    jcenter {
+        content {
+            includeVersion "mobi.upod", "time-duration-picker", "1.1.3"
+        }
+    }
+}
+
 android {
     compileSdkVersion 31
     buildToolsVersion '30.0.3'
