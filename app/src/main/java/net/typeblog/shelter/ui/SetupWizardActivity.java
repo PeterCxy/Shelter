@@ -115,8 +115,9 @@ public class SetupWizardActivity extends AppCompatActivity {
     private void setupProfileCb(Boolean result) {
         if (result) {
             if (Utility.isWorkProfileAvailable(this)) {
-                // On pre-Oreo, and sometimes on post-Oreo
-                // the setup could be already finalized at this point
+                // The setup could be already finalized at this point
+                // (post-Oreo, since there is the activity intent ACTION_PROVISIONING_SUCCESSFUL,
+                //  the work profile provisioning UI will not finish until that activity finishes.)
                 // There is no need for more action
                 finishWithResult(true);
                 return;
