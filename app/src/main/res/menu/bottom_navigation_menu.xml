@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_navigation_main"
+        android:icon="@drawable/ic_home"
+        android:title="@string/fragment_profile_main" />
+
+    <item
+        android:id="@+id/bottom_navigation_work"
+        android:icon="@drawable/ic_work"
+        android:title="@string/fragment_profile_work" />
+</menu>
