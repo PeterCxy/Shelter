@@ -1,3 +1,9 @@
+1.8 (Unreleased)
+===
+
+- Updated targetSDK to 33 (Android 13) with compatibility fixes.
+- UI style revamp with Material You support on Android 12+.
+
 1.7
 ===
 

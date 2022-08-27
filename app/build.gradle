@@ -16,8 +16,8 @@ android {
         applicationId "net.typeblog.shelter"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 21
-        versionName "1.8-dev1"
+        versionCode 22
+        versionName "1.8-dev2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
