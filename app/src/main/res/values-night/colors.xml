@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00100D</color>
+    <color name="colorAccent">#009688</color>
+    <color name="colorAccentSetupWizard">#FFC107</color>
+    <color name="colorNavigationBar">#004D3F</color>
+    <color name="colorTextPrimary">#EEEEEE</color>
+    <color name="colorTextSecondary">#CCCCCC</color>
+    <color name="disabledAppBackground">#004D3F</color>
+    <color name="selectedAppBackground">#10201D</color>
+    <color name="selectedAndDisabledAppBackground">#105D4F</color>
+</resources>
