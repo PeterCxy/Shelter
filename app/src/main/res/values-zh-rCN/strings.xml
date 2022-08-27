@@ -93,7 +93,7 @@
     <string name="setup_wizard_please_wait_text">我们正在尝试初始化工作档案并在您的设备上设置 Shelter。</string>
     <string name="setup_wizard_failed">安装失败</string>
     <string name="setup_wizard_action_required">需要采取的行动</string>
-    <string name="setup_wizard_ready_text">我们现在已准备好为您设置 Shelter。 请首先确保您的设备是 <b> 不是 </b> 请勿打扰模式，因为您需要 <b> 点击通知 </b> 稍后完成设置过程。
+    <string name="setup_wizard_ready_text">我们现在已准备好为您设置 Shelter。如果您的设备运行的是 Android 7 或更低版本，请首先确保您的设备是 <b> 不是 </b> 请勿打扰模式，因为您需要 <b> 点击通知 </b> 稍后完成设置过程。
 \n
 \n准备好后，单击“下一步”开始设置过程。</string>
     <string name="setup_wizard_compatibility">兼容性</string>
