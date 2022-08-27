@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="AppTheme.DayNight" parent="Theme.AppCompat.NoActionBar">
-        <!-- empty -->
-    </style>
-
     <style name="AppTheme" parent="AppTheme.Override">
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
