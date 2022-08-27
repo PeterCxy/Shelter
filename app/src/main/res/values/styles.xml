@@ -1,7 +1,12 @@
 <resources>
 
+    <!-- Used to switch between day / night -->
+    <style name="AppTheme.DayNight" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Empty -->
+    </style>
+
     <!-- Base application theme. -->
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.Base" parent="AppTheme.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
