@@ -6,7 +6,6 @@
 
     <uses-feature android:name="android.software.device_admin" android:required="true"/>
     <uses-feature android:name="android.software.managed_users" android:required="true"/>
-    <!--<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS"/>-->
 
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
