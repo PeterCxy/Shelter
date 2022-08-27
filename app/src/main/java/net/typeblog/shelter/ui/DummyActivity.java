@@ -24,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
@@ -88,6 +89,7 @@ public class DummyActivity extends Activity {
 
     private static final int REQUEST_INSTALL_PACKAGE = 1;
     private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE= 2;
+    private static final int REQUEST_PERMISSION_POST_NOTIFICATIONS = 3;
 
     // A state variable to record the last time DummyActivity was informed that someone
     // in the same process needs to call an action without signature
@@ -130,8 +132,25 @@ public class DummyActivity extends Activity {
             Utility.enforceWorkProfilePolicies(this);
             Utility.enforceUserRestrictions(this);
             SettingsManager.getInstance().applyAll();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                // We pretty much only send notifications to keep the process inside work profile alive
+                // as such, only request the notification permission from inside the profile
+                // This will ideally be shown and done when finalizing the profile (since it will go
+                // through this activity)
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_PERMISSION_POST_NOTIFICATIONS);
+                    // Continue once the request has been completed (see onRequestPermissionResult)
+                    return;
+                }
+            }
         }
 
+        init();
+    }
+
+    private void init() {
         Intent intent = getIntent();
 
         // First check if we have a registered request from the same process
@@ -217,6 +236,11 @@ public class DummyActivity extends Activity {
             } else {
                 finish();
             }
+        } else if (requestCode == REQUEST_PERMISSION_POST_NOTIFICATIONS) {
+            // Regardless of the result, continue initialization
+            // This is fine because most functionalities will work anyway; it will just be a bit buggy
+            // and unreliable.
+            init();
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
