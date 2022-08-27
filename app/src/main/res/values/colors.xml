@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FAFAFA</color>
-    <color name="colorPrimaryDark">#C2C2C2</color>
+    <color name="colorPrimary">#F1F9F8</color>
     <color name="colorAccent">#009688</color>
     <color name="colorAccentSetupWizard">#FFC107</color>
     <color name="colorNavigationBar">#E0F2F1</color>
