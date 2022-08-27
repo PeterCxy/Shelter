@@ -6,9 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorOnPrimary">@color/colorTextPrimary</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+        <item name="android:itemBackground">@color/colorPrimary</item>
     </style>
 
     <style name="AppTheme.Override" parent="AppTheme.Base">
