@@ -334,6 +334,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         public void onNavigateNext() {
             super.onNavigateNext();
             mActivity.switchToFragment(new PleaseWaitFragment(), false);
+            mActivity.setupProfile();
         }
 
         @Override
@@ -357,7 +358,6 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public void onAttach(@NonNull Context context) {
             super.onAttach(context);
-            mActivity.setupProfile();
         }
 
         @Override

@@ -84,6 +84,20 @@
             </intent-filter>
         </activity>
 
+        <!-- An activity to listen to ACTION_PROVISIONING_SUCCESSFUL for finalization -->
+        <!-- This replaces the functionality of ShelterDeviceAdminReceiver on Oreo and above -->
+        <activity android:name=".ui.FinalizeActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.AppCompat.Translucent.NoTitleBar"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.app.action.PROVISIONING_SUCCESSFUL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <!-- Activity to forward ACTION_IMAGE_CAPTURE as ACTION_OPEN_DOCUMENT -->
         <activity android:name=".ui.CameraProxyActivity"
             android:excludeFromRecents="true"
