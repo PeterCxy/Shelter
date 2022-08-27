@@ -28,7 +28,7 @@ public class ShelterDeviceAdminReceiver extends DeviceAdminReceiver {
         Intent i = new Intent(context.getApplicationContext(), DummyActivity.class);
         i.setAction(DummyActivity.FINALIZE_PROVISION);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        // Delegate starting activity to notification so we won't break on Android 10
+        // Delegate starting activity to notification to work around background limitations
         // And also maybe this will fix bugs on stupid custom OSes like MIUI / EMUI
         Notification notification = Utility.buildNotification(context, true,
                 "shelter-finish-provision",

@@ -31,7 +31,8 @@ import net.typeblog.shelter.util.Utility;
 public class SetupWizardActivity extends AppCompatActivity {
     // RESUME_SETUP should be used when MainActivity detects the provisioning has been
     // finished by the system, but the Shelter inside the profile has never been brought up
-    // due to the user having not clicked on the notification yet.
+    // due to the user having not clicked on the notification yet (on Android 7 or lower).
+    // TODO: When we remove support for Android 7, get rid of all of these nonsense :)
     public static final String ACTION_RESUME_SETUP = "net.typeblog.shelter.RESUME_SETUP";
     public static final String ACTION_PROFILE_PROVISIONED = "net.typeblog.shelter.PROFILE_PROVISIONED";
 
@@ -115,9 +116,11 @@ public class SetupWizardActivity extends AppCompatActivity {
     private void setupProfileCb(Boolean result) {
         if (result) {
             if (Utility.isWorkProfileAvailable(this)) {
-                // The setup could be already finalized at this point
-                // (post-Oreo, since there is the activity intent ACTION_PROVISIONING_SUCCESSFUL,
-                //  the work profile provisioning UI will not finish until that activity finishes.)
+                // On Oreo and later versions, since we make use of the activity intent
+                // ACTION_PROVISIONING_SUCCESSFUL, the provisioning UI will not finish
+                // until that activity returns. In this case, there is really no need for us
+                // to do anything else here (and this callback may not even be called because
+                // the activity will likely be already finished by this point).
                 // There is no need for more action
                 finishWithResult(true);
                 return;
