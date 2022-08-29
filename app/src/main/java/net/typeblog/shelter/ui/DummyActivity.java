@@ -133,11 +133,11 @@ public class DummyActivity extends Activity {
             Utility.enforceUserRestrictions(this);
             SettingsManager.getInstance().applyAll();
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Do not show permission dialog during finalization -- it will conflict with the provisioning UI
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !FINALIZE_PROVISION.equals(getIntent().getAction())) {
                 // We pretty much only send notifications to keep the process inside work profile alive
                 // as such, only request the notification permission from inside the profile
-                // This will ideally be shown and done when finalizing the profile (since it will go
-                // through this activity)
+                // This will ideally be shown and done when the user sees the app list UI for the first time
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
                         != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_PERMISSION_POST_NOTIFICATIONS);
@@ -248,13 +248,19 @@ public class DummyActivity extends Activity {
 
     private void actionFinalizeProvision() {
         if (mIsProfileOwner) {
-            // This is the action used by DeviceAdminReceiver to finalize the setup
-            // The work has been finished in onCreate(), now we just have to
-            // inform the main profile about this
-            Intent intent = new Intent(FINALIZE_PROVISION);
-            // We don't need signature for this intent
-            Utility.transferIntentToProfileUnsigned(this, intent);
-            startActivity(intent);
+            // Only notify the main profile on pre-Oreo
+            // After Oreo, since we use the activity-based finalization flow,
+            // the setup wizard will wait until we finish finalization before returning
+            // (Note: the actual finalization is done by common code in onCreate)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                // This is the action used by DeviceAdminReceiver to finalize the setup
+                // The work has been finished in onCreate(), now we just have to
+                // inform the main profile about this
+                Intent intent = new Intent(FINALIZE_PROVISION);
+                // We don't need signature for this intent
+                Utility.transferIntentToProfileUnsigned(this, intent);
+                startActivity(intent);
+            }
             finish();
         } else {
             // Set the flag telling MainActivity that we have now finished provisioning
