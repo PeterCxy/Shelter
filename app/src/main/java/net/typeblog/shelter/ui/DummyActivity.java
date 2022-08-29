@@ -18,6 +18,7 @@ import android.os.RemoteException;
 import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -91,6 +92,8 @@ public class DummyActivity extends Activity {
     private static final int REQUEST_PERMISSION_EXTERNAL_STORAGE= 2;
     private static final int REQUEST_PERMISSION_POST_NOTIFICATIONS = 3;
 
+    private static boolean sHasRequestedPermission = false;
+
     // A state variable to record the last time DummyActivity was informed that someone
     // in the same process needs to call an action without signature
     // Since they must be in the same process as DummyActivity, it will be totally fine
@@ -133,16 +136,22 @@ public class DummyActivity extends Activity {
             Utility.enforceUserRestrictions(this);
             SettingsManager.getInstance().applyAll();
 
-            // Do not show permission dialog during finalization -- it will conflict with the provisioning UI
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !FINALIZE_PROVISION.equals(getIntent().getAction())) {
-                // We pretty much only send notifications to keep the process inside work profile alive
-                // as such, only request the notification permission from inside the profile
-                // This will ideally be shown and done when the user sees the app list UI for the first time
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_PERMISSION_POST_NOTIFICATIONS);
-                    // Continue once the request has been completed (see onRequestPermissionResult)
-                    return;
+            synchronized (DummyActivity.class) {
+                // Do not show permission dialog during finalization -- it will conflict with the provisioning UI
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !sHasRequestedPermission
+                        && !FINALIZE_PROVISION.equals(getIntent().getAction())) {
+                    // Avoid requesting permission multiple times in one session
+                    // This also prevents multiple instances of DummyActivity from being blocked on each other
+                    sHasRequestedPermission = true;
+                    // We pretty much only send notifications to keep the process inside work profile alive
+                    // as such, only request the notification permission from inside the profile
+                    // This will ideally be shown and done when the user sees the app list UI for the first time
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_PERMISSION_POST_NOTIFICATIONS);
+                        // Continue once the request has been completed (see onRequestPermissionResult)
+                        return;
+                    }
                 }
             }
         }
