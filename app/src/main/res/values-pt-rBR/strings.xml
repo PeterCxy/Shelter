@@ -27,7 +27,7 @@
     <string name="fragment_profile_work">Shelter</string>
     <string name="list_item_disabled">[Suspenso] %s</string>
     <string name="batch_operation">Operação em grupo</string>
-    <string name="clone_to_work_profile">Clonar ao Shelter (Perfil do trabalho)</string>
+    <string name="clone_to_work_profile">Clonar ao Shelter (Perfil de trabalho)</string>
     <string name="clone_to_main_profile">Clonar ao Perfil Principal</string>
     <string name="uninstall_app">Desinstalar</string>
     <string name="freeze_app">Suspender</string>
@@ -74,7 +74,7 @@
     <string name="app_context_menu_title">Operações para %s</string>
     <string name="freeze_all_success">Todos os apps na lista de \"Auto-Suspensão\" foram suspensos com sucesso.</string>
     <string name="shortcut_create_success">Atalho foi criado no seu lançador.</string>
-    <string name="request_usage_stats">O Shelter precisa de permissão para <b>Estatísticas de uso</b> para fazer isto. Por favor active a permissão para <b>AMBOS</b> os apps do Shelter que aparecerão no diálogo após clicar no \"Ok\". Se isso não for feito, este recurso não funcionará corretamente.</string>
+    <string name="request_usage_stats">O Shelter precisa de permissão para <b>Estatísticas de uso</b> para fazer isto. Por favor ative a permissão para <b>AMBOS</b> os apps do Shelter que aparecerão no diálogo após clicar no \"Ok\". Se isso não for feito, este recurso não funcionará corretamente.</string>
     <string name="launch_app_fail">Não podia iniciar o app %s porque não tem interface.</string>
     <string name="miui_cannot_clone">A clonagem de apps fora do sistema para outro perfil não é suportado no MIUI. Por favor, clone a loja de apps do seu sistema (p.ex. a <b>Play Store</b>) ao outro perfil e depois instale os apps a partir daí.</string>
     <string name="settings_interaction">Interação</string>
