@@ -97,7 +97,7 @@
 \nProfil yöneticisi, bir Cihaz Yöneticisi kadar kapsamlı yetkilere sahiptir fakat bu yetkiler sadece yönetilen profil için geçerlidir. Bu yetkiler Shelter\'ın sorunsuz bir şekilde çalışması için gereklidir.
 \n
 \nShelter, bazı gelişmiş özellikler için iş profili <b>dışında</b> başka izinlere ihtiyaç duyabilir. Bu özellikleri kullandığınız zaman Shelter sizden bu izinleri isteyecektir.</string>
-    <string name="setup_wizard_ready_text">Kurulum için hazırlık tamamlandı. Kurulumun son aşamasında <b>bir bildirime tıklamanız</b> gerekiyor. Devam etmeden önce lütfen cihazınızın Rahatsız Etmeyin modunda <b>olmadığından</b> emin olun.
+    <string name="setup_wizard_ready_text">Kurulum için hazırlık tamamlandı. Eğer cihazınızın Android sürümü 7 veya daha eskiyse devam etmeden önce lütfen cihazınızın Rahatsız Etmeyin modunda <b>olmadığından</b> emin olun çünkü kurulumun son aşamasında <b>bir bildirime tıklamanız</b> gerekiyor.
 \n
 \nHazır olduğunuzda kurulum sürecini başlatmak için \"İleri\" seçeneğine tıklayın.</string>
     <string name="setup_wizard_action_required_text">Shelter tarafından size bir bildirim yollandı. Kurulumu tamamlamak için <b>lütfen bu bildirime tıklayın</b>.
