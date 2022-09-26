@@ -1,4 +1,4 @@
-1.8 (Unreleased)
+1.8
 ===
 
 - Updated targetSDK to 33 (Android 13) with compatibility fixes.
