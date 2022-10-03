@@ -2,7 +2,9 @@
 <resources>
     <string name="setup_wizard_failed_text">Chúng tôi rất tiếc phải thông báo cho bạn rằng chúng tôi đã không thể thiết lập Shelter cho bạn.
 \n
-\nNếu bạn đã không huỷ thiết lập theo cách thủ công, thì lý do của sự thất bại thường là một hệ thống bị sửa đổi sâu, hoặc có xung đột giữa Shelter và các trình quản lý Hồ sơ công việc khác. Không may mắn là chúng tôi không thể làm gì nhiều về điều này.
+\nNếu thiết bị của bạn đã có một Hồ sơ công việc được tạo từ Shelter hoặc một ứng dụng khác, bạn sẽ phải xoá hồ sơ đó trong Cài đặt -&gt; Tài khoản trước khi Shelter có thể tiếp tục.
+\n
+\nNgoài ra, nếu bạn đã không huỷ thiết lập theo cách thủ công, thì lý do thất bại thường là do hệ thống bị sửa đổi sâu, hoặc có xung đột giữa Shelter và các trình quản lý Hồ sơ công việc khác. Không may mắn là chúng tôi không thể làm gì nhiều về điều này.
 \n
 \nNhấn Tiếp để thoát.</string>
     <string name="setup_wizard_action_required_text">Bây giờ, bạn rất có thể đang thấy một thông báo từ Shelter. <b>Vui lòng nhấn vào thông báo đó</b> để hoàn thành quá trình thiết lập.
@@ -70,8 +72,8 @@
 \n
 \nMột số hãng thiết bị giới thiệu những tuỳ biến rất gây xâm hại vào mã nguồn của Android, việc này dẫn đến sự xung đột, không tương thích và hành vi không mong đợi. Một số bản ROM tuỳ chỉnh cũng có thể giới thiệu các thay đổi phá vỡ sự tương thích, nhưng nói chung thì chúng xảy ra hiếm hơn so với những sự không tương thích do hãng điện thoại gây ra.
 \n
-\nShelter chỉ là một giao diện vào tính năng Hồ sơ công việc được hệ thống cung cấp. Nếu tính năng được hệ thống cung cấp bị hỏng hoặc phi tiêu chuẩn, <b>Shelter không thể tự giải quyết vấn đề một cách nhiệm màu</b>. Nếu bạn hiện đang sử dụng một phiên bản Android được hãng sửa đổi được biết là làm hỏng Hồ sơ công việc, <b>bạn đã được cảnh báo</b>. Bạn có thể vẫn tiếp tục, nhưng không có đảm bảo rằng Shelter sẽ hoạt động đúng dưới hoàn cảnh này.</string>
-    <string name="setup_wizard_ready_text">Chúng tôi bây giờ đã sẵn sàng thiết lập Shelter cho bạn. Trước hết, vui lòng chắc chắn rằng thiết bị của bạn đang <b>không</b> ở trong chế độ Không làm phiền, vì bạn sẽ cần phải <b>nhấn vào một thông báo</b> vào lúc sau để hoàn thành quá trình thiết lập.
+\nShelter chỉ là một giao diện truy cập tính năng Hồ sơ công việc được hệ thống cung cấp. Nếu tính năng được hệ thống cung cấp bị hỏng hoặc phi tiêu chuẩn, <b>Shelter không thể tự giải quyết vấn đề một cách nhiệm màu</b>. Nếu bạn hiện đang sử dụng một phiên bản Android được hãng sửa đổi được biết là làm hỏng Hồ sơ công việc, <b>bạn đã được cảnh báo</b>. Bạn có thể vẫn tiếp tục, nhưng không có đảm bảo rằng Shelter sẽ hoạt động đúng dưới hoàn cảnh này.</string>
+    <string name="setup_wizard_ready_text">Chúng tôi bây giờ đã sẵn sàng thiết lập Shelter cho bạn. Trước hết, vui lòng chắc chắn rằng thiết bị của bạn đang <b>không</b> ở chế độ Không làm phiền nếu thiết bị đang chạy Android 7 hoặc thấp hơn, vì bạn sẽ cần phải <b>nhấn vào một thông báo</b> vào lúc sau để hoàn thành quá trình thiết lập.
 \n
 \nKhi bạn đã sẵn sàng, hãy nhấn vào \"Tiếp\" để bắt đầu quá trình thiết lập.</string>
     <string name="setup_wizard_please_wait_text">Chúng tôi đang cố khởi tạo Hồ sơ công việc và thiết lập Shelter trên thiết bị của bạn.</string>
