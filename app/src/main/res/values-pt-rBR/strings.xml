@@ -91,7 +91,7 @@
     <string name="setup_wizard_welcome">Bem-vindo ao Shelter</string>
     <string name="setup_wizard_permissions">Detalhes sobre as permissões</string>
     <string name="setup_wizard_compatibility">Compatibilidade</string>
-    <string name="setup_wizard_ready_text">Vamos configurar o Shelter para você. Se o seu dispositivo estiver rodando Android 7 ou inferior, por favor, certifique-se primeiro de que seu dispositivo <b>não</b> esteja no modo \"Não Perturbe\", porque mais tarde você precisará <b>clicar em uma notificação</b> para finalizar o processo de configuração.
+    <string name="setup_wizard_ready_text">Vamos configurar o Shelter para você. Se o seu dispositivo estiver rodando Android 7 ou superior, por favor, certifique-se primeiro de que seu dispositivo <b>não</b> esteja no modo \"Não Perturbe\", porque mais tarde você precisará <b>clicar em uma notificação</b> para finalizar o processo de configuração.
 \n
 \nQuando estiver pronto, clique em \"Próximo\" para iniciar o processo de configuração.</string>
     <string name="setup_wizard_please_wait">Por favor, aguarde…</string>
