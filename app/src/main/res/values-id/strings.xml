@@ -26,7 +26,7 @@
     <string name="install_app_to_profile_success">Penginstalan aplikasi selesai di profil kerja.</string>
     <string name="show_all">Lihat Semua Aplikasi</string>
     <string name="setup_wizard_compatibility">Kesesuaian</string>
-    <string name="setup_wizard_ready">Siap\?</string>
+    <string name="setup_wizard_ready">Siap?</string>
     <string name="setup_wizard_please_wait">Silakan tunggu. . .</string>
     <string name="setup_wizard_please_wait_text">Kami mencoba menginisialisasi Work Profile dan menyiapkan Shelter di perangkat Anda.</string>
     <string name="setup_wizard_failed">Penyiapan gagal</string>
