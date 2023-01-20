@@ -87,7 +87,7 @@
     <string name="settings_translate">翻译</string>
     <string name="settings_block_contacts_searching">阻止访问联系人</string>
     <string name="settings_block_contacts_searching_desc">阻止主用户中的应用访问工作用户的联系人资料。</string>
-    <string name="setup_wizard_welcome">欢迎来到Shelter</string>
+    <string name="setup_wizard_welcome">欢迎来到 Shelter</string>
     <string name="setup_wizard_permissions">关于权限的说明</string>
     <string name="setup_wizard_please_wait">请稍等…</string>
     <string name="setup_wizard_please_wait_text">我们正在尝试初始化工作档案并在您的设备上设置 Shelter。</string>
@@ -115,9 +115,9 @@
 \nShelter可能会在你的设备上正确工作。 一些设备供应商在安卓代码库中引入了非常具有侵略性的定制，导致冲突、不兼容和意外行为。一些定制的ROM也会引入破坏兼容性的变化，但一般来说，与手机供应商引入的不兼容问题相比，这些情况更少发生。
 \n
 \nSheler只是一个进入系统所提供的工作档案功能的接口。如果系统提供的功能是坏的或不标准的，<b>Shelter不可能自己神奇地解决这个问题</b>。如果你目前使用的是供应商修改过的Android版本，而该版本已知会破坏工作档案，<b>你已经被警告了</b>。你可以继续进行，但不能保证Shelter在这些情况下的行为是正常的。</string>
-    <string name="setup_wizard_welcome_text">Shelter是一个帮助你在一个独立的配置文件中运行其他应用程序的应用程序。它通过利用Android的<b>工作档案</b>功能来实现。
+    <string name="setup_wizard_welcome_text">Shelter 是一个帮助你在独立的配置文件中运行其他 App 的应用程序。它基于 Android 的<b>工作档案</b>功能实现。
 \n
-\n点击 \"下一步\"，我们将向你提供更多关于Shelter的信息，并指导你完成设置过程。
+\n点击 \"下一步\"，我们将向你提供更多关于 Shelter 的信息，并带领你完成设置。
 \n
 \n我们建议你仔细阅读以下所有的页面。</string>
     <string name="setup_wizard_action_required_text">您现在应该会看到来自 Shelter 的通知。 <b> 请点击该通知 </b> 完成设置过程。
