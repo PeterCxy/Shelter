@@ -115,9 +115,9 @@
     <string name="setup_wizard_please_wait_text">Shelter 正在啟動 Work Profile。</string>
     <string name="setup_wizard_please_wait">請稍候…</string>
     <string name="setup_wizard_ready">準備好未？</string>
-    <string name="setup_wizard_ready_text">請確保電話現在<b>沒有</b>使用勿擾模式，以容許一則通知出現，以作完成設置Shelter。請<b>按該則通知</b>。
+    <string name="setup_wizard_ready_text">我們現在已準備好爲您設置 Shelter。如果您的設備運行的是 Android 7 或更低版本，請首先確保您的設備是 <b> 不是 </b> 請勿打擾模式，因爲您需要 <b> 點擊通知 </b> 稍後完成設置過程。
 \n
-\n完成後，請按下頁。</string>
+\n準備好後，單擊“下一步”開始設置過程。</string>
     <string name="setup_wizard_failed_text">很遺憾地通知您，我們無法為您設置 Shelter。
 \n
 \n如果您的設備已經有一個工作配置文件，無論是來自以前安裝的 Shelter 還是來自其他應用程序，您必須在設置 -&gt; 帳戶中刪除該配置文件，然後 Shelter 才能繼續。
