@@ -100,7 +100,7 @@
     <string name="setup_wizard_welcome">Shelterへようこそ</string>
     <string name="settings_camera_proxy_desc">他のアプリに偽のカメラアプリを提示し、Documents UI（および有効な場合はFile Shuttle）から任意の画像を撮影画像として選択できるようにします。これにより、Documents UIをネイティブにサポートしていなくても、他のカメラアプリを呼び出して写真を撮ることをサポートするすべてのアプリでFile Shuttleが有効になります。</string>
     <string name="settings_dont_freeze_foreground_desc">画面をロックしたときに、フォアグラウンドのアプリ（アクティビティが表示されているもの）を凍結しない。これは音楽プレーヤーなどのアプリには便利ですが、その後「バッチフリーズ・ショートカット」を使って手動で凍結する必要があります。</string>
-    <string name="setup_wizard_ready_text">これで、Shelterの設定が完了しました。セットアッププロセスを完了させるには、後で<b>通知をタップ</b>する必要があるため、まずお使いのデバイスが<b>サイレントモードになっていない</b>ことを確認してください。
+    <string name="setup_wizard_ready_text">これで、Shelterの設定が完了しました。Android 7以下の端末の場合、セットアッププロセスを完了させるには、後で<b>通知をタップ</b>する必要があるため、まずお使いのデバイスが<b>サイレントモードになっていない</b>ことを確認してください。
 \n
 \n準備ができたら、「次へ」をタップして、セットアッププロセスを開始します。</string>
     <string name="setup_wizard_permissions">権限についてひとこと</string>
