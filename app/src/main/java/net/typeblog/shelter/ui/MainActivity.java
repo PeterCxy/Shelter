@@ -53,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
                             new ActivityResultContracts.OpenDocument(),
                             new String[]{"application/vnd.android.package-archive"}),
                     this::onApkSelected);
+    private final ActivityResultLauncher<Void> mSelectCaCert =
+            registerForActivityResult(
+                    new Utility.ActivityResultContractInputWrapper<>(
+                            new ActivityResultContracts.OpenDocument(),
+                            new String[]{"application/x-pem-file"}),
+                    this::onCaCertSelected);
     // Logic of the following intents are quite complicated; use the generic contract for more control
     private final ActivityResultLauncher<Intent> mTryStartWorkService =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::tryStartWorkServiceCb);
@@ -412,6 +418,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (itemId == R.id.main_menu_install_app_to_profile) {
             mSelectApk.launch(null);
             return true;
+        } else if (itemId == R.id.main_menu_install_ca_cert) {
+            mSelectCaCert.launch(null);
+            return true;
         } else if (itemId == R.id.main_menu_show_all) {
             Runnable update = () -> {
                 mShowAll = !item.isChecked();
@@ -454,6 +463,30 @@ public class MainActivity extends AppCompatActivity {
                         if (result == RESULT_OK)
                             Toast.makeText(MainActivity.this,
                                     R.string.install_app_to_profile_success, Toast.LENGTH_LONG).show();
+                    });
+                }
+            });
+        } catch (RemoteException e) {
+            // Well, I don't know what to do then
+        }
+    }
+
+    private void onCaCertSelected(Uri uri) {
+        if (uri == null) return;
+        UriForwardProxy proxy = new UriForwardProxy(getApplicationContext(), uri);
+
+        try {
+            mServiceWork.installCaCert(proxy, new IAppInstallCallback.Stub() {
+                @Override
+                public void callback(int result) {
+                    runOnUiThread(() -> {
+                        // The other side will have closed the Fd for us
+                        if (result == RESULT_OK)
+                            Toast.makeText(MainActivity.this,
+                                    R.string.install_ca_cert_to_profile_success, Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(MainActivity.this,
+                                    R.string.install_ca_cert_to_profile_failure, Toast.LENGTH_LONG).show();
                     });
                 }
             });
