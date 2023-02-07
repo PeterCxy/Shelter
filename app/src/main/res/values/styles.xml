@@ -1,12 +1,42 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.Base" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorOnPrimary">@color/colorTextPrimary</item>
         <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+        <item name="android:itemBackground">@color/colorPrimary</item>
+        <item name="android:listViewStyle">@style/ListViewTheme</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
+    </style>
+
+    <style name="AppTheme.Override" parent="AppTheme.Base">
+        <!-- Empty; override from specific styles -->
+    </style>
+
+    <style name="AppTheme" parent="AppTheme.Override">
+        <!-- Empty; override from specific styles -->
+    </style>
+
+    <!-- Themes for dialogs and context menus -->
+    <style name="ListViewTheme" parent="@android:style/Widget.ListView">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:headerBackground">@color/colorPrimary</item>
+        <item name="android:windowTitleStyle">@style/AlertDialogTitleTextStyle</item>
+    </style>
+
+    <style name="AlertDialogTitleTextStyle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
     <!-- Theme for ActionBar -->

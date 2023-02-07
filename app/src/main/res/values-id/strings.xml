@@ -12,4 +12,107 @@
 \nKlik \"Selanjutnya\", dan kami akan memberi Anda informasi tentang Shelter dan petunjuk untuk menyelesaikan proses pengaturan.
 \n
 \nKami menyarankan Anda membaca semua halaman berikut dengan cermat.</string>
+    <string name="documents_ui">Buka Aplikasi Dokumen</string>
+    <string name="settings">Pengaturan</string>
+    <string name="settings_interaction">Interaksi</string>
+    <string name="settings_cross_profile_file_chooser">Penyimpanan Shuttle</string>
+    <string name="uninstall_fail_system_app">Tidak dapat mencopot pemasangan aplikasi sistem di profil yang tidak dapat dikontrol oleh Shelter.</string>
+    <string name="auto_freeze">Otomatis Bekukan</string>
+    <string name="allow_cross_profile_widgets">Izinkan Widget di Profil Utama</string>
+    <string name="search">Pencarian</string>
+    <string name="freeze_all">Pengelompokan Pembekuan</string>
+    <string name="create_freeze_all_shortcut">Buat Kelompok Pintasan Pembekuan</string>
+    <string name="freeze_all_shortcut">Bekukan</string>
+    <string name="install_app_to_profile">Pasang APK ke Shelter</string>
+    <string name="install_app_to_profile_success">Penginstalan aplikasi selesai di profil kerja.</string>
+    <string name="show_all">Lihat Semua Aplikasi</string>
+    <string name="setup_wizard_compatibility">Kesesuaian</string>
+    <string name="setup_wizard_ready">Siap\?</string>
+    <string name="setup_wizard_please_wait">Silakan tunggu. . .</string>
+    <string name="setup_wizard_please_wait_text">Kami mencoba menginisialisasi Work Profile dan menyiapkan Shelter di perangkat Anda.</string>
+    <string name="setup_wizard_failed">Penyiapan gagal</string>
+    <string name="setup_wizard_action_required">Diperlukan tindakan</string>
+    <string name="setup_wizard_action_required_text">Anda sekarang akan melihat notifikasi dari Shelter. <b>Silakan klik notifikasi itu</b> untuk menyelesaikan proses penyiapan.
+\n
+\nJika Anda tidak melihat notifikasi, pastikan perangkat Anda tidak dalam mode Jangan Ganggu dan coba turunkan pusat notifikasi.
+\n
+\nUntuk menyetel ulang Shelter dan memulai kembali, Anda dapat menghapus data Shelter di Setelan.</string>
+    <string name="notifications_important">Penampungan Penting</string>
+    <string name="finish_provision_title">Klik di sini untuk menyelesaikan penyiapan Shelter</string>
+    <string name="finish_provision_desc">Selamat! Anda hanya perlu satu klik untuk menyelesaikan penyiapan Shelter.</string>
+    <string name="service_title">Layanan Shelter</string>
+    <string name="service_desc">Shelter sekarang berjalan …</string>
+    <string name="service_auto_freeze_title">Pembekuan otomatis tertunda</string>
+    <string name="service_auto_freeze_desc">Shelter akan membekukan aplikasi secara otomatis yang diluncurkan dari \"Cairan &amp; Luncurkan\" pada acara penguncian layar berikutnya.</string>
+    <string name="service_auto_freeze_now">Bekukan Sekarang</string>
+    <string name="app_installing">Memasang...</string>
+    <string name="fragment_profile_main">Utama</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="list_item_disabled">[Bekukan] %s</string>
+    <string name="batch_operation">Kelompok operasi</string>
+    <string name="clone_to_work_profile">Salin ke Shelter (Profil Kerja)</string>
+    <string name="clone_to_main_profile">Salin ke Profil Utama</string>
+    <string name="uninstall_app">Copot</string>
+    <string name="freeze_app">Bekukan</string>
+    <string name="unfreeze_app">Cairkan</string>
+    <string name="launch">Jalankan</string>
+    <string name="create_unfreeze_shortcut">Buat Pencairan dan/atau Luncurkan Pintasan</string>
+    <string name="unfreeze_and_launch">Cairkan dan Luncurkan</string>
+    <string name="settings_camera_proxy">Pemilih Gambar sebagai Kamera Palsu</string>
+    <string name="settings_block_contacts_searching">Blokir Pencarian Kontak</string>
+    <string name="settings_block_contacts_searching_desc">Tolak akses dari profil utama ke kontak di dalam profil kerja.</string>
+    <string name="settings_services">Layanan</string>
+    <string name="settings_auto_freeze_service">Layanan Pembekuan Otomatis</string>
+    <string name="settings_auto_freeze_service_desc">Saat layar terkunci, secara otomatis bekukan aplikasi yang diluncurkan dari \"Cabut &amp; Luncurkan Pintasan\".</string>
+    <string name="settings_auto_freeze_delay">Penundaan Pembekuan Otomatis</string>
+    <string name="settings_dont_freeze_foreground">Lewati Aplikasi Latar Depan</string>
+    <string name="settings_about">Tentang</string>
+    <string name="settings_version">Versi</string>
+    <string name="settings_source_code">Kode Sumber</string>
+    <string name="settings_translate">Terjemah</string>
+    <string name="settings_bug_report">Laporan Masalah / Pelacak Masalah</string>
+    <string name="provision_finished">Pengaturan tempat berlindung selesai. Sekarang memulai kembali Shelter. Jika Shelter tidak memulai secara otomatis, Anda dapat meluncurkannya lagi dari peluncur.</string>
+    <string name="msg_device_unsupported">Izin ditolak atau Perangkat tidak didukung</string>
+    <string name="work_profile_not_found">Profil kerja tidak ditemukan. Mulai ulang aplikasi untuk menyediakan ulang profil.</string>
+    <string name="work_profile_provision_failed">Tidak dapat menyediakan profil kerja. Anda dapat mencoba lagi dengan memulai ulang Shelter.</string>
+    <string name="clone_success">Aplikasi \"%s\" berhasil digandakan</string>
+    <string name="uninstall_success">Aplikasi \"%s\" berhasil dihapus instalasinya</string>
+    <string name="freeze_success">Aplikasi \"%s\" berhasil dibekukan</string>
+    <string name="unfreeze_success">Aplikasi \"%s\" berhasil dicairkan</string>
+    <string name="clone_fail_system_app">Tidak dapat mengkloning aplikasi sistem ke profil yang tidak dapat dikontrol oleh Shelter.</string>
+    <string name="unsupported_launcher">Tidak dapat menambahkan pintasan ke peluncur Anda. Silakan hubungi pengembang untuk informasi lebih lanjut.</string>
+    <string name="app_context_menu_title">Operasi untuk %s</string>
+    <string name="freeze_all_success">Semua aplikasi dalam daftar \"Bekukan Otomatis\" telah berhasil dibekukan.</string>
+    <string name="shortcut_create_success">Pintasan dibuat di peluncur Anda.</string>
+    <string name="launch_app_fail">Tidak dapat meluncurkan aplikasi %s karena tidak memiliki GUI.</string>
+    <string name="continue_anyway">Tetap lanjutkan</string>
+    <string name="setup_wizard_permissions_text">Secara default, Shelter tidak akan meminta izin individu apa pun. Namun, setelah Anda melanjutkan proses penyiapan, Shelter akan mencoba menyiapkan Profil Kerja dan karenanya menjadi <b>pengelola profil</b> profil tersebut.
+\n
+\nIni akan memberi Shelter daftar panjang izin di dalam profil, sebanding dengan Admin Perangkat, meskipun terbatas pada profil. Menjadi pengelola profil diperlukan untuk sebagian besar fungsi Shelter.
+\n
+\nBeberapa fitur lanjutan Shelter mungkin memerlukan lebih banyak izin <b>di luar</b> Profil Kerja. Saat dibutuhkan, Shelter akan meminta izin tersebut secara terpisah saat Anda mengaktifkan fitur yang sesuai.</string>
+    <string name="setup_wizard_compatibility_text">Shelter dikembangkan dan diuji pada turunan Android mirip AOSP. Ini termasuk AOSP (Proyek Sumber Terbuka Android), Google Android (pada Piksel), dan <b>kebanyakan ROM kustom sumber terbuka berbasis AOSP</b> seperti LineageOS. Jika ponsel Anda menjalankan salah satu turunan Android yang tercantum di atas, selamat! Shelter mungkin akan berfungsi dengan benar di perangkat Anda.
+\n
+\nBeberapa vendor perangkat memperkenalkan penyesuaian yang sangat invasif ke dalam basis kode Android, yang mengakibatkan konflik, ketidakcocokan, dan perilaku yang tidak terduga. Beberapa ROM kustom juga dapat memperkenalkan perubahan yang merusak kompatibilitas, tetapi umumnya ini jarang terjadi dibandingkan dengan ketidakcocokan yang diperkenalkan oleh vendor ponsel.
+\n
+\nShelter hanyalah antarmuka ke fitur Work Profile yang disediakan oleh sistem. Jika fitur yang disediakan oleh sistem rusak atau tidak standar, <b>Shelter tidak dapat secara ajaib menyelesaikan masalahnya sendiri</b>. Jika saat ini Anda menggunakan versi Android modifikasi vendor yang diketahui dapat merusak Profil Kerja, <b>Anda telah diperingatkan</b>. Anda tetap dapat melanjutkan, tetapi tidak ada jaminan bahwa Shelter akan bertindak dengan benar dalam situasi seperti ini.</string>
+    <string name="setup_wizard_ready_text">Kami sekarang siap menyiapkan Shelter untuk Anda. Jika perangkat Anda menjalankan Android 7 atau lebih rendah, pertama-tama pastikan bahwa perangkat Anda <b>tidak</b> dalam mode Jangan Ganggu, karena nanti Anda harus <b>mengeklik pemberitahuan</b> untuk menyelesaikan proses penyetelan.
+\n
+\nSaat Anda siap, klik \"Berikutnya\" untuk memulai proses penyiapan.</string>
+    <string name="setup_wizard_failed_text">Dengan menyesal kami memberi tahu Anda bahwa kami tidak dapat menyiapkan Shelter untuk Anda.
+\n
+\nJika perangkat Anda sudah memiliki Profil Kerja, baik dari penginstalan Shelter sebelumnya atau dari aplikasi lain, Anda harus menghapus profil tersebut di Pengaturan -&gt; Akun sebelum Shelter dapat melanjutkan.
+\n
+\nJika tidak, jika Anda tidak membatalkan penyiapan secara manual, maka penyebab kegagalan biasanya karena sistem yang banyak dimodifikasi, atau konflik antara Shelter dan pengelola Work Profile lainnya. Sayangnya, tidak banyak yang bisa kami lakukan terkait hal ini.
+\n
+\nKlik \"Selanjutnya\" untuk keluar.</string>
+    <string name="show_all_warning">Memanipulasi aplikasi yang disembunyikan dari daftar dapat menyebabkan crash dan segala macam perilaku tak terduga. Namun, fitur ini dapat berguna saat ROM yang disesuaikan dengan vendor tidak mengaktifkan semua aplikasi sistem yang diperlukan di profil kerja secara default. Jika Anda melanjutkan, Anda sendirian.</string>
+    <string name="settings_cross_profile_file_chooser_desc">Saat diaktifkan, Anda akan dapat menelusuri/melihat/memilih/menyalin file di Shelter dari profil utama dan sebaliknya, HANYA melalui UI Dokumen (bernama File atau Dokumen di peluncur Anda) atau aplikasi dengan dukungan UI Dokumen (mereka hanya mendapatkan akses sementara ke file yang Anda pilih di Documents UI), sementara masih berkaitan dengan isolasi sistem file.</string>
+    <string name="settings_camera_proxy_desc">Sajikan aplikasi kamera palsu ke aplikasi lain, memungkinkan Anda memilih gambar arbitrer dari Documents UI (dan File Shuttle jika diaktifkan) sebagai gambar yang diambil. Ini mengaktifkan File Shuttle untuk aplikasi apa pun yang mendukung pemanggilan aplikasi kamera lain untuk mengambil gambar, meskipun mereka tidak mendukung UI Dokumen secara asli.</string>
+    <string name="settings_dont_freeze_foreground_desc">JANGAN membekukan aplikasi latar depan (dengan aktivitas yang terlihat) saat Anda mengunci layar. Ini dapat berguna untuk aplikasi seperti pemutar musik, tetapi Anda harus membekukannya secara manual melalui \"Pintasan Pembekuan Batch\" setelahnya.</string>
+    <string name="work_mode_disabled">Sepertinya Anda telah menonaktifkan Mode Kerja saat memulai Shelter. Jika Anda telah mengaktifkannya sekarang, harap mulai kembali Shelter.</string>
+    <string name="request_usage_stats">Shelter memerlukan izin <b>Statistik Penggunaan</b> untuk melakukan ini. Harap aktifkan izin untuk <b>KESELURUHAN</b> aplikasi Shelter yang ditampilkan di dialog setelah Anda menekan \"Ok\". Gagal melakukannya akan menyebabkan fitur ini tidak berfungsi dengan baik.</string>
+    <string name="request_storage_manager">Shelter memerlukan akses ke <b>Semua File</b> untuk File Shuttle. Harap aktifkan izin untuk <b>KESELURUHAN </b> (Pribadi / Kantor) aplikasi Shelter yang ditampilkan dalam dialog setelah Anda menekan \"Ok\".</string>
+    <string name="request_system_alert">Shelter harus <b>Draw over Other Apps</b> agar File Shuttle berfungsi dengan benar. Harap aktifkan izin untuk <b>KESELURUHAN </b> (Pribadi / Kantor) aplikasi Shelter yang ditampilkan dalam dialog setelah Anda menekan \"Ok\". Izin ini digunakan untuk memulai layanan File Shuttle di latar belakang.</string>
+    <string name="miui_cannot_clone">Mengkloning aplikasi non-sistem ke profil lain saat ini tidak dimungkinkan di MIUI. Harap gandakan toko aplikasi sistem Anda (mis. <b>Play Store</b>) ke profil lain, lalu instal aplikasi dari sana.</string>
 </resources>

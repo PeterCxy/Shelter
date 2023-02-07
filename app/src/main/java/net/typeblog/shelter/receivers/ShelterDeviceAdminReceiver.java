@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.ui.DummyActivity;
@@ -17,12 +18,17 @@ public class ShelterDeviceAdminReceiver extends DeviceAdminReceiver {
     @Override
     public void onProfileProvisioningComplete(Context context, Intent intent) {
         super.onProfileProvisioningComplete(context, intent);
-        // I don't know why setting the policies in this receiver won't work very well
-        // Anyway, we delegate it to the DummyActivity
+        // After Oreo, we use the activity intent ACTION_PROVISIONING_SUCCESSFUL for finalization
+        // As it is an activity intent, it is way more reliable (and less hacky) than doing
+        // it in a BroadcastReceiver
+        // This is handled by FinalizeActivity, and thus we should ignore the event here
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) return;
+        // Complex logic in a BroadcastReceiver is not reliable
+        // Delegate finalization to the DummyActivity
         Intent i = new Intent(context.getApplicationContext(), DummyActivity.class);
         i.setAction(DummyActivity.FINALIZE_PROVISION);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        // Delegate starting activity to notification so we won't break on Android 10
+        // Delegate starting activity to notification to work around background limitations
         // And also maybe this will fix bugs on stupid custom OSes like MIUI / EMUI
         Notification notification = Utility.buildNotification(context, true,
                 "shelter-finish-provision",

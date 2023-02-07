@@ -5,7 +5,7 @@
     <string name="service_auto_freeze_title">Suspensión automática pendiente</string>
     <string name="first_run_alert_cancel">Adiós</string>
     <string name="first_run_alert_continue">Continuar</string>
-    <string name="device_admin_desc">Servicio de aislamiento</string>
+    <string name="device_admin_desc">Servicio de aislamiento de aplicaciones</string>
     <string name="device_admin_explanation">Shelter necesita convertirse en el administrador del dispositivo para realizar tareas de aislamiento.</string>
     <string name="camera_proxy_activity">Elige un archivo de imagen</string>
     <string name="notifications_important">Importante</string>
@@ -34,11 +34,11 @@
 \nEsto proporcionara a Shelter una lista extensa de permisos dentro del perfil, comparables a los del administrador del dispositivo, aunque confinado al perfil. Ser el administrador de perfil es necesario para la mayoría de la funcionalidad de Shelter.
 \n
 \nAlgunas características avanzadas de Shelter podrían requerir mas permisos <b>fuera</b> del perfil de trabajo. Cuando sean necesarios, Shelter te solicitara esos permisos de manera individual cuando habilites tales características.</string>
-    <string name="setup_wizard_compatibility_text">Shelter es desarrollado y probado en derivados de Android AOSP. Esto incluye AOSP(Android Open Source Project), Google Android(en Pixel) y <b> la mayoría de las ROMs basadas en Android AOSP</b> como LineageOS. Si tu dispositivo esta ejecutando alguno de los derivados de Android listados anteriormente, ¡felicitaciones! Shelter probablemente funcionara correctamente en tu dispositivo.
+    <string name="setup_wizard_compatibility_text">Shelter es desarrollado y probado en derivados de Android AOSP. Esto incluye AOSP (Android Open Source Project), Google Android (en Pixel) y <b> la mayoría de las ROMs basadas en Android AOSP</b> como LineageOS. Si tu dispositivo esta ejecutando alguno de los derivados de Android listados anteriormente, ¡felicitaciones! Shelter probablemente funcionara correctamente en tu dispositivo.
 \n
 \nAlgunos fabricantes de dispositivos introducen personalizaciones demasiado invasivas dentro del código fuente de Android lo cual resulta en conflictos, incompatibilidades y comportamientos inesperados. Algunas ROMs personalizadas también pueden introducir cambios que rompen con la compatibilidad pero generalmente son raros en comparación con las incompatibilidades introducidas por los fabricantes.
 \n
-\nShelter es únicamente una interfaz a la característica del perfil de trabajo provista por el sistema. Si la característica provista por el sistema esta dañada o no es estandar <b>Shelter no puede resolver el problema mágicamente por si mismo</b>. Si actualmente estas usando una versión de Android modificada por el fabricante de la cual se sabe que incumple con los perfiles de trabajo <b>has sido advertido</b>. Puedes proceder de todos modos, pero no hay garantia de que Shelter se comporte de manera adecuada bajo esas circunstancias.</string>
+\nShelter es únicamente una interfaz a la característica del perfil de trabajo provista por el sistema. Si la característica provista por el sistema esta dañada o no es estándar <b>Shelter no puede resolver el problema mágicamente por sí mismo</b>. Si actualmente estas usando una versión de Android modificada por el fabricante de la cual se sabe que incumple con los perfiles de trabajo <b>has sido advertido</b>. Puedes proceder de todos modos, pero no hay garantía de que Shelter se comporte de manera adecuada bajo esas circunstancias.</string>
     <string name="settings_camera_proxy_desc">Presenta una aplicación de cámara falsa a otras aplicaciones, permitiéndote elegir una imagen arbitraria de la interfaz de documentos (y a la pasarela de archivos, si se encuentra habilitado) como la fotografía tomada. Esto habilita la pasarela de archivos para cualquier aplicaciones que tenga soporte para invocar otras aplicaciones para tomar una fotografía incluso si no soportan la interfaz de documentos de manera nativa.</string>
     <string name="uninstall_fail_system_app">No se pueden desinstalar aplicaciones del sistema en un perfil del cual Shelter no tiene control.</string>
     <string name="unsupported_launcher">No se pueden agregar accesos directos a tu lanzador de aplicaciones. Por favor contacta al desarrollador para mas información.</string>
@@ -51,7 +51,9 @@
 \nCuando estés listo, haz click en \"Siguiente\" para iniciar el proceso de instalación.</string>
     <string name="setup_wizard_failed_text">Lamentamos informarte que no fuimos capaces de configurar Shelter para ti.
 \n
-\nSi no cancelaste la instalación de manera manual, entonces una de las razones del fallo es comúnmente debido a un sistema fuertemente modificado o a un conflicto entre Shlter y otros administradores del perfil de trabajo. Desafortunadamente, no hay mucho que podamos hacer sobre esto.
+\nSi tu dispositivo ya tenía un perfil de trabajo, ya sea de una instalación previa de Shelter o de otra aplicación, deberás eliminar ese perfil en Ajustes -&gt; Cuentas antes de que Shelter pueda proceder.
+\n
+\nDe lo contrario, si no cancelaste la instalación de manera manual, entonces una de las razones del fallo es comúnmente debido a un sistema fuertemente modificado o a un conflicto entre Shelter y otros administradores del perfil de trabajo. Desafortunadamente, no hay mucho que podamos hacer sobre esto.
 \n
 \nHaz click en Siguiente para Salir.</string>
     <string name="setup_wizard_action_required">Acción requerida</string>

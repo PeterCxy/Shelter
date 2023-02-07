@@ -1,14 +1,23 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    //noinspection JcenterRepositoryObsolete
+    jcenter {
+        content {
+            includeVersion "mobi.upod", "time-duration-picker", "1.1.3"
+        }
+    }
+}
+
 android {
-    compileSdkVersion 31
-    buildToolsVersion '30.0.3'
+    compileSdkVersion 33
+    buildToolsVersion '33.0.0'
     defaultConfig {
         applicationId "net.typeblog.shelter"
         minSdkVersion 24
-        targetSdkVersion 31
-        versionCode 18
-        versionName "1.7-dev1"
+        targetSdkVersion 33
+        versionCode 23
+        versionName "1.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -22,28 +31,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    lintOptions {
-        // We have community-contributed translations. Do not let them block releases.
-        disable 'MissingTranslation'
-        disable 'ExtraTranslation'
-        // We don't need Google App Indexing
-        disable 'GoogleAppIndexingWarning'
-        // Some dependencies still pull in Fragment 1.2.x
-        // Let's just ignore the error for now
-        // We don't really hit the broken use-cases for now
-        disable 'InvalidFragmentVersionForActivityResult'
+    lint {
+        disable 'MissingTranslation', 'ExtraTranslation', 'GoogleAppIndexingWarning', 'InvalidFragmentVersionForActivityResult'
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
-    implementation 'androidx.fragment:fragment:1.3.6'
-    implementation 'androidx.appcompat:appcompat:1.4.0-beta01'
-    implementation 'androidx.preference:preference:1.1.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    implementation 'androidx.fragment:fragment:1.5.2'
+    implementation 'androidx.appcompat:appcompat:1.6.0-beta01'
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     implementation 'mobi.upod:time-duration-picker:1.1.3'
     debugImplementation project(path: ':setup-wizard-lib', configuration: 'gingerbreadCompatDebugRuntimeElements')
     releaseImplementation project(path: ':setup-wizard-lib', configuration: 'gingerbreadCompatReleaseRuntimeElements')

@@ -2,4 +2,117 @@
 <resources>
     <string name="service_auto_freeze_now">Frys Nu</string>
     <string name="app_installing">Installerar...</string>
+    <string name="settings_dont_freeze_foreground">Hoppa över förgrundsappar</string>
+    <string name="settings_block_contacts_searching_desc">Neka åtkomst från primära profilen till kontakter i arbetsprofilen.</string>
+    <string name="show_all_warning">Att manipulera appar som är dolda från listan kan orsaka krascher och flera möjliga oväntade beteenden. Den här funktionen kan dock vara användbar när leverantörsanpassade ROM:er inte aktiverar alla nödvändiga systemappar i arbetsprofilen som standard. Om du väljer att fortsätta gör du det på egen hand.</string>
+    <string name="setup_wizard_welcome">Välkommen till Shelter</string>
+    <string name="settings_block_contacts_searching">Blockera kontaktsökning</string>
+    <string name="first_run_alert_cancel">Hej då</string>
+    <string name="first_run_alert_continue">Fortsätt</string>
+    <string name="settings_auto_freeze_service_desc">När skärmen är låst, frys automatiskt appar som startas från \"Tina upp &amp; Starta\"-genvägen.</string>
+    <string name="settings_auto_freeze_delay">Fördröjning av automatisk frysning</string>
+    <string name="settings_dont_freeze_foreground_desc">Frys INTE förgrundsappar (med synlig aktivitet) när skärmen låsas. Detta kan vara användbart för appar som musikspelare, men du måste frysa dem manuellt genom \"Batch Freeze\"-genvägen efteråt.</string>
+    <string name="settings_about">Om</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_source_code">Källkod</string>
+    <string name="clone_success">Applikationen \"%s\" klonades framgångsrikt</string>
+    <string name="uninstall_success">Applikationen \"%s\" avinstallerades framgångsrikt</string>
+    <string name="freeze_success">Applikationen \"%s\" har frysts framgångsrikt</string>
+    <string name="unfreeze_success">Applikationen \"%s\" tinades upp framgångsrikt</string>
+    <string name="freeze_all_success">Alla appar i listan \"Automatisk frysning\" har frysts.</string>
+    <string name="unsupported_launcher">Det går inte att lägga till genvägar till din launcher. Kontakta utvecklaren för mer information.</string>
+    <string name="shortcut_create_success">Genväg skapad på din launcher.</string>
+    <string name="camera_proxy_activity">Välj en bildfil</string>
+    <string name="launch_app_fail">Det går inte att starta appen %s eftersom den har inte något GUI.</string>
+    <string name="miui_cannot_clone">Att klona icke-systemappar till en annan profil är för närvarande inte möjligt på MIUI. Vänligen klona ditt systems appbutik (t.ex. <b>Play Butik, FDroid</b>) till den andra profilen och installera sedan appar därifrån.</string>
+    <string name="fragment_profile_main">Primär</string>
+    <string name="continue_anyway">Fortsätt ändå</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="uninstall_fail_system_app">Det går inte att avinstallera systemappar i en profil som Shelter inte har kontroll över.</string>
+    <string name="device_admin_desc">App-isoleringstjänst</string>
+    <string name="device_admin_explanation">Shelter behöver bli enhetsadministratör för att kunna utföra sina isoleringsuppgifter.</string>
+    <string name="notifications_important">Viktigt om Shelter</string>
+    <string name="finish_provision_title">Klicka här för att slutföra installationen av Shelter</string>
+    <string name="service_title">Shelter-tjänst</string>
+    <string name="service_desc">Shelter är nu igång…</string>
+    <string name="setup_wizard_welcome_text">Shelter är en applikation som kan hjälpa dig att köra andra applikationer i en isolerad profil. Den gör det genom att använda funktionen <b>Arbetsprofil</b> i Android.
+\n
+\nKlicka på \"Nästa\" så ger vi dig mer information om Shelter och guidar dig genom installationsprocessen.
+\n
+\nVi föreslår att du läser igenom alla följande sidor noggrant.</string>
+    <string name="batch_operation">Batch operation</string>
+    <string name="clone_to_main_profile">Klona till Primär Profil</string>
+    <string name="uninstall_app">Avinstallera</string>
+    <string name="freeze_app">Frysa</string>
+    <string name="unfreeze_app">Tina upp</string>
+    <string name="launch">Starta</string>
+    <string name="create_unfreeze_shortcut">Skapa \"Tina upp och/eller Starta\"-genväg</string>
+    <string name="unfreeze_and_launch">Tina upp och Starta</string>
+    <string name="allow_cross_profile_widgets">Tillåt widgetar i primära profilen</string>
+    <string name="search">Sök</string>
+    <string name="auto_freeze">Frysa automatiskt</string>
+    <string name="freeze_all">Batchfrysa</string>
+    <string name="create_freeze_all_shortcut">Skapa \"Batchfrysa\"-genväg</string>
+    <string name="freeze_all_shortcut">Frysa</string>
+    <string name="install_app_to_profile">Installera APK i Shelter</string>
+    <string name="install_app_to_profile_success">Applikationsinstallation avslutad i arbetsprofilen.</string>
+    <string name="show_all">Visa alla appar</string>
+    <string name="documents_ui">Öppna \"Documents UI\"</string>
+    <string name="settings">Inställningar</string>
+    <string name="settings_interaction">Interaktion</string>
+    <string name="settings_cross_profile_file_chooser">File Shuttle</string>
+    <string name="settings_camera_proxy">Bildväljare som falsk kamera</string>
+    <string name="settings_translate">Översätt</string>
+    <string name="setup_wizard_ready_text">Vi är nu redo att sätta upp Shelter åt dig. Se först till att din enhet <b>inte</b> är i \"Stör ej\"-läge, eftersom du kommer att behöva<b>klicka på en avisering</b> senare för att slutföra installationsprocessen.
+\n
+\nNär du är redo, klicka på \"Nästa\" för att påbörja installationsprocessen.</string>
+    <string name="setup_wizard_compatibility">Kompatibilitet</string>
+    <string name="settings_camera_proxy_desc">Presentera en falsk kameraapp för andra appar, så att du kan välja en bild från Documents UI (och File Shuttle om den är aktiverad) som den tagna bilden. Detta aktiverar File Shuttle för alla appar som har stöd för att starta andra kameraappar för att ta en bild, även om de inte har stöd för Documents UI.</string>
+    <string name="settings_services">Tjänster</string>
+    <string name="settings_bug_report">Buggrapport / Problemspårare</string>
+    <string name="msg_device_unsupported">Behörighet nekas eller enhet som inte stöds</string>
+    <string name="provision_finished">Installationen av Shelter är klar. Nu startar Shelter om. Om Shelter inte startade om automatiskt kan du göra det från din launcher.</string>
+    <string name="settings_cross_profile_file_chooser_desc">När det är aktiverat kommer du att kunna bläddra / visa / välja / kopiera filer i Shelter från huvudprofilen och vice versa, ENDAST via funktionen \"Documents UI\" (som heter Files eller Documents på din launcher) eller via appar med \"Documents UI\"-stöd (de får bara tillfällig åtkomst till filer du väljer i Documents UI), medan filsystemets isolering fortsätter att gälla.</string>
+    <string name="setup_wizard_permissions">Några ord om behörigheter</string>
+    <string name="work_profile_not_found">Det gick inte att hitta arbetsprofilen. Starta om appen för att omregistrera profilen.</string>
+    <string name="work_profile_provision_failed">Det går inte att tillhandahålla arbetsprofil. Du kan försöka igen genom att starta om Shelter.</string>
+    <string name="work_mode_disabled">Det verkar som att arbetsprofilen var inaktiverad när Shelter startades. Om du nu har aktiverat det, starta om Shelter.</string>
+    <string name="clone_fail_system_app">Det går inte att klona systemappar till en profil som Shelter inte har kontroll över.</string>
+    <string name="setup_wizard_ready">Redo\?</string>
+    <string name="setup_wizard_please_wait">Vänta…</string>
+    <string name="setup_wizard_please_wait_text">Vi försöker initiera Work Profile och konfigurera Shelter på din enhet.</string>
+    <string name="setup_wizard_failed">Konfigurationen misslyckades</string>
+    <string name="setup_wizard_action_required">Åtgärd krävs</string>
+    <string name="settings_auto_freeze_service">Automatisk frystjänst</string>
+    <string name="app_context_menu_title">Operationer för %s</string>
+    <string name="setup_wizard_action_required_text">Du bör nu se en avisering från Shelter. <b>Klicka på det aviseringen</b> för att slutföra installationsprocessen.
+\n
+\nOm du inte ser aviseringen, se till att din enhet inte är i \"Stör ej\"-läge och försök dra ner meddelandecentret.
+\n
+\nFör att återställa Shelter och börja om kan du rensa Shelters data i Inställningar.</string>
+    <string name="setup_wizard_failed_text">Tyvärr kunde vi inte konfigurera Shelter åt dig.
+\n
+\nOm din enhet redan hade en arbetsprofil konfigurerad, antingen från en tidigare installation av Shelter eller från en annan applikation, måste du ta bort den profilen i Inställningar -&gt; Konto innan Shelter kan fortsätta.
+\n
+\nAnnars, om du inte avbröt installationen manuellt, beror orsaken till felet oftast på ett kraftigt modifierat system eller en konflikt mellan Shelter och andra appar som hanterar arbetsprofilen. Tyvärr finns det inte mycket vi kan göra åt detta.
+\n
+\nKlicka på \"Nästa\" för att avsluta.</string>
+    <string name="setup_wizard_permissions_text">Som standard kommer Shelter inte att be om några individuella behörigheter. Men när du väl har gått vidare med installationsprocessen kommer Shelter att försöka skapa en arbetsprofil och blir därför <b>profilhanterare</b> för profilen.
+\n
+\nDetta kommer att ge Shelter en omfattande lista med behörigheter i profilen, jämförbar med de för en enhetsadministratör, även om detta är begränsat till profilen. Att vara profilhanterare är nödvändigt för de flesta av Shelters funktionalitet.
+\n
+\nVissa avancerade funktioner i Shelter kan kräva fler behörigheter <b>utanför</b> arbetsprofilen. När det behövs kommer Shelter att be om dessa behörigheter separat när du aktiverar motsvarande funktioner.</string>
+    <string name="setup_wizard_compatibility_text">Shelter är utvecklad och testad på AOSP-liknande Android-derivat. Detta inkluderar AOSP (Android Open Source Project), Google Android (på Pixel/enheter) och <b>de flesta AOSP-baserade “custom ROMs” med öppen källkod,</b> som LineageOS. Om din smartphone kör en av Android-derivaten som anges ovan, grattis! Shelter kommer förmodligen att fungera korrekt på din enhet.
+\n
+\nVissa enhetsleverantörer introducerar mycket invasiva anpassningar i Android-kodbasen, vilket resulterar i konflikter, inkompatibilitet och oväntat beteende. Vissa “custom ROMs” kan också införa kompatibilitetsbrytande förändringar, men i allmänhet är dessa sällsynta jämfört med telefonleverantörsintroducerade inkompatibiliteter.
+\n
+\nShelter är bara ett gränssnitt till funktionen \"Arbetsprofil\" som tillhandahålls av Android-systemet. Om funktionen som tillhandahålls av systemet är trasig eller icke-standard, kan <b>Shelter inte magiskt lösa problemet på egen hand</b>. Om du för närvarande använder en leverantörsmodifierad Android-version som är känd för att bryta arbetsprofilsfunktionen, <b>har du blivit varnad</b>. Du kan fortsätta ändå, men det finns ingen garanti för att Shelter ska bete sig korrekt under dessa omständigheter.</string>
+    <string name="request_usage_stats">Shelter behöver <b>Användningsstatistik</b>-tillstånd för att göra detta. Vänligen aktivera behörigheten för <b>BÅDA TVÅ</b> Shelter-appar som visas i dialogrutan efter att du tryckt på \"OK\". Om du inte gör det kommer den här funktionen inte att fungera korrekt.</string>
+    <string name="finish_provision_desc">Grattis! Du är ett klick från att slutföra installationen av Shelter.</string>
+    <string name="request_storage_manager">Shelter behöver åtkomst till <b>Alla filer</b> för File Shuttle. Vänligen aktivera behörigheten för <b>BÅDA TVÅ </b> Shelter-appar som visas i dialogrutan efter att du tryckt på \"OK\".</string>
+    <string name="service_auto_freeze_title">I väntan på automatisk frysning</string>
+    <string name="service_auto_freeze_desc">Shelter kommer att automatiskt frysa appar som startas från \"Tina upp &amp; Starta\" vid nästa skärmlåshändelse.</string>
+    <string name="list_item_disabled">[Frusen] %s</string>
+    <string name="clone_to_work_profile">Klona till Shelter (arbetsprofil)</string>
+    <string name="request_system_alert">Shelter måste <b>Rita över andra appar</b> för att File Shuttle ska fungera korrekt. Vänligen aktivera behörigheten för <b>BÅDA TVÅ </b> Shelter-appar som visas i dialogrutan efter att du tryckt på \"OK\". Denna behörighet används för att kunna starta File Shuttle-tjänster i bakgrunden.</string>
 </resources>

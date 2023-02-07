@@ -13,7 +13,7 @@
     <string name="service_title">Shelter 服务</string>
     <string name="service_desc">Shelter 正在运行 …</string>
     <string name="service_auto_freeze_title">自动冻结等待中</string>
-    <string name="service_auto_freeze_desc">Shelter 将会在您下次锁屏时自动冻结使用 \"解冻并运行\" 启动的应用</string>
+    <string name="service_auto_freeze_desc">Shelter 将会在您下次锁屏时自动冻结使用 \"解冻并运行\" 启动的应用。</string>
     <string name="service_auto_freeze_now">立刻冻结</string>
     <!-- Main UI -->
     <string name="fragment_profile_main">主用户</string>
@@ -37,7 +37,7 @@
     <string name="create_freeze_all_shortcut">创建批量冻结快捷方式</string>
     <string name="freeze_all_shortcut">冻结</string>
     <string name="install_app_to_profile">安装 APK 到 Shelter</string>
-    <string name="install_app_to_profile_success">已成功在工作用户内安装 APK</string>
+    <string name="install_app_to_profile_success">已成功在工作用户内安装 APK。</string>
     <string name="show_all">显示全部应用</string>
     <string name="show_all_warning">对列表中默认隐藏的应用执行操作可能导致崩溃以及其他各种无法预料的行为。但是，当您的手机厂商没有正确在工作用户中开启所有必要的系统组件应用的时候，这个功能可以帮助您解决问题。如果您选择继续，您确保您了解您在做什么，Shelter 无法提供任何保证。</string>
     <string name="documents_ui">打开文件管理器</string>
@@ -50,7 +50,7 @@
     <string name="settings_camera_proxy_desc">向其他 App 提供一个伪装的相机 App，允许您从 Documents UI (包括 "文件穿梭" 功能) 选择任意文件作为 "拍摄结果"。这将使您能够在任何支持调用系统相机的 App 中选择来自 "文件穿梭" 的文件，无论 App 本身是否支持 Documents UI。</string>
     <string name="settings_services">服务</string>
     <string name="settings_auto_freeze_service">自动冻结服务</string>
-    <string name="settings_auto_freeze_service_desc">在您锁屏时，自动冻结您通过 \"解冻并运行\" 启动的应用</string>
+    <string name="settings_auto_freeze_service_desc">在您锁屏时，自动冻结您通过 \"解冻并运行\" 启动的应用。</string>
     <string name="settings_auto_freeze_delay">冻结延时</string>
     <string name="settings_dont_freeze_foreground">跳过前台应用</string>
     <string name="settings_dont_freeze_foreground_desc">在您锁屏的时候，不要冻结前台应用 (锁屏时仍有可见窗口的应用)。这主要用于音乐播放器等 App，但您将需要在使用完成后手动使用 \"批量冻结\" 快捷方式冻结它们。</string>
@@ -61,30 +61,68 @@
     <!-- Toast Long Texts -->
     <string name="device_admin_toast">Shelter 必须拥有设备管理员权限以正常工作，请再试一次</string>
     <string name="provision_still_pending">正在为您准备 Shelter, 请稍候 …</string>
-    <string name="provision_finished">Shelter 已初始化完成，正在启动 Shelter。如果 Shelter 没有自动启动，请您从启动器手动启动它</string>
+    <string name="provision_finished">Shelter 已初始化完成，正在启动 Shelter。如果 Shelter 没有自动启动，请您从启动器手动启动它。</string>
     <string name="msg_device_unsupported">权限不足 / 设备不兼容</string>
-    <string name="work_profile_not_found">工作用户不可用，请重新启动 Shelter 以重新初始化</string>
-    <string name="work_profile_provision_failed">无法创建工作用户，您可以重启 Shelter 并再试一次</string>
-    <string name="work_mode_disabled">工作模式 (Work Mode) 已被您关闭，请开启后再启动 Shelter</string>
+    <string name="work_profile_not_found">工作用户不可用，请重新启动 Shelter 以重新初始化。</string>
+    <string name="work_profile_provision_failed">无法创建工作用户，您可以重启 Shelter 并再试一次。</string>
+    <string name="work_mode_disabled">工作模式 (Work Mode) 已被您关闭，请开启后再启动 Shelter。</string>
     <string name="clone_success">应用 \"%s\" 克隆成功</string>
     <string name="uninstall_success">应用 \"%s\" 卸载成功</string>
     <string name="freeze_success">应用 \"%s\" 冻结成功</string>
     <string name="unfreeze_success">应用 \"%s\" 解冻成功</string>
-    <string name="clone_fail_system_app">无法将系统应用克隆到 Shelter 无权管理的用户下</string>
-    <string name="uninstall_fail_system_app">无法在 Shelter 无权管理的用户下卸载系统应用</string>
-    <string name="unsupported_launcher">无法在您的启动器上添加快捷方式，请联系开发者</string>
+    <string name="clone_fail_system_app">无法将系统应用克隆到 Shelter 无权管理的用户下。</string>
+    <string name="uninstall_fail_system_app">无法在 Shelter 无权管理的用户中卸载系统应用。</string>
+    <string name="unsupported_launcher">无法在您的启动器上添加快捷方式，请联系开发者。</string>
     <string name="app_context_menu_title">%s 可用操作</string>
-    <string name="freeze_all_success">所有在 \"自动冻结\" 列表中的应用都已经冻结成功</string>
-    <string name="shortcut_create_success">快捷方式已创建</string>
-    <string name="request_usage_stats">Shelter 需要 <b>使用情况数据</b> 来做这件事。请在按 \"确定\" 后出现的窗口中，对 <b>两个</b> Shelter <b>都</b> 打开此权限。如果没有全部打开，该功能将无法正确运作。</string>
-    <string name="launch_app_fail">无法启动没有用户界面的应用 %s</string>
+    <string name="freeze_all_success">所有在 \"自动冻结\" 列表中的应用都已经冻结成功。</string>
+    <string name="shortcut_create_success">快捷方式已创建。</string>
+    <string name="request_usage_stats">Shelter 需要 <b>使用情况数据</b> 来做这件事。请在按 \"确定\" 后出现的窗口中，对 <b>两个</b> Shelter都打开此权限。如果没有全部打开，该功能将无法正确运作。</string>
+    <string name="launch_app_fail">无法启动没有用户界面的应用 %s。</string>
     <!-- MIUI -->
-    <string name="miui_cannot_clone">目前无法在 MIUI 上克隆非系统应用。请先克隆您的系统应用商店 (如 <b>Play Store</b>) 然后从克隆的应用商店中安装应用</string>
+    <string name="miui_cannot_clone">目前无法在 MIUI 上克隆非系统应用。请先克隆您的系统应用商店 (如 <b>Play Store</b>) 然后从克隆的应用商店中安装应用。</string>
     <string name="continue_anyway">无视并继续</string>
     <string name="app_installing">正在安装……</string>
     <string name="request_storage_manager">File Shuttle 需要访问 <b>全部文件</b> 的权限。请在接下来的对话框中对 <b>两个 Shelter</b> (工作用户内 / 外) 都启用该权限。</string>
     <string name="request_system_alert">File Shuttle 需要 <b>悬浮窗</b> 权限才能在 Shelter 不在运行时正常启动。请在接下来的对话框中对 <b>两个 Shelter</b> (工作用户内 / 外) 都打开该权限。</string>
     <string name="settings_translate">翻译</string>
     <string name="settings_block_contacts_searching">阻止访问联系人</string>
-    <string name="settings_block_contacts_searching_desc">阻止主用户中的应用访问工作用户的联系人资料</string>
+    <string name="settings_block_contacts_searching_desc">阻止主用户中的应用访问工作用户的联系人资料。</string>
+    <string name="setup_wizard_welcome">欢迎来到 Shelter</string>
+    <string name="setup_wizard_permissions">关于权限的说明</string>
+    <string name="setup_wizard_please_wait">请稍等…</string>
+    <string name="setup_wizard_please_wait_text">我们正在尝试初始化工作档案并在您的设备上设置 Shelter。</string>
+    <string name="setup_wizard_failed">安装失败</string>
+    <string name="setup_wizard_action_required">需要采取的行动</string>
+    <string name="setup_wizard_ready_text">我们现在已准备好为您设置 Shelter。如果您的设备运行的是 Android 7 或更低版本，请首先确保您的设备是 <b> 不是 </b> 请勿打扰模式，因为您需要 <b> 点击通知 </b> 稍后完成设置过程。
+\n
+\n准备好后，单击“下一步”开始设置过程。</string>
+    <string name="setup_wizard_compatibility">兼容性</string>
+    <string name="setup_wizard_ready">准备好？</string>
+    <string name="setup_wizard_permissions_text">默认情况下，Shelter不会要求任何个人权限。然而，一旦你继续进行设置过程，Shelter将尝试设置一个工作档案，并成为此档案的<b>档案管理员</b>。
+\n
+\n这将授予Shelter在配置文件内的大量权限，与设备管理员的权限相当，尽管只限于配置文件内。为了实现Shelter的大部分功能成为档案管理员是必要的。
+\n
+\nShelter 的一些高级功能可能需要更多权限<b>外部</b>工作资料。当需要时，Shelter将在你启用相应的功能时单独要求这些权限。</string>
+    <string name="setup_wizard_failed_text">我们很遗憾地通知您，我们无法为您设置Shelter。
+\n
+\n如果您的设备已经有工作配置文件，无论是之前安装的Shelter所创建或者其他应用程序创建，您都必须在设置 -&gt; 帐户中删除该配置文件，然后 Shelter 才能继续。
+\n
+\n如果您没有手动取消设置，那么失败的最常见原因是系统被大量修改，或者 Shelter 与其他工作配置文件管理器之间存在冲突。 不幸的是，我们对此无能为力。
+\n
+\n单击下一步退出。</string>
+    <string name="setup_wizard_compatibility_text">Shelter是在类似AOSP的安卓衍生品上开发和测试的。这包括AOSP（安卓开源项目），谷歌安卓（在Pixels上），以及<b>大多数基于AOSP的开源定制ROM</b>，如LineageOS。如果你的手机正在运行上面列出的安卓衍生品之一，那么恭喜你！Shelter可能会正常工作。
+\n
+\nShelter可能会在你的设备上正确工作。 一些设备供应商在安卓代码库中引入了非常具有侵略性的定制，导致冲突、不兼容和意外行为。一些定制的ROM也会引入破坏兼容性的变化，但一般来说，与手机供应商引入的不兼容问题相比，这些情况更少发生。
+\n
+\nSheler只是一个进入系统所提供的工作档案功能的接口。如果系统提供的功能是坏的或不标准的，<b>Shelter不可能自己神奇地解决这个问题</b>。如果你目前使用的是供应商修改过的Android版本，而该版本已知会破坏工作档案，<b>你已经被警告了</b>。你可以继续进行，但不能保证Shelter在这些情况下的行为是正常的。</string>
+    <string name="setup_wizard_welcome_text">Shelter 是一个帮助你在独立的配置文件中运行其他 App 的应用程序。它基于 Android 的<b>工作档案</b>功能实现。
+\n
+\n点击 \"下一步\"，我们将向你提供更多关于 Shelter 的信息，并带领你完成设置。
+\n
+\n我们建议你仔细阅读以下所有的页面。</string>
+    <string name="setup_wizard_action_required_text">您现在应该会看到来自 Shelter 的通知。 <b> 请点击该通知 </b> 完成设置过程。
+\n
+\n如果您没有看到通知，请确保您的设备未处于“请勿打扰”模式并尝试下拉通知中心。
+\n
+\n要重置 Shelter 并重新开始，您可以在设置中清除 Shelter 的数据。</string>
 </resources>

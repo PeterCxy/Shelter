@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.Override" parent="AppTheme.Base">
+        <item name="android:navigationBarColor">@color/colorNavigationBar</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>
