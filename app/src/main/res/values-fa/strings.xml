@@ -1,2 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="freeze_all_shortcut">قفل</string>
+    <string name="install_app_to_profile_success">نصب اپلیکیشن داخل پروفایل کاری تمام شد.</string>
+    <string name="show_all">نمایش تمام برنامه‌ها</string>
+    <string name="settings">تنظیمات</string>
+    <string name="settings_interaction">تعامل</string>
+    <string name="settings_cross_profile_file_chooser">شاتل فایل</string>
+    <string name="first_run_alert_cancel">خدانگهدار</string>
+    <string name="first_run_alert_continue">ادامه</string>
+    <string name="device_admin_explanation">جهت انجام پروسه‌ی ایزوله‌سازی شلتر (Shelter) لازم است که دسترسی Device Admin داشته باشد.</string>
+    <string name="setup_wizard_welcome_text">شلتر (Shelter) یک برنامه است که بتوانید اپلیکیشن های دیگر را در یک محیط ایزوله باز کنید. این عملیات با استفاده از قابلیت <b>Work Profile</b> اندروید امکان‌پذیر شده‌است.
+\n
+\nروی \"بعدی\" کلیک کنید تا ما اطلاعات بیشتری را درباره‌ی استفاده از شلتر در اختیار شما بگذاریم و همچنین در پروسه‌ی تنظیم برنامه شما را راهنمایی کنیم.
+\n
+\nپیشنهاد میکنیم تا همه‌ی صفحات بعدی را با دقت بخوانید.</string>
+    <string name="setup_wizard_permissions_text">به صورت پیش‌فرضف شلتر درخواستی برای دسترسی‌های خاص ندارد. اما با ورود به پروسه‌ی تنظیم برنامه، Shelter تلاش خواهد کرد که یک Work Profile را آماده کند، بنابراین، <b>profile manager</b> برای پروفایل مربوطه میشود.
+\n
+\nاین به Shelter تعداد زیادی دسترسی را در داخل پروفایل میدهد، چیزی مشابه Device Admin، اما محدود به آن پروفایل. Profile manager بودن برای اکثر قابلیت‌های Shelter ضروری است.
+\n
+\nبرخی قابلیت‌های ویژه‌ی Shelter ممکن از دسترسی‎‌هایی <b>خارج از</b> آن Work Profile را احتیاج داشته باشند. در صورت نیاز و زمانی که قابلیت‌های ویژه را روشن می‌کنید، Shelter برای این دسترسی‌ها به صورت مجزا درخواستی ارسال میکند.</string>
+    <string name="setup_wizard_compatibility_text">شلتر روی نسخه‌های نظیر AOSP اندروید توسعه داده و تست شده است. این شامل AOSP (پروژه‌ی متن باز اندروید)، اندروید گوگل (روی پیکسل ها)، و <b>اکثر کاستوم رام‌های بر پایه‌ی AOSP و متن‌ باز</b> مانند LineageOS می‌باشد. اگر دستگاه شما روی یکی از نسخه‌های ذکر شده از اندروید اجرا می‌شود، تبریک میگیم! احتمالا Shelter روی دستگاه به درستی کار خواهد کرد.
+\n
+\nبعضی تولیدکنندگان دستگاه‌ها شخصی‌سازی های شدیدی روی پایه‌ی اندروید انجام می‌دهند که نتیجه‌ی آن وجود ناسازگاری‌ها و عملکرد غیرعادی می‌شود. بعضی کاستوم رام ها هم می‌توانند تغییرات سازگاری‌شکنی اعمال کرده باشند، اما به طور کلی این‌ها نسبت به تغییرات اعمال شده توسط تولیدکنندگان نادرتر هستند.
+\n
+\nشلتر صرفا یک سازه روی قابلیت Work Profile است که سیستم ارائه می‌دهد. <b>اگر قابلیت ارائه‌شده خراب یا غیر استاندارد باشد، Shelter نمی‌تواند به تنهایی مشکل را حل کند</b>. اگر از یک نسخه‌ای از اندروید که توسط تولیدکننده دستکاری شده است استفاده میکنید که قابلیت Work Profiles را از کار انداخته است، <b>به شما اخطار داده شد</b>. البته می‌توانید به هر حال به استفاده ادامه دهید، اما ضمانتی نیست که Shelter در این شرایط به‌طور عادی عمل کند.</string>
+    <string name="setup_wizard_failed_text">متاسفانه باید بگوییم که امکان راه‌اندازی Shelter برا شما نیست.
+\n
+\nاگر دستگاه شما توسط یک نسخه‎‌ی قبل یا برنامه‌ای دیگر از قبل یک Work Profile داشته است، باید آن را در بخش تنظیمات -&gt; حساب حذف کنید.
+\n
+\nدر غیر این صورت، اگر شما شخصا راه‌اندازی را قطع نکردید مشکل احتمال زیاد به خاطر یک سیستم با تغییرات شدید یا یک ناسازگاری بین Shelter و دیگر مدیریت‌کنندگان Work Profile است. متاسفانه کاری از دست ما بر نمی‌آید.
+\n
+\nبرای خروج روی \"بعدی\" کلیک کنید.</string>
+    <string name="setup_wizard_action_required_text">شما الآن باید یک پیغام (نوتیفیکیشن) از Shelter ببینید. <b>لطفا روی آن پیغام کلیک کرده</b> تا فرایند راه‌اندازی پایان یابد.
+\n
+\nاگر این پیغام را نمی‌بینید، مطمئن شوید که دستگاه شما روی حالت Do Not Disturb نبوده و سعی کنید بخش پیغام‌ها را به پایین بکشید.
+\n
+\nجهت بازگردانی Shelter و شروع از اول می‌توانید داده‌های برنامه را در تتظیمات پاک کنید.</string>
+    <string name="service_auto_freeze_desc">Shelter برنامه‌های باز شده از \"شکستن قفل و باز کردن\" را در دستور قفل صفحه‌ی بعدی به طور خودکار قفل می‌کند.</string>
+    <string name="create_freeze_all_shortcut">ساخت میانبر قفل گروهی</string>
+    <string name="install_app_to_profile">نصب APK داخل شلتر</string>
+    <string name="show_all_warning">دستکاری برنامه‌هایی که داخل لیست نمایش داده نشده‌اند می‌تواند باعث خروج از برنامه و انواع دیگر مشکلات شود. البته این قابلیت می‌تواند در زمان وجود رام دستکاری شده توسط سازنده مفید شود اگر همه‌ی برنامه‌های سیستمی فعال نشده‌اند. اگر ادامه دهید، مسئولیت آن با خود شماست.</string>
+    <string name="documents_ui">باز کردن بخش مستندات</string>
+    <string name="settings_cross_profile_file_chooser_desc">اگر فعال شود تنها از طریق Documents UI (فایل‌ها و مستندات دارای نام داخل لانچر) یا برنامه‌های دارای قابلیت Documents UI (به مدت موقت به فایل هایی که انتخاب میکنید دسترسی میگیرند) می‌توانید از طریق Shelter، فایل های پروفایل اصلی را ببنید / انتخاب کنید و یا کپی کنید، در عین اینکه ساختار ایزوله را حفظ می‌کنیم.</string>
+    <string name="settings_camera_proxy_desc">یک دوربین تقلبی به برنامه‌های دیگر ارائه دهید تا از Documents UI (یا شاتل فایل) یک عکس دلخواه به عنوان عکس گرفته‌شده انتخاب کنید. شاتل فایل برای تمامی برنامه‌ها که دوربین را فراخوانی می‌کنند فعال می‌شود، حتی اگر Documents UI را پشتیبانی نکنند.</string>
+    <string name="settings_dont_freeze_foreground_desc">در زمان قفل شدن صفحه، برنامه‌های پس‌زمینه‌ی قابل مشاهده را قفل نکن. این قابلیت برای برنامه‌های پخش موسیقی می‌تواند مفید باشد، اما ممکن است لازم باشد به طور دستی از \"میانبر قفل جمعی\" آنها را قفل کنید.</string>
+    <string name="work_profile_provision_failed">امکان آماده‌سازی پروفایل کاری نبود. برای تلاش دوباره برنامه را ریستارت کنید.</string>
+    <string name="work_mode_disabled">به نظر میاد شما Work Mode را هنگام راه‌ندازی شلتر غیرفعال کرده‌اید. اگر آن را فعال کرده‌اید، لطفا شلتر را دوباره باز کنید.</string>
+    <string name="clone_fail_system_app">امکان کپی برنامه‌های سیستمی به یک پروفایل که شلتر کنترلی بر آن ندارد نیست.</string>
+    <string name="request_usage_stats">برای اینکار، شلتر نیازمند دسترسی <b>Usage Stats</b> است. لطفا پس از کلیک کردن روی \"Ok\" داخل دیالوگ، این دسترسی را برای <b>هر دوی</b> اپ‌های شلتر فعال کنید. اگر اینکار انجام نگیرد این قابلیت به درستی کار نخواهد نکرد.</string>
+    <string name="request_storage_manager">شلتر برای شاتل فایل نیازمند دسترسی به <b>All Files</b> دارد. لطفا این دسترسی را برای <b>هر دوی</b> برنامه‌های شلتر که با زدن روی \"Ok\" داخل دیالوگ نمایش داده می‌شود فعال کنید.</string>
+    <string name="device_admin_desc">سرویس ایزوله‌سازی برنامه</string>
+    <string name="camera_proxy_activity">یک فایل تصویر انتخاب کنید</string>
+    <string name="setup_wizard_welcome">به شلتر (Shelter) خوش آمدید</string>
+    <string name="setup_wizard_permissions">صحبتی درباره‌ی دسترسی ها</string>
+    <string name="setup_wizard_compatibility">سازگاری</string>
+    <string name="setup_wizard_ready">آماده‌اید؟</string>
+    <string name="setup_wizard_ready_text">اکنون آماده‌ی راه‌اندازی Shelter برای شما هستیم. اگر دستگاه شما دارای اندروید 7 یا کمتر است، مطمئن شوید که حالت Do Not Disturb روشن <b>نیست</b>، زیرا در ادامه لازم است <b>روی یک پیغام (نوتیفیکشن) کلیک کنید</b> تا مراحل راه‌اندازی تکمیل شوند.
+\n
+\nهروقت آماده بودید، روی \"بعدی\" کلیک کنید تا پروسه‎‌ی آماده‌سازی را شروع کنیم.</string>
+    <string name="setup_wizard_please_wait">لطفا صبر کنید…</string>
+    <string name="setup_wizard_please_wait_text">در حال تلاش برای راه اندازی Work Profile و Shelter روی دستگاه شما هستیم.</string>
+    <string name="setup_wizard_failed">راه‌اندازی به مشکل خورد</string>
+    <string name="setup_wizard_action_required">اقدامی نیاز است</string>
+    <string name="notifications_important">پیام مهم Shelter</string>
+    <string name="finish_provision_title">اینجا کلیک کنید تا راه‌اندازی Shelter تکمیل شود</string>
+    <string name="finish_provision_desc">تبریک می‌گوییم! تنها یک کلیک با تکمیل راه‌اندازی Shelter فاصله دارید.</string>
+    <string name="service_title">سرویس Shelter</string>
+    <string name="service_desc">Shelter در حال اجرا است …</string>
+    <string name="service_auto_freeze_title">منتظر قفل خودکار هستیم</string>
+    <string name="service_auto_freeze_now">قفل کن</string>
+    <string name="app_installing">در حال نصب...</string>
+    <string name="fragment_profile_main">اصلی</string>
+    <string name="fragment_profile_work">شلتر</string>
+    <string name="list_item_disabled">%s قفل شده</string>
+    <string name="batch_operation">عملیات جمعی</string>
+    <string name="clone_to_work_profile">کپی به شلتر (Work Profile)</string>
+    <string name="clone_to_main_profile">کپی به پروفایل اصلی</string>
+    <string name="uninstall_app">حذف نصب</string>
+    <string name="freeze_app">قفل</string>
+    <string name="unfreeze_app">رفع قفل</string>
+    <string name="launch">راه اندازی</string>
+    <string name="unfreeze_and_launch">رفع قفل و اجرا</string>
+    <string name="auto_freeze">قفل خودکار</string>
+    <string name="allow_cross_profile_widgets">آزاد کردن ویجت‌ها در پروفایل اصلی</string>
+    <string name="search">جستجو</string>
+    <string name="freeze_all">قفل جمعی</string>
+    <string name="create_unfreeze_shortcut">ساخت میانبر رفع قفل و یا اجرا کردن</string>
+    <string name="settings_camera_proxy">انتخاب کننده‌ی عکس به عنوان دوربین تقلبی</string>
+    <string name="settings_block_contacts_searching">بستن جستجوی مخاطبین</string>
+    <string name="settings_block_contacts_searching_desc">گرفتن دسترسی مخاطبین از پروفایل اصلی داخل پروفایل کاری.</string>
+    <string name="settings_services">سرویس‌ها</string>
+    <string name="settings_auto_freeze_service">سرویس قفل خودکار</string>
+    <string name="settings_auto_freeze_service_desc">در زمان قفل بودن صفحه، به طور خودکار برنامه‌های باز شده از \"میانبر رفع قفل و باز کردن\" را قفل کن.</string>
+    <string name="settings_auto_freeze_delay">تاخیر قفل خودکار</string>
+    <string name="settings_dont_freeze_foreground">رد کردن برنامه‌های ‎پیش‌زمینه</string>
+    <string name="settings_about">درباره</string>
+    <string name="settings_version">نسخه</string>
+    <string name="settings_source_code">سورس کد</string>
+    <string name="settings_translate">ترجمه</string>
+    <string name="settings_bug_report">گزارش مشکلات / ردیاب مشکلات</string>
+    <string name="provision_finished">راه‌اندازی شلتر انجام شد. اکنون شلتر را ریستارت میکنیم. اگر برنامه به طور خودکار باز نشد، دوباره آن را باز کنید.</string>
+    <string name="msg_device_unsupported">نبود دسترسی یا دستگار ناسازگار</string>
+    <string name="work_profile_not_found">پروفایل کاری یافت نشد. لطفا برنامه را ریستارت کنید تا پروفایل دوباره آماده شود.</string>
+    <string name="uninstall_success">برنامه %s با موفقیت حذف شده است</string>
+    <string name="freeze_success">برنامه %s با موفقیت قفل شده است</string>
+    <string name="clone_success">برنامه %s با موفقیت کپی شده است</string>
+    <string name="unfreeze_success">برنامه %s با موفقیت رفع قفل شده است</string>
+    <string name="uninstall_fail_system_app">امکان حذف برنامه‌های سیستمی داخل یک پروفایل که شلتر کنترلی بر آن ندارد نیست.</string>
+    <string name="unsupported_launcher">امکان اضافه کردن میانبر به لانچر شما نیست. لطفا با توسعه‌دهنده تماس بگیرید.</string>
+    <string name="app_context_menu_title">عملیات‌ها برای %s</string>
+    <string name="freeze_all_success">همه‌ی برنامه‌های داخل \"قفل خودکار\" با موفقیت قفل شدند.</string>
+    <string name="shortcut_create_success">میانبر داخل لانچر شما ساخته شد.</string>
+    <string name="launch_app_fail">امکان باز کردن برنامه‌ی %s نیست زیرا رابط کاربری ندارد.</string>
+    <string name="request_system_alert">شلتر نیازمند <b>نمایش روی دیگر برنامه‌ها</b> است تا شاتل فایل به درستی عمل کند. لطفا پس از زدن روی \"Ok\" در دیالوگ نمایش داده شده این دسترسی را برای <b>هر دوی</b> برنامه‌های شلتر فعال کنید. این دسترسی امکان راه‌اندازی سرویس‌های شاتل فایل در پس زمینه را میدهد.</string>
+    <string name="miui_cannot_clone">کپی کردن برنامه‌های سیستمی به پروفایل دیگر در حال حاضر در MIUI امکان‌پذیر نیست. لطفا اپلیکیشن فروشگاه برنامه‌های سیستم خود (مانند <b>Play Store</b>) را به یک پروفایل دیگر کپی کنید سپس برنامه‌ها را از آنجا نصب کنید.</string>
+    <string name="continue_anyway">ادامه دادن</string>
+</resources>
