@@ -31,7 +31,7 @@
 \nVa trebui să primiți o notificare pentru a finaliza configurarea, vă rugăm să vă asigurați că dispozitivul dvs. <b> NU </b> este în modul Nu deranjați.</string>
     <string name="create_freeze_all_shortcut">Creați o comandă rapidă de Inghetare Grup(lot)</string>
     <string name="camera_proxy_activity">Alegeți un fișier de imagine</string>
-    <string name="notifications_important">Shelter Important</string>
+    <string name="notifications_important">Important</string>
     <string name="finish_provision_title">Click aici pentru a finaliza configurarea Shelter</string>
     <string name="service_title">Serviciul Shelter</string>
     <string name="service_desc">Shelter ruleaza acum …</string>
@@ -52,7 +52,7 @@
     <string name="install_app_to_profile">Instalați APK în Shelter</string>
     <string name="settings">Setări</string>
     <string name="settings_interaction">Interacţiune</string>
-    <string name="settings_cross_profile_file_chooser">File Shuttle</string>
+    <string name="settings_cross_profile_file_chooser">Tranzit de fișiere</string>
     <string name="settings_camera_proxy">Activeaza Camera Falsa</string>
     <string name="device_admin_explanation">Shelter trebuie să devină Administrator de Dispozitiv pentru a-și îndeplini sarcinile de izolare.</string>
     <string name="fragment_profile_work">Shelter</string>
@@ -88,4 +88,42 @@
     <string name="finish_provision_desc">Felicitări! Sunteți la un click distanță de finalizarea configurării Shelter.</string>
     <string name="batch_operation">Operatiune in grup(lot)</string>
     <string name="create_unfreeze_shortcut">Creați Dezgheata și/sau Pornire comandă rapidă</string>
+    <string name="setup_wizard_permissions_text">În mod implicit, Shelter nu va cere nicio permisiune individuală. Cu toate acestea, odată ce continuați cu procesul de configurare, Shelter va încerca să configureze un profil de lucru și, prin urmare, va deveni <b>managerul de profil</b> al profilului respectiv.
+\n
+\nAcest lucru va oferi Shelter o listă extinsă de permisiuni în interiorul profilului, comparabilă cu cea a unui administrator de dispozitiv, deși limitată la profil. A fi manager de profil este necesar pentru majoritatea funcționalității Shelter.
+\n
+\nUnele funcții avansate ale Shelter pot necesita mai multe permisiuni <b>în afara</b> Profilului de serviciu. Când este necesar, Shelter va cere aceste permisiuni separat atunci când activați funcțiile corespunzătoare.</string>
+    <string name="setup_wizard_welcome">Bun venit la Shelter</string>
+    <string name="setup_wizard_permissions">Un cuvânt despre permisiuni</string>
+    <string name="setup_wizard_compatibility">Compatibilitate</string>
+    <string name="setup_wizard_welcome_text">Shelter este o aplicație care vă ajută să rulați alte aplicații într-un profil izolat. Face acest lucru utilizând funcția <b>Profil de serviciu</b> din Android.
+\n
+\nFaceți clic pe „Următorul” și vă vom oferi mai multe informații despre Shelter și vă vom ghida prin procesul de configurare.
+\n
+\nVă sugerăm să citiți cu atenție toate paginile următoare.</string>
+    <string name="setup_wizard_ready">Pregatit\?</string>
+    <string name="setup_wizard_compatibility_text">Shelter este dezvoltat și testat pe derivate Android asemănătoare AOSP. Aceasta include AOSP (Android Open Source Project), Google Android (pe Pixels) și <b>majoritatea ROM-urilor personalizate open source bazate pe AOSP</b>, cum ar fi LineageOS. Dacă telefonul dvs. rulează unul dintre derivatele Android enumerate mai sus, atunci felicitări! Adăpostul va funcționa probabil corect pe dispozitivul dvs.
+\n
+\nUnii furnizori de dispozitive introduc personalizări foarte invazive în baza de coduri Android, ducând la conflicte, incompatibilități și comportament neașteptat. Unele ROM-uri personalizate pot introduce, de asemenea, modificări care distrug compatibilitatea, dar, în general, acestea sunt apariții mai rare în comparație cu incompatibilitățile introduse de furnizorul de telefoane.
+\n
+\nShelter este doar o interfață în caracteristica Profil de lucru oferită de sistem. Dacă funcția furnizată de sistem este defectă sau nu este standard, <b>Shelter nu ar putea rezolva problema în mod magic</b>. Dacă utilizați în prezent o versiune Android modificată de furnizor despre care se știe că încalcă Profilurile de lucru, <b>ai fost avertizat</b>. Puteți continua oricum, dar nu există nicio garanție că Shelter se va comporta corect în aceste circumstanțe.</string>
+    <string name="setup_wizard_failed">Configurarea a eșuat</string>
+    <string name="setup_wizard_action_required">Actiune necesară</string>
+    <string name="setup_wizard_action_required_text">Acum ar trebui să vedeți o notificare de la Shelter. <b>Faceți clic pe notificarea respectivă</b> pentru a finaliza procesul de configurare.
+\n
+\nDacă nu vedeți notificarea, asigurați-vă că dispozitivul nu este în modul Nu deranjați și încercați să trageți în jos centrul de notificări.
+\n
+\nPentru a reseta Shelter și a începe de la capăt, puteți șterge datele Shelter din Setări.</string>
+    <string name="setup_wizard_ready_text">Acum suntem gata să configuram Shelter pentru tine. Dacă dispozitivul dvs. rulează Android 7 sau o versiune anterioară, asigurați-vă mai întâi că dispozitivul dvs. <b>nu</b> este în modul Nu deranja, deoarece va trebui să <b>dați clic pe o notificare</b> mai târziu pentru a finaliza procesul de configurare.
+\n
+\nCând sunteți gata, faceți clic pe „Următorul” pentru a începe procesul de configurare.</string>
+    <string name="setup_wizard_please_wait">Vă rugăm așteptați…</string>
+    <string name="setup_wizard_please_wait_text">Încercăm să inițializam Profilul de lucru și să setăm Shelter pe dispozitivul dvs.</string>
+    <string name="setup_wizard_failed_text">Ne pare rău să vă informăm că nu am putut configura Shelter pentru dvs.
+\n
+\nDacă dispozitivul dvs. avea deja un Profil de serviciu, fie dintr-o instalare anterioară a Shelter, fie dintr-o altă aplicație, va trebui să eliminați acel profil din Setări -&gt; Cont înainte ca Shelter să poată continua.
+\n
+\nÎn caz contrar, dacă nu ați anulat manual configurarea, atunci motivul eșecului este cel mai frecvent din cauza unui sistem puternic modificat sau a unui conflict între Shelter și alți manageri de profil de lucru. Din păcate, nu am putea face mare lucru în acest sens.
+\n
+\nFaceți clic pe „Next” pentru a ieși.</string>
 </resources>
