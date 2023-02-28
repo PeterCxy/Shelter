@@ -98,7 +98,7 @@
 \nFaceți clic pe „Următorul” și vă vom oferi mai multe informații despre Shelter și vă vom ghida prin procesul de configurare.
 \n
 \nVă sugerăm să citiți cu atenție toate paginile următoare.</string>
-    <string name="setup_wizard_ready">Pregatit\?</string>
+    <string name="setup_wizard_ready">Pregatit?</string>
     <string name="setup_wizard_compatibility_text">Shelter este dezvoltat și testat pe derivate Android asemănătoare AOSP. Aceasta include AOSP (Android Open Source Project), Google Android (pe Pixels) și <b>majoritatea ROM-urilor personalizate open source bazate pe AOSP</b>, cum ar fi LineageOS. Dacă telefonul dvs. rulează unul dintre derivatele Android enumerate mai sus, atunci felicitări! Adăpostul va funcționa probabil corect pe dispozitivul dvs.
 \n
 \nUnii furnizori de dispozitive introduc personalizări foarte invazive în baza de coduri Android, ducând la conflicte, incompatibilități și comportament neașteptat. Unele ROM-uri personalizate pot introduce, de asemenea, modificări care distrug compatibilitatea, dar, în general, acestea sunt apariții mai rare în comparație cu incompatibilitățile introduse de furnizorul de telefoane.
