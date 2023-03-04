@@ -6,7 +6,6 @@ Shelter is a Free and Open-Source (FOSS) app that leverages the "Work Profile" f
 Downloads
 ===
 
-- [Google Play](https://play.google.com/store/apps/details?id=net.typeblog.shelter) (Signed by PeterCxy)
 - [F-Droid](https://f-droid.org/app/net.typeblog.shelter) (Signed by F-Droid)
 - [Custom F-Droid Repository](https://fdroid.typeblog.net) (Signed by PeterCxy, contains latest development versions)
 
@@ -32,6 +31,13 @@ Caveats & Known Issues
 
 - Some caveats and known issues are discussed during the setup process of Shelter. __Please read through text in the setup wizard carefully__.
 - Shelter is only as safe as the Work Profile implementation of the Android OS you are using. For details, see <https://support.google.com/work/android/answer/6191949?hl=en>
+
+State of the Project, Feature Requests, etc.
+===
+
+Since Shelter simply makes use of the Work Profile APIs exposed by Android, there is a limited set of features that are possible to implement via the app. As we do not intend on leveraging (or "abusing") adb privileges, the features of Shelter can only be a strict subset of the exposed, unprivileged APIs.
+
+As a result, we do not intend on adding a lot of new features to Shelter going forward, unless there is to be big changes in the capabilities of work profile APIs. Shelter is currently in an effective **maintenance mode**. Nevertheless, the author is still committed to regularly **adapting Shelter to all new Android versions as soon as possible after they are released** -- this includes upgrading the target SDK level, adapting to any new features or restrictions introduced by the new Android version, updating all dependencies, and so on. The author still relies on Shelter for his daily life, so Shelter will **not** become abandonware in the forseeable future.
 
 Contributing
 ===
