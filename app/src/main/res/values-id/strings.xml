@@ -86,7 +86,7 @@
     <string name="shortcut_create_success">Pintasan dibuat di peluncur Anda.</string>
     <string name="launch_app_fail">Tidak dapat meluncurkan aplikasi %s karena tidak memiliki GUI.</string>
     <string name="continue_anyway">Tetap lanjutkan</string>
-    <string name="setup_wizard_permissions_text">Secara default, Shelter tidak akan meminta izin individu apa pun. Namun, setelah Anda melanjutkan proses penyiapan, Shelter akan mencoba menyiapkan Profil Kerja dan karenanya menjadi <b>pengelola profil</b> profil tersebut.
+    <string name="setup_wizard_permissions_text">Secara bawaan, Shelter tidak akan meminta izin individu apa pun. Namun, setelah Anda melanjutkan proses penyiapan, Shelter akan mencoba menyiapkan Profil Kerja dan karenanya menjadi <b>pengelola profil</b> profil tersebut.
 \n
 \nIni akan memberi Shelter daftar panjang izin di dalam profil, sebanding dengan Admin Perangkat, meskipun terbatas pada profil. Menjadi pengelola profil diperlukan untuk sebagian besar fungsi Shelter.
 \n
