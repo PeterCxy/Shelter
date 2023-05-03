@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="camera_proxy_activity">ఇమేజ్ ఫైల్‌ను ఎంచుకోండి</string>
+    <string name="setup_wizard_welcome">షెల్టర్‌కు స్వాగతం</string>
+    <string name="first_run_alert_continue">కొనసాగించు</string>
+    <string name="device_admin_desc">యాప్ ఐసోలేషన్ సర్వీస్</string>
+    <string name="device_admin_explanation">షెల్టర్ దాని ఐసోలేషన్ విధులను నిర్వహించడానికి డివైస్ అడ్మిన్ గా మారాలి.</string>
+</resources>
