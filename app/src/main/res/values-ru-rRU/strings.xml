@@ -18,17 +18,17 @@
     <string name="fragment_profile_main">Основной</string>
     <string name="fragment_profile_work">Shelter</string>
     <string name="list_item_disabled">[Заморожено] %s</string>
-    <string name="clone_to_work_profile">Клонировать в Shelter (раб. профиль)</string>
-    <string name="clone_to_main_profile">Клонировать в основной профиль</string>
+    <string name="clone_to_work_profile">Клонировать в Shelter</string>
+    <string name="clone_to_main_profile">Клонировать в осн. профиль</string>
     <string name="uninstall_app">Удалить</string>
     <string name="freeze_app">Заморозить</string>
     <string name="unfreeze_app">Разморозить</string>
     <string name="launch">Запустить</string>
-    <string name="create_unfreeze_shortcut">Создать ярлык разморозки и/или запуска</string>
+    <string name="create_unfreeze_shortcut">Ярлык разморозки и запуска</string>
     <string name="unfreeze_and_launch">Разморозить и запустить</string>
     <string name="auto_freeze">Автозаморозка</string>
     <string name="freeze_all">Групповая заморозка</string>
-    <string name="create_freeze_all_shortcut">Создать ярлык групповой заморозки</string>
+    <string name="create_freeze_all_shortcut">Ярлык групповой заморозки</string>
     <string name="freeze_all_shortcut">Заморозить</string>
     <string name="settings">Настройки</string>
     <string name="settings_about">О программе</string>
@@ -52,18 +52,18 @@
     <string name="app_context_menu_title">Операции для %s</string>
     <string name="freeze_all_success">Все приложения в списке автозаморозки были успешно заморожены.</string>
     <string name="shortcut_create_success">Ярлык создан в вашем лаунчере.</string>
-    <string name="miui_cannot_clone">Клонирование несистемных приложений в другой профиль невозможно на MIUI в данный момент. Пожалуйста, клонируйте магазин приложений вашей системы (например, <b>Play Store</b>) в ваш другой профиль и установите приложения оттуда.</string>
+    <string name="miui_cannot_clone">Клонирование несистемных приложений в другой профиль в данный момент невозможно на MIUI. Пожалуйста, клонируйте магазин приложений вашей системы (например, <b>Play Маркет</b>) в ваш другой профиль и установите приложения оттуда.</string>
     <string name="finish_provision_title">Нажмите, чтобы завершить настройку Shelter</string>
     <string name="app_installing">Установка...</string>
-    <string name="allow_cross_profile_widgets">Виджеты в основном профиле</string>
+    <string name="allow_cross_profile_widgets">Виджеты в осн. профиле</string>
     <string name="search">Поиск</string>
     <string name="service_auto_freeze_title">Ожидание автозаморозки</string>
     <string name="service_auto_freeze_now">Заморозить</string>
     <string name="batch_operation">Выбрать несколько</string>
-    <string name="show_all">Показать все приложения</string>
+    <string name="show_all">Все приложения</string>
     <string name="settings_cross_profile_file_chooser">Перенос файлов</string>
     <string name="settings_camera_proxy">Выбор файла вместо камеры</string>
-    <string name="documents_ui">Открыть просмотр файлов</string>
+    <string name="documents_ui">Открыть проводник</string>
     <string name="settings_interaction">Взаимодействие</string>
     <string name="settings_auto_freeze_service">Служба автозаморозки</string>
     <string name="settings_auto_freeze_service_desc">При блокировке экрана автоматически замораживать приложения, запущенные с помощью ярлыка \"Разморозить и запустить\".</string>
@@ -81,12 +81,12 @@
     <string name="settings_block_contacts_searching_desc">Запретить получение доступа к контактам рабочего профиля из основного профиля.</string>
     <string name="settings_cross_profile_file_chooser_desc">Если включено, вы сможете искать/просматривать/выбирать/копировать файлы в Shelter из рабочего профиля и обратно ТОЛЬКО через системный менеджер файлов (он называется \"Файлы\" или \"Документы\" на вашем устройстве) или через приложения, поддерживающие Documents UI (с помощью них возможно получить лишь временный доступ к файлам), при этом изоляция файловой системы останется нетронутой.</string>
     <string name="settings_camera_proxy_desc">Имитация камеры для приложений. Это даст возможность выбрать через встроенный проводник (или перенос файлов, если включён) сохранённое изображение в качестве сделанного снимка, а также позволит перенести файлы приложениям, вызывающим камеру для создания и получения снимка, даже если они не используют встроенный проводник.</string>
-    <string name="show_all_warning">Управление приложениями, скрытвми в списке, может привести к сбоям и непредсказуемым последствиям, однако эта функция может быть полезна в случае, когда в неисправных ПЗУ, настроенных производителем, по умолчанию не включены все необходимые системные приложения в рабочем профиле. Вы точно хотите продолжить\?</string>
+    <string name="show_all_warning">Управление приложениями, скрытыми в списке, может привести к сбоям и непредсказуемым последствиям, однако эта функция может быть полезна в случае, когда в неисправных ПЗУ, настроенных производителем, по умолчанию не включены все необходимые системные приложения в рабочем профиле. Вы точно хотите продолжить\?</string>
     <string name="settings_dont_freeze_foreground">Пропускать активные приложения</string>
     <string name="settings_dont_freeze_foreground_desc">Не замораживать приложение на переднем плане при блокировке экрана. Это может быть полезно для приложений типа аудиопроигрывателя, но вам придётся вручную замораживать их через ярлык \"Групповая заморозка\".</string>
     <string name="request_system_alert">Shelter необходимо разрешение на <b>отображение поверх других приложений</b> для того, чтобы функция переноса файлов работала корректно. Пожалуйста, дайте разрешение приложениям Shelter в <b>ОБОИХ</b> профилях (основном и рабочем) в диалогах, которые появятся после того, как вы нажмёте \"OK\". Это разрешение необходимо для того, чтобы перенос файлов мог работать в фоновом режиме.</string>
     <string name="request_usage_stats">Для этого Shelter необходим доступ к <b>истории использования приложений</b>. Пожалуйста, дайте разрешение приложениям Shelter в <b>ОБОИХ</b> профилях (основном и рабочем) в диалогах, которые появятся после того, как вы нажмёте \"OK\". В противном случае эта возможность не будет работать правильно.</string>
-    <string name="launch_app_fail">Невозможно запустить приложение %s, потому что оно не имеет графического интерфейса.</string>
+    <string name="launch_app_fail">Невозможно запустить приложение %s, так как оно не имеет графического интерфейса.</string>
     <string name="service_auto_freeze_desc">Shelter автоматически заморозит приложения, запущенные с помощью \"Разморозить и запустить\" при следующей блокировке экрана.</string>
     <string name="setup_wizard_welcome">Добро пожаловать в Shelter</string>
     <string name="setup_wizard_permissions">Пару слов о разрешениях</string>
@@ -96,17 +96,19 @@
     <string name="setup_wizard_ready">Готовы\?</string>
     <string name="setup_wizard_please_wait">Подождите…</string>
     <string name="setup_wizard_please_wait_text">Выполняется инициализация рабочего профиля и настройка Shelter на вашем устройстве.</string>
-    <string name="setup_wizard_ready_text">Приготовления к установке Shelter выполнены. Убедитесь, что ваше устройство <b>не</b> в режиме \"Не беспокоить\", потому что вам нужно будет позже <b>нажать на уведомление</b>, чтобы завершить процесс настройки.
+    <string name="setup_wizard_ready_text">Приготовления к установке Shelter выполнены. Если ваше устройство работает на Android 7 и ниже, пожалуйста, убедитесь, что оно <b>не</b> в режиме \"Не беспокоить\". Вам позже потребуется <b>нажать на уведомление</b> для завершения процесса настройки.
 \n
-\nКогда будете готовы, нажмите \"Далее\", чтобы начать процесс настройки.</string>
+\nНажмите \"Далее\", чтобы начать процесс настройки.</string>
     <string name="setup_wizard_welcome_text">Shelter – это приложение, которое поможет вам запускать другие приложения в изолированном профиле. Для этого используется функция Android <b>Рабочий профиль</b>.
 \n
 \nНажмите \"Далее\", чтобы узнать дополнительную информацию о Shelter и выполнить установку.
 \n
 \nМы рекомендуем вам внимательно прочитать все следующие страницы.</string>
-    <string name="setup_wizard_failed_text">К сожалению, установить Shelter оказалось невозможно.
+    <string name="setup_wizard_failed_text">К сожалению, установить Shelter невозможно.
 \n
-\nЕсли вы сами не отменили установку, то причина сбоя чаще всего связана с сильно изменённой системой или конфликтом между Shelter и другими менеджерами рабочих профилей. Со своей стороны мы мало что можем с этим поделать.
+\nЕсли на вашем устройстве уже был рабочий профиль от предыдущей установки Shelter или от другого приложения, вам придётся удалить этот профиль через «Настройки → Учётная запись», прежде чем Shelter сможет начать работу.
+\n
+\nИли же, если вы сами не отменили установку, то причина сбоя чаще всего кроется в сильно модифицированной системе или конфликтом между Shelter и другими менеджерами рабочих профилей. К сожалению, мы мало что можем с этим поделать.
 \n
 \nНажмите \"Далее\", чтобы выйти.</string>
     <string name="setup_wizard_action_required_text">Сейчас вы должны увидеть уведомление от Shelter. <b>Нажмите на это уведомление</b>, чтобы завершить процесс установки.
