@@ -11,7 +11,7 @@ repositories {
 
 android {
     compileSdkVersion 33
-    buildToolsVersion '33.0.0'
+    buildToolsVersion '33.0.1'
     defaultConfig {
         applicationId "net.typeblog.shelter"
         minSdkVersion 24
