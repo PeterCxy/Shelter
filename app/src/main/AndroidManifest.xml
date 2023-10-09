@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
     <uses-permission android:maxSdkVersion="25"
         android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
@@ -152,6 +153,7 @@
         <!-- Actions like cloning / freezing apps will be performed by this service -->
         <service android:name=".services.ShelterService"
                 android:exported="true"
+                android:foregroundServiceType="systemExempted"
                 android:permission="android.permission.BIND_DEVICE_ADMIN"/>
 
         <!-- Service to forward file information between profiles -->
@@ -164,7 +166,8 @@
         <service android:name=".services.KillerService" />
 
         <!-- Service to freeze apps on screen lock -->
-        <service android:name=".services.FreezeService" />
+        <service android:name=".services.FreezeService"
+            android:foregroundServiceType="systemExempted" />
     </application>
 
 </manifest>
