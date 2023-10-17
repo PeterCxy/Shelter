@@ -51,6 +51,7 @@
     <string name="unfreeze_and_launch">Unfreeze and Launch</string>
     <string name="auto_freeze">Auto Freeze</string>
     <string name="allow_cross_profile_widgets">Allow Widgets in Main Profile</string>
+    <string name="allow_cross_profile_interaction">Allow Cross-Profile Interaction</string>
 
     <!-- Action Bar Options Menu -->
     <string name="search">Search</string>

@@ -26,4 +26,6 @@ interface IShelterService {
     List<String> getCrossProfileWidgetProviders();
     boolean setCrossProfileWidgetProviderEnabled(String pkgName, boolean enabled);
     void setStartActivityProxy(in IStartActivityProxy proxy);
+    List<String> getCrossProfilePackages();
+    void setCrossProfilePackages(in List<String> packages);
 }

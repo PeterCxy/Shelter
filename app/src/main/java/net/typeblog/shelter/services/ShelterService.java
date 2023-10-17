@@ -25,6 +25,8 @@ import net.typeblog.shelter.util.FileProviderProxy;
 import net.typeblog.shelter.util.UriForwardProxy;
 import net.typeblog.shelter.util.Utility;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -271,6 +273,24 @@ public class ShelterService extends Service {
         @Override
         public void setStartActivityProxy(IStartActivityProxy proxy) {
             mStartActivityProxy = proxy;
+        }
+
+        @Override
+        public List<String> getCrossProfilePackages() throws RemoteException {
+            if (!mIsProfileOwner)
+                throw new IllegalStateException("Cannot access cross-profile packages without being profile owner");
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R)
+                throw new IllegalStateException("Cross-profile packages support is only available on Android 11 and later");
+            return new ArrayList<>(mPolicyManager.getCrossProfilePackages(mAdminComponent));
+        }
+
+        @Override
+        public void setCrossProfilePackages(List<String> packages) throws RemoteException {
+            if (!mIsProfileOwner)
+                throw new IllegalStateException("Cannot access cross-profile packages without being profile owner");
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R)
+                throw new IllegalStateException("Cross-profile packages support is only available on Android 11 and later");
+            mPolicyManager.setCrossProfilePackages(mAdminComponent, new HashSet<>(packages));
         }
     };
 
