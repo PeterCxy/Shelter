@@ -9,6 +9,34 @@ repositories {
     }
 }
 
+def getVersionCode = { ->
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-list', '--first-parent', '--count', 'master'
+            standardOutput = stdout
+        }
+        return Integer.parseInt(stdout.toString().trim())
+    }
+    catch (ignored) {
+        return -1;
+    }
+}
+
+def getVersionName = { ->
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'describe', '--tags', '--dirty'
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    }
+    catch (ignored) {
+        return null;
+    }
+}
+
 android {
     compileSdk 34
     buildToolsVersion = '34.0.0'
@@ -16,8 +44,8 @@ android {
         applicationId "net.typeblog.shelter"
         minSdkVersion 24
         targetSdkVersion 34
-        versionCode 24
-        versionName "1.9-dev"
+        versionCode getVersionCode()
+        versionName getVersionName()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
