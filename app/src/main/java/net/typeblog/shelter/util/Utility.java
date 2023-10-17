@@ -189,7 +189,6 @@ public class Utility {
                 DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
 
         // Allow ACTION_SEND and ACTION_SEND_MULTIPLE to cross from managed to parent
-        // TODO: Make this configurable
         IntentFilter actionSendFilter = new IntentFilter();
         actionSendFilter.addAction(Intent.ACTION_SEND);
         actionSendFilter.addAction(Intent.ACTION_SEND_MULTIPLE);
@@ -205,7 +204,6 @@ public class Utility {
                 DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
         
         // Browser intents are allowed from work profile to parent
-        // TODO: Make this configurable, just as ALLOW_PARENT_PROFILE_APP_LINKING in the next function
         IntentFilter browsableIntentFilter = new IntentFilter(Intent.ACTION_VIEW);
         browsableIntentFilter.addCategory(Intent.CATEGORY_BROWSABLE);
         browsableIntentFilter.addDataScheme("http");
@@ -244,8 +242,6 @@ public class Utility {
             manager.setSecureSetting(adminComponent, Settings.Secure.INSTALL_NON_MARKET_APPS, "1");
         }
 
-        // TODO: This should be configured by the user, instead of being enforced each time Shelter starts
-        // TODO: But we should also have some default restrictions that are set the first time Shelter starts
         manager.addUserRestriction(adminComponent, UserManager.ALLOW_PARENT_PROFILE_APP_LINKING);
     }
 
