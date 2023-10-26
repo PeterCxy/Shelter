@@ -11,4 +11,6 @@
 \nНатисніть \"Далі\", і ми надамо вам більше інформації про Shelter і проведемо вас через процес налаштування.
 \n
 \nМи рекомендуємо вам уважно прочитати всі наступні сторінки.</string>
+    <string name="setup_wizard_please_wait_text">Ми намагаємося ініціалізувати Work Profile та налаштувати Shelter на вашому пристрої.</string>
+    <string name="fragment_profile_work">Shelter</string>
 </resources>
