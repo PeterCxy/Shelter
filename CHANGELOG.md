@@ -5,6 +5,7 @@
 - More reliable delayed freezing using AlarmManager (thanks parmaster84).
 - Support for cross-profile interactions allowlisting (e.g. for Gboard).
 - Removed "Fake Camera" feature as it has not been supported since R.
+- Version displayed within the app has now been changed to also reflect the exact Git commit when the app is built.
 
 1.8
 ===
