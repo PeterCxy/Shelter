@@ -22,7 +22,6 @@
     <string name="freeze_all_success">Alla appar i listan \"Automatisk frysning\" har frysts.</string>
     <string name="unsupported_launcher">Det går inte att lägga till genvägar till din launcher. Kontakta utvecklaren för mer information.</string>
     <string name="shortcut_create_success">Genväg skapad på din launcher.</string>
-    <string name="camera_proxy_activity">Välj en bildfil</string>
     <string name="launch_app_fail">Det går inte att starta appen %s eftersom den har inte något GUI.</string>
     <string name="miui_cannot_clone">Att klona icke-systemappar till en annan profil är för närvarande inte möjligt på MIUI. Vänligen klona ditt systems appbutik (t.ex. <b>Play Butik, FDroid</b>) till den andra profilen och installera sedan appar därifrån.</string>
     <string name="fragment_profile_main">Primär</string>
@@ -61,13 +60,11 @@
     <string name="settings">Inställningar</string>
     <string name="settings_interaction">Interaktion</string>
     <string name="settings_cross_profile_file_chooser">File Shuttle</string>
-    <string name="settings_camera_proxy">Bildväljare som falsk kamera</string>
     <string name="settings_translate">Översätt</string>
     <string name="setup_wizard_ready_text">Vi är nu redo att sätta upp Shelter åt dig. Se först till att din enhet <b>inte</b> är i \"Stör ej\"-läge, eftersom du kommer att behöva<b>klicka på en avisering</b> senare för att slutföra installationsprocessen.
 \n
 \nNär du är redo, klicka på \"Nästa\" för att påbörja installationsprocessen.</string>
     <string name="setup_wizard_compatibility">Kompatibilitet</string>
-    <string name="settings_camera_proxy_desc">Presentera en falsk kameraapp för andra appar, så att du kan välja en bild från Documents UI (och File Shuttle om den är aktiverad) som den tagna bilden. Detta aktiverar File Shuttle för alla appar som har stöd för att starta andra kameraappar för att ta en bild, även om de inte har stöd för Documents UI.</string>
     <string name="settings_services">Tjänster</string>
     <string name="settings_bug_report">Buggrapport / Problemspårare</string>
     <string name="msg_device_unsupported">Behörighet nekas eller enhet som inte stöds</string>

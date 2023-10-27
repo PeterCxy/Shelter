@@ -45,7 +45,6 @@
     <string name="freeze_all_success">تم تجميد جميع التطبيقات في قائمة \"التجميد التلقائي\" بنجاح.</string>
     <string name="shortcut_create_success">تم إنشاء اختصار لمشغلك.</string>
     <string name="miui_cannot_clone">استنساخ تطبيقات غير تابعة للنظام إلى ملف شخصي آخر غير مدعوم حاليًّا على MIUI. الرجاء استنساخ متجر تطبيقات النظام (مثل <b>متجر جوجل بلاي</b>) في الملف الشخصي الآخر ثم تثبيت التطبيقات من هناك.</string>
-    <string name="camera_proxy_activity">اختر ملف الصور</string>
     <string name="service_auto_freeze_title">التجميد التلقائي معلق</string>
     <string name="service_auto_freeze_desc">سيقوم العازل بتجميد التطبيقات التي تم إطلاقها من \"إلغاء التجميد و الإطلاق\" في حدث قفل الشاشة التالي تلقائيًا.</string>
     <string name="batch_operation">عملية على دفعة</string>
@@ -54,8 +53,6 @@
     <string name="settings_interaction">التفاعل</string>
     <string name="settings_cross_profile_file_chooser">مكوك الملفات</string>
     <string name="settings_cross_profile_file_chooser_desc">عند التمكين، ستتمكن من تصفح / عرض / اختيار / نسخ الملفات من العازل إلى الملف الرئيسي والعكس، عن طريق المستندات (المسماة الملفات أو المستندات الموجودة على منصة الإطلاق) أو التطبيقات التي تحتوي على دعم واجهة مستخدم المستندات (لا تحصل إلا على الوصول المؤقت إلى الملفات التي تختارها في واجهة مستخدم المستندات)، في حين لا تزال تمتلك عزل نظام الملفات.</string>
-    <string name="settings_camera_proxy">اختيار صورة كاميرا وهمية</string>
-    <string name="settings_camera_proxy_desc">قدم تطبيق كاميرا مزيف إلى التطبيقات الأخرى، مما يسمح لك باختيار صورة عشوائية من واجهة المستندات (و مكوك الملفات إذا تم تمكينه) كصورة ملتقطة. يؤدي ذلك إلى تمكين ميزة \"نقل الملفات\" لأي تطبيق يدعم استخدام تطبيقات كاميرا أخرى لالتقاط صورة، حتى إذا كانت لا تدعم واجهة المستندات.</string>
     <string name="settings_services">خدمات</string>
     <string name="settings_auto_freeze_service">خدمة التجميد التلقائي</string>
     <string name="settings_auto_freeze_service_desc">عندما يتم قفل الشاشة، قم تلقائيًا بتجميد التطبيقات التي بدأت من اختصار \"إلغاء التجميد والبدأ\".</string>

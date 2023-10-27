@@ -30,7 +30,6 @@
 \n
 \nVa trebui să primiți o notificare pentru a finaliza configurarea, vă rugăm să vă asigurați că dispozitivul dvs. <b> NU </b> este în modul Nu deranjați.</string>
     <string name="create_freeze_all_shortcut">Creați o comandă rapidă de Inghetare Grup(lot)</string>
-    <string name="camera_proxy_activity">Alegeți un fișier de imagine</string>
     <string name="notifications_important">Important</string>
     <string name="finish_provision_title">Click aici pentru a finaliza configurarea Shelter</string>
     <string name="service_title">Serviciul Shelter</string>
@@ -53,7 +52,6 @@
     <string name="settings">Setări</string>
     <string name="settings_interaction">Interacţiune</string>
     <string name="settings_cross_profile_file_chooser">Tranzit de fișiere</string>
-    <string name="settings_camera_proxy">Activeaza Camera Falsa</string>
     <string name="device_admin_explanation">Shelter trebuie să devină Administrator de Dispozitiv pentru a-și îndeplini sarcinile de izolare.</string>
     <string name="fragment_profile_work">Shelter</string>
     <string name="clone_to_main_profile">Clonați la Profilul Principal</string>
@@ -65,7 +63,6 @@
     <string name="documents_ui">Deschideți Interfața de Utilizare a Documentelor</string>
     <string name="work_mode_disabled">Se pare că ați dezactivat Profilul de Lucru în timp ce porniți Shelter. Dacă l-ați activat acum, porniți din nou Shelter.</string>
     <string name="request_storage_manager">Shelter are nevoie de acces la <b> Toate fișierele </b> pentru File Shuttle. Vă rugăm să activați permisiunea pentru <b> AMBELE </b> (Principal/ Lucru) aplicații Shelter afișate în caseta de dialog după ce apăsați „Ok”.</string>
-    <string name="settings_camera_proxy_desc">Prezentați o aplicație de cameră falsă altor aplicații, permițându-vă să alegeți o imagine arbitrară din interfața de utilizare a documentelor (și File Shuttle dacă este activată) ca fotografie făcută. Aceasta permite File Shuttle pentru orice aplicație care acceptă invocarea altor aplicații de cameră pentru a face o fotografie, chiar dacă acestea nu acceptă Documente UI în mod nativ.</string>
     <string name="settings_block_contacts_searching">Blocați Căutarea Contactelor</string>
     <string name="settings_services">Servicii</string>
     <string name="uninstall_success">Aplicația \"%s\" a fost dezinstalată cu succes</string>

@@ -4,7 +4,6 @@
     <string name="first_run_alert_continue">続行</string>
     <string name="device_admin_desc">アプリ隔離サービス</string>
     <string name="device_admin_explanation">隔離処理を行うためにShelterをデバイス管理者に設定する必要があります。</string>
-    <string name="camera_proxy_activity">画像ファイルを選択</string>
     <string name="notifications_important">Shelterの重要な通知</string>
     <string name="finish_provision_title">タップしてShelterのセットアップを完了してください</string>
     <string name="finish_provision_desc">おめでとうございます！Shelterのセットアップ完了まであと一歩です。</string>
@@ -34,7 +33,6 @@
     <string name="show_all">全てのアプリを表示</string>
     <string name="documents_ui">標準ファイラーを開く</string>
     <string name="settings">設定</string>
-    <string name="settings_camera_proxy">フェイクカメラで使用する画像を選択</string>
     <string name="settings_block_contacts_searching">連絡先の検索をブロック</string>
     <string name="settings_services">サービス</string>
     <string name="settings_auto_freeze_service">自動凍結サービス</string>
@@ -98,7 +96,6 @@
     <string name="setup_wizard_failed">セットアップに失敗しました</string>
     <string name="setup_wizard_action_required">操作が必要です</string>
     <string name="setup_wizard_welcome">Shelterへようこそ</string>
-    <string name="settings_camera_proxy_desc">他のアプリに偽のカメラアプリを提示し、Documents UI（および有効な場合はFile Shuttle）から任意の画像を撮影画像として選択できるようにします。これにより、Documents UIをネイティブにサポートしていなくても、他のカメラアプリを呼び出して写真を撮ることをサポートするすべてのアプリでFile Shuttleが有効になります。</string>
     <string name="settings_dont_freeze_foreground_desc">画面をロックしたときに、フォアグラウンドのアプリ（アクティビティが表示されているもの）を凍結しない。これは音楽プレーヤーなどのアプリには便利ですが、その後「バッチフリーズ・ショートカット」を使って手動で凍結する必要があります。</string>
     <string name="setup_wizard_ready_text">これで、Shelterの設定が完了しました。Android 7以下の端末の場合、セットアッププロセスを完了させるには、後で<b>通知をタップ</b>する必要があるため、まずお使いのデバイスが<b>サイレントモードになっていない</b>ことを確認してください。
 \n

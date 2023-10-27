@@ -42,7 +42,6 @@
     <string name="show_all_warning">دستکاری برنامه‌هایی که داخل لیست نمایش داده نشده‌اند می‌تواند باعث خروج از برنامه و انواع دیگر مشکلات شود. البته این قابلیت می‌تواند در زمان وجود رام دستکاری شده توسط سازنده مفید شود اگر همه‌ی برنامه‌های سیستمی فعال نشده‌اند. اگر ادامه دهید، مسئولیت آن با خود شماست.</string>
     <string name="documents_ui">باز کردن بخش مستندات</string>
     <string name="settings_cross_profile_file_chooser_desc">اگر فعال شود تنها از طریق Documents UI (فایل‌ها و مستندات دارای نام داخل لانچر) یا برنامه‌های دارای قابلیت Documents UI (به مدت موقت به فایل هایی که انتخاب میکنید دسترسی میگیرند) می‌توانید از طریق Shelter، فایل های پروفایل اصلی را ببنید / انتخاب کنید و یا کپی کنید، در عین اینکه ساختار ایزوله را حفظ می‌کنیم.</string>
-    <string name="settings_camera_proxy_desc">یک دوربین تقلبی به برنامه‌های دیگر ارائه دهید تا از Documents UI (یا شاتل فایل) یک عکس دلخواه به عنوان عکس گرفته‌شده انتخاب کنید. شاتل فایل برای تمامی برنامه‌ها که دوربین را فراخوانی می‌کنند فعال می‌شود، حتی اگر Documents UI را پشتیبانی نکنند.</string>
     <string name="settings_dont_freeze_foreground_desc">در زمان قفل شدن صفحه، برنامه‌های پس‌زمینه‌ی قابل مشاهده را قفل نکن. این قابلیت برای برنامه‌های پخش موسیقی می‌تواند مفید باشد، اما ممکن است لازم باشد به طور دستی از \"میانبر قفل جمعی\" آنها را قفل کنید.</string>
     <string name="work_profile_provision_failed">امکان آماده‌سازی پروفایل کاری نبود. برای تلاش دوباره برنامه را ریستارت کنید.</string>
     <string name="work_mode_disabled">به نظر میاد شما Work Mode را هنگام راه‌ندازی شلتر غیرفعال کرده‌اید. اگر آن را فعال کرده‌اید، لطفا شلتر را دوباره باز کنید.</string>
@@ -50,7 +49,6 @@
     <string name="request_usage_stats">برای اینکار، شلتر نیازمند دسترسی <b>Usage Stats</b> است. لطفا پس از کلیک کردن روی \"Ok\" داخل دیالوگ، این دسترسی را برای <b>هر دوی</b> اپ‌های شلتر فعال کنید. اگر اینکار انجام نگیرد این قابلیت به درستی کار نخواهد نکرد.</string>
     <string name="request_storage_manager">شلتر برای شاتل فایل نیازمند دسترسی به <b>All Files</b> دارد. لطفا این دسترسی را برای <b>هر دوی</b> برنامه‌های شلتر که با زدن روی \"Ok\" داخل دیالوگ نمایش داده می‌شود فعال کنید.</string>
     <string name="device_admin_desc">سرویس ایزوله‌سازی برنامه</string>
-    <string name="camera_proxy_activity">یک فایل تصویر انتخاب کنید</string>
     <string name="setup_wizard_welcome">به شلتر (Shelter) خوش آمدید</string>
     <string name="setup_wizard_permissions">صحبتی درباره‌ی دسترسی ها</string>
     <string name="setup_wizard_compatibility">سازگاری</string>
@@ -86,7 +84,6 @@
     <string name="search">جستجو</string>
     <string name="freeze_all">قفل جمعی</string>
     <string name="create_unfreeze_shortcut">ساخت میانبر رفع قفل و یا اجرا کردن</string>
-    <string name="settings_camera_proxy">انتخاب کننده‌ی عکس به عنوان دوربین تقلبی</string>
     <string name="settings_block_contacts_searching">بستن جستجوی مخاطبین</string>
     <string name="settings_block_contacts_searching_desc">گرفتن دسترسی مخاطبین از پروفایل اصلی داخل پروفایل کاری.</string>
     <string name="settings_services">سرویس‌ها</string>

@@ -4,6 +4,7 @@
 - Updated targetSDK to 34 (Android 14) with compatibility fixes.
 - More reliable delayed freezing using AlarmManager (thanks parmaster84).
 - Support for cross-profile interactions allowlisting (e.g. for Gboard).
+- Removed "Fake Camera" feature as it has not been supported since R.
 
 1.8
 ===

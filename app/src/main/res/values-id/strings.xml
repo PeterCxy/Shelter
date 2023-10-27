@@ -4,7 +4,6 @@
     <string name="first_run_alert_continue">Lanjutkan</string>
     <string name="device_admin_explanation">Shelter harus menjadi Admin Perangkat untuk melakukan tugas isolasinya.</string>
     <string name="device_admin_desc">Layanan Isolasi Aplikasi</string>
-    <string name="camera_proxy_activity">Pilih File Gambar</string>
     <string name="setup_wizard_welcome">Selamat datang di Shelter</string>
     <string name="setup_wizard_permissions">Sepatah kata tentang izin</string>
     <string name="setup_wizard_welcome_text">Shelter adalah aplikasi untuk membantu Anda menjalankan aplikasi lain dalam profil yang terisolasi. Ia melakukannya dengan memanfaatkan fitur <b>Profil Kerja</b> Android.
@@ -58,7 +57,6 @@
     <string name="launch">Jalankan</string>
     <string name="create_unfreeze_shortcut">Buat Pencairan dan/atau Luncurkan Pintasan</string>
     <string name="unfreeze_and_launch">Cairkan dan Luncurkan</string>
-    <string name="settings_camera_proxy">Pemilih Gambar sebagai Kamera Palsu</string>
     <string name="settings_block_contacts_searching">Blokir Pencarian Kontak</string>
     <string name="settings_block_contacts_searching_desc">Tolak akses dari profil utama ke kontak di dalam profil kerja.</string>
     <string name="settings_services">Layanan</string>
@@ -108,7 +106,6 @@
 \nKlik \"Selanjutnya\" untuk keluar.</string>
     <string name="show_all_warning">Memanipulasi aplikasi yang disembunyikan dari daftar dapat menyebabkan crash dan segala macam perilaku tak terduga. Namun, fitur ini dapat berguna saat ROM yang disesuaikan dengan vendor tidak mengaktifkan semua aplikasi sistem yang diperlukan di profil kerja secara default. Jika Anda melanjutkan, Anda sendirian.</string>
     <string name="settings_cross_profile_file_chooser_desc">Saat diaktifkan, Anda akan dapat menelusuri/melihat/memilih/menyalin file di Shelter dari profil utama dan sebaliknya, HANYA melalui UI Dokumen (bernama File atau Dokumen di peluncur Anda) atau aplikasi dengan dukungan UI Dokumen (mereka hanya mendapatkan akses sementara ke file yang Anda pilih di Documents UI), sementara masih berkaitan dengan isolasi sistem file.</string>
-    <string name="settings_camera_proxy_desc">Sajikan aplikasi kamera palsu ke aplikasi lain, memungkinkan Anda memilih gambar arbitrer dari Documents UI (dan File Shuttle jika diaktifkan) sebagai gambar yang diambil. Ini mengaktifkan File Shuttle untuk aplikasi apa pun yang mendukung pemanggilan aplikasi kamera lain untuk mengambil gambar, meskipun mereka tidak mendukung UI Dokumen secara asli.</string>
     <string name="settings_dont_freeze_foreground_desc">JANGAN membekukan aplikasi latar depan (dengan aktivitas yang terlihat) saat Anda mengunci layar. Ini dapat berguna untuk aplikasi seperti pemutar musik, tetapi Anda harus membekukannya secara manual melalui \"Pintasan Pembekuan Batch\" setelahnya.</string>
     <string name="work_mode_disabled">Sepertinya Anda telah menonaktifkan Mode Kerja saat memulai Shelter. Jika Anda telah mengaktifkannya sekarang, harap mulai kembali Shelter.</string>
     <string name="request_usage_stats">Shelter memerlukan izin <b>Statistik Penggunaan</b> untuk melakukan ini. Harap aktifkan izin untuk <b>KESELURUHAN</b> aplikasi Shelter yang ditampilkan di dialog setelah Anda menekan \"Ok\". Gagal melakukannya akan menyebabkan fitur ini tidak berfungsi dengan baik.</string>

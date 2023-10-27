@@ -7,7 +7,6 @@
     <string name="first_run_alert_continue">Continuar</string>
     <string name="device_admin_desc">Servicio de aislamiento de aplicaciones</string>
     <string name="device_admin_explanation">Shelter necesita convertirse en el administrador del dispositivo para realizar tareas de aislamiento.</string>
-    <string name="camera_proxy_activity">Elige un archivo de imagen</string>
     <string name="notifications_important">Importante</string>
     <string name="finish_provision_title">Haz click aquí para finalizar la configuración de Shelter</string>
     <string name="show_all_warning">Manipular aplicaciones ocultas en la lista podría causar fallos y toda clase de comportamientos inesperados. Sin embargo, esta característica podría ser de utilidad cuando las ROMs personalizadas del fabricante no habilitan todas las aplicaciones del sistema necesarias dentro del perfil de trabajo por defecto. Si continuas, estas por tu cuenta.</string>
@@ -39,7 +38,6 @@
 \nAlgunos fabricantes de dispositivos introducen personalizaciones demasiado invasivas dentro del código fuente de Android lo cual resulta en conflictos, incompatibilidades y comportamientos inesperados. Algunas ROMs personalizadas también pueden introducir cambios que rompen con la compatibilidad pero generalmente son raros en comparación con las incompatibilidades introducidas por los fabricantes.
 \n
 \nShelter es únicamente una interfaz a la característica del perfil de trabajo provista por el sistema. Si la característica provista por el sistema esta dañada o no es estándar <b>Shelter no puede resolver el problema mágicamente por sí mismo</b>. Si actualmente estas usando una versión de Android modificada por el fabricante de la cual se sabe que incumple con los perfiles de trabajo <b>has sido advertido</b>. Puedes proceder de todos modos, pero no hay garantía de que Shelter se comporte de manera adecuada bajo esas circunstancias.</string>
-    <string name="settings_camera_proxy_desc">Presenta una aplicación de cámara falsa a otras aplicaciones, permitiéndote elegir una imagen arbitraria de la interfaz de documentos (y a la pasarela de archivos, si se encuentra habilitado) como la fotografía tomada. Esto habilita la pasarela de archivos para cualquier aplicaciones que tenga soporte para invocar otras aplicaciones para tomar una fotografía incluso si no soportan la interfaz de documentos de manera nativa.</string>
     <string name="uninstall_fail_system_app">No se pueden desinstalar aplicaciones del sistema en un perfil del cual Shelter no tiene control.</string>
     <string name="unsupported_launcher">No se pueden agregar accesos directos a tu lanzador de aplicaciones. Por favor contacta al desarrollador para mas información.</string>
     <string name="app_context_menu_title">Operaciones para \"%s\"</string>
@@ -79,7 +77,6 @@
     <string name="auto_freeze">Auto suspender</string>
     <string name="allow_cross_profile_widgets">Permitir Widgets en el perfil principal</string>
     <string name="settings_cross_profile_file_chooser_desc">Cuando esta habilitado, seras capaz de buscar / ver / seleccionar / copiar archivos dentro de Shelter del perfil principal y viceversa. Únicamente a través de la interfaz de documentos (llamada Archivos o Documentos en tu lanzador de aplicaciones) o aplicaciones con soporte para interfaz de archivos (únicamente obtienen acceso temporal a los archivos que escogiste en la interfaz de documentos), mientras aun pertenecen al sistema de archivos aislado.</string>
-    <string name="settings_camera_proxy">Selector de imágenes como simulador de cámara</string>
     <string name="settings_block_contacts_searching">Bloquear búsqueda de contactos</string>
     <string name="settings_block_contacts_searching_desc">Denegar acceso del perfil principal a los contactos dentro del perfil de trabajo.</string>
     <string name="settings_services">Servicios</string>

@@ -4,7 +4,6 @@
     <string name="notifications_important">Shelter Important</string>
     <string name="first_run_alert_continue">Continuer</string>
     <string name="device_admin_desc">Service d\'isolation d\'application</string>
-    <string name="camera_proxy_activity">Choisissez un Fichier Image</string>
     <string name="finish_provision_title">Cliquez ici pour finir de configurer Shelter</string>
     <string name="finish_provision_desc">Félicitations ! Vous êtes à un clic de finir de configurer Shelter.</string>
     <string name="service_title">Service Shelter</string>
@@ -49,8 +48,6 @@
     <string name="show_all">Afficher Toutes les Applications</string>
     <string name="settings">Paramètres</string>
     <string name="settings_interaction">Interaction</string>
-    <string name="settings_camera_proxy">Sélecteur d\'image comme Fausse Caméra</string>
-    <string name="settings_camera_proxy_desc">Présente une fausse application de caméra aux autres applications, permettant de sélectionner une fausse capture depuis image arbitraire dans l\'interface de Gestion de Documents (et la Navigation de Fichiers si activée). Cela active la Navigation de Fichiers pour toute application supportant l\'utilisation d\'applications Camera tierces dans le but de prendre une photo, même si les applications appelantes ne supportent pas la navigation de Documents en natif.</string>
     <string name="settings_block_contacts_searching">Bloquer la recherche de contacts</string>
     <string name="settings_block_contacts_searching_desc">Refuser au Profil Principal l\'accès aux contacts à l\'intérieur du Profil Professionnel.</string>
     <string name="settings_services">Services</string>

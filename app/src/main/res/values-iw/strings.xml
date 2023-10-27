@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="first_run_alert_continue">להמשיך</string>
-    <string name="camera_proxy_activity">בחר קובץ תמונה</string>
     <string name="setup_wizard_welcome">ברוכים הבאים Shelter</string>
     <string name="setup_wizard_permissions">מילה על הרשאות</string>
     <string name="setup_wizard_compatibility">תאימות</string>
@@ -77,7 +76,6 @@
     <string name="settings">הגדרות</string>
     <string name="settings_interaction">אינטראקציה</string>
     <string name="settings_cross_profile_file_chooser">מעבורת קבצים</string>
-    <string name="settings_camera_proxy">בוחר תמונה כמצלמה מזויפת</string>
     <string name="uninstall_fail_system_app">לא ניתן להסיר את ההתקנה של אפליקציות מערכת בפרופיל של-Shelter אין שליטה עליו.</string>
     <string name="settings_block_contacts_searching">חסום חיפוש אנשי קשר</string>
     <string name="settings_services">שירותים</string>
@@ -111,7 +109,6 @@
     <string name="settings_auto_freeze_service_desc">כאשר המסך נעול, הקפיא אוטומטית אפליקציות שהופעלו מ\"בטל הקפאה והפעל קיצור דרך\".</string>
     <string name="show_all_warning">מניפולציה של אפליקציות המוסתרות מהרשימה עלולה לגרום לקריסות ולכל מיני התנהגות בלתי צפויה. עם זאת, תכונה זו יכולה להיות שימושית כאשר ROMs פגומים המותאמים אישית של ספקים אינם מפעילים את כל אפליקציות המערכת הנחוצות בפרופיל העבודה כברירת מחדל. אם תמשיך, אתה לבד.</string>
     <string name="settings_cross_profile_file_chooser_desc">כאשר מופעל, תוכל לדפדף / להציג / לבחור / להעתיק קבצים ב-Shelter מהפרופיל הראשי ולהיפך, רק דרך ממשק המשתמש של מסמכים (ששמו קבצים או מסמכים במפעיל שלך) או אפליקציות עם תמיכה בממשק המשתמש של מסמכים (הם רק מרוויחים גישה זמנית לקבצים שתבחר בממשק המשתמש של מסמכים), תוך שמירה על בידוד מערכת הקבצים.</string>
-    <string name="settings_camera_proxy_desc">הצג אפליקציית מצלמה מזויפת לאפליקציות אחרות, מה שמאפשר לך לבחור תמונה שרירותית מממשק המשתמש של המסמכים (ומעבורת הקבצים אם מופעלת) בתור התמונה שצולמה. זה מאפשר העברת קבצים עבור כל אפליקציה שתומכת בהפעלת אפליקציות מצלמה אחרות כדי לצלם תמונה, גם אם הן אינן תומכות בממשק המשתמש המקורי של מסמכים.</string>
     <string name="request_usage_stats">Shelter זקוק להרשאת <b>סטטיסטיקות שימוש</b> כדי לעשות זאת. אנא הפעל את ההרשאה עבור אפליקציות מקלט <b>שתיים</b> המוצגות בתיבת הדו-שיח לאחר לחיצה על \"אישור\". אם לא תעשה זאת, תכונה זו לא תפעל כראוי.</string>
     <string name="request_storage_manager">Shelter זקוק לגישה אל <b>כל הקבצים</b> עבור סייר הקבצים. אנא הפעל את ההרשאה עבור יישומי מקלט <b>שניים </b> (אישי / עבודה) המוצגים בתיבת הדו-שיח לאחר לחיצה על \"אישור\".</string>
     <string name="request_system_alert">Shelter צריך <b>לצייר מעל אפליקציות אחרות</b> כדי ש-File Shuttle יפעל כהלכה. אנא הפעל את ההרשאה עבור יישומי מקלט <b>שניים </b> (אישי / עבודה) המוצגים בתיבת הדו-שיח לאחר לחיצה על \"אישור\". הרשאה זו משמשת להפעלת שירותי File Shuttle ברקע.</string>

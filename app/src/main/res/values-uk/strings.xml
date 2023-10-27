@@ -4,7 +4,6 @@
     <string name="device_admin_explanation">Shelter має стати адміністратором пристрою, щоб виконувати свої завдання ізоляції.</string>
     <string name="first_run_alert_cancel">Закрити</string>
     <string name="first_run_alert_continue">Продовжити</string>
-    <string name="camera_proxy_activity">Виберіть зображення</string>
     <string name="setup_wizard_welcome">Ласкаво просимо до Shelter</string>
     <string name="setup_wizard_permissions">Декілька слів про дозволи</string>
     <string name="setup_wizard_welcome_text">Shelter - це програма, яка допоможе вам запускати інші програми в ізольованому профілі. Вона використовує функцію <b>Робочий профіль</b> в Android.

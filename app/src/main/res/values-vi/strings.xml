@@ -21,7 +21,6 @@
     <string name="first_run_alert_continue">Tiếp tục</string>
     <string name="device_admin_desc">Dịch vụ cô lập ứng dụng</string>
     <string name="device_admin_explanation">Shelter cần trở thành Quản trị viên thiết bị để thực hiện các công việc cô lập của nó.</string>
-    <string name="camera_proxy_activity">Chọn tệp hình ảnh</string>
     <string name="setup_wizard_permissions">Một lời về các quyền</string>
     <string name="setup_wizard_compatibility">Sự tương thích</string>
     <string name="setup_wizard_ready">Sẵn sàng chưa\?</string>
@@ -77,7 +76,6 @@
 \n
 \nKhi bạn đã sẵn sàng, hãy nhấn vào \"Tiếp\" để bắt đầu quá trình thiết lập.</string>
     <string name="setup_wizard_please_wait_text">Chúng tôi đang cố khởi tạo Hồ sơ công việc và thiết lập Shelter trên thiết bị của bạn.</string>
-    <string name="settings_camera_proxy_desc">Trưng bày một ứng dụng máy ảnh giả cho các ứng dụng khác, việc này cho phép bạn chọn một hình ảnh bất kỳ từ Giao diện Tài liệu (và Chia sẻ tệp nếu được bật) làm bức ảnh được chụp. Việc này sẽ bật Chia sẻ tệp cho bất kỳ ứng dụng nào hỗ trợ việc gọi các ứng dụng máy ảnh khác để chụp ảnh, kể cả nếu chúng không trực tiếp hỗ trợ Giao diện Tài liệu.</string>
     <string name="settings_auto_freeze_delay">Độ trễ tự động đóng băng</string>
     <string name="settings_dont_freeze_foreground">Bỏ qua các ứng dụng ở trước</string>
     <string name="settings_dont_freeze_foreground_desc">KHÔNG đóng băng các ứng dụng ở trước (có hoạt động có thể nhìn thấy được) khi bạn khoá màn hình. Việc này có thể hữu ích đối với các ứng dụng như trình phát nhạc, nhưng sau đó bạn sẽ cần phải đóng băng chúng theo cách thủ công qua \"Lối tắt Đóng băng hàng loạt\".</string>
@@ -93,7 +91,6 @@
     <string name="request_usage_stats">Shelter cần quyền <b>Thống kê sử dụng</b> để làm việc này. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Shelter được hiện trong hộp thoại sau khi bạn nhấn \"Ok\". Tính năng này sẽ không hoạt động đúng nếu bạn không làm vậy.</string>
     <string name="settings_cross_profile_file_chooser">Chia sẻ tệp</string>
     <string name="settings_cross_profile_file_chooser_desc">Khi được bật, bạn sẽ có thể duyệt / xem / chọn / sao chép các tệp trong Shelter từ hồ sơ chính và ngược lại, CHỈ qua Giao diện Tài liệu (có tên là Tệp hoặc Tài liệu trên launcher của bạn) hoặc các ứng dụng có hỗ trợ Giao diện Tài liệu (chúng chỉ có quyền truy cập tạm thời vào các tệp bạn chọn trong Giao diện Tài liệu), trong khi vẫn giữ sự cô lập hệ thống tệp.</string>
-    <string name="settings_camera_proxy">Trình chọn hình ảnh dưới dạng máy ảnh giả</string>
     <string name="settings_block_contacts_searching">Chặn tìm kiếm danh bạ</string>
     <string name="settings_block_contacts_searching_desc">Từ chối quyền truy cập danh bạ từ hồ sơ chính trong hồ sơ công việc.</string>
     <string name="settings_services">Dịch vụ</string>

@@ -26,7 +26,6 @@
     <string name="miui_cannot_clone">目前無法在 MIUI 上克隆非系統應用。請先克隆您的系統應用商店 (如 <b>Play Store</b>) 然後從克隆的應用商店中安裝應用。</string>
     <string name="continue_anyway">無視並繼續</string>
     <string name="show_all_warning">對列表中默認隱藏的應用執行操作可能導致崩潰以及其他各種無法預料的行爲。但是，當您的手機廠商沒有正確在工作用戶中開啓所有必要的系統組件應用的時候，這個功能可以幫助您解決問題。如果您選擇繼續，您確保您瞭解您在做什麼，Shelter 無法提供任何保證。</string>
-    <string name="settings_camera_proxy_desc">向其他 App 提供一個僞裝的相機 App，允許您從 Documents UI (包括 文件穿梭 功能) 選擇任意文件作爲 拍攝結果。這將使您能夠在任何支持調用系統相機的 App 中選擇來自 文件穿梭 的文件，無論 App 本身是否支持 Documents UI。</string>
     <string name="provision_finished">Shelter 已初始化完成，正在啓動 Shelter。如果 Shelter 沒有自動啓動，請您從啓動器手動啓動它。</string>
     <string name="settings_dont_freeze_foreground">跳過前臺應用</string>
     <string name="first_run_alert">您即將開始設定 Shelter。 
@@ -52,7 +51,6 @@
     <string name="first_run_alert_continue">繼續</string>
     <string name="device_admin_desc">App 隔離服務</string>
     <string name="device_admin_explanation">Shelter 需要成爲設備管理員才能正常進行 App 隔離等操作。</string>
-    <string name="camera_proxy_activity">選擇圖片文件</string>
     <string name="finish_provision_title">點擊這裏完成 Shelter 初始化</string>
     <string name="finish_provision_desc">您距離使用 Shelter 僅有一步之遙。</string>
     <string name="service_title">Shelter 服務</string>
@@ -84,7 +82,6 @@
     <string name="settings">設置</string>
     <string name="settings_interaction">交互</string>
     <string name="settings_cross_profile_file_chooser">文件穿梭</string>
-    <string name="settings_camera_proxy">圖片選擇器僞裝爲相機</string>
     <string name="create_freeze_all_shortcut">創建批量凍結快捷方式</string>
     <string name="settings_block_contacts_searching">阻止訪問聯繫人</string>
     <string name="settings_block_contacts_searching_desc">阻止主用戶中的應用訪問工作用戶的聯繫人資料。</string>

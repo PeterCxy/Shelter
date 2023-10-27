@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="camera_proxy_activity">Vyber obrázek</string>
     <string name="first_run_alert_cancel">Sbohem</string>
     <string name="first_run_alert_continue">Pokračovat</string>
     <string name="device_admin_desc">Služba izolace aplikací</string>

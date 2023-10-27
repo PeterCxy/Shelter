@@ -62,7 +62,6 @@
     <string name="batch_operation">Выбрать несколько</string>
     <string name="show_all">Все приложения</string>
     <string name="settings_cross_profile_file_chooser">Перенос файлов</string>
-    <string name="settings_camera_proxy">Выбор файла вместо камеры</string>
     <string name="documents_ui">Открыть проводник</string>
     <string name="settings_interaction">Взаимодействие</string>
     <string name="settings_auto_freeze_service">Служба автозаморозки</string>
@@ -71,7 +70,6 @@
     <string name="request_storage_manager">Shelter необходим доступ ко <b>всем файлам</b> для переноса файлов. Пожалуйста, дайте разрешение приложениям Shelter в <b>ОБОИХ</b> профилях (основном и рабочем) в диалогах, которые появятся после того, как вы нажмёте \"OK\".</string>
     <string name="settings_services">Службы</string>
     <string name="continue_anyway">Всё равно продолжить</string>
-    <string name="camera_proxy_activity">Выберите файл с изображением</string>
     <string name="notifications_important">Shelter: важное</string>
     <string name="finish_provision_desc">Поздравляем! Вы в одном шаге от завершения настройки Shelter.</string>
     <string name="install_app_to_profile">Установить APK в Shelter</string>
@@ -80,7 +78,6 @@
     <string name="settings_translate">Перевод</string>
     <string name="settings_block_contacts_searching_desc">Запретить получение доступа к контактам рабочего профиля из основного профиля.</string>
     <string name="settings_cross_profile_file_chooser_desc">Если включено, вы сможете искать/просматривать/выбирать/копировать файлы в Shelter из рабочего профиля и обратно ТОЛЬКО через системный менеджер файлов (он называется \"Файлы\" или \"Документы\" на вашем устройстве) или через приложения, поддерживающие Documents UI (с помощью них возможно получить лишь временный доступ к файлам), при этом изоляция файловой системы останется нетронутой.</string>
-    <string name="settings_camera_proxy_desc">Имитация камеры для приложений. Это даст возможность выбрать через встроенный проводник (или перенос файлов, если включён) сохранённое изображение в качестве сделанного снимка, а также позволит перенести файлы приложениям, вызывающим камеру для создания и получения снимка, даже если они не используют встроенный проводник.</string>
     <string name="show_all_warning">Управление приложениями, скрытыми в списке, может привести к сбоям и непредсказуемым последствиям, однако эта функция может быть полезна в случае, когда в неисправных ПЗУ, настроенных производителем, по умолчанию не включены все необходимые системные приложения в рабочем профиле. Вы точно хотите продолжить\?</string>
     <string name="settings_dont_freeze_foreground">Пропускать активные приложения</string>
     <string name="settings_dont_freeze_foreground_desc">Не замораживать приложение на переднем плане при блокировке экрана. Это может быть полезно для приложений типа аудиопроигрывателя, но вам придётся вручную замораживать их через ярлык \"Групповая заморозка\".</string>

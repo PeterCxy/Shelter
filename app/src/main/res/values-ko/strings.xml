@@ -33,7 +33,6 @@
     <string name="show_all">모든 앱 보이기</string>
     <string name="install_app_to_profile_success">앱이 직장 프로필에 설치되었습니다.</string>
     <string name="settings_cross_profile_file_chooser">프로필 간 파일 공유</string>
-    <string name="settings_camera_proxy">위장 카메라 앱을 통한 이미지 탐색</string>
     <string name="settings_auto_freeze_service">자동 비활성화 서비스</string>
     <string name="settings_auto_freeze_delay">자동 비활성화 대기 시간</string>
     <string name="settings_dont_freeze_foreground">포어그라운드 실행 중인 앱 제외하기</string>
@@ -53,13 +52,11 @@
     <string name="freeze_all_success">\"자동 비활성화\" 목록에 등록된 모든 앱이 비활성화되었습니다.</string>
     <string name="continue_anyway">계속 진행</string>
     <string name="miui_cannot_clone">현재 MIUI 환경에서는 비 시스템 앱을 다른 프로필로 복제하는 기능이 지원되지 않습니다. 현재 시스템의 앱 스토어(예시: <b>Play Store</b>)를 다른 프로필로 복제하신 후 복제된 앱 스토어 애플리케이션에서 앱을 내려받아 주세요.</string>
-    <string name="camera_proxy_activity">이미지 파일 고르기</string>
     <string name="device_admin_explanation">Shelter가 격리 작업을 진행하려면 기기 관리자 권한을 필요로 합니다.</string>
     <string name="settings_cross_profile_file_chooser_desc">이 기능을 활성화하면 개인 및 직장 프로필에서 각각 상대 프로필의 파일에 접근하거나 상대 프로필 간 파일 작업을 할 수 있습니다. 이 기능은 파일 시스템 간 격리를 유지한 상태에서 문서 사용자 인터페이스(Documents UI, 보통 \"파일\" 또는 \"문서\"라는 이름을 가진 기본 파일 관리자 앱) 또는 문서 사용자 인터페이스를 지원하는 앱(문서 사용자 인터페이스를 통해 선택된 파일에 한해서만 임시적으로 접근 허용)을 통해서만 작동합니다.</string>
     <string name="setup_wizard_compatibility">호환성</string>
     <string name="setup_wizard_please_wait">잠시만 기다려 주세요…</string>
     <string name="install_app_to_profile">직장 프로필에 APK 설치하기</string>
-    <string name="settings_camera_proxy_desc">카메라 앱으로 위장한 이미지 탐색기 앱을 추가합니다. 다른 앱에서 이 위장 앱을 불러오면 문서 사용자 인터페이스 및 프로필 간 파일 공유 기능(활성화되어 있을 시)을 통해 선택된 이미지 파일을 카메라 촬영 화면으로 인식하게 합니다. 외부 카메라 앱을 통한 사진 촬영을 지원하는 앱, 이 중 문서 사용자 인터페이스를 기본 지원하지 않는 앱에 특히 유용합니다.</string>
     <string name="request_usage_stats">이 기능을 켜려면 <b>사용 기록 액세스</b> 권한을 필요로 합니다. \"확인\" 버튼을 누르신 후 <b>양쪽 프로필 모두의 Shelter 앱에 대해 해당 권한을 허용</b>해 주세요. 해당 권한이 허용되지 않은 경우 기능이 정상적으로 작동하지 않습니다.</string>
     <string name="request_storage_manager">프로필 간 파일 공유 기능을 켜려면 <b>모든 파일에 액세스</b> 권한을 필요로 합니다. \"확인\" 버튼을 누르신 후 개인 및 직장 <b>양쪽 프로필 모두의 Shelter 앱에 대해 해당 권한을 허용</b>해 주세요.</string>
     <string name="setup_wizard_please_wait_text">지금 직장 프로필 생성 및 Shelter의 설정 작업을 진행하고 있습니다.</string>

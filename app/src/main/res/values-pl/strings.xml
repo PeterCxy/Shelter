@@ -4,7 +4,6 @@
     <string name="first_run_alert_continue">Kontynuuj</string>
     <string name="device_admin_desc">Usługa izolowania aplikacji</string>
     <string name="device_admin_explanation">Shelter musi zostać administratorem urządzenia, aby wykonywać zadania związane z izolacją.</string>
-    <string name="camera_proxy_activity">Wybierz plik obrazka</string>
     <string name="finish_provision_title">Kliknij tu, aby zakończyć konfigurację Shelter</string>
     <string name="finish_provision_desc">Gratulacje! Jesteś jedno kliknięcie od skończenia konfiguracji Shelter.</string>
     <string name="service_title">Usługa Shelter</string>
@@ -46,8 +45,6 @@
     <string name="settings">Ustawienia</string>
     <string name="settings_interaction">Interakcja</string>
     <string name="settings_cross_profile_file_chooser">Mostek plików</string>
-    <string name="settings_camera_proxy">Wybierz obraz jako fałszywą kamerę</string>
-    <string name="settings_camera_proxy_desc">Przedstaw aplikację fałszywej kamery innym aplikacjom, pozwalając Ci wybrać obrazek z Documents UI (i mostka plików jeśli włączony) jako zrobione zdjęcie. To umożliwia korzystanie z mostka plików dla wszystkich aplikacji, aby te mogły korzystać z innych aplikacji aparatu, nawet jeśli nie wspierają Documents UI natywnie.</string>
     <string name="settings_block_contacts_searching">Zablokuj wyszukiwanie kontaktów</string>
     <string name="settings_block_contacts_searching_desc">Zablokuj dostęp z profilu głównego do kontaktów w profilu służbowym.</string>
     <string name="settings_services">Usługi</string>

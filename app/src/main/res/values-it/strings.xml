@@ -4,7 +4,6 @@
     <string name="first_run_alert_continue">Continua</string>
     <string name="device_admin_desc">Servizio di isolazione app</string>
     <string name="device_admin_explanation">Shelter ha bisogno di diventare amministratore del dispositivo per eseguire l\'isolamento delle app.</string>
-    <string name="camera_proxy_activity">Scegli un\'immagine</string>
     <string name="notifications_important">Notifiche importanti</string>
     <string name="finish_provision_title">Premi qui per finire la configurazione di Shelter</string>
     <string name="finish_provision_desc">Congratulazioni! Ti manca solo un passo per finire la configurazione di Shelter.</string>
@@ -33,7 +32,6 @@
     <string name="documents_ui">Apri interfaccia dei documenti</string>
     <string name="settings_interaction">Interazione</string>
     <string name="settings_cross_profile_file_chooser">Shuttle dei file</string>
-    <string name="settings_camera_proxy">Seleziona l\'immagine per la falsa fotocamera</string>
     <string name="device_admin_toast">Serve i permessi di Amministratore Dispositivo per far funzionare Shelter. Riprovare.</string>
     <string name="settings_block_contacts_searching">Blocca la ricerca dei contatti</string>
     <string name="settings_block_contacts_searching_desc">Impedisci l\'accesso dal profilo principale ai contatti dentro il profilo lavorativo.</string>
@@ -81,7 +79,6 @@
     <string name="batch_operation">Operazione in massa</string>
     <string name="create_unfreeze_shortcut">Crea una scorciatoia di scongelamento e/o avvio</string>
     <string name="create_freeze_all_shortcut">Crea una scorciatoia di congelamento in massa</string>
-    <string name="settings_camera_proxy_desc">Presenta una falsa app per la fotocamera alle altre app, permettendoti di scegliere qualunque immagine dai documenti (e dallo Shuttle dei file se attivo) come se fosse una foto scattata. Ciò abilita lo Shuttle dei file per qualsiasi app che supporti l\'invocazione di altre app fotocamera per scattare una foto, anche se non supporta nativamente l\'interfaccia dei documenti.</string>
     <string name="install_app_to_profile">Installa l\'APK in Shelter</string>
     <string name="settings_dont_freeze_foreground_desc">NON congelare le app in primo piano (con attività visibile) quando si blocca lo schermo. Ciò può essere utile per app come i riproduttori musicali, ma poi dovrai congelarle a mano tramite \"Scorciatoia di congelamento in massa\".</string>
     <string name="request_usage_stats">Shelter ha bisogno dell\'autorizzazione <b>Statistiche d\'uso</b> per farlo. Attiva l\'autorizzazione per <b>ENTRAMBE</b> le app di Shelter mostrate nella finestra dopo aver premuto \"Ok\". Altrimenti questa funzione non funzionerà correttamente.</string>

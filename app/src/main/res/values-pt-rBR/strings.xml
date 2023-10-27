@@ -13,7 +13,6 @@
     <string name="first_run_alert_continue">Continuar</string>
     <string name="device_admin_desc">Serviço de isolamento</string>
     <string name="device_admin_explanation">Shelter precisa tornar-se o Administrador do seu dispositivo para poder executar as tarefas de isolamento.</string>
-    <string name="camera_proxy_activity">Escolha um arquivo de imagem</string>
     <string name="notifications_important">Importante (Shelter)</string>
     <string name="finish_provision_title">Clique aqui para concluir a configuração do Shelter</string>
     <string name="finish_provision_desc">Parabéns! Você está a um clique para concluir a configuração do Shelter.</string>
@@ -48,8 +47,6 @@
     <string name="settings">Configurações</string>
     <string name="settings_cross_profile_file_chooser">Transferência de arquivos</string>
     <string name="settings_cross_profile_file_chooser_desc">Quando ativado, você será capaz de explorar / ver / escolher e copiar os arquivos de Perfil principal no Shelter e vice-versa, SOMENTE via a interface de Documentos (Arquivos ou Documentos em seu lançador) ou apps com suporte à Interface de Documentos (recebem acesso temporário aos arquivos que você escolher via interface de Documentos), enquanto ainda pertencendo ao isolamento do sistema de arquivos.</string>
-    <string name="settings_camera_proxy">Seletor de imagens via simulador de câmera</string>
-    <string name="settings_camera_proxy_desc">Lançar um app que simula a câmera para outros apps, permitindo que você selecione uma imagem da sua escolha da Interface de Documentos (e da Transferência de arquivos, se ativado) como se fosse a foto feita. Isto permite que a Transferência de arquivos funcione com qualquer app que tem suporte a invocação de apps de câmera para tirar uma foto, mesmo sem suporte nativo a interface de Documentos.</string>
     <string name="settings_services">Serviços</string>
     <string name="settings_auto_freeze_service">Serviço de Auto-Suspensão</string>
     <string name="settings_auto_freeze_service_desc">Quando a tela for bloqueada, suspende automaticamente os apps executados de \"Atalho de Reativar e Iniciar\".</string>

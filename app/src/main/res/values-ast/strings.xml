@@ -10,7 +10,6 @@
     <string name="first_run_alert_continue">Siguir</string>
     <string name="device_admin_desc">Serviciu d\'aislamientu d\'aplicaciones</string>
     <string name="device_admin_explanation">Shelter ha convertise n\'alministrador del preséu pa facer les xeres d\'aislamientu.</string>
-    <string name="camera_proxy_activity">Escoyer una imaxe</string>
     <string name="setup_wizard_welcome">Afáyate en Shelter</string>
     <string name="setup_wizard_welcome_text">Shelter ye una aplicación que t\'ayuda a executar aplicaciones nun perfil aisláu. Esto ye posible per duana de la carauterística <b>Perfil de trabayu</b> d\'Android.
 \n
@@ -76,8 +75,6 @@
     <string name="settings_interaction">Interaición</string>
     <string name="settings_cross_profile_file_chooser">Pasera de ficheros</string>
     <string name="settings_cross_profile_file_chooser_desc">Al activar la opción, vas ser a restolar/ver/escoyer/copiar ficheros en Shelter dende\'l perfil principal y viceversa. NAMÁS pente la interfaz de Documentos (col nome de Ficheros o Documentos nel llanzador), o pente aplicaciones con sofitu pa la interfaz de Documentos qu\'acceden temporalmente a los ficheros qu\'escueyas nesa interfaz, ensin dexar de tar nel aislamientu del sistema de ficheros.</string>
-    <string name="settings_camera_proxy">Selector d\'imáxenes como «Cámara»</string>
-    <string name="settings_camera_proxy_desc">Presenta una aplicación de cámara falsa que te permite escoyer una imaxe dende la interfaz de Documentos (y la pasera de ficheros si ta activada) como la semeya fecha. Esto activa la pasera de ficheros pa cualesquier aplicación que sofite l\'usu d\'aplicaciones de cámara pa facer semeyes, magar que nun sofiten nativamente la interfaz de Documentos.</string>
     <string name="settings_block_contacts_searching">Bloquiar la busca de contautos</string>
     <string name="settings_block_contacts_searching_desc">Niega l\'accesu dende\'l perfil principal a los contautos del perfil de trabayu.</string>
     <string name="settings_services">Servicios</string>

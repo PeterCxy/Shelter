@@ -13,7 +13,6 @@
 \nIm Laufe der Installation werden Sie eine Benachrichtigung zum Installationsabschluss erhalten, stellen Sie also sicher, dass Ihr Gerät <b>NICHT</b> im \"Bitte nicht stören\"-Modus ist.</string>
     <string name="device_admin_desc">App-Isolations-Dienst</string>
     <string name="device_admin_explanation">Shelter muss Geräte-Administrator werden, um Apps isolieren zu können.</string>
-    <string name="camera_proxy_activity">Wählen sie eine Bild-Datei aus</string>
     <string name="notifications_important">Shelter - Achtung</string>
     <string name="finish_provision_title">Klicken Sie hier, um die Installation von Shelter abzuschliessen</string>
     <string name="finish_provision_desc">Glückwunsch! Nur noch ein Klick und die Installation von Shelter ist abgeschlossen.</string>
@@ -49,8 +48,6 @@
     <string name="settings_interaction">Interaktion</string>
     <string name="settings_cross_profile_file_chooser">File Shuttle</string>
     <string name="settings_cross_profile_file_chooser_desc">File Shuttle ermöglicht den Zugriff auf Dateien des persönlichen Profils vom Arbeits-Profil und umgekehrt. Man kann Dateien durchsuchen/ansehen/auswählen/kopieren. Dazu kann der systemeigene Datei-Manager oder auch Apps benutzt werden, die über diesen Dateizugriff haben. Diese Apps erhalten lediglich temporären Zugriff auf die ausgewählten Dateien, die eigentliche Dateisystem-Isolation bleibt bestehen.</string>
-    <string name="settings_camera_proxy">Bildauswahl als vorgetäuschte Kamera verwenden</string>
-    <string name="settings_camera_proxy_desc">Wenn sie anderen Apps eine Pseudo-Kamera \"vorgaukeln\" kann Shelter ein beliebiges Bild aus dem Datei-Manager (und File Shuttle, sofern aktiviert) auswählen und dieses anderen Apps als \"aufgenommenes Bild\" präsentieren. Dies ermöglicht File Shuttle für jede Anwendung, die das Aufrufen anderer Kameraanwendungen unterstützt, ein Bild aufzunehmen, auch wenn diese einen Datei-Manager nicht nativ unterstützen. Sozusagen ein \"Umsetzer\".</string>
     <string name="settings_services">Dienste</string>
     <string name="settings_auto_freeze_service">Auto-Frost Dienst</string>
     <string name="settings_auto_freeze_service_desc">Bei Bildschirmsperre automatisch Apps einfrosten, die über die Verknüpfung für \"Auftauen &amp; Starten\" gestartet wurden.</string>

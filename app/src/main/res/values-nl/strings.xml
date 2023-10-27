@@ -3,7 +3,6 @@
     <string name="first_run_alert_cancel">Tot ziens</string>
     <string name="first_run_alert_continue">Ga verder</string>
     <string name="device_admin_explanation">Shelter moet beheerder van dit apparaat worden om zijn isolatietaken uit te voeren.</string>
-    <string name="camera_proxy_activity">Kies een afbeelding</string>
     <string name="notifications_important">Shelter belangrijk</string>
     <string name="finish_provision_title">Druk hier om het instellen van Shelter te voltooien</string>
     <string name="finish_provision_desc">Gefeliciteerd! Je bent een klik verwijderd om het instellen van Shelter te voltooien.</string>
