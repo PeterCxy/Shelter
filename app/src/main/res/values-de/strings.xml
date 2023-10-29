@@ -46,8 +46,8 @@
     <string name="show_all_warning">Die Nutzung von Apps, die in der Liste ausgeblendet sind, kann zu Abstürzen und allem möglichen unerwartetem Verhalten führen. Dieses Feature kann aber nützlich sein, wenn vom Hersteller fehlerhaft angepasste ROMs nicht alle notwendigen System-Apps für das Arbeits-Profil zur Verfügung stellen. Wenn sie fortfahren, handeln Sie auf eigenes Risiko.</string>
     <string name="settings">Einstellungen</string>
     <string name="settings_interaction">Interaktion</string>
-    <string name="settings_cross_profile_file_chooser">File Shuttle</string>
-    <string name="settings_cross_profile_file_chooser_desc">File Shuttle ermöglicht den Zugriff auf Dateien des persönlichen Profils vom Arbeits-Profil und umgekehrt. Man kann Dateien durchsuchen/ansehen/auswählen/kopieren. Dazu kann der systemeigene Datei-Manager oder auch Apps benutzt werden, die über diesen Dateizugriff haben. Diese Apps erhalten lediglich temporären Zugriff auf die ausgewählten Dateien, die eigentliche Dateisystem-Isolation bleibt bestehen.</string>
+    <string name="settings_cross_profile_file_chooser">Datei-Shuttle</string>
+    <string name="settings_cross_profile_file_chooser_desc">Datei-Shuttle ermöglicht den Zugriff auf Dateien des persönlichen Profils vom Arbeitsprofil und umgekehrt. Sie können Dateien durchsuchen, ansehen, auswählen und kopieren. Dazu kann der systemeigene Dateimanager oder auch Apps mit Dateizugriff benutzt werden. Diese Apps erhalten lediglich temporären Zugriff auf die ausgewählten Dateien, die eigentliche Dateisystem-Isolation bleibt bestehen.</string>
     <string name="settings_services">Dienste</string>
     <string name="settings_auto_freeze_service">Auto-Frost Dienst</string>
     <string name="settings_auto_freeze_service_desc">Bei Bildschirmsperre automatisch Apps einfrosten, die über die Verknüpfung für \"Auftauen &amp; Starten\" gestartet wurden.</string>
