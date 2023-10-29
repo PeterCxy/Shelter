@@ -123,4 +123,5 @@
 \nEinige erweiterte Funktionen von Shelter benötigen eventuell mehr Berechtigungen <b>außerhalb</b> des Arbeitsprofils. Shelter wird beim Aktivieren der entsprechenden Funktionen separat nach diesen Berechtigungen fragen, sofern nötig.</string>
     <string name="setup_wizard_compatibility">Kompatibilität</string>
     <string name="setup_wizard_permissions">Ein Wort zu den Berechtigungen</string>
+    <string name="allow_cross_profile_interaction">Profilübergreifende Interaktion erlauben</string>
 </resources>
