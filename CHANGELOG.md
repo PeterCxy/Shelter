@@ -7,6 +7,7 @@
 - Removed "Fake Camera" feature as it has not been supported since R.
 - Version displayed within the app has now been changed to also reflect the exact Git commit when the app is built.
 - File Shuttle no longer appends ".null" or ".bin" suffixes unnecessarily. This should make it work much better with file managers such as Material Files.
+- File Shuttle now triggers media scanning much more robustly. Media files (pictures, videos, etc.) copied into the work profile should now show up much quicker in gallery apps.
 
 1.8
 ===
