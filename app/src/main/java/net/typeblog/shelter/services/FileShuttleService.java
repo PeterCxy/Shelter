@@ -19,6 +19,7 @@ import android.webkit.MimeTypeMap;
 
 import androidx.annotation.Nullable;
 
+import net.typeblog.shelter.R;
 import net.typeblog.shelter.ShelterApplication;
 import net.typeblog.shelter.util.CrossProfileDocumentsProvider;
 import net.typeblog.shelter.util.Utility;
@@ -66,7 +67,12 @@ public class FileShuttleService extends Service {
             File f = new File(resolvePath(path));
             HashMap<String, Serializable> map = new HashMap<>();
             map.put(DocumentsContract.Document.COLUMN_DOCUMENT_ID, f.getAbsolutePath());
-            map.put(DocumentsContract.Document.COLUMN_DISPLAY_NAME, f.getName());
+            if (f.equals(Environment.getExternalStorageDirectory())) {
+                // Show "Shelter" as the name of the root directory
+                map.put(DocumentsContract.Document.COLUMN_DISPLAY_NAME, getString(R.string.app_name));
+            } else {
+                map.put(DocumentsContract.Document.COLUMN_DISPLAY_NAME, f.getName());
+            }
             map.put(DocumentsContract.Document.COLUMN_SIZE, f.length());
             map.put(DocumentsContract.Document.COLUMN_LAST_MODIFIED, f.lastModified());
 
