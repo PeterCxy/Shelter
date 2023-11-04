@@ -6,6 +6,7 @@
 - Support for cross-profile interactions allowlisting (e.g. for Gboard).
 - Removed "Fake Camera" feature as it has not been supported since R.
 - Version displayed within the app has now been changed to also reflect the exact Git commit when the app is built.
+- File Shuttle no longer appends ".null" or ".bin" suffixes unnecessarily. This should make it work much better with file managers such as Material Files.
 
 1.8
 ===
