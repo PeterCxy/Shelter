@@ -1,6 +1,7 @@
 package net.typeblog.shelter.services;
 
 import android.app.Service;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -126,36 +127,40 @@ public class FileShuttleService extends Service {
         public String createFile(String path, String mimeType, String displayName) {
             resetSuicideTask();
             File f;
-            if (!DocumentsContract.Document.MIME_TYPE_DIR.equals(mimeType)) {
-                String fullPath = path + "/" + displayName;
+            String fullPath = path + "/" + displayName;
+            boolean isDirectory =
+                    DocumentsContract.Document.MIME_TYPE_DIR.equals(mimeType);
+            boolean shouldAppendExtension =
+                    mimeType != null && !isDirectory && !mimeType.equals("application/octet-stream");
+            boolean isMedia =
+                    mimeType != null && (mimeType.startsWith("image/") || mimeType.startsWith("video/"));
+
+            // Append extension for files if a MIME type is specified
+            if (shouldAppendExtension) {
                 String extensionPart = "." + MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType);
                 if (!fullPath.endsWith(extensionPart)) {
                     fullPath += extensionPart;
                 }
-                f = new File(resolvePath(fullPath));
-
-                if (mimeType.startsWith("image/") || mimeType.startsWith("video/")) {
-                    // Notify the media scanner to scan the file
-                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                    intent.setData(Uri.fromFile(f));
-                    sendBroadcast(intent);
-                }
-
-                try {
-                    if (!f.createNewFile()) {
-                        return null;
-                    }
-                } catch (IOException e) {
-                    return null;
-                }
-
-            } else {
-                String fullPath = path + "/" + displayName;
-                f = new File(resolvePath(fullPath));
-                if (!f.mkdir()) {
-                    return null;
-                }
             }
+
+            // Now we can create the file / directory
+            f = new File(resolvePath(fullPath));
+            try {
+                if ((isDirectory && !f.mkdir()) || (!isDirectory && !f.createNewFile())) {
+                    return null;
+                }
+            } catch (IOException e) {
+                return null;
+            }
+
+            // Notify the media scanner to scan the file as needed
+            // This has to be done AFTER file creation
+            if (isMedia) {
+                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                intent.setData(Uri.fromFile(f));
+                sendBroadcast(intent);
+            }
+
             return f.getAbsolutePath();
         }
 
