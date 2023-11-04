@@ -284,14 +284,13 @@ public class FileShuttleService extends Service {
             return null;
         }
 
-        FileOutputStream os = new FileOutputStream(pair[1].getFileDescriptor());
+
         // Send the bitmap into the pipe in another thread, so that we can return the
         // reading fd to the Documents UI before we finish sending the Bitmap.
         new Thread(() -> {
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, os);
-            try {
+            try (FileOutputStream os = new FileOutputStream(pair[1].getFileDescriptor())) {
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, os);
                 os.flush();
-                os.close();
             } catch (IOException e) {
                 // ...
             }
