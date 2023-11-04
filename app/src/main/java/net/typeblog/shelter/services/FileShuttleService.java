@@ -101,10 +101,24 @@ public class FileShuttleService extends Service {
         public ParcelFileDescriptor openFile(String path, String mode) {
             resetSuicideTask();
             File f = new File(resolvePath(path));
+            int numericMode = ParcelFileDescriptor.parseMode(mode);
 
             try {
-                return ParcelFileDescriptor.open(f, ParcelFileDescriptor.parseMode(mode));
-            } catch (FileNotFoundException e) {
+                if ((numericMode & ParcelFileDescriptor.MODE_WRITE_ONLY) != 0) {
+                    // When the file is opened in writable mode, and the file is of a media
+                    // type, we need to notify the media scanner of the update.
+                    // Even though this is done as part of file creation as well, that scan
+                    // might have failed because it happened before the writer was able to
+                    // finish writing.
+                    return ParcelFileDescriptor.open(f, numericMode, mHandler, (e) -> {
+                        String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
+                                Utility.getFileExtension(f.getAbsolutePath()));
+                        notifyMediaScannerIfNecessary(f, mime);
+                    });
+                } else {
+                    return ParcelFileDescriptor.open(f, numericMode);
+                }
+            } catch (IOException e) {
                 return null;
             }
         }
@@ -138,8 +152,6 @@ public class FileShuttleService extends Service {
                     DocumentsContract.Document.MIME_TYPE_DIR.equals(mimeType);
             boolean shouldAppendExtension =
                     mimeType != null && !isDirectory && !mimeType.equals("application/octet-stream");
-            boolean isMedia =
-                    mimeType != null && (mimeType.startsWith("image/") || mimeType.startsWith("video/"));
 
             // Append extension for files if a MIME type is specified
             if (shouldAppendExtension) {
@@ -159,13 +171,7 @@ public class FileShuttleService extends Service {
                 return null;
             }
 
-            // Notify the media scanner to scan the file as needed
-            // This has to be done AFTER file creation
-            if (isMedia) {
-                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                intent.setData(Uri.fromFile(f));
-                sendBroadcast(intent);
-            }
+            notifyMediaScannerIfNecessary(f, mimeType);
 
             return f.getAbsolutePath();
         }
@@ -298,5 +304,15 @@ public class FileShuttleService extends Service {
         }).start();
 
         return pair[0];
+    }
+
+    private void notifyMediaScannerIfNecessary(File f, String mimeType) {
+        // Notify the media scanner to scan the file as needed
+        // This has to be done AFTER file creation
+        if (mimeType != null && (mimeType.startsWith("image/") || mimeType.startsWith("video/"))) {
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            intent.setData(Uri.fromFile(f));
+            sendBroadcast(intent);
+        }
     }
 }
