@@ -7,7 +7,13 @@ Downloads
 ===
 
 - [F-Droid](https://f-droid.org/app/net.typeblog.shelter) (Signed by F-Droid)
-- [Custom F-Droid Repository](https://fdroid.typeblog.net) (Signed by PeterCxy, contains latest development versions)
+- Custom F-Droid Repository (Signed by PeterCxy, contains latest development versions):
+  - [Click here](fdroidrepos://fdroid.typeblog.net?fingerprint=1A7E446C491C80BC2F83844A26387887990F97F2F379AE7B109679FEAE3DBC8C) to add from your phone
+  - Or scan the following QR-code:  
+  ![](fdroid_custom_repo.png)
+  - Or setup manually:
+    - Url: https://fdroid.typeblog.net
+    - Fingerprint: `1A 7E 44 6C 49 1C 80 BC 2F 83 84 4A 26 38 78 87 99 0F 97 F2 F3 79 AE 7B 10 96 79 FE AE 3D BC 8C`
 
 You cannot switch between versions listed above that have different signature without uninstalling Shelter first.
 
