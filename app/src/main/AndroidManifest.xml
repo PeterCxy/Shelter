@@ -20,6 +20,7 @@
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.NFC" />
 
     <!-- For querying apps on Android R and later -->
     <queries>
@@ -156,6 +157,19 @@
         <!-- Service to freeze apps on screen lock -->
         <service android:name=".services.FreezeService"
             android:foregroundServiceType="systemExempted" />
+
+        <!-- Payment stub service -->
+        <service android:name=".services.PaymentStubService"
+            android:exported="true"
+            android:enabled="false"
+            android:permission="android.permission.BIND_NFC_SERVICE">
+            <intent-filter>
+                <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE"/>
+            </intent-filter>
+            <meta-data android:name="android.nfc.cardemulation.host_apdu_service"
+                android:resource="@xml/payment_stub"/>
+        </service>
+
     </application>
 
 </manifest>

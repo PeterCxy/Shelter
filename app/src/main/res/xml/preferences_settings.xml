@@ -15,6 +15,11 @@
             android:title="@string/settings_block_contacts_searching"
             android:summary="@string/settings_block_contacts_searching_desc" />
 
+        <androidx.preference.CheckBoxPreference
+            android:key="settings_payment_stub"
+            android:title="@string/settings_payment_stub"
+            android:summary="@string/settings_payment_stub_desc" />
+
     </androidx.preference.PreferenceCategory>
 
     <androidx.preference.PreferenceCategory
