@@ -4,6 +4,8 @@
     <color name="colorAccent">#009688</color>
     <color name="colorAccentSetupWizard">#FFC107</color>
     <color name="colorNavigationBar">#004D3F</color>
+    <color name="colorNavigationIconTint">@color/colorTextPrimary</color>
+    <color name="colorNavigationIconTintSelected">@color/colorAccent</color>
     <color name="colorTextPrimary">#EEEEEE</color>
     <color name="colorTextSecondary">#CCCCCC</color>
     <color name="disabledAppBackground">#004D3F</color>
