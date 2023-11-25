@@ -112,4 +112,8 @@
     <string name="request_storage_manager">Shelter memerlukan akses ke <b>Semua File</b> untuk File Shuttle. Harap aktifkan izin untuk <b>KESELURUHAN </b> (Pribadi / Kantor) aplikasi Shelter yang ditampilkan dalam dialog setelah Anda menekan \"Ok\".</string>
     <string name="request_system_alert">Shelter harus <b>Draw over Other Apps</b> agar File Shuttle berfungsi dengan benar. Harap aktifkan izin untuk <b>KESELURUHAN </b> (Pribadi / Kantor) aplikasi Shelter yang ditampilkan dalam dialog setelah Anda menekan \"Ok\". Izin ini digunakan untuk memulai layanan File Shuttle di latar belakang.</string>
     <string name="miui_cannot_clone">Mengkloning aplikasi non-sistem ke profil lain saat ini tidak dimungkinkan di MIUI. Harap gandakan toko aplikasi sistem Anda (mis. <b>Play Store</b>) ke profil lain, lalu instal aplikasi dari sana.</string>
+    <string name="payment_stub_description">Rintisan Layanan Pembayaran (JANGAN GUNAKAN)</string>
+    <string name="settings_payment_stub">Rintisan Layanan Pembayaran</string>
+    <string name="settings_payment_stub_desc">Aktifkan layanan pembayaran NFC palsu di profil utama, sehingga opsi pembayaran nirsentuh di bawah Pengaturan - NFC diaktifkan untuk memungkinkan Anda memilih aplikasi pembayaran di dalam profil kerja. Ini mengatasi bug Android yang membuat aplikasi pembayaran di dalam profil kerja tidak dapat dipilih jika tidak ada yang tersedia di profil utama.</string>
+    <string name="allow_cross_profile_interaction">Izinkan Interaksi Lintas Profil</string>
 </resources>
