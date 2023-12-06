@@ -1,5 +1,10 @@
+1.9.1 (445)
+===
+
+- Hotfix crashes below Android 11.
+
 1.9
-==
+===
 
 - Updated targetSDK to 34 (Android 14) with compatibility fixes.
 - More reliable delayed freezing using AlarmManager (thanks parmaster84).

@@ -211,7 +211,9 @@ public class AppListFragment extends BaseFragment {
                         // Update the cross-profile packages / widget providers list
                         try {
                             mCrossProfileWidgetProviders.addAll(mService.getCrossProfileWidgetProviders());
-                            mCrossProfilePackages.addAll(mService.getCrossProfilePackages());
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+                                mCrossProfilePackages.addAll(mService.getCrossProfilePackages());
                         } catch (RemoteException ignored) {
 
                         }
