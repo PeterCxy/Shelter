@@ -32,7 +32,7 @@
 \n
 \nДа бисте ресетовали Шелтер и почели испочетка, можете да обришете податке Шелтера у подешавањима.</string>
     <string name="uninstall_fail_system_app">Није могуће деинсталирати системске апликације на профилу над којим Шелтер нема контролу.</string>
-    <string name="setup_wizard_ready">Спремни\?</string>
+    <string name="setup_wizard_ready">Спремни?</string>
     <string name="setup_wizard_please_wait">Сачекајте…</string>
     <string name="setup_wizard_failed">Подешавање није успело</string>
     <string name="setup_wizard_action_required">Потребна радња</string>
