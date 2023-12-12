@@ -1,8 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="first_run_alert_cancel">Sbohem</string>
+    <string name="first_run_alert_cancel">Nashle</string>
     <string name="first_run_alert_continue">Pokračovat</string>
     <string name="device_admin_desc">Služba izolace aplikací</string>
-    <string name="device_admin_explanation">Shelter musí být správcem zařízení, aby mohl provádět úkoly.</string>
+    <string name="device_admin_explanation">Shelter musí být správcem zařízení, aby mohl fungovat.</string>
     <string name="setup_wizard_welcome">Vítejte v Shelteru</string>
+    <string name="setup_wizard_permissions">Pár slov o oprávněních</string>
+    <string name="setup_wizard_welcome_text">Shelter je aplikace, která pomáhá spouštět aplikace v izolovaném profilu. Dělá to za použití <b>Pracovního profilu</b>, který je součástí Androidu.
+\n
+\n
+\nKlikni na \"Další\" a my ti poskytneme další informace o Shelter a provedeme tě procesem jeho nastavení.
+\n
+\nDoporučujeme, aby jsi si následující stránky pečlivě přečetl.</string>
+    <string name="setup_wizard_failed_text">Je nám líto, že pro Vás nemůžeme Shelter nastavit.
+\n
+\nPakliže máte již nastavený Pracovní profil, buď z předchozí instalace Shelteru, nebo jiné aplikace, budete jej muset odstranit v Nastavení -&gt; Účty předtím, než bude Shelter moci pokračovat.
+\n
+\nJinak, pokud jste nezrušili nastavení ručně, pak důvodem chyby je obvykle těžce upravený systém nebo rozpor mezi Shelterem a jinými správci Pracovního profilu. Bohužel, zde není nic, co s tím můžeme udělat.
+\n
+\nKlikněte na \"Další\" pro ukončení.</string>
+    <string name="setup_wizard_permissions_text">Ve výchozím stavu se Vás Shelter neptá na žádná individuální oprávnění. Nicméně, pokud budete pokračovat procesem nastavení, Shelter se pokusí nastavit Pracovní profil a proto se stane jeho <b>správcem</b>.
+\n
+\nTímto bude Shelteru udělen rozsáhlý seznam oprávnění v rámci tohoto profilu srovnatelný s profilem správce zařízení, i když omezený na tento profil. Bytí správcem profilu je nutné k většině funkcí Shelteru.
+\n
+\nNěkteré pokročilé funcke Shelteru můžou vyžadovat více oprávnění <b>mimo</b> Pracovní profil. Když budou potřeba, Shelter se na tato oprávnění zeptá samostatně, jakmile povolíte odpovídající funkce.</string>
+    <string name="setup_wizard_compatibility">Kompatibilita</string>
+    <string name="fragment_profile_work">Shelter</string>
+    <string name="setup_wizard_ready">Připraven\?</string>
+    <string name="setup_wizard_ready_text">Nyní jsme připraveni pro Vás nastavit Shelter. Nejdříve se prosím ujistěte, že Vaše zařízení <b>není</b> v režimu Nerušit, protože budete muset později <b>kliknout na oznámení</b> k dokonční nastavení.
+\n
+\nPokud jste připraveni, klikněte na \"Další\" pro zahájení procesu nastavení.</string>
+    <string name="unfreeze_and_launch">Rozmrazit a spustit</string>
+    <string name="auto_freeze">Automatické zamrznutí</string>
+    <string name="allow_cross_profile_widgets">Povolit widgety v hlavním profilu</string>
+    <string name="setup_wizard_action_required">Je vyžadována akce</string>
+    <string name="notifications_important">Důležité pro Shelter</string>
+    <string name="finish_provision_title">Klikněte zde pro dokončení nastavení Shelteru</string>
+    <string name="allow_cross_profile_interaction">Povolit interakci napříč profily</string>
+    <string name="create_freeze_all_shortcut">Vytvořit zkratku Dávkové zmrazení</string>
+    <string name="settings_interaction">Interakce</string>
+    <string name="settings_services">Služby</string>
+    <string name="setup_wizard_compatibility_text">Shelter je vyvíjen a testován na AOSP Android zařízeních. To zahrnuje AOSP (Android Open Source Project), Google Android (na Pixelech), a <b>mnoho na AOSP založených open-source operačních systémech (ROM)</b> jako je LineageOS. Pokud Váš telefon běží na jednom z těchto Android derivátů zmíněných výše, pak gratuluji! Shelter bude na Vašem zařízení fungovat správně.
+\n
+\nNěkteří výrobci zařízení přichází s velice invazivními úpravami základního kódu Androidu, vedoucí k problémům, nekompatibilitě a neočekávanému chování. Některé vlastní ROM mohou také zavádět kompatibilitu narušující úpravy, ale většinou jsou to vzácnější případy ve srovnání s nekompatibilitami vytvořenými výrobci telefonů.
+\n
+\nShelter je pouze rozhraní pro Pracovní profil, jenž je funkcí poskytovanou operačním systémem. Pokud je tato funkce poskytovaná systémem rozbitá nebo nestandardní, <b>Shelter nebude moci vyřešit takový problém sám</b>. Pokud nyní používáte výrobcem upravenou verzi Androidu, o které se ví, že v ní nefungují Pracovní profily, <b>byli jste upozorněni</b>. Pokud i tak budete pokračovat, neexistuje garance, že Shelter se bude za těchto okolností chovat správně.</string>
+    <string name="show_all_warning">Manipulace se skrytými aplikacemi může způsobit pády a všechny druhy neočekávaného chování. Nicméně, tato funkce může být užitečná, pokud výrobcem upravená ROM nenabízí všechny systémové aplikace v pracovním profilu ve výchozím stavu. Pokračujete sami na sebe.</string>
+    <string name="settings_cross_profile_file_chooser_desc">Pokud je povoleno, budete moci prohlížet / zobrazovat / vybírat / kopírovat mezi Shelterem a hlavním profilem a naopak, POUZE skrze rozhraní Dokumentů (nazýváno Soubory nebo dokumenty ve vašem spouštěči) nebo aplikace s podporou rozhraní Dokumentů (získají pouze dočasný přístup k souborům v rozhraní Dokumentů), stále při zachování izolace souborového systému.</string>
+    <string name="settings_bug_report">Hlášení chyb / Sledování problémů</string>
+    <string name="batch_operation">Hromadná akce</string>
+    <string name="clone_to_main_profile">Naklonovat do hlavního profilu</string>
+    <string name="clone_to_work_profile">Naklonovat do Shelteru (Pracovního profilu)</string>
+    <string name="freeze_app">Zmrazit</string>
+    <string name="payment_stub_description">Údaj o platební službě (NEPOUŽÍVAT)</string>
+    <string name="setup_wizard_please_wait">Prosím čekejte…</string>
+    <string name="setup_wizard_please_wait_text">Snažíme se zapnout Pracovní profil a nastavit Shelter.</string>
+    <string name="setup_wizard_failed">Nastavení selhalo</string>
+    <string name="install_app_to_profile">Nainstalovat APK do Shelteru</string>
+    <string name="setup_wizard_action_required_text">Nyní byste měli dostat oznámení od Shelteru. <b>Klikněte na něj</b> k dokončení procesu nastavení.
+\n
+\nPokud žádné oznámení nevidíte, ujistěte se, že na Vašem zařízení není zapnutý režim Nerušit a zkuste stáhnou centrum oznámení.
+\n
+\nPokud chcete resetovat Shelter a začít od začátku, můžete odstranit data Shelteru v Nastavení.</string>
+    <string name="service_desc">Shelter právě běží …</string>
+    <string name="finish_provision_desc">Gratuluji! Jste jeden klik od dokončení nastavování Shelteru.</string>
+    <string name="service_title">Služba Shelteru</string>
+    <string name="service_auto_freeze_title">Automatické zmrazení je pozdrženo</string>
+    <string name="service_auto_freeze_desc">Shelter automaticky zamrazí aplikace spuštěné z \"Rozmrazit &amp; Spustit\" při dalším zamčení obrazovky.</string>
+    <string name="service_auto_freeze_now">Ihned zmrazit</string>
+    <string name="app_installing">Instaluji...</string>
+    <string name="fragment_profile_main">Hlavní</string>
+    <string name="uninstall_app">Odinstalovat</string>
+    <string name="unfreeze_app">Rozmrazit</string>
+    <string name="launch">Spustit</string>
+    <string name="create_unfreeze_shortcut">Vytvořit zkratku Rozmrazit a/nebo spustit</string>
+    <string name="search">Hledat</string>
+    <string name="freeze_all">Dávkové zmrazení</string>
+    <string name="list_item_disabled">[Zamraženo] %s</string>
+    <string name="freeze_all_shortcut">Zmrazit</string>
+    <string name="install_app_to_profile_success">Instalace aplikace v pracovním profilu dokončena.</string>
+    <string name="show_all">Zobrazit všechny aplikace</string>
+    <string name="documents_ui">Otevřít rozhraní Dokumentů</string>
+    <string name="settings_block_contacts_searching_desc">Zamítnout přístup z hlavního profilu ke kontaktům uvnitř pracovního profilu.</string>
+    <string name="settings_payment_stub">Účtenka platební služby</string>
+    <string name="settings">Nastavení</string>
+    <string name="settings_payment_stub_desc">Povolte v hlavním profilu falešnou platební službu NFC, aby byla v části Nastavení - NFC povolena. Tato možnost vám umožní vybrat platební aplikaci v pracovním profilu. Tím se obejde chyba systému Android, která znemožňuje výběr platební aplikace uvnitř pracovního profilu, pokud v hlavním profilu není žádná dostupná.</string>
+    <string name="settings_auto_freeze_service">Služba automatického zmrazení</string>
+    <string name="settings_auto_freeze_delay">Prodleva automatického zamrznutí</string>
+    <string name="settings_translate">Překlad</string>
+    <string name="provision_finished">Nastavení Shelteru je kompletní. Nyní se Shelter restartuje. Pokud se nespustí automaticky, budete jej muset znova spustit z Vašeho spouštěče.</string>
+    <string name="msg_device_unsupported">Oprávnění bylo zamítnuto nebo používáte nepodporované zařízení</string>
+    <string name="work_mode_disabled">Vypadá to, že jste vypnuli Pracovní režim během zapínání Shelteru. Pokud jste ho nyní povolili, prosím restartujte Shelter.</string>
+    <string name="clone_success">Aplikace \"%s\" úspěšně naklonována</string>
+    <string name="settings_auto_freeze_service_desc">Pokud je obrazovka uzamčena, automaticky zamrazit aplikace spuštěné ze zkratky \"Rozmrazit a Spustit\".</string>
+    <string name="settings_cross_profile_file_chooser">Výměna souborů</string>
+    <string name="uninstall_success">Aplikace \"%s\" úspěšně odinstalována</string>
+    <string name="uninstall_fail_system_app">Nelze odinstalovat systémové aplikace v profilu, který Shelter nemá pod kontrolou.</string>
+    <string name="unsupported_launcher">Není možné přidat zkratku na Váš spuštěč. Prosím kontaktuje vývojáře pro další informace.</string>
+    <string name="app_context_menu_title">Operace pro %s</string>
+    <string name="freeze_all_success">Všechny aplikace na seznamu \"Automatického zamrznutí\" byly úspěšně zamrazeny.</string>
+    <string name="settings_block_contacts_searching">Zamezit hledání kontaktů</string>
+    <string name="shortcut_create_success">Na Vašem spouštěči byl vytvořen zástupce.</string>
+    <string name="launch_app_fail">Není možné spustit aplikaci %s, protože nemá GUI.</string>
+    <string name="request_system_alert">Shelter potřebuje oprávnění <b>Zobrazit přes ostatní aplikace</b> pro správnou funkčnost Výměny souborů. Prosím, povolte jej pro <b>OBĚ DVĚ</b> (Osobní / Pracovní) aplikace Shelter zobrazené v dialogu poté, co stisknete \"Ok\". Toto oprávnění je využito pro spuštění služeb Výměny souborů na pozadí.</string>
+    <string name="settings_dont_freeze_foreground">Přeskočit aplikace na popředí</string>
+    <string name="settings_dont_freeze_foreground_desc">NEZAMRAZIT aplikace na popředí (s viditelnou aktivitou) když zamknete obrazovku. Toto může být užitečné pro aplikace jako jsou přehrávače hudby, ale budete je muset poté zamrazit prostřednictvím zkratky \"Hromadné zamrznutí\".</string>
+    <string name="settings_about">O aplikaci</string>
+    <string name="settings_version">Verze</string>
+    <string name="settings_source_code">Zdrojový kód</string>
+    <string name="continue_anyway">Přesto pokračovat</string>
+    <string name="work_profile_not_found">Pracovní profil nenalezen. Restartujte prosím aplikaci pro opětovné nastavení profilu.</string>
+    <string name="work_profile_provision_failed">Nelze zjistit pracovní profil. Můžete to zkusit znovu restartováním Shelteru.</string>
+    <string name="unfreeze_success">Aplikace \"%s\" úspěšně rozmrazena</string>
+    <string name="freeze_success">Aplikace \"%s\" úspěšně zamrazena</string>
+    <string name="clone_fail_system_app">Není možné naklonovat systémovou aplikaci, protože Shelter nad ní nemá kontrolu.</string>
+    <string name="request_usage_stats">Shelter potřebuje oprávnění <b>Statistiky využití</b> pro provedení této akce. Prosím povolte oprávnění pro <b>OBĚ DVĚ</b> aplikace Shelteru zobrazené v dialogu poté, co stisnete \"Ok\". Pokud tak neučiníte, tato funkce nebude fungovat správně.</string>
+    <string name="request_storage_manager">Shelter potřebuje přístup ke <b>všem souborům</b> pro funkci Výměny souborů. Prosím, udělte oprávnění pro <b>OBĚ DVĚ</b> (Osobní / Pracovní) aplikace Shelter zobrazené v dialogu poté, co stisknete \"Ok\".</string>
+    <string name="miui_cannot_clone">Klonování nesystémových aplikací do jiného profilu není v tuto chvíli v MIUI k dispozici. Prosím, naklonujte systémový obchod s aplikacemi (např. <b>Obchod Play</b>) do druhého profilu a aplikace instalujte z něj.</string>
 </resources>
