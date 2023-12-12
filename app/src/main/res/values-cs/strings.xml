@@ -26,7 +26,7 @@
 \nNěkteré pokročilé funcke Shelteru můžou vyžadovat více oprávnění <b>mimo</b> Pracovní profil. Když budou potřeba, Shelter se na tato oprávnění zeptá samostatně, jakmile povolíte odpovídající funkce.</string>
     <string name="setup_wizard_compatibility">Kompatibilita</string>
     <string name="fragment_profile_work">Shelter</string>
-    <string name="setup_wizard_ready">Připraven\?</string>
+    <string name="setup_wizard_ready">Připraven?</string>
     <string name="setup_wizard_ready_text">Nyní jsme připraveni pro Vás nastavit Shelter. Nejdříve se prosím ujistěte, že Vaše zařízení <b>není</b> v režimu Nerušit, protože budete muset později <b>kliknout na oznámení</b> k dokonční nastavení.
 \n
 \nPokud jste připraveni, klikněte na \"Další\" pro zahájení procesu nastavení.</string>
