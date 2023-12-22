@@ -78,7 +78,7 @@
     <string name="request_usage_stats">Shelter benötigt Zugriffsrechte auf <b>Nutzungs-Statistiken</b>. Bitte erteilen Sie die nötigen Zugriffsrechte für <b>BEIDE</b> Shelter Apps, die nach Klick auf \"OK\" im folgenden Dialog angezeigt werden. Bei Nichterteilung der Zugriffsrechte kann diese Programmfunktion nicht korrekt ausgeführt werden.</string>
     <string name="launch_app_fail">Die Anwendung %s konnte nicht gestartet werden, das sie keine grafische Benutzeroberfläche hat.</string>
     <string name="request_storage_manager">Shelter benötigt Zugriff auf <b>Alle Dateien</b> um Datei-Shuttle anbieten zu können. Bitte erteilen Sie die notwendigen Zugriffsrechte für <b>BEIDE</b> (persönliches Profil / Arbeitsprofil) Shelter-Apps, die nach dem Klick auf \"OK\" in der nachfolgenden Meldung angezeigt werden.</string>
-    <string name="request_system_alert">Damit Datei-Shuttle korrekt funktioniert, muss Shelter über anderen Anwendungen eingeblendet werden können. Bitte erteilen Sie die notwendigen Zugriffsrechte für <b>BEIDE</b> (persönliches Profil / Arbeitsprofil) Shelter-Apps, die nach dem Klick auf \"OK\" in der nachfolgenden Meldung angezeigt werden. Diese Berechtigung wird genutzt, um die Datei-Shuttle-Dienste im Hintergrund zu starten.</string>
+    <string name="request_system_alert">Damit der Datei-Shuttle korrekt funktioniert, muss Shelter über anderen Anwendungen eingeblendet werden können. Bitte erteilen Sie die notwendigen Zugriffsrechte für <b>BEIDE</b> (persönliches Profil / Arbeitsprofil) Shelter-Apps, die nach dem Klick auf \"OK\" in der nachfolgenden Meldung angezeigt werden. Diese Berechtigung wird genutzt, um die Datei-Shuttle-Dienste im Hintergrund zu starten.</string>
     <string name="miui_cannot_clone">Das Klonen von Nicht-System-Apps in das Arbeits-Profil ist derzeit unter MIUI nicht möglich. Bitte klonen sie den App-Store Ihres Systems (z.B. <b>Play Store</b>) in ihr Arbeits-Profil und installieren sie ihre benötigten Anwendungen von dort aus.</string>
     <string name="continue_anyway">Trotzdem fortsetzen</string>
     <string name="settings_translate">Übersetzung</string>
@@ -95,7 +95,7 @@
 \nWenn du die Benachrichtigung nicht siehst stelle sicher, dass dein Gerät nicht im \"Nicht stören\"-Modus ist und versuche, das Benachrichtigungspanel herunterzuziehen.
 \n
 \nUm Shelter zurückzusetzen und von vorne zu beginnen kannst du die Daten von Shelter in den Einstellungen löschen.</string>
-    <string name="setup_wizard_compatibility_text">Shelter wurde auf AOSP-ähnlichen Android-Derivaten entwickelt und getestet. Diese schließen AOSP (Android Open Sourcr Project), Google Android (auf Pixels) sowie <b>die meisten auf AOSP basierenden open-source-Custom-ROMs</b> wie beispielsweise LineageOS ein. Wenn auf deinem Telefon eines der oben genannten Android-Derivate läuft, dann Glückwunsch! Shelter wird wahrscheinlich korrekt auf deinem Gerät funktionieren.
+    <string name="setup_wizard_compatibility_text">Shelter wurde auf AOSP-ähnlichen Android-Derivaten entwickelt und getestet. Diese schließen AOSP (Android Open Source Project), Google Android (auf Pixels) sowie <b>die meisten auf AOSP basierenden open-source-Custom-ROMs</b> wie beispielsweise LineageOS ein. Wenn auf deinem Telefon eines der oben genannten Android-Derivate läuft, dann Glückwunsch! Shelter wird wahrscheinlich korrekt auf deinem Gerät funktionieren.
 \n
 \nEinige Geräteanbieter fügen dem Android-Basiscode sehr tiefgehende Anpassungen hinzu, welche in Konflikten, Inkompatibilität und unerwartetem Verhalten enden können. Einige Custom-ROMs fügen ebenfalls kompatibilitätshindernde Änderungen hinzu, wobei diese seltener vorzufinden sind als anbieterverursachte Inkompatibilitäten.
 \n
@@ -124,4 +124,7 @@
     <string name="setup_wizard_compatibility">Kompatibilität</string>
     <string name="setup_wizard_permissions">Ein Wort zu den Berechtigungen</string>
     <string name="allow_cross_profile_interaction">Profilübergreifende Interaktion erlauben</string>
+    <string name="payment_stub_description">Zahlungsdienst Platzhalter (NICHT VERWENDEN)</string>
+    <string name="settings_payment_stub">Zahlungsdienst-Platzhalter</string>
+    <string name="settings_payment_stub_desc">Richten Sie einen unechten NFC Zahlungsdienst im Hauptprofil ein, so dass die kontaktlosen Zahlungsoptionen unter Einstellungen - NFC aktiviert werden. So kann ein Zahlungsanbieter im Arbeitsprofil eingerichtet und gewählt werden. Damit wird ein Fehler in Android umgangen, der es unmöglich macht, im Arbeitsprofil einen Zahlungsanbieter auszuwählen, wenn kein Zahlungsdienst im Hauptprofil verfügbar ist.</string>
 </resources>
