@@ -7,7 +7,7 @@
     <string name="setup_wizard_permissions">권한 관련 안내</string>
     <string name="service_auto_freeze_desc">다음 화면 잠금이 실행될 때 Shelter가 \"활성화 후 실행\"을 통해 실행된 앱을 자동으로 비활성화 처리합니다.</string>
     <string name="unfreeze_app">활성화</string>
-    <string name="setup_wizard_ready">준비되셨나요\?</string>
+    <string name="setup_wizard_ready">준비되셨나요?</string>
     <string name="setup_wizard_failed">설정 실패</string>
     <string name="setup_wizard_action_required">수동 조치 필요</string>
     <string name="notifications_important">Shelter 알림</string>
