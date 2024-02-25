@@ -51,9 +51,9 @@
     <string name="app_context_menu_title">%s 앱에 대해 수행할 작업</string>
     <string name="freeze_all_success">\"자동 비활성화\" 목록에 등록된 모든 앱이 비활성화되었습니다.</string>
     <string name="continue_anyway">계속 진행</string>
-    <string name="miui_cannot_clone">현재 MIUI 환경에서는 비 시스템 앱을 다른 프로필로 복제하는 기능이 지원되지 않습니다. 현재 시스템의 앱 스토어(예시: <b>Play Store</b>)를 다른 프로필로 복제하신 후 복제된 앱 스토어 애플리케이션에서 앱을 내려받아 주세요.</string>
+    <string name="miui_cannot_clone">현재 MIUI 환경에서는 비 시스템 앱을 다른 프로필로 복제하는 기능이 지원되지 않습니다. 현재 시스템의 앱 스토어(<b>Play Store</b> 등)를 다른 프로필로 복제하신 후 복제된 앱 스토어 애플리케이션에서 앱을 내려받아 주세요.</string>
     <string name="device_admin_explanation">Shelter가 격리 작업을 진행하려면 기기 관리자 권한을 필요로 합니다.</string>
-    <string name="settings_cross_profile_file_chooser_desc">이 기능을 활성화하면 개인 및 직장 프로필에서 각각 상대 프로필의 파일에 접근하거나 상대 프로필 간 파일 작업을 할 수 있습니다. 이 기능은 파일 시스템 간 격리를 유지한 상태에서 문서 사용자 인터페이스(Documents UI, 보통 \"파일\" 또는 \"문서\"라는 이름을 가진 기본 파일 관리자 앱) 또는 문서 사용자 인터페이스를 지원하는 앱(문서 사용자 인터페이스를 통해 선택된 파일에 한해서만 임시적으로 접근 허용)을 통해서만 작동합니다.</string>
+    <string name="settings_cross_profile_file_chooser_desc">이 기능을 활성화하면 개인 및 직장 프로필에서 각각 상대 프로필의 파일에 접근하거나 상대 프로필 간 파일 작업을 할 수 있습니다. 이 기능은 파일 시스템 간 격리를 유지한 상태에서 문서 사용자 인터페이스(Documents UI, 보통 \"파일\" 또는 \"문서\"라는 이름을 가진 기본 파일 관리자 앱) 또는 이를 지원(문서 사용자 인터페이스를 통해 선택된 파일에 한해서만 임시적으로 접근 허용)하는 앱을 통해서만 작동합니다.</string>
     <string name="setup_wizard_compatibility">호환성</string>
     <string name="setup_wizard_please_wait">잠시만 기다려 주세요…</string>
     <string name="install_app_to_profile">직장 프로필에 APK 설치하기</string>
@@ -74,17 +74,17 @@
 \n위 사항에 해당하지 않으며 설정 과정을 임의로 중단하지 않았다면, 큰 규모의 변형 또는 수정이 가해진 시스템 또는 Shelter와 다른 직장 프로필 관리 도구와의 충돌이 원인일 수 있으며 이 경우 정상적인 Shelter 설정 작업이 어렵습니다.
 \n
 \n\"다음\" 버튼을 누르시면 Shelter가 종료됩니다.</string>
-    <string name="launch_app_fail">\"%s\" 앱에 그래픽 인터페이스가 존재하지 않아 실행할 수 없습니다.</string>
-    <string name="finish_provision_title">이곳을 눌러 Shelter 설정 작업을 마무리하세요</string>
+    <string name="launch_app_fail">%s 앱에 그래픽 인터페이스가 존재하지 않아 실행할 수 없습니다.</string>
+    <string name="finish_provision_title">Shelter 설정 작업 마무리하기</string>
     <string name="settings">설정</string>
     <string name="settings_source_code">소스 코드</string>
     <string name="service_desc">Shelter 서비스가 실행 중입니다.</string>
-    <string name="show_all_warning">목록에서 숨겨진 앱을 수정할 경우 앱 오작동을 비롯한 예상치 못한 현상을 유발할 수 있습니다. 다만 오류가 있는 제조사 ROM으로 인해 모든 필수 시스템 앱이 직장 프로필에서 활성화되지 않았다면 이 기능이 유용할 수 있으며, 계속 진행하시는 경우 상기한 위험을 감수하는 것입니다.</string>
+    <string name="show_all_warning">목록에서 숨겨진 앱을 수정할 경우 앱 오작동을 비롯한 예상치 못한 현상을 유발할 수 있습니다. 다만 오류가 있는 제조사 ROM으로 인해 모든 필수 시스템 앱이 직장 프로필에서 활성화되지 않았다면 이 기능이 유용할 수 있습니다. 계속 진행하시는 경우 상기된 위험을 감수하는 것입니다.</string>
     <string name="search">검색</string>
     <string name="setup_wizard_ready_text">이제 Shelter 설정 작업을 시작합니다. 본 기기가 Android 버전 7 이하를 실행 중이라면, 방해 금지 모드가 <b>꺼진 상태</b>인지 꼭 확인해 주세요. 이후 <b>푸시 알림을 눌러야</b> 설정 작업이 마무리되기 때문입니다.
 \n
 \n\"다음\" 버튼을 누르시면 설정 작업이 진행됩니다.</string>
-    <string name="finish_provision_desc">이곳을 클릭하시면 Shelter의 설정 작업이 모두 마무리됩니다.</string>
+    <string name="finish_provision_desc">이곳을 누르시면 Shelter의 설정 작업이 모두 마무리됩니다.</string>
     <string name="settings_block_contacts_searching">연락처 검색 차단</string>
     <string name="settings_block_contacts_searching_desc">개인 프로필에서 직장 프로필 내에 저장된 연락처로의 접근을 막습니다.</string>
     <string name="setup_wizard_compatibility_text">Shelter는 AOSP(Android Open Source Project), Google Android(Pixel 탑재 운영 체제) 및 <b>대다수의 AOSP 기반 오픈 소스 커스텀 ROM</b>(LineageOS 등)과 같이 AOSP를 기반으로 파생된 Android 시스템들에서 개발 및 테스트되었습니다. 본 기기가 상기된 Android 시스템 중 하나를 실행하고 있다면, 이는 Shelter가 본 기기에서 올바르게 동작할 가능성이 높다는 뜻입니다. 👏
@@ -108,8 +108,12 @@
     <string name="list_item_disabled">[비활성] %s</string>
     <string name="settings_dont_freeze_foreground_desc">화면 잠금이 실행되었을 때 포어그라운드에서 실행 중(화면에 표시 중)인 앱에 대하여 비활성화 처리를 하지 않습니다. 음악 플레이어 등의 앱을 사용하고 있을 때 유용한 기능이나, \"일괄 비활성화 바로 가기\"를 통하여 수동으로 비활성화해 주어야 합니다.</string>
     <string name="work_mode_disabled">Shelter를 실행하는 도중 직장 프로필을 비활성화하신 것 같습니다. 이미 직장 프로필을 활성화하셨을 경우 Shelter를 다시 실행해 주세요.</string>
-    <string name="msg_device_unsupported">권한이 거부되었거나 지원하지 않는 기기입니다</string>
-    <string name="work_profile_provision_failed">직장 프로필 구성에 실패했습니다. Shelter를 다시 실행 후 재시도해 주세요.</string>
+    <string name="msg_device_unsupported">권한이 거부되었거나 지원되지 않는 기기입니다</string>
+    <string name="work_profile_provision_failed">직장 프로필 구성에 실패했습니다. Shelter를 다시 실행한 후 재시도해 보세요.</string>
     <string name="unfreeze_and_launch">활성화 후 실행하기</string>
     <string name="unfreeze_success">\"%s\" 앱이 활성화되었습니다</string>
+    <string name="payment_stub_description">모의 결제 서비스 (사용금지)</string>
+    <string name="settings_payment_stub_desc">개인 프로필에 모의 NFC 결제 서비스를 추가하여 [설정] - [NFC]의 비접촉 결제 옵션을 활성화합니다. 개인 프로필에 설치된 결제 앱이 없을 경우 직장 프로필에 있는 앱의 비접촉 결제 서비스 사용이 불가능한 Android 상 버그를 우회하기 위한 기능입니다.</string>
+    <string name="allow_cross_profile_interaction">프로필 간 상호 동작 허용</string>
+    <string name="settings_payment_stub">모의 결제 서비스</string>
 </resources>
