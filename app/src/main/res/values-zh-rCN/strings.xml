@@ -122,4 +122,15 @@
 \n如果您没有看到通知，请确保您的设备未处于“请勿打扰”模式并尝试下拉通知中心。
 \n
 \n要重置 Shelter 并重新开始，您可以在设置中清除 Shelter 的数据。</string>
+    <string name="payment_stub_description"></string>
+    <string name="settings_payment_stub_desc"></string>
+    <string name="settings_patreon_url" translatable="false"></string>
+    <string name="allow_cross_profile_interaction"></string>
+    <string name="settings_translate_url" translatable="false"></string>
+    <string name="settings_bug_report_url" translatable="false"></string>
+    <string name="device_admin_label" translatable="false"></string>
+    <string name="settings_payment_stub"></string>
+    <string name="app_name" translatable="false"></string>
+    <string name="settings_source_code_url" translatable="false"></string>
+    <string name="settings_patreon" translatable="false"></string>
 </resources>
