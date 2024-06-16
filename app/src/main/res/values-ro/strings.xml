@@ -123,4 +123,15 @@
 \nÎn caz contrar, dacă nu ați anulat manual configurarea, atunci motivul eșecului este cel mai frecvent din cauza unui sistem puternic modificat sau a unui conflict între Shelter și alți manageri de profil de lucru. Din păcate, nu am putea face mare lucru în acest sens.
 \n
 \nFaceți clic pe „Next” pentru a ieși.</string>
+    <string name="payment_stub_description"></string>
+    <string name="settings_payment_stub_desc"></string>
+    <string name="settings_patreon_url" translatable="false"></string>
+    <string name="allow_cross_profile_interaction"></string>
+    <string name="settings_translate_url" translatable="false"></string>
+    <string name="settings_bug_report_url" translatable="false"></string>
+    <string name="device_admin_label" translatable="false"></string>
+    <string name="settings_payment_stub"></string>
+    <string name="app_name" translatable="false"></string>
+    <string name="settings_source_code_url" translatable="false"></string>
+    <string name="settings_patreon" translatable="false"></string>
 </resources>
