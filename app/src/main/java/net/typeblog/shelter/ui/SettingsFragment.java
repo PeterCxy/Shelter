@@ -20,10 +20,6 @@ import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
 
-import mobi.upod.timedurationpicker.TimeDurationPicker;
-import mobi.upod.timedurationpicker.TimeDurationPickerDialogFragment;
-import mobi.upod.timedurationpicker.TimeDurationUtil;
-
 public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
     private static final String SETTINGS_VERSION = "settings_version";
     private static final String SETTINGS_SOURCE_CODE = "settings_source_code";
@@ -120,9 +116,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     }
 
     private void updateAutoFreezeDelay() {
-        mPrefAutoFreezeDelay.setSummary(TimeDurationUtil.formatMinutesSeconds(
+        /*mPrefAutoFreezeDelay.setSummary(TimeDurationUtil.formatMinutesSeconds(
                 ((long) mManager.getAutoFreezeDelay()) * 1000
-        ));
+        ));*/
     }
 
     private boolean openSummaryUrl(Preference pref) {
@@ -133,7 +129,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     }
 
     private boolean openAutoFreezeDelayPicker(Preference pref) {
-        new AutoFreezeDelayPickerFragment().show(getActivity().getFragmentManager(), "dialog");
+        //new AutoFreezeDelayPickerFragment().show(getActivity().getFragmentManager(), "dialog");
         return true;
     }
 
@@ -235,7 +231,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         }
     }
 
-    public static class AutoFreezeDelayPickerFragment extends TimeDurationPickerDialogFragment {
+    /*public static class AutoFreezeDelayPickerFragment extends TimeDurationPickerDialogFragment {
         @Override
         protected long getInitialDuration() {
             return ((long) SettingsManager.getInstance().getAutoFreezeDelay()) * 1000;
@@ -252,5 +248,5 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             if (seconds >= Integer.MAX_VALUE) return;
             SettingsManager.getInstance().setAutoFreezeDelay((int) seconds);
         }
-    }
+    }*/
 }
