@@ -1,11 +1,15 @@
 package net.typeblog.shelter.ui;
 
+import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import android.app.admin.DevicePolicyManager;
@@ -44,6 +48,7 @@ public class SetupWizardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         // The user could click on the "finish provisioning" notification while having removed
         // this activity from the recents stack, in which case the notification will start a new
@@ -218,6 +223,25 @@ public class SetupWizardActivity extends AppCompatActivity {
             mWizard.getNavigationBar().setNavigationBarListener(this);
             mWizard.setLayoutBackground(ContextCompat.getDrawable(inflater.getContext(), R.color.colorAccent));
             return view;
+        }
+
+        @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            ViewCompat.setOnApplyWindowInsetsListener(mWizard, (v, windowInsets) -> {
+                Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+                mWizard.setDecorPaddingTop(insets.top);
+
+                NavigationBar nav = mWizard.getNavigationBar();
+                ViewGroup.LayoutParams params = nav.getLayoutParams();
+                params.height += insets.bottom;
+
+                nav.setLayoutParams(params);
+
+                nav.setPadding(nav.getPaddingLeft(), nav.getPaddingTop(), nav.getPaddingRight(), insets.bottom);
+                return WindowInsetsCompat.CONSUMED;
+            });
         }
     }
 
