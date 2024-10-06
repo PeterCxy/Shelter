@@ -114,4 +114,7 @@
     <!-- MIUI -->
     <string name="miui_cannot_clone">Cloning non-system apps to another profile is currently not possible on MIUI. Please clone your system\'s app store (e.g. <b>Play Store</b>) into the other profile and then install apps from there.</string>
     <string name="continue_anyway">Continue anyway</string>
+
+    <!-- Formats -->
+    <string name="format_minutes">%d min</string>
 </resources>

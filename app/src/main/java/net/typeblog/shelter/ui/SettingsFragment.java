@@ -12,6 +12,7 @@ import android.provider.Settings;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
+import androidx.preference.DropDownPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
@@ -19,6 +20,8 @@ import net.typeblog.shelter.R;
 import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
+
+import java.util.Arrays;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
     private static final String SETTINGS_VERSION = "settings_version";
@@ -33,6 +36,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_SKIP_FOREGROUND = "settings_dont_freeze_foreground";
     private static final String SETTINGS_PAYMENT_STUB = "settings_payment_stub";
 
+    private static final int[] AUTO_FREEZE_DELAY_SECONDS = new int[]{0, 60, 2 * 60, 5 * 60};
+
     private SettingsManager mManager = SettingsManager.getInstance();
     private IShelterService mServiceWork = null;
 
@@ -42,7 +47,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private CheckBoxPreference mPrefSkipForeground = null;
     private CheckBoxPreference mPrefPaymentStub = null;
 
-    private Preference mPrefAutoFreezeDelay = null;
+    private DropDownPreference mPrefAutoFreezeDelay = null;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -85,7 +90,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefAutoFreezeService.setChecked(mManager.getAutoFreezeServiceEnabled());
         mPrefAutoFreezeService.setOnPreferenceChangeListener(this);
         mPrefAutoFreezeDelay = findPreference(SETTINGS_AUTO_FREEZE_DELAY);
-        mPrefAutoFreezeDelay.setOnPreferenceClickListener(this::openAutoFreezeDelayPicker);
+        mPrefAutoFreezeDelay.setOnPreferenceChangeListener(this);
+        mPrefAutoFreezeDelay.setEntries(Arrays.stream(AUTO_FREEZE_DELAY_SECONDS).mapToObj((it) -> getString(R.string.format_minutes, it / 60)).toArray(String[]::new));
+        mPrefAutoFreezeDelay.setEntryValues(Arrays.stream(AUTO_FREEZE_DELAY_SECONDS).mapToObj(String::valueOf).toArray(String[]::new));
         updateAutoFreezeDelay();
         mPrefSkipForeground = (CheckBoxPreference) findPreference(SETTINGS_SKIP_FOREGROUND);
         mPrefSkipForeground.setChecked(mManager.getSkipForegroundEnabled());
@@ -116,20 +123,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     }
 
     private void updateAutoFreezeDelay() {
-        /*mPrefAutoFreezeDelay.setSummary(TimeDurationUtil.formatMinutesSeconds(
-                ((long) mManager.getAutoFreezeDelay()) * 1000
-        ));*/
+        mPrefAutoFreezeDelay.setSummary(getString(R.string.format_minutes, mManager.getAutoFreezeDelay() / 60));
     }
 
     private boolean openSummaryUrl(Preference pref) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(pref.getSummary().toString()));
         startActivity(intent);
-        return true;
-    }
-
-    private boolean openAutoFreezeDelayPicker(Preference pref) {
-        //new AutoFreezeDelayPickerFragment().show(getActivity().getFragmentManager(), "dialog");
         return true;
     }
 
@@ -184,6 +184,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         } else if (preference == mPrefAutoFreezeService) {
             mManager.setAutoFreezeServiceEnabled((boolean) newState);
             return true;
+        } else if (preference == mPrefAutoFreezeDelay) {
+            mManager.setAutoFreezeDelay(Integer.parseInt((String) newState));
+            updateAutoFreezeDelay();
+            return true;
         } else if (preference == mPrefSkipForeground) {
             boolean enabled = (boolean) newState;
             if (!enabled) {
@@ -230,23 +234,4 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             return true;
         }
     }
-
-    /*public static class AutoFreezeDelayPickerFragment extends TimeDurationPickerDialogFragment {
-        @Override
-        protected long getInitialDuration() {
-            return ((long) SettingsManager.getInstance().getAutoFreezeDelay()) * 1000;
-        }
-
-        @Override
-        protected int setTimeUnits() {
-            return TimeDurationPicker.MM_SS;
-        }
-
-        @Override
-        public void onDurationSet(TimeDurationPicker view, long duration) {
-            long seconds = duration / 1000;
-            if (seconds >= Integer.MAX_VALUE) return;
-            SettingsManager.getInstance().setAutoFreezeDelay((int) seconds);
-        }
-    }*/
 }

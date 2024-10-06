@@ -30,7 +30,7 @@
             android:title="@string/settings_auto_freeze_service"
             android:summary="@string/settings_auto_freeze_service_desc" />
 
-        <androidx.preference.Preference
+        <androidx.preference.DropDownPreference
             android:dependency="settings_auto_freeze_service"
             android:key="settings_auto_freeze_delay"
             android:title="@string/settings_auto_freeze_delay" />
