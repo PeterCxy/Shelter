@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@android:color/system_accent1_10</color>
+    <color name="colorPrimary">@android:color/system_accent1_0</color>
     <color name="colorAccent">@android:color/system_accent1_500</color>
     <color name="colorAccentSetupWizard">@android:color/system_accent3_500</color>
     <color name="colorNavigationBar">@android:color/system_accent1_100</color>
