@@ -225,6 +225,10 @@ public class Utility {
         // Block contacts searching optionally
         manager.setCrossProfileContactsSearchDisabled(adminComponent,
                 SettingsManager.getInstance().getBlockContactsSearchingEnabled());
+        
+        // Calling with a null value for the set disables the restriction so that all packages are allowed to access cross-profile calendar APIs.
+        // TODO: add SettingsManager entry
+        manager.setCrossProfileCalendarPackages(adminComponent, null);
 
         manager.setProfileEnabled(adminComponent);
     }
