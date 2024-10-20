@@ -4,99 +4,124 @@
     <string name="first_run_alert_continue">కొనసాగించు</string>
     <string name="device_admin_desc">యాప్ ఐసోలేషన్ సర్వీస్</string>
     <string name="device_admin_explanation">షెల్టర్ దాని ఐసోలేషన్ విధులను నిర్వహించడానికి డివైస్ అడ్మిన్ గా మారాలి.</string>
-    <string name="launch_app_fail"></string>
-    <string name="settings_dont_freeze_foreground_desc"></string>
-    <string name="settings_cross_profile_file_chooser"></string>
-    <string name="app_installing"></string>
-    <string name="msg_device_unsupported"></string>
-    <string name="settings_translate"></string>
-    <string name="setup_wizard_please_wait"></string>
-    <string name="list_item_disabled"></string>
-    <string name="setup_wizard_ready_text"></string>
-    <string name="settings_block_contacts_searching_desc"></string>
-    <string name="payment_stub_description"></string>
-    <string name="setup_wizard_welcome_text"></string>
-    <string name="settings_interaction"></string>
-    <string name="finish_provision_desc"></string>
-    <string name="show_all_warning"></string>
-    <string name="settings_block_contacts_searching"></string>
-    <string name="settings_cross_profile_file_chooser_desc"></string>
-    <string name="provision_finished"></string>
-    <string name="settings_payment_stub_desc"></string>
-    <string name="freeze_all"></string>
-    <string name="notifications_important"></string>
-    <string name="freeze_success"></string>
-    <string name="request_system_alert"></string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="setup_wizard_action_required_text"></string>
-    <string name="create_freeze_all_shortcut"></string>
-    <string name="clone_to_work_profile"></string>
-    <string name="allow_cross_profile_widgets"></string>
-    <string name="freeze_all_success"></string>
-    <string name="service_auto_freeze_now"></string>
-    <string name="settings_bug_report"></string>
-    <string name="uninstall_app"></string>
-    <string name="setup_wizard_action_required"></string>
-    <string name="setup_wizard_compatibility"></string>
-    <string name="service_auto_freeze_title"></string>
-    <string name="allow_cross_profile_interaction"></string>
-    <string name="settings_about"></string>
-    <string name="setup_wizard_failed_text"></string>
-    <string name="miui_cannot_clone"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="service_title"></string>
-    <string name="batch_operation"></string>
-    <string name="unfreeze_and_launch"></string>
-    <string name="settings_services"></string>
-    <string name="settings_auto_freeze_service"></string>
-    <string name="work_profile_provision_failed"></string>
-    <string name="service_auto_freeze_desc"></string>
-    <string name="uninstall_success"></string>
-    <string name="unfreeze_app"></string>
-    <string name="clone_fail_system_app"></string>
-    <string name="setup_wizard_failed"></string>
-    <string name="work_profile_not_found"></string>
-    <string name="unfreeze_success"></string>
-    <string name="settings_version"></string>
-    <string name="create_unfreeze_shortcut"></string>
-    <string name="request_storage_manager"></string>
-    <string name="documents_ui"></string>
-    <string name="setup_wizard_please_wait_text"></string>
-    <string name="launch"></string>
-    <string name="setup_wizard_permissions_text"></string>
-    <string name="fragment_profile_work"></string>
-    <string name="install_app_to_profile"></string>
-    <string name="clone_success"></string>
-    <string name="work_mode_disabled"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="settings_source_code"></string>
-    <string name="search"></string>
-    <string name="unsupported_launcher"></string>
-    <string name="auto_freeze"></string>
-    <string name="service_desc"></string>
-    <string name="settings_auto_freeze_delay"></string>
-    <string name="setup_wizard_compatibility_text"></string>
-    <string name="finish_provision_title"></string>
-    <string name="request_usage_stats"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="setup_wizard_permissions"></string>
-    <string name="install_app_to_profile_success"></string>
-    <string name="fragment_profile_main"></string>
-    <string name="shortcut_create_success"></string>
-    <string name="settings"></string>
-    <string name="settings_dont_freeze_foreground"></string>
-    <string name="settings_payment_stub"></string>
-    <string name="app_context_menu_title"></string>
-    <string name="uninstall_fail_system_app"></string>
-    <string name="continue_anyway"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="freeze_app"></string>
-    <string name="first_run_alert_cancel"></string>
-    <string name="setup_wizard_ready"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_auto_freeze_service_desc"></string>
-    <string name="clone_to_main_profile"></string>
-    <string name="show_all"></string>
-    <string name="settings_patreon" translatable="false"></string>
-    <string name="freeze_all_shortcut"></string>
+    <string name="launch_app_fail">యాప్ %sని ప్రారంభించలేరు, ఎందుకంటే దానికి GUI లేదు.</string>
+    <string name="settings_dont_freeze_foreground_desc">మీ స్క్రీన్‌ను లాక్ చేయడం సమయంలో ముందంజ యాప్‌లను (కనిపించే కార్యకలాపం ఉన్న) ఫ్రిజ్ చేయకండి. ఇది సంగీత ప్లేయర్‌ల వంటి యాప్‌లకు ఉపయోగకరంగా ఉండవచ్చు, కానీ తర్వాత \"బ్యాచ్ ఫ్రిజ్ షార్ట్‌కట్\" ద్వారా వాటిని చేతితో ఫ్రిజ్ చేయాలి.</string>
+    <string name="settings_cross_profile_file_chooser">ఫైల్ షట్ల్</string>
+    <string name="app_installing">ఇన్‌స్టాల్ చేయబడుతోంది...</string>
+    <string name="msg_device_unsupported">అనుమతి నిరాకరించబడింది లేదా మద్దతు పొందని పరికరం</string>
+    <string name="settings_translate">అనువాదం</string>
+    <string name="setup_wizard_please_wait">దయచేసి వేచి ఉండండి…</string>
+    <string name="list_item_disabled">[ఫ్రోజెన్] %s</string>
+    <string name="setup_wizard_ready_text">మేము ఇప్పుడు మీ కోసం షెల్టర్‌ని సెటప్ చేయడానికి సిద్ధంగా ఉన్నాము. మీ పరికరం Android 7 లేదా అంతకంటే తక్కువగా నడుస్తోంటే, మొదట మీ పరికరం \"Do Not Disturb\" మోడ్‌లో లేదని నిర్ధారించుకోండి, ఎందుకంటే మీరు సెటప్ ప్రక్రియను పూర్తి చేయడానికి తర్వాత ఒక నోటిఫికేషన్‌పై క్లిక్ చేయాలి.
+\n
+\nమీరు సిద్ధంగా ఉన్నప్పుడు, సెటప్ ప్రక్రియ ప్రారంభించడానికి \"తదుపరి\"పై క్లిక్ చేయండి.</string>
+    <string name="settings_block_contacts_searching_desc">కార్య ప్రొఫైల్‌లోని సంప్రదింపులకు ప్రధాన ప్రొఫైల్ నుండి యాక్సెస్‌ను తిరస్కరించండి.</string>
+    <string name="payment_stub_description">చెల్లింపు సేవ స్టబ్ (ఉపయోగించవద్దు)</string>
+    <string name="setup_wizard_welcome_text">\"షెల్టర్\" అనేది ఇతర యాప్‌లను వేరుప్రొఫైల్‌లో నడపడంలో మీకు సహాయం చేసే యాప్. ఇది ఆండ్రాయిడ్‌లోని <b>వర్క్ ప్రొఫైల్</b> ఫీచర్‌ను ఉపయోగించడం ద్వారా పని చేస్తుంది.
+\n
+\n\"తదుపరి\"ను క్లిక్ చేయండి, మేము మీకు షెల్టర్ గురించి మరిన్ని వివరాలు అందించాము మరియు సెటప్ ప్రక్రియలో మిమ్మల్ని మార్గనిర్దేశం చేస్తాము.
+\n
+\nక్రింది పేజీలన్నీ జాగ్రత్తగా చదవాలని మేము సిఫార్సు చేస్తాము.</string>
+    <string name="settings_interaction">ఇంటరాక్షన్</string>
+    <string name="finish_provision_desc">అభినందనలు! షెల్టర్‌ని సెటప్ చేయడం పూర్తి చేయడానికి మీరు ఒక్క క్లిక్ దూరంలో ఉన్నారు.</string>
+    <string name="show_all_warning">జాబితాలోని దాచిన యాప్‌లను మానిప్యులేట్ చేయడం వల్ల క్రాష్‌లు మరియు వివిధ రకాల అనూహ్య ప్రవర్తనలు కలిగించవచ్చు. అయితే, ఫాల్టీ విక్రేత-కస్టమైజ్డ్ ROMలు వర్క్ ప్రొఫైల్‌లో అన్ని అవసరమైన సిస్టమ్ యాప్లను డిఫాల్ట్‌గా ఎనేబుల్ చేయని సమయంలో ఈ ఫీచర్ ఉపయోగకరంగా ఉండవచ్చు. మీరు కొనసాగితే, మీరు మీ స్వంతంగా ఉంటారు.</string>
+    <string name="settings_block_contacts_searching">సంప్రదింపుల అన్వేషణను అడ్డుకోండి</string>
+    <string name="settings_cross_profile_file_chooser_desc">ఇది ఎనేబుల్ చేసినప్పుడు, మీరు షెల్టర్‌లో ఫైల్‌లను బ్రౌజ్ / వీక్షించడానికి / ఎంచుకోవడానికి / కాపీ చేయడానికి ప్రధాన ప్రొఫైల్ నుండి మరియు పునాదిగా, డాక్యుమెంట్స్ UI (మీ లాంచర్‌లో ఫైల్‌లు లేదా డాక్యుమెంట్స్ అని పిలవబడుతుంది) లేదా డాక్యుమెంట్స్ UI మద్దతు ఉన్న అనువర్తనాలను మాత్రమే ఉపయోగించి చేసుకోగలరు (అవి డాక్యుమెంట్స్ UIలో మీరు ఎంచుకున్న ఫైల్‌లకు తాత్కాలిక యాక్సెస్ పొందుతాయి), అయితే ఫైల్ సిస్టమ్ ఆర్థికంగా ఇన్సొలేషన్‌ను ఉంచుతుంది.</string>
+    <string name="provision_finished">షెల్టర్ సెటప్ పూర్తి. ఇప్పుడు షెల్టర్‌ను పునఃప్రారంభించటం జరుగుతోంది. షెల్టర్ ఆటోమేటిక్‌గా ప్రారంభమైతే, మీ లాంచర్ నుండి మళ్లీ ప్రారంభించవచ్చు.</string>
+    <string name="settings_payment_stub_desc">ప్రధాన ప్రొఫైల్‌లో ఒక జట్టుపై NFC చెల్లింపు సేవను ఎనేబుల్ చేయండి, తద్వారా సెట్టింగ్‌లలో - NFC క్రింద ఉన్న నిర్లక్ష్య చెల్లింపుల ఎంపిక ఎనేబుల్ అవుతుంది, ఇది మీకు వర్క్ ప్రొఫైల్‌లో చెల్లింపు అనువర్తనాన్ని ఎంచుకోవడానికి అనుమతిస్తుంది. ఇది ప్రధాన ప్రొఫైల్‌లో అందుబాటులో లేదు అంటే వర్క్ ప్రొఫైల్‌లో చెల్లింపు అనువర్తనాన్ని ఎంచుకోవడం అసాధ్యమైన ఆండ్రాయిడ్ బగ్‌ను చుట్టుకుంటుంది.</string>
+    <string name="freeze_all">బ్యాచ్ ఫ్రీజ్</string>
+    <string name="notifications_important">షెల్టర్ ముఖ్యమైనది</string>
+    <string name="freeze_success">అనువర్తనం \"%s\" విజయవంతంగా ఫ్రిజ్ చేయబడింది</string>
+    <string name="request_system_alert">షెల్టర్‌కు ఫైల్ షటిల్ సరిగ్గా పనిచేయడానికి <b>ఇతర యాప్‌లపై డ్రా చేయడం</b> అవసరం. \"ఓకే\" బటన్‌ను నొక్కిన తర్వాత డైలాగ్‌లో చూపించిన రెండు (వ్యక్తిగత / వర్క్) షెల్టర్ యాప్‌లకు ఈ అనుమతిని ఎనేబుల్ చేయండి. ఈ అనుమతి ఫైల్ షటిల్ సేవలను బ్యాక్‌గ్రౌండ్‌లో ప్రారంభించడానికి ఉపయోగించబడుతుంది.</string>
+    <string name="settings_patreon_url" translatable="false"/>
+    <string name="setup_wizard_action_required_text">మీరు ఇప్పుడు షెల్టర్ నుండి ఒక నోటిఫికేషన్‌ను చూడాలి. <b>దయచేసి ఆ నోటిఫికేషన్‌ను నొక్కండి</b> సెటప్ ప్రక్రియను ముగించడానికి.
+\n
+\nమీరు నోటిఫికేషన్‌ను చూడకపోతే, మీ పరికరం \"డో నాట్ డిస్టర్బ్\" మోడ్‌లో లేదు అని నిర్ధారించుకోండి మరియు నోటిఫికేషన్ సెంటర్‌ను కిందకి పుల్లండి.
+\n
+\nషెల్టర్‌ను రీసెట్ చేసి మళ్లీ ప్రారంభించడానికి, సెటింగ్స్‌లో షెల్టర్ యొక్క డేటాను క్లియర్ చేయవచ్చు.</string>
+    <string name="create_freeze_all_shortcut">బ్యాచ్ ఫ్రీజ్ సత్వరం సృష్టించండి</string>
+    <string name="clone_to_work_profile">షెల్టర్ (వర్క్ ప్రొఫైల్)కి క్లోన్ చేయండి</string>
+    <string name="allow_cross_profile_widgets">ప్రధాన ప్రొఫైల్‌లో విజెట్‌లను అనుమతించండి</string>
+    <string name="freeze_all_success">\"ఆటో ఫ్రిజ్\" జాబితాలోని అన్ని యాప్‌లు విజయవంతంగా ఫ్రిజ్ చేయబడ్డాయి.</string>
+    <string name="service_auto_freeze_now">ఇప్పుడు ఫ్రీజ్ చేయండి</string>
+    <string name="settings_bug_report">బగ్ నివేదిక / ఇష్యూ ట్రాకర్</string>
+    <string name="uninstall_app">అన్‌ఇన్‌స్టాల్ చేయండి</string>
+    <string name="setup_wizard_action_required"/>
+    <string name="setup_wizard_compatibility">అనుకూలత</string>
+    <string name="service_auto_freeze_title">ఆటో-ఫ్రీజ్ పెండింగ్‌లో ఉంది</string>
+    <string name="allow_cross_profile_interaction">క్రాస్-ప్రొఫైల్ ఇంటరాక్షన్‌ను అనుమతించండి</string>
+    <string name="settings_about">గురించి</string>
+    <string name="setup_wizard_failed_text">మేము మీ కోసం షెల్టర్‌ను సెటప్ చేయలేకపోయామని మీకు తెలియజేయడానికి మాకు దురదృష్టం ఉంది.
+\n
+\nమీ పరికరంలో ఇప్పటికే ఒక వర్క్ ప్రొఫైల్ ఉంటే, అది షెల్టర్ యొక్క గత ఇన్స్టాలేషన్ లేదా మరొక అనువర్తనంలోనూ, షెల్టర్ ముందుకు సాగడానికి ముందు దాన్ని సెటింగ్‌లలో -&gt; ఖాతా ద్వారా తొలగించాలి.
+\n
+\nలేకపోతే, మీరు సెటప్‌ను చేతితో రద్దు చేయకపోతే, సెటప్ విఫలమైన కారణం సాధారణంగా చాలా మార్పులు చేసిన సిస్టమ్ లేదా షెల్టర్ మరియు ఇతర వర్క్ ప్రొఫైల్ మేనేజర్ల మధ్య సంకర్షణగా ఉంటుంది. దురదృష్టవశాత్తు, దీనిపై మేము చేసేMuch చేయడం లేదు.
+\n
+\nమీరైతే \"తదుపరి\"పై క్లిక్ చేసి బయటకు వెళ్ళండి.</string>
+    <string name="miui_cannot_clone">MIUIలో మరో ప్రొఫైలుకు నాన్-సిస్టమ్ యాప్‌లను క్లోన్ చేయడం ప్రస్తుతం సాధ్యం కాదు. దయచేసి మీ సిస్టమ్ యొక్క యాప్ స్టోర్ (ఉదాహరణకు, <b>ప్లే స్టోర్</b>)ని ఇతర ప్రొఫైలుకు క్లోన్ చేసి, అక్కడ నుండి యాప్‌లను ఇన్‌స్టాల్ చేయండి.</string>
+    <string name="settings_translate_url" translatable="false"/>
+    <string name="service_title">షెల్టర్ సేవ</string>
+    <string name="batch_operation">బ్యాచ్ ఆపరేషన్</string>
+    <string name="unfreeze_and_launch">అన్‌ఫ్రీజ్ చేసి ప్రారంభించండి</string>
+    <string name="settings_services">సేవలు</string>
+    <string name="settings_auto_freeze_service">ఆటో ఫ్రిజ్ సేవ</string>
+    <string name="work_profile_provision_failed">వర్క్ ప్రొఫైల్‌ను అందుబాటులోకి తీసుకోలేకపోతున్నాము. షెల్టర్‌ను పునఃప్రారంభించి మళ్లీ ప్రయత్నించండి.</string>
+    <string name="service_auto_freeze_desc">షెల్టర్ తదుపరి స్క్రీన్ లాక్ ఈవెంట్‌లో \"అన్‌ఫ్రీజ్ &amp; లాంచ్\" నుండి ప్రారంభించబడిన యాప్‌లను ఆటో-ఫ్రీజ్ చేస్తుంది.</string>
+    <string name="uninstall_success">అనువర్తనం \"%s\" విజయవంతంగా అన్‌ఇన్‌స్టాల్ చేయబడింది</string>
+    <string name="unfreeze_app">అన్‌ఫ్రిజ్</string>
+    <string name="clone_fail_system_app">షెల్టర్ కంట్రోల్ లో లేని ప్రొఫైల్‌కు సిస్టమ్ యాప్‌లను క్లోన్ చేయలేరు.</string>
+    <string name="setup_wizard_failed">సెటప్ విఫలమైంది</string>
+    <string name="work_profile_not_found">వర్క్ ప్రొఫైల్ కనుగొనబడలేదు. ప్రొఫైల్‌ను మళ్లీ అందుబాటులోకి తీసుకురావడానికి దయచేసి యాప్‌ను పునఃప్రారంభించండి.</string>
+    <string name="unfreeze_success">అనువర్తనం \"%s\" విజయవంతంగా అన్‌ఫ్రిజ్ చేయబడింది</string>
+    <string name="settings_version">వర్షన్</string>
+    <string name="create_unfreeze_shortcut">అన్‌ఫ్రిజ్ మరియు/లేదా ప్రారంభ Shortcut‌ని సృష్టించు</string>
+    <string name="request_storage_manager">షెల్టర్‌కు ఫైల్ షటిల్ కోసం <b>అన్ని ఫైళ్లకు</b> ప్రాప్యత అవసరం. \"ఓకే\" బటన్‌ను నొక్కిన తర్వాత డైలాగ్‌లో చూపించిన రెండు (వ్యక్తిగత / వర్క్) షెల్టర్ యాప్‌లకు ఈ అనుమతిని ఎనేబుల్ చేయండి.</string>
+    <string name="documents_ui">డాక్యుమెంట్స్ UIని తెరువు</string>
+    <string name="setup_wizard_please_wait_text">మేము మీ పరికరంలో వర్క్ ప్రొఫైల్‌ను ప్రారంభించడానికి మరియు షెల్టర్‌ను సెటప్ చేయడానికి ప్రయత్నిస్తున్నాము.</string>
+    <string name="launch">ప్రారంభించు</string>
+    <string name="setup_wizard_permissions_text">డిఫాల్ట్‌గా, షెల్టర్ ఏ వ్యక్తిగత అనుమతులను అడగదు. అయితే, మీరు సెటప్ ప్రక్రియను కొనసాగించిన తర్వాత, షెల్టర్ వర్క్ ప్రొఫైల్‌ను సెటప్ చేయడానికి ప్రయత్నిస్తుంది, అందువల్ల పేర్కొన్న ప్రొఫైల్‌కు <b>ప్రొఫైల్ మేనేజర్</b> గా మారుతుంది.
+\n
+\nదీని ద్వారా షెల్టర్‌కు ఆ ప్రొఫైల్‌లో పరికర పరిపాలకుడి (డివైస్ అడ్మిన్) అనుమతులకు సమానమైన విస్తృత అనుమతుల జాబితా లభిస్తుంది, అయితే అవి ఆ ప్రొఫైల్‌కు మాత్రమే పరిమితమవుతాయి. షెల్టర్ యొక్క మెజారిటీ ఫీచర్ల కోసం ప్రొఫైల్ మేనేజర్‌గా ఉండటం అవసరం.
+\n
+\nషెల్టర్ యొక్క కొన్ని అధునాతన ఫీచర్లు వర్క్ ప్రొఫైల్ <b>బయట</b> మరిన్ని అనుమతులను అవసరం కావచ్చు. అవసరమైనప్పుడు, మీరు సంబంధిత ఫీచర్‌లను ప్రారంభించినప్పుడు, షెల్టర్ ఆ అనుమతులను వేరుగా అడుగుతుంది.</string>
+    <string name="fragment_profile_work">షెల్టర్</string>
+    <string name="install_app_to_profile">షెల్టర్‌లో APK ఇన్‌స్టాల్ చేయండి</string>
+    <string name="clone_success">అనువర్తనం \"%s\" విజయవంతంగా క్లోన్ చేయబడింది</string>
+    <string name="work_mode_disabled">మీరు షెల్టర్‌ను ప్రారంభించే సమయానికి వర్క్ మోడ్‌ను అడ్డించారు అనిపిస్తోంది. మీరు ఇప్పుడు దీన్ని ఎనేబుల్ చేసినట్లయితే, దయచేసి షెల్టర్‌ను మళ్లీ ప్రారంభించండి.</string>
+    <string name="settings_bug_report_url" translatable="false"/>
+    <string name="settings_source_code">సోర్స్ కోడ్</string>
+    <string name="search">శోధించండి</string>
+    <string name="unsupported_launcher">మీ లాంచర్‌కు షార్ట్‌కట్స్‌ను జోడించలేరు. మరింత సమాచారం కోసం దయచేసి డెవలపర్‌ను సంప్రదించండి.</string>
+    <string name="auto_freeze">ఆటో ఫ్రీజ్</string>
+    <string name="service_desc">షెల్టర్ ఇప్పుడు నడుస్తోంది…</string>
+    <string name="settings_auto_freeze_delay">ఆటో ఫ్రిజ్ ఆలస్యం</string>
+    <string name="setup_wizard_compatibility_text">షెల్టర్ AOSP లాంటి ఆండ్రాయిడ్ డెరివేటివ్‌లపై అభివృద్ధి చేయబడింది మరియు పరీక్షించబడింది. ఇందులో AOSP (ఆండ్రాయిడ్ ఓపెన్ సోర్స్ ప్రాజెక్ట్), Google Android (Pixelsపై), మరియు <b>LineageOS వంటి AOSP ఆధారిత ఓపెన్ సోర్స్ కస్టమ్ ROMలు</b> ఎక్కువగా ఉన్నాయి. మీ ఫోన్ పై ఉంచిన ఆండ్రాయిడ్ డెరివేటివ్‌లలో ఏదైనా ఉంటే, అభినందనలు! షెల్టర్ మీ పరికరంలో సరిగా పనిచేసే అవకాశం ఉంది.
+\n
+\nకొంతమంది పరికర తయారీదారులు ఆండ్రాయిడ్ కోడ్ బేస్‌లో చాలా దూకుడైన అనుకూలీకరణలు ప్రవేశపెడతారు, ఇది సంగర్షణలు, అనుకూలత సమస్యలు మరియు అనూహ్య ప్రవర్తనకు కారణమవుతుంది. కొంతమంది కస్టమ్ ROMలు కూడా అనుకూలతను విచ్ఛిన్నం చేసే మార్పులను ప్రవేశపెట్టవచ్చు, కానీ సాధారణంగా ఇవి ఫోన్ తయారీదారుల మార్పులతో పోలిస్తే చాలా అరుదుగా జరుగుతాయి.
+\n
+\nషెల్టర్ కేవలం సిస్టమ్ అందించే వర్క్ ప్రొఫైల్ ఫీచర్‌కు ఇన్టర్ఫేస్ మాత్రమే. సిస్టమ్ అందించే ఫీచర్ పనిచేయకపోతే లేదా ప్రామాణికం కాకపోతే, <b>షెల్టర్ స్వతహాగా ఆ సమస్యను పరిష్కరించలేము</b>. మీరు ప్రస్తుతం వర్క్ ప్రొఫైల్‌లను విరమించడానికి ప్రసిద్ధి చెందిన విక్రేత-మార్పుచేసిన ఆండ్రాయిడ్ వర్షన్‌ను ఉపయోగిస్తున్నట్లయితే, <b>మీకు హెచ్చరిక ఇచ్చాము</b>. అయినప్పటికీ మీరు కొనసాగవచ్చు, కానీ ఈ పరిస్థితులలో షెల్టర్ సరైన ప్రవర్తనకాని గ్యారంటీ లేదు.</string>
+    <string name="finish_provision_title">షెల్టర్‌ని సెటప్ చేయడానికి ఇక్కడ క్లిక్ చేయండి</string>
+    <string name="request_usage_stats">షెల్టర్‌కు ఇది చేయడానికి <b>ఉపయోగం స్థితులు</b> అనుమతి అవసరం. \"ఓకే\" బటన్‌ను నొక్కిన తర్వాత డైలాగ్‌లో చూపిన రెండు షెల్టర్ యాప్‌లకు ఈ అనుమతిని ఎనేబుల్ చేయండి. అది చేయనట్లయితే, ఈ ఫీచర్ సరిగ్గా పనిచేయదు.</string>
+    <string name="device_admin_label" translatable="false"/>
+    <string name="setup_wizard_permissions">అనుమతుల గురించి ఒక మాట</string>
+    <string name="install_app_to_profile_success">వర్క్ ప్రొఫైల్‌లో అప్లికేషన్ ఇన్‌స్టాలేషన్ పూర్తి చేయబడింది.</string>
+    <string name="fragment_profile_main">ప్రధాన</string>
+    <string name="shortcut_create_success">మీ లాంచర్‌పై షార్ట్‌కట్ సృష్టించబడింది.</string>
+    <string name="settings">సెట్టింగ్స్</string>
+    <string name="settings_dont_freeze_foreground">ముఖ్యమైన యాప్‌లను తొలగించు</string>
+    <string name="settings_payment_stub">చెల్లింపు సేవ స్టబ్</string>
+    <string name="app_context_menu_title">%s కోసం ఆపరేషన్స్</string>
+    <string name="uninstall_fail_system_app">షెల్టర్ కంట్రోల్ లో లేని ప్రొఫైల్‌లో సిస్టమ్ యాప్‌లను అన్‌ఇన్‌స్టాల్ చేయలేరు.</string>
+    <string name="continue_anyway">ఏదైనా కొనసాగించండి</string>
+    <string name="app_name" translatable="false"/>
+    <string name="freeze_app">ఫ్రిజ్</string>
+    <string name="first_run_alert_cancel">వీడ్కోలు</string>
+    <string name="setup_wizard_ready">సిద్ధంగా ఉన్నారా?</string>
+    <string name="settings_source_code_url" translatable="false"/>
+    <string name="settings_auto_freeze_service_desc">స్క్రీన్ లాక్ అయినప్పుడు, \"అన్‌ఫ్రిజ్ &amp; లాంచ్ షార్ట్‌కట్\" నుండి ప్రారంభించిన యాప్‌లను ఆటోమేటిక్‌గా ఫ్రిజ్ చేయండి.</string>
+    <string name="clone_to_main_profile">ప్రధాన ప్రొఫైల్‌కి క్లోన్ చేయండి</string>
+    <string name="show_all">అన్ని యాప్‌లను చూపించు</string>
+    <string name="settings_patreon" translatable="false"/>
+    <string name="freeze_all_shortcut">ఫ్రీజ్ చేయండి</string>
+    <string name="format_minutes">%d నిమిషాలు</string>
 </resources>
