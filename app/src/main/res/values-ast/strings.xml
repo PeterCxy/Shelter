@@ -110,15 +110,4 @@
 \nEsto concede a Shelter una llista estensa de permisos dientro del perfil, comparable al d\'un xestor del preséu, magar que aislaos nesi perfil. Ser el xestor del perfil ye un requirimientu pa la mayoría de funciones de Shelter.
 \n
 \nDalgunes carauterístiques de Shelter puen riquir más permisos <b>fuera</b> del perfil de trabayu. Cuando seya\'l momentu, Shelter va pidir esos permisos per separtao al activar les carauterístiques correspondientes.</string>
-    <string name="payment_stub_description"></string>
-    <string name="settings_payment_stub_desc"></string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="allow_cross_profile_interaction"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="settings_payment_stub"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

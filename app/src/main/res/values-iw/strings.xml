@@ -112,15 +112,4 @@
     <string name="request_usage_stats">Shelter זקוק להרשאת <b>סטטיסטיקות שימוש</b> כדי לעשות זאת. אנא הפעל את ההרשאה עבור אפליקציות מקלט <b>שתיים</b> המוצגות בתיבת הדו-שיח לאחר לחיצה על \"אישור\". אם לא תעשה זאת, תכונה זו לא תפעל כראוי.</string>
     <string name="request_storage_manager">Shelter זקוק לגישה אל <b>כל הקבצים</b> עבור סייר הקבצים. אנא הפעל את ההרשאה עבור יישומי מקלט <b>שניים </b> (אישי / עבודה) המוצגים בתיבת הדו-שיח לאחר לחיצה על \"אישור\".</string>
     <string name="request_system_alert">Shelter צריך <b>לצייר מעל אפליקציות אחרות</b> כדי ש-File Shuttle יפעל כהלכה. אנא הפעל את ההרשאה עבור יישומי מקלט <b>שניים </b> (אישי / עבודה) המוצגים בתיבת הדו-שיח לאחר לחיצה על \"אישור\". הרשאה זו משמשת להפעלת שירותי File Shuttle ברקע.</string>
-    <string name="payment_stub_description"></string>
-    <string name="settings_payment_stub_desc"></string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="allow_cross_profile_interaction"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="settings_payment_stub"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

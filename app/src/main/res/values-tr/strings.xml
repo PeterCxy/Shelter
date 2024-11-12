@@ -112,15 +112,4 @@
     <string name="request_storage_manager">Dosya Köprüsü özelliğini kullanmak için Shelter\'ın <b>Tüm Dosyalara</b> erişmesi gerekiyor. Lütfen \"Tamam\" seçeneğine tıkladıktan sonra <b>İKİ SHELTER UYGULAMASINA DA</b> (Kişisel / İş) bu izni verin.</string>
     <string name="request_system_alert">Dosya Köprüsü özelliğinin düzgün bir şekilde çalışabilmesi için Shelter\'ın <b>Diğer Uygulamalar Üzerinde Göster</b> iznine ihtiyacı var. Lütfen \"Tamam\" seçeneğine tıkladıktan sonra <b>İKİ SHELTER UYGULAMASINA DA</b> (Kişisel / İş) bu izni verin. Söz konusu izin, Dosya Köprüsü hizmetlerini arkaplanda başlatmak için kullanılır.</string>
     <string name="request_usage_stats">Bu özelliği kullanmak için Shelter\'ın <b>Kullanım Erişimi</b> iznine ihtiyacı var. Lütfen \"Tamam\" seçeneğine tıkladıktan sonra <b>İKİ SHELTER UYGULAMASINA DA</b> (Kişisel / İş) bu izni verin, aksi takdirde söz konusu özellik düzgün bir şekilde çalışmayabilir.</string>
-    <string name="payment_stub_description"></string>
-    <string name="settings_payment_stub_desc"></string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="allow_cross_profile_interaction"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="settings_payment_stub"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

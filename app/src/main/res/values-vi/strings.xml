@@ -112,15 +112,4 @@
     <string name="request_system_alert">Shelter cần <b>Hiện trên các ứng dụng khác</b> để Chia sẻ tệp hoạt động đúng. Vui lòng bật quyền đó cho <b>CẢ HAI</b> ứng dụng Shelter (Cá nhân / Công việc) được hiện trong hộp thoại sau khi bạn nhấn \"Ok\". Quyền này được sử dụng để khởi động các dịch vụ Chia sẻ tệp trong nền.</string>
     <string name="miui_cannot_clone">Việc nhân bản các ứng dụng không phải hệ thống vào một hồ sơ khác hiện chưa làm được trên MIUI. Vui lòng nhân bản cửa hàng ứng dụng của hệ thống (vd: <b>CH Play</b>) vào hồ sơ khác đó và sau đó là cài đặt các ứng dụng từ đó.</string>
     <string name="continue_anyway">Vẫn tiếp tục</string>
-    <string name="payment_stub_description"></string>
-    <string name="settings_payment_stub_desc"></string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="allow_cross_profile_interaction"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="settings_payment_stub"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

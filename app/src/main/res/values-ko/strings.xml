@@ -116,11 +116,4 @@
     <string name="settings_payment_stub_desc">개인 프로필에 모의 NFC 결제 서비스를 추가하여 [설정] - [NFC]의 비접촉 결제 옵션을 활성화합니다. 개인 프로필에 설치된 결제 앱이 없을 경우 직장 프로필에 있는 앱의 비접촉 결제 서비스 사용이 불가능한 Android 상 버그를 우회하기 위한 기능입니다.</string>
     <string name="allow_cross_profile_interaction">프로필 간 상호 동작 허용</string>
     <string name="settings_payment_stub">모의 결제 서비스</string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

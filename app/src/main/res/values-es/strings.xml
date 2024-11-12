@@ -112,15 +112,4 @@
     <string name="settings_auto_freeze_service_desc">Cuando la pantalla esta bloqueada, automáticamente suspende las aplicaciones iniciadas con \"Acceso directo a Reanudar e iniciar\".</string>
     <string name="settings_dont_freeze_foreground">Omitir aplicaciones de fondo</string>
     <string name="settings_about">Acerca de</string>
-    <string name="payment_stub_description"></string>
-    <string name="settings_payment_stub_desc"></string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="allow_cross_profile_interaction"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="settings_payment_stub"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

@@ -112,15 +112,4 @@
     <string name="request_system_alert">شلتر نیازمند <b>نمایش روی دیگر برنامه‌ها</b> است تا شاتل فایل به درستی عمل کند. لطفا پس از زدن روی \"Ok\" در دیالوگ نمایش داده شده این دسترسی را برای <b>هر دوی</b> برنامه‌های شلتر فعال کنید. این دسترسی امکان راه‌اندازی سرویس‌های شاتل فایل در پس زمینه را میدهد.</string>
     <string name="miui_cannot_clone">کپی کردن برنامه‌های سیستمی به پروفایل دیگر در حال حاضر در MIUI امکان‌پذیر نیست. لطفا اپلیکیشن فروشگاه برنامه‌های سیستم خود (مانند <b>Play Store</b>) را به یک پروفایل دیگر کپی کنید سپس برنامه‌ها را از آنجا نصب کنید.</string>
     <string name="continue_anyway">ادامه دادن</string>
-    <string name="payment_stub_description"></string>
-    <string name="settings_payment_stub_desc"></string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="allow_cross_profile_interaction"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="settings_payment_stub"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

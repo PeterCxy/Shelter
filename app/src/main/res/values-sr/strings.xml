@@ -116,11 +116,4 @@
 \nНеке напредне функције Шелтера ће можда захтевати више дозвола <b>ван</b> радног профила. Када је потребно, Шелтер ће тражити те дозволе засебно када омогућите одговарајуће функције.</string>
     <string name="settings_cross_profile_file_chooser_desc">Када је омогућено, моћи ћете да разгледате / прегледате / бирате / копирате датотеке у Шелтеру са главног профила и обрнуто, САМО преко УИ докумената (названих Датотеке или Документи на вашем покретачу) или апликација са подршком УИ докумената (оне добијају само привремени приступ датотекама које одаберете у УИ докумената), док се даље одржава изолација система датотека.</string>
     <string name="settings_payment_stub_desc">Омогућите лажну НФЦ услугу плаћања у главном профилу, тако да опција бесконтактног плаћања у оквиру Подешавања - НФЦ постане омогућена да Вам дозволи да изаберете апликацију за плаћање унутар радног профила. Ово функционише око Андроид грешке која онемогућава одабир апликације за плаћање унутар радног профила ако ниједна није доступна у главном профилу.</string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

@@ -116,11 +116,4 @@
     <string name="settings_payment_stub">Rintisan Layanan Pembayaran</string>
     <string name="settings_payment_stub_desc">Aktifkan layanan pembayaran NFC palsu di profil utama, sehingga opsi pembayaran nirsentuh di bawah Pengaturan - NFC diaktifkan untuk memungkinkan Anda memilih aplikasi pembayaran di dalam profil kerja. Ini mengatasi bug Android yang membuat aplikasi pembayaran di dalam profil kerja tidak dapat dipilih jika tidak ada yang tersedia di profil utama.</string>
     <string name="allow_cross_profile_interaction">Izinkan Interaksi Lintas Profil</string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

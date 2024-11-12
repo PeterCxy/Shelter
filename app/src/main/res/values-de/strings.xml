@@ -127,11 +127,4 @@
     <string name="payment_stub_description">Zahlungsdienst Platzhalter (NICHT VERWENDEN)</string>
     <string name="settings_payment_stub">Zahlungsdienst-Platzhalter</string>
     <string name="settings_payment_stub_desc">Richten Sie einen unechten NFC Zahlungsdienst im Hauptprofil ein, so dass die kontaktlosen Zahlungsoptionen unter Einstellungen - NFC aktiviert werden. So kann ein Zahlungsanbieter im Arbeitsprofil eingerichtet und gewählt werden. Damit wird ein Fehler in Android umgangen, der es unmöglich macht, im Arbeitsprofil einen Zahlungsanbieter auszuwählen, wenn kein Zahlungsdienst im Hauptprofil verfügbar ist.</string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

@@ -117,11 +117,4 @@
     <string name="request_usage_stats">Shelter potřebuje oprávnění <b>Statistiky využití</b> pro provedení této akce. Prosím povolte oprávnění pro <b>OBĚ DVĚ</b> aplikace Shelteru zobrazené v dialogu poté, co stisnete \"Ok\". Pokud tak neučiníte, tato funkce nebude fungovat správně.</string>
     <string name="request_storage_manager">Shelter potřebuje přístup ke <b>všem souborům</b> pro funkci Výměny souborů. Prosím, udělte oprávnění pro <b>OBĚ DVĚ</b> (Osobní / Pracovní) aplikace Shelter zobrazené v dialogu poté, co stisknete \"Ok\".</string>
     <string name="miui_cannot_clone">Klonování nesystémových aplikací do jiného profilu není v tuto chvíli v MIUI k dispozici. Prosím, naklonujte systémový obchod s aplikacemi (např. <b>Obchod Play</b>) do druhého profilu a aplikace instalujte z něj.</string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

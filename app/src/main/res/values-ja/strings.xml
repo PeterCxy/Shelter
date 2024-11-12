@@ -123,15 +123,4 @@
 \nそうでなければ、あなたが途中でセットアップをキャンセルしたわけではない場合、失敗の原因は、システムが大きく変更されているか、Shelterと他の仕事用プロファイルマネージャーとの間で競合が発生していることがほとんどです。残念ながら、これに対してできることはあまりありません。
 \n
 \nNext \"をタップして終了します。</string>
-    <string name="payment_stub_description"></string>
-    <string name="settings_payment_stub_desc"></string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="allow_cross_profile_interaction"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="settings_payment_stub"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>

@@ -121,15 +121,4 @@
 \nCiò darà a Shelter numerose autorizzazioni all\'interno del profilo, comparabili a quelle di un admin di dispositivo, ma pur sempre confinate nel profilo. Essere l\'amministratore del profilo è necessario perché Shelter funzioni correttamente.
 \n
 \nAlcune funzioni avanzate di Shelter potrebbero richiedere più autorizzazioni <b>fuori</b> dal Profilo di Lavoro. Se necessarie, Shelter le richiederà separatamente quando attivi le funzioni corrispondenti.</string>
-    <string name="payment_stub_description"></string>
-    <string name="settings_payment_stub_desc"></string>
-    <string name="settings_patreon_url" translatable="false"></string>
-    <string name="allow_cross_profile_interaction"></string>
-    <string name="settings_translate_url" translatable="false"></string>
-    <string name="settings_bug_report_url" translatable="false"></string>
-    <string name="device_admin_label" translatable="false"></string>
-    <string name="settings_payment_stub"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="settings_source_code_url" translatable="false"></string>
-    <string name="settings_patreon" translatable="false"></string>
 </resources>
