@@ -21,6 +21,7 @@ Features
 ===
 
 - Installing apps inside a work profile for isolation
+- Installing CA certificates inside a work profile
 - "Freeze" apps inside the work profile to prevent them from running or being woken up when you are not actively using them
 - Installing two copies of the same app on the same device
 
