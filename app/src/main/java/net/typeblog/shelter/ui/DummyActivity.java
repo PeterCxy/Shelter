@@ -159,6 +159,20 @@ public class DummyActivity extends Activity {
         init();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // DEADLOCK FIX: Failsafe finish.
+        // If this activity hangs or is waiting for an intent that never arrives, 
+        // close it after 10 seconds to avoid blocking the user's screen.
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            if (!isFinishing()) {
+                android.util.Log.w("DummyActivity", "Failsafe timeout reached. Closing DummyActivity.");
+                finish();
+            }
+        }, 10000);
+    }
+
     private void init() {
         Intent intent = getIntent();
 
@@ -461,79 +475,88 @@ public class DummyActivity extends Activity {
     }
 
     private void actionUnfreezeAndLaunch() {
-        // Unfreeze and launch an app
-        // (actually this also works if the app is not frozen at all)
-        // For now we only support apps in Work profile,
-        // so we just check if we are profile owner here
-        if (!mIsProfileOwner) {
-            // Forward it to work profile
-            Intent intent = new Intent(UNFREEZE_AND_LAUNCH);
-            Utility.transferIntentToProfile(this, intent);
-            String packageName = getIntent().getStringExtra("packageName");
-            intent.putExtra("packageName", packageName);
-            intent.putExtra("shouldFreeze",
-                    SettingsManager.getInstance().getAutoFreezeServiceEnabled() &&
-                            LocalStorageManager.getInstance()
-                                .stringListContains(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, packageName));
+        // DEADLOCK FIX: Offload heavy operations to a background thread.
+        // Unfreezing involves blocking policy manager calls which can hang the UI thread.
+        new Thread(() -> {
+            if (!mIsProfileOwner) {
+                // Forward it to work profile
+                Intent intent = new Intent(UNFREEZE_AND_LAUNCH);
+                try {
+                    Utility.transferIntentToProfile(this, intent);
+                } catch (Exception e) {
+                    runOnUiThread(() -> finish());
+                    return;
+                }
+                String packageName = getIntent().getStringExtra("packageName");
+                intent.putExtra("packageName", packageName);
+                intent.putExtra("shouldFreeze",
+                        SettingsManager.getInstance().getAutoFreezeServiceEnabled() &&
+                                LocalStorageManager.getInstance()
+                                    .stringListContains(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, packageName));
+                if (getIntent().hasExtra("linkedPackages")) {
+                    // Multiple apps should be unfrozen here
+                    String[] packages = getIntent().getStringExtra("linkedPackages").split(",");
+                    boolean[] packagesShouldFreeze = new boolean[packages.length];
+
+                    for (int i = 0; i < packages.length; i++) {
+                        // Apps in linkedPackages may also need to be auto-frozen
+                        // thus, we loop through them and fetch the settings
+                        packagesShouldFreeze[i] = SettingsManager.getInstance().getAutoFreezeServiceEnabled() &&
+                                LocalStorageManager.getInstance()
+                                        .stringListContains(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, packages[i]);
+                    }
+                    intent.putExtra("linkedPackages", packages);
+                    intent.putExtra("linkedPackagesShouldFreeze", packagesShouldFreeze);
+                }
+                runOnUiThread(() -> {
+                    startActivity(intent);
+                    finish();
+                });
+                return;
+            }
+
+            // If we have multiple linked apps to unfreeze before launching the main one
             if (getIntent().hasExtra("linkedPackages")) {
-                // Multiple apps should be unfrozen here
-                String[] packages = getIntent().getStringExtra("linkedPackages").split(",");
-                boolean[] packagesShouldFreeze = new boolean[packages.length];
+                String[] packages = getIntent().getStringArrayExtra("linkedPackages");
+                boolean[] packagesShouldFreeze = getIntent().getBooleanArrayExtra("linkedPackagesShouldFreeze");
 
                 for (int i = 0; i < packages.length; i++) {
-                    // Apps in linkedPackages may also need to be auto-frozen
-                    // thus, we loop through them and fetch the settings
-                    packagesShouldFreeze[i] = SettingsManager.getInstance().getAutoFreezeServiceEnabled() &&
-                            LocalStorageManager.getInstance()
-                                    .stringListContains(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, packages[i]);
-                }
-                intent.putExtra("linkedPackages", packages);
-                intent.putExtra("linkedPackagesShouldFreeze", packagesShouldFreeze);
-            }
-            startActivity(intent);
-            finish();
-            return;
-        }
-
-        // If we have multiple linked apps to unfreeze before launching the main one
-        if (getIntent().hasExtra("linkedPackages")) {
-            String[] packages = getIntent().getStringArrayExtra("linkedPackages");
-            boolean[] packagesShouldFreeze = getIntent().getBooleanArrayExtra("linkedPackagesShouldFreeze");
-
-            for (int i = 0; i < packages.length; i++) {
-                // Unfreeze everything
-                mPolicyManager.setApplicationHidden(
-                        new ComponentName(this, ShelterDeviceAdminReceiver.class),
-                        packages[i], false);
-                // Register freeze service
-                if (packagesShouldFreeze[i]) {
-                    registerAppToFreeze(packages[i]);
+                    // Unfreeze everything
+                    mPolicyManager.setApplicationHidden(
+                            new ComponentName(this, ShelterDeviceAdminReceiver.class),
+                            packages[i], false);
+                    // Register freeze service
+                    if (packagesShouldFreeze[i]) {
+                        registerAppToFreeze(packages[i]);
+                    }
                 }
             }
-        }
 
-        // Here is the main package to launch
-        String packageName = getIntent().getStringExtra("packageName");
+            // Here is the main package to launch
+            String packageName = getIntent().getStringExtra("packageName");
 
-        // Unfreeze the app first
-        mPolicyManager.setApplicationHidden(
-                new ComponentName(this, ShelterDeviceAdminReceiver.class),
-                packageName, false);
+            // Unfreeze the app first
+            mPolicyManager.setApplicationHidden(
+                    new ComponentName(this, ShelterDeviceAdminReceiver.class),
+                    packageName, false);
 
-        // Query the start intent
-        Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+            // Query the start intent
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
 
-        if (launchIntent != null) {
-            if (getIntent().getBooleanExtra("shouldFreeze", false)) {
-                registerAppToFreeze(packageName);
-            }
-            startActivity(launchIntent);
-        } else {
-            // Acknowledge the user that the application cannot be launched
-            Toast.makeText(this, getString(R.string.launch_app_fail, packageName), Toast.LENGTH_SHORT).show();
-        }
+            runOnUiThread(() -> {
+                if (launchIntent != null) {
+                    if (getIntent().getBooleanExtra("shouldFreeze", false)) {
+                        registerAppToFreeze(packageName);
+                    }
+                    startActivity(launchIntent);
+                } else {
+                    // Acknowledge the user that the application cannot be launched
+                    Toast.makeText(this, getString(R.string.launch_app_fail, packageName), Toast.LENGTH_SHORT).show();
+                }
 
-        finish();
+                finish();
+            });
+        }).start();
     }
 
     private void registerAppToFreeze(String packageName) {
@@ -561,14 +584,18 @@ public class DummyActivity extends Activity {
     private void actionFreezeAllInList() {
         if (mIsProfileOwner) {
             String[] list = getIntent().getStringArrayExtra("list");
-            for (String pkg : list) {
-                mPolicyManager.setApplicationHidden(
-                        new ComponentName(this, ShelterDeviceAdminReceiver.class),
-                        pkg, true);
-            }
-            stopService(new Intent(this, FreezeService.class)); // Stop the auto-freeze service
-            Toast.makeText(this, R.string.freeze_all_success, Toast.LENGTH_SHORT).show();
-            finish();
+            new Thread(() -> {
+                for (String pkg : list) {
+                    mPolicyManager.setApplicationHidden(
+                            new ComponentName(this, ShelterDeviceAdminReceiver.class),
+                            pkg, true);
+                }
+                runOnUiThread(() -> {
+                    stopService(new Intent(this, FreezeService.class)); // Stop the auto-freeze service
+                    Toast.makeText(this, R.string.freeze_all_success, Toast.LENGTH_SHORT).show();
+                    finish();
+                });
+            }).start();
         } else {
             finish();
         }

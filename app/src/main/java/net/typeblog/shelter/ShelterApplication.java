@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.IBinder;
 
 import net.typeblog.shelter.services.FileShuttleService;
 import net.typeblog.shelter.services.ShelterService;
@@ -13,6 +14,7 @@ import net.typeblog.shelter.util.SettingsManager;
 public class ShelterApplication extends Application {
     private ServiceConnection mShelterServiceConnection = null;
     private ServiceConnection mFileShuttleServiceConnection = null;
+    private IBinder mShelterServiceBinder = null;
 
     @Override
     public void onCreate() {
@@ -25,8 +27,27 @@ public class ShelterApplication extends Application {
         unbindShelterService();
         Intent intent = new Intent(getApplicationContext(), ShelterService.class);
         intent.putExtra("foreground", foreground);
-        bindService(intent, conn, Context.BIND_AUTO_CREATE);
-        mShelterServiceConnection = conn;
+
+        ServiceConnection wrapper = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(android.content.ComponentName name, IBinder service) {
+                mShelterServiceBinder = service;
+                conn.onServiceConnected(name, service);
+            }
+
+            @Override
+            public void onServiceDisconnected(android.content.ComponentName name) {
+                mShelterServiceBinder = null;
+                conn.onServiceDisconnected(name);
+            }
+        };
+
+        bindService(intent, wrapper, Context.BIND_AUTO_CREATE);
+        mShelterServiceConnection = wrapper;
+    }
+
+    public IBinder getShelterServiceBinder() {
+        return mShelterServiceBinder;
     }
 
     public void bindFileShuttleService(ServiceConnection conn) {

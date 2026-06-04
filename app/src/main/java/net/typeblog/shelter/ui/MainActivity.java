@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.os.UserHandle;
+import android.os.UserManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -55,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
                             new String[]{"application/vnd.android.package-archive"}),
                     this::onApkSelected);
     // Logic of the following intents are quite complicated; use the generic contract for more control
-    private final ActivityResultLauncher<Intent> mTryStartWorkService =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::tryStartWorkServiceCb);
     private final ActivityResultLauncher<Intent> mBindWorkService =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::bindWorkServiceCb);
 
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Flag to avoid double-killing our services while restarting
     private boolean mRestarting = false;
+
+    // Flag to avoid multiple simultaneous handshakes which cause redundant system toasts
+    private boolean mHandshakeInProgress = false;
 
     // Two services running in main / work profile
     private IShelterService mServiceMain = null;
@@ -92,19 +96,44 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void init() {
-        if (mStorage.getBoolean(LocalStorageManager.PREF_IS_SETTING_UP) && !Utility.isWorkProfileAvailable(this)) {
-            // System has already finished provisioning, but Shelter still
-            // needs to be brought up inside the work profile
-            mResumeSetup.launch(null);
-        } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
-            mStartSetup.launch(null);
-        } else {
-            // Initialize the settings
-            SettingsManager.getInstance().applyAll();
-            // Initialize the app (start by binding the services)
-            bindServices();
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        if (intent.getBooleanExtra("restart_bridge", false)) {
+            intent.removeExtra("restart_bridge");
+            triggerRecovery();
         }
+    }
+
+    private void init() {
+        if (getIntent().getBooleanExtra("restart_bridge", false)) {
+            // User requested explicit restart
+            getIntent().removeExtra("restart_bridge");
+            triggerRecovery();
+            return;
+        }
+
+        new Thread(() -> {
+            boolean isSettingUp = mStorage.getBoolean(LocalStorageManager.PREF_IS_SETTING_UP);
+            boolean isWorkProfileAvailable = Utility.isWorkProfileAvailable(this);
+            boolean hasSetup = mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP);
+
+            runOnUiThread(() -> {
+                if (isSettingUp && !isWorkProfileAvailable) {
+                    // System has already finished provisioning, but Shelter still
+                    // needs to be brought up inside the work profile
+                    mResumeSetup.launch(null);
+                } else if (!hasSetup) {
+                    mStartSetup.launch(null);
+                } else {
+                    // Initialize the settings
+                    SettingsManager.getInstance().applyAll();
+                    // Initialize the app (start by binding the services)
+                    bindServices();
+                }
+            });
+        }).start();
     }
 
     private void setupWizardCb(Boolean result) {
@@ -115,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindServices() {
+        if (mHandshakeInProgress) return;
+        mHandshakeInProgress = true;
+
         // Bind to the service provided by this app in main user
         // The service in main profile doesn't need to be foreground
         // because this activity will hold a ServiceConnection to the service
@@ -122,61 +154,131 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 mServiceMain = IShelterService.Stub.asInterface(service);
-                tryStartWorkService();
+
+                // DEADLOCK FIX: Try silent handshake first to avoid blocking the UI thread
+                // and to prevent the annoying "Using app in work profile" system toast.
+                if (!trySilentHandshake()) {
+                    // Fallback to traditional handshake if the profile is cold or unresponsive
+                    // Directly call bindWorkService to avoid redundant TRY_START_SERVICE intents
+                    bindWorkService();
+                } else {
+                    mHandshakeInProgress = false;
+                }
             }
 
             @Override
             public void onServiceDisconnected(ComponentName name) {
-                // dummy
+                mHandshakeInProgress = false;
             }
         }, false);
     }
 
-    private void tryStartWorkService() {
-        // Send a dummy intent to the work profile first
-        // to determine if work mode is enabled and we CAN start something in that profile.
-        // If work mode is disabled when starting this app, we will receive RESULT_CANCELED
-        // in the activity result, and we can then prompt the user to enable it
-        Intent intent = new Intent(DummyActivity.TRY_START_SERVICE);
+    /**
+     * Silent Handshake logic using a custom ContentProvider (BridgeProvider).
+     * This avoids triggering the system's IntentForwarderActivity, which causes
+     * the persistent cross-profile toast message.
+     */
+    private boolean trySilentHandshake() {
+        UserManager um = getSystemService(UserManager.class);
+        UserHandle workHandle = null;
+        for (UserHandle profile : um.getUserProfiles()) {
+            if (!profile.equals(android.os.Process.myUserHandle())) {
+                workHandle = profile;
+                break;
+            }
+        }
+
+        if (workHandle == null) return false;
+
+        try {
+            int userId = 0;
+            try {
+                userId = (int) workHandle.getClass().getMethod("getIdentifier").invoke(workHandle);
+            } catch (Exception e) {
+                userId = 10;
+            }
+
+            android.net.Uri uri = android.net.Uri.parse("content://" + userId + "@" + net.typeblog.shelter.util.BridgeProvider.AUTHORITY);
+            Bundle result = getContentResolver().call(uri, net.typeblog.shelter.util.BridgeProvider.METHOD_GET_BINDER, null, null);
+
+            if (result != null && result.getBinder("service") != null) {
+                android.util.Log.d("Shelter", "Silent handshake successful!");
+                mServiceWork = IShelterService.Stub.asInterface(result.getBinder("service"));
+                registerStartActivityProxies();
+                startKiller();
+                buildView();
+                return true;
+            }
+        } catch (Exception e) {
+            android.util.Log.w("Shelter", "Silent handshake failed: " + e.getMessage());
+        }
+
+        return false;
+    }
+
+    private final android.os.Handler mHandler = new android.os.Handler(android.os.Looper.getMainLooper());
+    private final Runnable mStartupTimeoutRunnable = () -> {
+        if (mServiceWork == null && !mRestarting) {
+            android.util.Log.e("Shelter", "Startup handshake timed out! Loading Main profile only.");
+            Toast.makeText(this, getString(R.string.startup_timeout_message), Toast.LENGTH_LONG).show();
+            buildView(); // Load UI anyway even if Work service is null
+        }
+    };
+
+    private void bindWorkService() {
+        // Try to auto-wake the profile if it is stopped or in quiet mode
+        try {
+            UserManager um = getSystemService(UserManager.class);
+            DevicePolicyManager dpm = getSystemService(DevicePolicyManager.class);
+            for (UserHandle profile : um.getUserProfiles()) {
+                if (!profile.equals(android.os.Process.myUserHandle())) {
+                    // This is likely the work profile
+                    boolean isQuiet = false;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        isQuiet = um.isQuietModeEnabled(profile);
+                    }
+
+                    if (isQuiet) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            try {
+                                dpm.getClass().getMethod("setQuietModeEnabled", UserHandle.class, boolean.class)
+                                        .invoke(dpm, profile, false);
+                            } catch (Exception e) {
+                                um.requestQuietModeEnabled(false, profile);
+                            }
+                        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            um.requestQuietModeEnabled(false, profile);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            android.util.Log.w("Shelter", "Failed to auto-wake profile: " + e.getMessage());
+        }
+
+        // Bind to the ShelterService in work profile
+        Intent intent = new Intent(DummyActivity.START_SERVICE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        
         try {
             Utility.transferIntentToProfile(this, intent);
         } catch (IllegalStateException e) {
-            // This exception implies a missing work profile, NOT a disabled work profile
-            // which means that the work profile does not even exist
-            // in the first place.
+            // No work profile exists
+            mHandshakeInProgress = false;
             mStorage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
             Toast.makeText(this, getString(R.string.work_profile_not_found), Toast.LENGTH_LONG).show();
             finish();
             return;
         }
-        mTryStartWorkService.launch(intent);
-    }
-
-    private void tryStartWorkServiceCb(ActivityResult result) {
-        if (result.getResultCode() == RESULT_OK) {
-            // RESULT_OK is from DummyActivity. The work profile is enabled!
-            bindWorkService();
-        } else {
-            // In this case, the user has been presented with a prompt
-            // to enable work mode, but we have no means to distinguish
-            // "ok" and "cancel", so the only way is to tell the user
-            // to start again.
-            Toast.makeText(this,
-                    getString(R.string.work_mode_disabled), Toast.LENGTH_LONG).show();
-            finish();
-        }
-    }
-
-    private void bindWorkService() {
-        // Bind to the ShelterService in work profile
-        Intent intent = new Intent(DummyActivity.START_SERVICE);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        Utility.transferIntentToProfile(this, intent);
+        
+        // Re-start the timeout for the binding phase
+        mHandler.postDelayed(mStartupTimeoutRunnable, 5000);
         mBindWorkService.launch(intent);
     }
 
     private void bindWorkServiceCb(ActivityResult result) {
+        mHandler.removeCallbacks(mStartupTimeoutRunnable);
+        mHandshakeInProgress = false;
         if (result.getResultCode() == RESULT_OK && result.getData() != null) {
             Bundle extra = result.getData().getBundleExtra("extra");
             IBinder binder = extra.getBinder("service");
@@ -184,20 +286,11 @@ public class MainActivity extends AppCompatActivity {
             registerStartActivityProxies();
             startKiller();
             buildView();
+        } else {
+            // Work mode might be disabled or user cancelled
+            Toast.makeText(this, getString(R.string.work_mode_disabled), Toast.LENGTH_LONG).show();
+            buildView(); // Load UI anyway
         }
-    }
-
-    private void startKiller() {
-        // Start the sticky KillerService to kill the ShelterService
-        // for us when we are removed from tasks
-        // This is a dirty hack because no lifecycle events will be
-        // called when task is removed from recents
-        Intent intent = new Intent(this, KillerService.class);
-        Bundle bundle = new Bundle();
-        bundle.putBinder("main", mServiceMain.asBinder());
-        bundle.putBinder("work", mServiceWork.asBinder());
-        intent.putExtra("extra", bundle);
-        startService(intent);
     }
 
     private void buildView() {
@@ -205,6 +298,9 @@ public class MainActivity extends AppCompatActivity {
         // Find all the views
         ViewPager2 pager = findViewById(R.id.main_pager);
         BottomNavigationView nav = findViewById(R.id.main_bottom_navigation);
+
+        // Ensure we only build once
+        if (pager.getAdapter() != null) return;
 
         // Initialize the ViewPager and the tab
         // All the remaining work will be done in the fragments
@@ -214,8 +310,11 @@ public class MainActivity extends AppCompatActivity {
             public Fragment createFragment(int position) {
                 if (position == 0) {
                     return AppListFragment.newInstance(mServiceMain, false);
-                } else if (position == 1) {
+                } else if (position == 1 && mServiceWork != null) {
                     return AppListFragment.newInstance(mServiceWork, true);
+                } else if (position == 1) {
+                    // Placeholder for when work profile is dead
+                    return new Fragment(); 
                 } else {
                     throw new RuntimeException("How did this happen?");
                 }
@@ -223,9 +322,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public int getItemCount() {
-                return 2;
+                return mServiceWork != null ? 2 : 1; // Only show 1 tab if work is dead
             }
         });
+        
+        if (mServiceWork == null) {
+            nav.setVisibility(android.view.View.GONE); // Hide navigation if only one tab
+        }
         pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -247,6 +350,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void startKiller() {
+        // Start the sticky KillerService to kill the ShelterService
+        // for us when we are removed from tasks
+        // This is a dirty hack because no lifecycle events will be
+        // called when task is removed from recents
+        Intent intent = new Intent(this, KillerService.class);
+        Bundle bundle = new Bundle();
+        bundle.putBinder("main", mServiceMain.asBinder());
+        bundle.putBinder("work", mServiceWork.asBinder());
+        intent.putExtra("extra", bundle);
+        startService(intent);
+    }
+
     // Get the service on the other side
     // remote (work) -> main
     // main -> remote (work)
@@ -254,20 +370,58 @@ public class MainActivity extends AppCompatActivity {
         return isRemote ? mServiceMain : mServiceWork;
     }
 
-    boolean servicesAlive() {
-        try {
-            mServiceMain.ping();
-        } catch (Exception e) {
-            return false;
-        }
+    private long mLastCheckTime = 0;
+    private void checkServicesAsync() {
+        // DEADLOCK FIX: Prevent checking more than once every 10 seconds to avoid redundant handshakes.
+        // Also skip if a handshake is already in progress to avoid double toasts.
+        if (System.currentTimeMillis() - mLastCheckTime < 10000 || mHandshakeInProgress) return;
+        mLastCheckTime = System.currentTimeMillis();
 
-        try {
-            mServiceWork.ping();
-        } catch (Exception e) {
-            return false;
-        }
+        new Thread(() -> {
+            boolean alive = false;
+            try {
+                java.util.concurrent.ExecutorService executor = java.util.concurrent.Executors.newSingleThreadExecutor();
+                java.util.concurrent.Future<Boolean> future = executor.submit(() -> {
+                    try {
+                        mServiceMain.ping();
+                        mServiceWork.ping();
+                        return true;
+                    } catch (Exception e) {
+                        return false;
+                    }
+                });
 
-        return true;
+                try {
+                    // Increase timeout to 5 seconds to be safe during heavy operations
+                    alive = future.get(5, java.util.concurrent.TimeUnit.SECONDS);
+                } catch (java.util.concurrent.TimeoutException e) {
+                    android.util.Log.e("Shelter", getString(R.string.bridge_deadlock_detected));
+                    alive = false;
+                } catch (InterruptedException | java.util.concurrent.ExecutionException e) {
+                    alive = false;
+                } finally {
+                    executor.shutdownNow();
+                }
+            } catch (Exception e) {
+                alive = false;
+            }
+
+            if (!alive) {
+                triggerRecovery();
+            }
+        }).start();
+    }
+
+    private void triggerRecovery() {
+        runOnUiThread(() -> {
+            if (!mRestarting) {
+                mRestarting = true;
+                doOnDestroy();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
     }
 
     private void registerStartActivityProxies() {
@@ -300,23 +454,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (mServiceMain != null && mServiceWork != null && !servicesAlive()) {
-            // First, ensure that the services are killed before we restart
-            // Otherwise, the system will reuse the services and the new activity
-            // will end up depending on those old services that we are going to kill
-            // in onDestroy()
-            doOnDestroy();
-
-            // Tell the onDestroy() logic that we are restarting. Do not kill the
-            // KillerService again because the new activity will be starting a new one
-            mRestarting = true;
-
-            // Restart the activity if the services are no longer alive
-            // This might be caused by KillerService being destroyed and
-            // bringing all the other services with it
-            Intent intent = getIntent();
-            finish();
-            startActivity(intent);
+        if (mServiceMain != null && mServiceWork != null) {
+            checkServicesAsync();
         }
     }
 
@@ -396,10 +535,15 @@ public class MainActivity extends AppCompatActivity {
             intent.setComponent(new ComponentName(this, DummyActivity.class));
             startActivity(intent);
             return true;
+        } else if (itemId == R.id.main_menu_restart) {
+            triggerRecovery();
+            return true;
         } else if (itemId == R.id.main_menu_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             Bundle extras = new Bundle();
-            extras.putBinder("profile_service", mServiceWork.asBinder());
+            if (mServiceWork != null) {
+                extras.putBinder("profile_service", mServiceWork.asBinder());
+            }
             settingsIntent.putExtra("extras", extras);
             startActivity(settingsIntent);
             return true;

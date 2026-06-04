@@ -39,6 +39,7 @@ import net.typeblog.shelter.services.IShelterService;
 import net.typeblog.shelter.services.ShelterService;
 import net.typeblog.shelter.util.ApplicationInfoWrapper;
 import net.typeblog.shelter.util.LocalStorageManager;
+import net.typeblog.shelter.util.SettingsManager;
 import net.typeblog.shelter.util.Utility;
 
 import java.util.ArrayList;
@@ -387,15 +388,14 @@ public class AppListFragment extends BaseFragment {
                 refresh();
                 return true;
             case MENU_ITEM_LAUNCH:
-                // LAUNCH and UNFREEZE_AND_LAUNCH share the same ID
-                // because the implementation of UNFREEZE_AND_LAUNCH in DummyActivity
-                // will work for both
-                Intent intent = new Intent(DummyActivity.UNFREEZE_AND_LAUNCH);
-                intent.setComponent(new ComponentName(getContext(), DummyActivity.class));
-                intent.putExtra("packageName", mSelectedApp.getPackageName());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                DummyActivity.registerSameProcessRequest(intent);
-                startActivity(intent);
+                boolean shouldFreeze = SettingsManager.getInstance().getAutoFreezeServiceEnabled() &&
+                        LocalStorageManager.getInstance()
+                                .stringListContains(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE, mSelectedApp.getPackageName());
+                try {
+                    mService.unfreezeAndLaunchApp(mSelectedApp.getPackageName(), shouldFreeze);
+                } catch (RemoteException e) {
+                    android.util.Log.e("Shelter", "Failed to unfreeze and launch app: " + e.getMessage());
+                }
                 return true;
             case MENU_ITEM_CREATE_UNFREEZE_SHORTCUT:
                 loadIconAndAddUnfreezeShortcut(mSelectedApp, null);
