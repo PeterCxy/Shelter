@@ -356,6 +356,15 @@ public class MainActivity extends AppCompatActivity {
         // fragments were never stopped and will not reload by themselves.
         LocalBroadcastManager.getInstance(this)
                 .sendBroadcast(new Intent(AppListFragment.BROADCAST_REFRESH));
+
+        // The services outlive us: they keep running in their own processes while this activity
+        // is destroyed and recreated. The proxy they hold to start activities on our behalf then
+        // points at the dead instance, and every operation needing a system dialog -- uninstall,
+        // clone -- dies with DeadObjectException inside the service, where the exception cannot
+        // even cross back to us. Re-register on the way in; it is idempotent and cheap.
+        if (mServiceMain != null && mServiceWork != null) {
+            registerStartActivityProxies();
+        }
         if (mServiceMain != null && mServiceWork != null && !servicesAlive()) {
             // First, ensure that the services are killed before we restart
             // Otherwise, the system will reuse the services and the new activity

@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.DeadObjectException;
 import android.os.IBinder;
 import android.os.RemoteException;
 
@@ -143,8 +144,15 @@ public class ShelterService extends Service {
                 intent.putExtra("callback", callbackExtra);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 DummyActivity.registerSameProcessRequest(intent);
-                if (mStartActivityProxy != null)
-                    mStartActivityProxy.startActivity(intent);
+                if (mStartActivityProxy != null) {
+                    try {
+                        mStartActivityProxy.startActivity(intent);
+                    } catch (DeadObjectException e) {
+                        // Proxy belongs to a destroyed activity; see uninstallApp().
+                        mStartActivityProxy = null;
+                        callback.callback(Activity.RESULT_CANCELED);
+                    }
+                }
             } else {
                 if (mIsProfileOwner) {
                     // We can only enable system apps in our own profile
@@ -182,8 +190,15 @@ public class ShelterService extends Service {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             DummyActivity.registerSameProcessRequest(intent);
-            if (mStartActivityProxy != null)
-                mStartActivityProxy.startActivity(intent);
+            if (mStartActivityProxy != null) {
+                try {
+                    mStartActivityProxy.startActivity(intent);
+                } catch (DeadObjectException e) {
+                    // Proxy belongs to a destroyed activity; see uninstallApp().
+                    mStartActivityProxy = null;
+                    callback.callback(Activity.RESULT_CANCELED);
+                }
+            }
         }
 
         @Override
@@ -201,8 +216,17 @@ public class ShelterService extends Service {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 DummyActivity.registerSameProcessRequest(intent);
 
-                if (mStartActivityProxy != null)
-                    mStartActivityProxy.startActivity(intent);
+                if (mStartActivityProxy != null) {
+                    try {
+                        mStartActivityProxy.startActivity(intent);
+                    } catch (DeadObjectException e) {
+                        // The activity that gave us this proxy is gone. Report it instead of
+                        // letting the exception die on the way back across the binder, which
+                        // left the caller waiting for a callback that never came.
+                        mStartActivityProxy = null;
+                        callback.callback(Activity.RESULT_CANCELED);
+                    }
+                }
             } else {
                 if (mIsProfileOwner) {
                     // This is essentially the same as disabling the system app
