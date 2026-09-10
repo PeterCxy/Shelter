@@ -69,6 +69,9 @@ public class AppListFragment extends BaseFragment {
     private IShelterService mService = null;
     private boolean mIsRemote = false;
     private boolean mRefreshing = false;
+    // A refresh asked for while one is already running would otherwise be dropped silently,
+    // and the running one may have read PackageManager before the change we were told about.
+    private boolean mRefreshPending = false;
     private Drawable mDefaultIcon = null;
     private ApplicationInfoWrapper mSelectedApp = null;
 
@@ -210,6 +213,14 @@ public class AppListFragment extends BaseFragment {
         sAppCache.clear();
     }
 
+    private void removeAppFromList(ApplicationInfoWrapper app) {
+        if (mAdapter == null) return;
+        List<ApplicationInfoWrapper> cached = sAppCache.get(mIsRemote);
+        if (cached == null) return;   // nothing cached to correct; the refresh below covers us
+        cached.removeIf((it) -> it.getPackageName().equals(app.getPackageName()));
+        mAdapter.setData(cached);
+    }
+
     private void updateAppHiddenState(ApplicationInfoWrapper app, boolean hidden) {
         // Update in-place; the same object is referenced by the adapter list and the static cache
         app.setHidden(hidden);
@@ -218,7 +229,10 @@ public class AppListFragment extends BaseFragment {
 
     void refresh() {
         if (mAdapter == null) return;
-        if (mRefreshing) return;
+        if (mRefreshing) {
+            mRefreshPending = true;
+            return;
+        }
         if (mAdapter.isMultiSelectMode()) {
             mSwipeRefresh.setRefreshing(false);
             return; // Disallow refreshing when we are multi-selecting
@@ -256,6 +270,10 @@ public class AppListFragment extends BaseFragment {
                         mSwipeRefresh.setRefreshing(false);
                         mAdapter.setData(apps);
                         mRefreshing = false;
+                        if (mRefreshPending) {
+                            mRefreshPending = false;
+                            refresh();
+                        }
                     });
                 }
             }, ((MainActivity) getActivity()).mShowAll);
@@ -505,6 +523,17 @@ public class AppListFragment extends BaseFragment {
             String message = getString(isInstall ? R.string.clone_success : R.string.uninstall_success);
             message = String.format(message, app.getLabel());
             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+            if (!isInstall) {
+                // Drop it from our own list right away instead of re-reading PackageManager,
+                // which publishes removals asynchronously and would happily hand back a list
+                // that still contains the app we just removed.
+                removeAppFromList(app);
+            }
+            // The change lands in the other profile, whose fragment may not be alive to hear
+            // the broadcast -- ViewPager2 need not keep the other page around. Its cached list
+            // would then still be the pre-clone one when the user switches to that tab, so drop
+            // the caches and let whoever is alive rebuild through the broadcast.
+            clearCache();
             LocalBroadcastManager.getInstance(getContext())
                     .sendBroadcast(new Intent(BROADCAST_REFRESH));
         } else if (result == ShelterService.RESULT_CANNOT_INSTALL_SYSTEM_APP) {

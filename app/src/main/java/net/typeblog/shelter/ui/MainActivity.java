@@ -352,6 +352,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // onPause dropped the cache, and a translucent activity on top of us means the
+        // fragments were never stopped and will not reload by themselves.
+        LocalBroadcastManager.getInstance(this)
+                .sendBroadcast(new Intent(AppListFragment.BROADCAST_REFRESH));
         if (mServiceMain != null && mServiceWork != null && !servicesAlive()) {
             // First, ensure that the services are killed before we restart
             // Otherwise, the system will reuse the services and the new activity
@@ -373,14 +377,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        // The cache is only trustworthy while we are on screen. Nothing tells the UI when
-        // state changes behind its back -- batch freeze and the auto-freeze service run in
-        // the profile and never reach us, and apps installed or removed from inside the
-        // profile are equally invisible. Serving a stale list would misreport whether an app
-        // is frozen, which is the one thing this list has to get right, so the cache is
-        // dropped whenever we leave the foreground and rebuilt on the way back in.
+    protected void onPause() {
+        super.onPause();
+        // The cache is only trustworthy while we are in front. Nothing tells the UI when state
+        // changes behind its back -- batch freeze and the auto-freeze service run in the
+        // profile and never reach us, and apps installed or removed from inside the profile are
+        // equally invisible. A stale list misreports whether an app is frozen, which is the one
+        // thing it has to get right.
+        // Note this is onPause, not onStop: DummyActivity is translucent, so the activities
+        // that do the freezing never stop us, and batch freeze would leave the list untouched.
         AppListFragment.clearCache();
     }
 

@@ -286,8 +286,18 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
     void setData(List<ApplicationInfoWrapper> apps) {
         mOrigList.clear();
         mList.clear();
-        mIconCache.clear();
         mOrigList.addAll(apps);
+        // Keep the icons we already have. They are keyed by package name and do not change
+        // when the list is merely re-read, whereas clearing forced every row to reload through
+        // the service on each refresh -- and any refresh arriving while those loads were still
+        // in flight left rows stuck on the placeholder, because by the time a load returned its
+        // holder had been rebound and it only reached the cache we had just emptied.
+        // Drop entries for apps that are gone so this cannot grow without bound.
+        synchronized (AppListAdapter.class) {
+            mIconCache.keySet().retainAll(apps.stream()
+                    .map(ApplicationInfoWrapper::getPackageName)
+                    .collect(Collectors.toSet()));
+        }
         notifyChange();
     }
 
