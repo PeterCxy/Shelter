@@ -480,6 +480,13 @@ public class MainActivity extends AppCompatActivity {
             intent.setComponent(new ComponentName(this, DummyActivity.class));
             startActivity(intent);
             return true;
+        } else if (itemId == R.id.main_menu_unfreeze_all) {
+            // Same path as batch freeze, only in the other direction
+            Intent intent = new Intent(DummyActivity.PUBLIC_FREEZE_ALL);
+            intent.putExtra(DummyActivity.EXTRA_UNFREEZE, true);
+            intent.setComponent(new ComponentName(this, DummyActivity.class));
+            startActivity(intent);
+            return true;
         } else if (itemId == R.id.main_menu_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             Bundle extras = new Bundle();

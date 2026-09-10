@@ -18,7 +18,13 @@
         android:id="@+id/main_menu_freeze_all"
         android:icon="@drawable/ic_freeze_tinted"
         android:title="@string/freeze_all"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/main_menu_unfreeze_all"
+        android:icon="@drawable/ic_unfreeze_tinted"
+        android:title="@string/unfreeze_all"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/main_menu_settings"

@@ -9,6 +9,7 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -87,6 +88,13 @@ public class DummyActivity extends Activity {
     // to reach the profile at all when our key is gone, and merely delivering it runs our
     // onCreate() there, which re-applies our policies.
     public static final String EXTRA_RECOVER_AUTH_KEY = "recover_auth_key";
+
+    // Turns the batch freeze path into a batch unfreeze. It rides on PUBLIC_FREEZE_ALL and
+    // FREEZE_ALL_IN_LIST rather than getting actions of its own: those already cross the
+    // profile boundary in the directions we need, and a new action would need a cross-profile
+    // filter that only the profile side can install -- which it cannot be asked to do until
+    // it is reachable in the first place.
+    public static final String EXTRA_UNFREEZE = "unfreeze";
 
     // A PendingIntent created by the requesting side and carried along with the request.
     // Everything about the request is attacker-controlled except this: the system stamps the
@@ -711,6 +719,7 @@ public class DummyActivity extends Activity {
         if (!mIsProfileOwner) {
             Intent intent = new Intent(FREEZE_ALL_IN_LIST);
             Utility.transferIntentToProfile(this, intent);
+            intent.putExtra(EXTRA_UNFREEZE, getIntent().getBooleanExtra(EXTRA_UNFREEZE, false));
             String[] list = LocalStorageManager.getInstance()
                     .getStringList(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE);
             intent.putExtra("list", list);
@@ -723,11 +732,29 @@ public class DummyActivity extends Activity {
 
     private void actionFreezeAllInList() {
         if (mIsProfileOwner) {
+            ComponentName admin = new ComponentName(this, ShelterDeviceAdminReceiver.class);
+
+            if (getIntent().getBooleanExtra(EXTRA_UNFREEZE, false)) {
+                // Unfreeze everything that is actually frozen, not just the auto-freeze list:
+                // apps frozen by hand would otherwise stay behind, and "unfreeze all" that
+                // leaves frozen apps around is worse than not having the button.
+                // Frozen apps are hidden, and hidden apps are absent from a plain query --
+                // which is why the first version of this loop found nothing to unfreeze.
+                int pmFlags = PackageManager.MATCH_DISABLED_COMPONENTS
+                        | PackageManager.MATCH_UNINSTALLED_PACKAGES;
+                for (ApplicationInfo app : getPackageManager().getInstalledApplications(pmFlags)) {
+                    if (mPolicyManager.isApplicationHidden(admin, app.packageName)) {
+                        mPolicyManager.setApplicationHidden(admin, app.packageName, false);
+                    }
+                }
+                Toast.makeText(this, R.string.unfreeze_all_success, Toast.LENGTH_SHORT).show();
+                finish();
+                return;
+            }
+
             String[] list = getIntent().getStringArrayExtra("list");
             for (String pkg : list) {
-                mPolicyManager.setApplicationHidden(
-                        new ComponentName(this, ShelterDeviceAdminReceiver.class),
-                        pkg, true);
+                mPolicyManager.setApplicationHidden(admin, pkg, true);
             }
             stopService(new Intent(this, FreezeService.class)); // Stop the auto-freeze service
             Toast.makeText(this, R.string.freeze_all_success, Toast.LENGTH_SHORT).show();

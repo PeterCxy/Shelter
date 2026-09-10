@@ -57,6 +57,7 @@
     <string name="search">Search</string>
     <string name="refresh">Refresh</string>
     <string name="freeze_all">Batch Freeze</string>
+    <string name="unfreeze_all">Batch Unfreeze</string>
     <string name="create_freeze_all_shortcut">Create Batch Freeze Shortcut</string>
     <string name="freeze_all_shortcut">Freeze</string>
     <string name="install_app_to_profile">Install APK into Shelter</string>
@@ -106,6 +107,7 @@
     <string name="unsupported_launcher">Cannot add shortcuts to your launcher. Please contact the developer for more information.</string>
     <string name="app_context_menu_title">Operations for %s</string>
     <string name="freeze_all_success">All apps in \"Auto Freeze\" list have been frozen successfully.</string>
+    <string name="unfreeze_all_success">All frozen apps have been unfrozen</string>
     <string name="shortcut_create_success">Shortcut created on your launcher.</string>
     <string name="request_usage_stats">Shelter needs <b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Shelter apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
     <string name="launch_app_fail">Cannot launch app %s because it has no GUI.</string>
