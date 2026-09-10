@@ -74,7 +74,7 @@ android {
 //        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         versionCode 445
-        versionName "v1.9.1-krab-v1.1a"
+        versionName "v1.9.1-krab-v1.2a"
     }
     buildTypes {
 
