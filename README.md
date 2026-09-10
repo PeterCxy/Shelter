@@ -1,10 +1,46 @@
-Shelter
+Shelter (krab fork)
 ===
 
 Shelter is a Free and Open-Source (FOSS) app that leverages the "Work Profile" feature of Android to provide an isolated space that you can install or clone apps into.
 
+This is a fork of [PeterCxy/Shelter](https://gitea.angry.im/PeterCxy/Shelter), maintained for use on a BlackBerry KEY2. It follows upstream and adds the fixes and changes listed below. Everything else in this README describes upstream Shelter and applies here too.
+
+Differences from upstream
+===
+
+Based on upstream `master` (post-1.9.1), including its SDK 35 update, the edge-to-edge work, monochrome launcher icons and translation cleanups.
+
+Fixes
+---
+
+- **Work profile setup on ROMs without a device policy role holder.** Android 14+ routes provisioning through the Device Policy Management role holder. On a ROM that declares the role but ships no holder, `managedprovisioning` refuses before it starts and the wizard could only show a bare "Setup failed". Passing `PROVISIONING_ALLOW_OFFLINE` makes the platform provision locally instead. (Same fix as upstream PR #319, found independently from logcat.)
+
+- **Adopting an existing work profile.** Uninstalling Shelter from the main profile alone leaves the profile and its profile owner intact but wipes Shelter's own state. On reinstall it used to walk into the setup wizard, which then failed because a second managed profile cannot be created. It now detects the existing profile and re-establishes the link: the profile hands its auth key back to the reinstalled copy, after you confirm it there.
+
+  The request carries a `PendingIntent`, whose creator package and uid are stamped by the system and cannot be forged, so the profile can verify the request really comes from its own installation before offering anything -- the same trick Insular (the Island fork) uses for its cross-profile shuttle. The key travels back through that same `PendingIntent`, reaching only the component the requester named, and replies must carry a single-use nonce that never leaves the main profile.
+
+- **Operations silently doing nothing after the activity is recreated.** `ShelterService` outlives `MainActivity` and held a proxy to the destroyed instance, so uninstall and clone died inside the service with `DeadObjectException` -- which cannot cross back over the binder, leaving the caller waiting for a callback that never came. The proxy is now re-registered on resume, and a dead one reports failure instead of hanging.
+
+Additions & behaviour changes
+---
+
+- Work profile tab is first and selected on startup; swiping between tabs is disabled (stray swipes are easy to trigger one-handed on a device with a keyboard).
+- App list is cached, with an explicit **Refresh** button in the toolbar, so switching tabs does not re-read PackageManager every time. The cache is dropped whenever Shelter leaves the foreground, so it can never misreport whether an app is frozen.
+- **Batch Unfreeze** toolbar button, unfreezing everything that is frozen -- not just the auto-freeze list, so apps frozen by hand are included.
+
+Build
+---
+
+- Signing credentials live in `signing.properties` (gitignored, see `signing.properties.example`) instead of being committed. Builds still work without it, falling back to the default debug keystore.
+- Fixed `versionCode`; the APK filename follows the version name.
+- Signed with this fork's own key, so it will **not** install as an update over builds from upstream or F-Droid, and vice versa.
+
 Downloads
 ===
+
+- [Releases of this fork](https://github.com/tim-ecoder/Shelter/releases) (signed by this fork's key)
+
+Upstream builds:
 
 - [F-Droid](https://f-droid.org/app/net.typeblog.shelter) (Signed by F-Droid)
 - Custom F-Droid Repository (Signed by PeterCxy, contains latest development versions):
@@ -31,6 +67,8 @@ Discussion & Support
 - Matrix Chat Room: #shelter:neo.angry.im
 
 __The GitHub Issue list and pull requests are not checked regularly. Please use the mailing list instead.__
+
+For this fork specifically, use the [GitHub issues here](https://github.com/tim-ecoder/Shelter/issues). Do not report fork-specific problems to upstream.
 
 Caveats & Known Issues
 ===
