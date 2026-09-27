@@ -45,16 +45,6 @@ Since Shelter simply makes use of the Work Profile APIs exposed by Android, ther
 
 As a result, we do not intend on adding a lot of new features to Shelter going forward, unless there is to be big changes in the capabilities of work profile APIs. Shelter is currently in an effective **maintenance mode**. Nevertheless, the author is still committed to regularly **adapting Shelter to all new Android versions as soon as possible after they are released** -- this includes upgrading the target SDK level, adapting to any new features or restrictions introduced by the new Android version, updating all dependencies, and so on. The author still relies on Shelter for his daily life, so Shelter will **not** become abandonware in the forseeable future.
 
-Contributing
-===
-
-- [Weblate](https://weblate.typeblog.net/projects/shelter/shelter/) for contributing translations
-- Sponsor me on [Patreon](https://www.patreon.com/PeterCxy)
-
-<a href="http://weblate.typeblog.net/engage/shelter/?utm_source=widget">
-  <img src="http://weblate.typeblog.net/widgets/shelter/-/shelter/multi-auto.svg" alt="Translation status" />
-</a>
-
 Uninstalling
 ===
 
