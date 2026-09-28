@@ -36,6 +36,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_BUG_REPORT = "settings_bug_report";
     private static final String SETTINGS_PATREON = "settings_patreon";
     private static final String SETTINGS_CROSS_PROFILE_FILE_CHOOSER = "settings_cross_profile_file_chooser";
+    private static final String SETTINGS_CROSS_PROFILE_PHOTO_PICKER = "settings_cross_profile_photo_picker";
     private static final String SETTINGS_BLOCK_CONTACTS_SEARCHING = "settings_block_contacts_searching";
     private static final String SETTINGS_AUTO_FREEZE_SERVICE = "settings_auto_freeze_service";
     private static final String SETTINGS_AUTO_FREEZE_DELAY = "settings_auto_freeze_delay";
@@ -48,6 +49,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private IShelterService mServiceWork = null;
 
     private CheckBoxPreference mPrefCrossProfileFileChooser = null;
+    private CheckBoxPreference mPrefCrossProfilePhotoPicker = null;
     private CheckBoxPreference mPrefBlockContactsSearching = null;
     private CheckBoxPreference mPrefAutoFreezeService = null;
     private CheckBoxPreference mPrefSkipForeground = null;
@@ -94,6 +96,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mPrefCrossProfileFileChooser = (CheckBoxPreference) findPreference(SETTINGS_CROSS_PROFILE_FILE_CHOOSER);
         mPrefCrossProfileFileChooser.setChecked(mManager.getCrossProfileFileChooserEnabled());
         mPrefCrossProfileFileChooser.setOnPreferenceChangeListener(this);
+        mPrefCrossProfilePhotoPicker = (CheckBoxPreference) findPreference(SETTINGS_CROSS_PROFILE_PHOTO_PICKER);
+        mPrefCrossProfilePhotoPicker.setChecked(mManager.getCrossProfilePhotoPickerEnabled());
+        mPrefCrossProfilePhotoPicker.setOnPreferenceChangeListener(this);
         mPrefBlockContactsSearching = (CheckBoxPreference) findPreference(SETTINGS_BLOCK_CONTACTS_SEARCHING);
         mPrefBlockContactsSearching.setChecked(mManager.getBlockContactsSearchingEnabled());
         mPrefBlockContactsSearching.setOnPreferenceChangeListener(this);
@@ -193,6 +198,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             }
 
             mManager.setCrossProfileFileChooserEnabled(true);
+            return true;
+        } else if (preference == mPrefCrossProfilePhotoPicker) {
+            mManager.setCrossProfilePhotoPickerEnabled((boolean) newState);
             return true;
         } else if (preference == mPrefBlockContactsSearching) {
             mManager.setBlockContactsSearchingEnabled((boolean) newState);

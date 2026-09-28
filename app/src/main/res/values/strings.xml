@@ -69,6 +69,8 @@
     <string name="settings_interaction">Interaction</string>
     <string name="settings_cross_profile_file_chooser">File Shuttle</string>
     <string name="settings_cross_profile_file_chooser_desc">When enabled, you\'ll be able to browse / view / pick / copy files in Shelter from main profile and vice-versa, ONLY through Documents UI (named Files or Documents on your launcher) or apps with Documents UI support (they only gain temporary access to files you choose in Documents UI), while still pertaining the filesystem isolation.</string>
+    <string name="settings_cross_profile_photo_picker">Allow file picking between profiles</string>
+    <string name="settings_cross_profile_photo_picker_desc">Lets apps access files you select from the other profile through Android\'s system pickers.</string>
     <string name="settings_block_contacts_searching">Block Contacts Searching</string>
     <string name="settings_block_contacts_searching_desc">Deny access from main profile to contacts inside work profile.</string>
     <string name="settings_payment_stub">Payment Service Stub</string>

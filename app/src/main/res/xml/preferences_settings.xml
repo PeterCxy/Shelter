@@ -11,6 +11,11 @@
             android:summary="@string/settings_cross_profile_file_chooser_desc" />
 
         <androidx.preference.CheckBoxPreference
+            android:key="settings_cross_profile_photo_picker"
+            android:title="@string/settings_cross_profile_photo_picker"
+            android:summary="@string/settings_cross_profile_photo_picker_desc" />
+
+        <androidx.preference.CheckBoxPreference
             android:key="settings_block_contacts_searching"
             android:title="@string/settings_block_contacts_searching"
             android:summary="@string/settings_block_contacts_searching_desc" />

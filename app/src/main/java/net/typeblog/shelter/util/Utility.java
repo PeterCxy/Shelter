@@ -202,7 +202,34 @@ public class Utility {
                 adminComponent,
                 actionSendFilter,
                 DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED);
-        
+
+        if (SettingsManager.getInstance().getCrossProfilePhotoPickerEnabled()) {
+            // Let personal apps open work-profile files only through user-facing pickers.
+            IntentFilter photoPickerFilter = new IntentFilter(MediaStore.ACTION_PICK_IMAGES);
+            photoPickerFilter.addCategory(Intent.CATEGORY_DEFAULT);
+            manager.addCrossProfileIntentFilter(
+                    adminComponent,
+                    photoPickerFilter,
+                    DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED
+                            | DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
+
+            IntentFilter documentPickerFilter = new IntentFilter();
+            documentPickerFilter.addAction(Intent.ACTION_GET_CONTENT);
+            documentPickerFilter.addAction(Intent.ACTION_OPEN_DOCUMENT);
+            documentPickerFilter.addCategory(Intent.CATEGORY_DEFAULT);
+            documentPickerFilter.addCategory(Intent.CATEGORY_OPENABLE);
+            try {
+                documentPickerFilter.addDataType("*/*");
+            } catch (IntentFilter.MalformedMimeTypeException ignored) {
+                // Constant MIME type.
+            }
+            manager.addCrossProfileIntentFilter(
+                    adminComponent,
+                    documentPickerFilter,
+                    DevicePolicyManager.FLAG_PARENT_CAN_ACCESS_MANAGED
+                            | DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
+        }
+
         // Browser intents are allowed from work profile to parent
         IntentFilter browsableIntentFilter = new IntentFilter(Intent.ACTION_VIEW);
         browsableIntentFilter.addCategory(Intent.CATEGORY_BROWSABLE);

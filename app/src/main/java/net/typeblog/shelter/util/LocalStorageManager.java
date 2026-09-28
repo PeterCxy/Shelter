@@ -12,6 +12,7 @@ public class LocalStorageManager {
     public static final String PREF_HAS_SETUP = "has_setup";
     public static final String PREF_AUTO_FREEZE_LIST_WORK_PROFILE = "auto_freeze_list_work_profile";
     public static final String PREF_CROSS_PROFILE_FILE_CHOOSER = "cross_profile_file_chooser";
+    public static final String PREF_CROSS_PROFILE_PHOTO_PICKER = "cross_profile_photo_picker";
     public static final String PREF_AUTH_KEY = "auth_key";
     public static final String PREF_AUTO_FREEZE_SERVICE = "auto_freeze_service";
     public static final String PREF_DONT_FREEZE_FOREGROUND = "dont_freeze_foreground";
