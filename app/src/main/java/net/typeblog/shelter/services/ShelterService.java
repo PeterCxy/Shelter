@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 
 import androidx.annotation.Nullable;
@@ -25,6 +26,8 @@ import net.typeblog.shelter.util.FileProviderProxy;
 import net.typeblog.shelter.util.UriForwardProxy;
 import net.typeblog.shelter.util.Utility;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +35,7 @@ import java.util.stream.Collectors;
 
 public class ShelterService extends Service {
     public static final int RESULT_CANNOT_INSTALL_SYSTEM_APP = 100001;
+    public static final int RESULT_CANNOT_INSTALL_CA_CERT = 100002;
 
     private static final int NOTIFICATION_ID = 0x49a11;
     private DevicePolicyManager mPolicyManager = null;
@@ -184,6 +188,31 @@ public class ShelterService extends Service {
             DummyActivity.registerSameProcessRequest(intent);
             if (mStartActivityProxy != null)
                 mStartActivityProxy.startActivity(intent);
+        }
+
+        @Override
+        public void installCaCert(UriForwardProxy uriForwarder, IAppInstallCallback callback) throws RemoteException {
+
+            // read certificate file
+            byte[] certData = {};
+            try {
+                ParcelFileDescriptor fd = uriForwarder.open("r");
+                FileInputStream fileInputStream = new FileInputStream(fd.getFileDescriptor());
+                certData = new byte[fileInputStream.available()];
+                fileInputStream.read(certData);
+                fd.close();
+            } catch (IOException e) {
+                callback.callback(RESULT_CANNOT_INSTALL_CA_CERT);
+                return;
+            }
+
+            // install certificate
+            if (mIsProfileOwner) {
+                if (!mPolicyManager.installCaCert(mAdminComponent, certData))
+                    callback.callback(RESULT_CANNOT_INSTALL_CA_CERT);
+                else
+                    callback.callback(Activity.RESULT_OK);
+            }
         }
 
         @Override

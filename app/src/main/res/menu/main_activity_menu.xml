@@ -29,6 +29,10 @@
         android:title="@string/install_app_to_profile" />
 
     <item
+        android:id="@+id/main_menu_install_ca_cert"
+        android:title="@string/install_ca_cert_to_profile" />
+
+    <item
         android:id="@+id/main_menu_documents_ui"
         android:title="@string/documents_ui" />
 
