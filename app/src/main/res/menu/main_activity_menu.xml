@@ -15,6 +15,11 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/main_menu_restart"
+        android:title="@string/restart_bridge"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/main_menu_settings"
         android:icon="@drawable/ic_settings_tinted_24dp"
         android:title="@string/settings"

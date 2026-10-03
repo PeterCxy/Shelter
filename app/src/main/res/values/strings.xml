@@ -56,6 +56,7 @@
     <!-- Action Bar Options Menu -->
     <string name="search">Search</string>
     <string name="freeze_all">Batch Freeze</string>
+    <string name="restart_bridge">Restart Bridge</string>
     <string name="create_freeze_all_shortcut">Create Batch Freeze Shortcut</string>
     <string name="freeze_all_shortcut">Freeze</string>
     <string name="install_app_to_profile">Install APK into Shelter</string>
@@ -108,6 +109,8 @@
     <string name="shortcut_create_success">Shortcut created on your launcher.</string>
     <string name="request_usage_stats">Shelter needs <b>Usage Stats</b> permission to do this. Please enable the permission for <b>BOTH OF THE TWO</b> Shelter apps shown in the dialog after you press \"Ok\". Failing to do so will cause this feature to not work properly.</string>
     <string name="launch_app_fail">Cannot launch app %s because it has no GUI.</string>
+    <string name="bridge_deadlock_detected">Bridge deadlock detected or service dead!</string>
+    <string name="startup_timeout_message">Work profile bridge timed out. Some features may be unavailable.</string>
     <string name="request_storage_manager">Shelter needs access to <b>All Files</b> for File Shuttle. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Shelter apps shown in the dialog after you press \"Ok\".</string>
     <string name="request_system_alert">Shelter needs to <b>Draw over Other Apps</b> in order for File Shuttle to function correctly. Please enable the permission for <b>BOTH OF THE TWO </b> (Personal / Work) Shelter apps shown in the dialog after you press \"Ok\". This permission is used to start File Shuttle services in the background.</string>
 

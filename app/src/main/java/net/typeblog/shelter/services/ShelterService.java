@@ -219,22 +219,94 @@ public class ShelterService extends Service {
 
         @Override
         public void freezeApp(ApplicationInfoWrapper app) {
-            if (!mIsProfileOwner)
-                throw new IllegalArgumentException("Cannot freeze app without being profile owner");
+            // DEADLOCK FIX: Policy manager calls can be synchronous and slow.
+            // Run in background to avoid blocking the Binder thread.
+            new Thread(() -> {
+                if (!mIsProfileOwner)
+                    throw new IllegalArgumentException("Cannot freeze app without being profile owner");
 
-            mPolicyManager.setApplicationHidden(
-                    mAdminComponent,
-                    app.getPackageName(), true);
+                mPolicyManager.setApplicationHidden(
+                        mAdminComponent,
+                        app.getPackageName(), true);
+            }).start();
         }
 
         @Override
         public void unfreezeApp(ApplicationInfoWrapper app) {
-            if (!mIsProfileOwner)
-                throw new IllegalArgumentException("Cannot unfreeze app without being profile owner");
+            // DEADLOCK FIX: Policy manager calls can be synchronous and slow.
+            // Run in background to avoid blocking the Binder thread.
+            new Thread(() -> {
+                if (!mIsProfileOwner)
+                    throw new IllegalArgumentException("Cannot unfreeze app without being profile owner");
 
-            mPolicyManager.setApplicationHidden(
-                    mAdminComponent,
-                    app.getPackageName(), false);
+                mPolicyManager.setApplicationHidden(
+                        mAdminComponent,
+                        app.getPackageName(), false);
+            }).start();
+        }
+
+        /**
+         * Robust unfreeze and launch implementation.
+         * Performs the heavy unfreeze (policy change) in a background thread
+         * but posts the launch intent to the Main thread to ensure system reliability.
+         */
+        @Override
+        public void unfreezeAndLaunchApp(String packageName, boolean shouldFreeze) {
+            new Thread(() -> {
+                // 1. Perform unfreeze (blocking policy call) in background
+                if (mIsProfileOwner) {
+                    try {
+                        mPolicyManager.setApplicationHidden(mAdminComponent, packageName, false);
+                    } catch (Exception e) {
+                        android.util.Log.e("Shelter", "Failed to unhide app: " + e.getMessage());
+                    }
+                }
+
+                // 2. Aggressive polling for launch intent (workaround for PackageManager delay)
+                // We poll for up to 3 seconds (30 * 100ms)
+                Intent launchIntent = null;
+                for (int i = 0; i < 30; i++) {
+                    launchIntent = mPackageManager.getLaunchIntentForPackage(packageName);
+                    if (launchIntent != null) break;
+                    try { Thread.sleep(100); } catch (InterruptedException e) { break; }
+                }
+
+                // 2b. Manual Fallback: If system still hasn't updated its cache, 
+                // try to find the launcher activity manually.
+                if (launchIntent == null) {
+                    android.util.Log.w("Shelter", "Standard launch intent failed, trying manual fallback...");
+                    Intent filter = new Intent(Intent.ACTION_MAIN);
+                    filter.addCategory(Intent.CATEGORY_LAUNCHER);
+                    filter.setPackage(packageName);
+                    List<android.content.pm.ResolveInfo> list = mPackageManager.queryIntentActivities(filter, 0);
+                    if (list != null && !list.isEmpty()) {
+                        launchIntent = new Intent(Intent.ACTION_MAIN);
+                        launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                        launchIntent.setComponent(new ComponentName(packageName, list.get(0).activityInfo.name));
+                        android.util.Log.d("Shelter", "Manual fallback successful.");
+                    }
+                }
+
+                final Intent finalLaunchIntent = launchIntent;
+
+                // 3. Post the actual launch back to the Main Thread
+                new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
+                    if (finalLaunchIntent != null) {
+                        if (shouldFreeze) {
+                            FreezeService.registerAppToFreeze(packageName);
+                            startService(new Intent(ShelterService.this, FreezeService.class));
+                        }
+                        finalLaunchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        try {
+                            startActivity(finalLaunchIntent);
+                        } catch (Exception e) {
+                            android.util.Log.e("Shelter", "StartActivity failed: " + e.getMessage());
+                        }
+                    } else {
+                        android.widget.Toast.makeText(ShelterService.this, getString(R.string.launch_app_fail, packageName), android.widget.Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }).start();
         }
 
         @Override
@@ -300,6 +372,25 @@ public class ShelterService extends Service {
         mPackageManager = getPackageManager();
         mIsProfileOwner = mPolicyManager.isProfileOwnerApp(getPackageName());
         mAdminComponent = new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class);
+
+        // Watchdog to detect main thread hangs
+        new Thread(() -> {
+            android.os.Handler mainHandler = new android.os.Handler(android.os.Looper.getMainLooper());
+            while (true) {
+                final java.util.concurrent.atomic.AtomicBoolean processed = new java.util.concurrent.atomic.AtomicBoolean(false);
+                mainHandler.post(() -> processed.set(true));
+
+                try {
+                    Thread.sleep(10000); // Check every 10 seconds
+                    if (!processed.get()) {
+                        android.util.Log.e("Shelter", "WATCHDOG: Main thread hang detected! Self-terminating to break deadlock.");
+                        System.exit(1);
+                    }
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+        }, "Shelter-Watchdog").start();
     }
 
     @Nullable

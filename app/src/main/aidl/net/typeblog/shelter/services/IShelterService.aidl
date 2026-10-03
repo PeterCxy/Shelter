@@ -20,6 +20,7 @@ interface IShelterService {
     void uninstallApp(in ApplicationInfoWrapper app, IAppInstallCallback callback);
     void freezeApp(in ApplicationInfoWrapper app);
     void unfreezeApp(in ApplicationInfoWrapper app);
+    void unfreezeAndLaunchApp(String packageName, boolean shouldFreeze);
     boolean hasUsageStatsPermission();
     boolean hasSystemAlertPermission();
     boolean hasAllFileAccessPermission();
