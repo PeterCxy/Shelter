@@ -5,6 +5,8 @@
     android:id="@+id/wizard_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:background="?android:attr/colorBackground">
 
     <!-- Header area -->
@@ -75,11 +77,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="end|center_vertical"
+        android:gravity="center_vertical"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -89,31 +93,45 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="54dp"
-            android:minWidth="100dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            app:cornerRadius="27dp"
+            android:visibility="gone"
+            android:minHeight="50dp"
+            android:minWidth="88dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:cornerRadius="25dp"
+            android:textAllCaps="false"
             android:textColor="@color/colorAccent"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="@string/wizard_back"
-            android:layout_marginEnd="12dp"/>
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            app:rippleColor="#1A009688"
+            android:text="@string/wizard_back"/>
+
+        <!-- Flexible spacer pushing the Next button to the far right -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/wizard_btn_next"
-            style="@style/Widget.MaterialComponents.Button"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="54dp"
-            android:minWidth="140dp"
-            android:paddingStart="32dp"
-            android:paddingEnd="32dp"
-            app:cornerRadius="27dp"
+            android:minHeight="50dp"
+            android:minWidth="120dp"
+            android:paddingStart="28dp"
+            android:paddingEnd="28dp"
+            app:cornerRadius="25dp"
+            app:elevation="0dp"
+            app:hoveredFocusedTranslationZ="0dp"
+            app:pressedTranslationZ="0dp"
+            android:stateListAnimator="@null"
+            android:textAllCaps="false"
             app:backgroundTint="@color/colorAccent"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            app:rippleColor="#33FFFFFF"
             android:text="@string/wizard_next"/>
     </LinearLayout>
 
