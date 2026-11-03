@@ -402,6 +402,7 @@ stateDiagram-v2
 | **Task 4.2** | E2E Android 17 Emulator Verification | Completed | Installed on `emulator-5554` (API 37); launched `MainActivity`, `SettingsActivity`, and Material 3 `SetupWizardActivity`. |
 | **Task 4.3** | R8 Optimization & Release Build | Completed | `./gradlew assembleRelease` generated `app-release-unsigned.apk` (2.19 MB) with lintVital clean. |
 | **Task 4.4** | Setup Wizard UI Modernization & Button Fix | Completed | Replaced legacy "OK" button with high-contrast, prominent "Next" button (`MaterialButton`, 50dp height, 120dp width, pill shape). Eliminated shadow clipping on press via flat unelevated button design (`app:elevation="0dp"`, `android:stateListAnimator="@null"`) and smooth rounded ripple. Repositioned "Back" button to the far left with flexible spacer pushing "Next" to the far right. Updated night mode theme for setup wizard. Verified on Android 17 emulator and physical phone. |
+| **Task 4.5** | Work Profile Destruction & Re-setup Flow | Completed | Implemented in-app work profile deletion under Settings matching Island/Insular design. Added `destroyProfile()` to `IShelterService` AIDL invoking `DevicePolicyManager.wipeData(0)` from profile owner, clearing SharedPreferences state, unbinding services, and providing re-setup dialog prompting direct relaunch of SetupWizardActivity. Includes fallback for disconnected profiles to reset local state or open system settings. |
 
 ### Artifacts & Deliverables
 
