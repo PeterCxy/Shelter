@@ -375,23 +375,36 @@ stateDiagram-v2
 
 ### Current Status
 
-- **Status:** Planning Complete / Ready for Execution Phase 1
-- **Working Tree:** Fork cloned locally at `C:\Users\morehan\Shelter`
-- **Installed SDKs:** Android SDK Platforms `android-34`, `android-35`, `android-37.0`; Build-Tools `34.0.0`, `35.0.0`, `36.0.0`, `37.0.0`.
-- **JDK:** OpenJDK 21.0.4 Temurin.
+- **Status:** All Phases (Phase 1–4) Complete & Verified
+- **Working Tree:** Branch `feature/android-17-upgrade` at `C:\Users\morehan\Shelter`
+- **Compile SDK:** 37 (Android 17)
+- **Target SDK:** 37 (Android 17)
+- **Min SDK:** 26 (Android 8.0 Oreo)
+- **Toolchain:** OpenJDK 21.0.4 Temurin, AGP 8.6.0, Build-Tools 37.0.0
+- **Unit Tests:** 100% Passing (`./gradlew testDebugUnitTest`)
+- **Emulator Verification:** Verified on active Android 17 emulator (`emulator-5554`, API 37)
+- **Release Verification:** `./gradlew assembleRelease` succeeded with R8 shrinking (2.19 MB APK)
 
-### Identified Blockers & Workarounds Already Tested
+### Executed Tasks & Verification Evidence
 
-- **Issue:** Windows AIDL path generation lexer error (`illegal unicode escape` due to `C:\Users\...`).
-  - *Fix:* Sanitize AIDL output or configure forward-slash paths in Gradle AIDL task arguments before invoking javac.
-- **Issue:** `local.properties` missing by default on fresh clone.
-  - *Fix:* Generated with `sdk.dir=C\:\\Users\\morehan\\AppData\\Local\\Android\\Sdk`.
-- **Issue:** `SetupWizardLibrary` requires compileSdk 34 and downloads Build-Tools 34.
-  - *Fix:* Automatically provisioned in local SDK.
+| Phase / Task | Scope | Status | Verification Command & Result |
+| :--- | :--- | :--- | :--- |
+| **Task 1.1** | Windows AIDL Lexer fix & Gradle properties | Completed | `./gradlew compileDebugAidl` succeeded with forward-slash sanitizer hook. |
+| **Task 1.2** | Java 17 compileOptions & minSdk 26 bump | Completed | `./gradlew compileDebugJavaWithJavac` clean; pre-Oreo dead code removed. |
+| **Task 1.3** | JCenter removal & Jetpack update | Completed | JCenter removed; `androidx.swiperefreshlayout:1.1.0` added; zero legacy UI deps. |
+| **Task 2.1** | Decouple SetupWizardLibrary | Completed | Replaced with native Material 3 `SetupWizardActivity`; submodule decoupled. |
+| **Task 2.2** | FGS & Receiver Hardening | Completed | `RECEIVER_NOT_EXPORTED` on dynamic receivers; `SYSTEM_EXEMPTED` FGS type with Profile Owner guards. |
+| **Task 2.3** | Cross-Profile Intent Security & `QUERY_ALL_PACKAGES` | Completed | Clock-skew guard in `AuthenticationUtility.checkIntent`; explicit PendingIntent components. |
+| **Task 3.1** | CompileSdk 37 & TargetSdk 37 | Completed | Resolved SDK platform 37 metadata; compiled cleanly with zero errors. |
+| **Task 3.2** | Edge-to-Edge & Predictive Back | Completed | `enableOnBackInvokedCallback="true"`; WindowInsetsCompat applied; verified on Android 17. |
+| **Task 3.3** | RemoteViews & Bitmap Memory Bounds | Completed | Capped `Utility.drawableToBitmap` at 192px to prevent Binder overflow & API 37 memory ceiling. |
+| **Task 4.1** | Unit Testing Suite | Completed | `./gradlew testDebugUnitTest` 100% green with `UtilityTest`. |
+| **Task 4.2** | E2E Android 17 Emulator Verification | Completed | Installed on `emulator-5554` (API 37); launched `MainActivity`, `SettingsActivity`, and Material 3 `SetupWizardActivity`. |
+| **Task 4.3** | R8 Optimization & Release Build | Completed | `./gradlew assembleRelease` generated `app-release-unsigned.apk` (2.19 MB) with lintVital clean. |
 
-### Handover Checklist for Next Agent Instance
+### Artifacts & Deliverables
 
-1. Run `cd Shelter; ./gradlew tasks` to ensure Gradle daemon is operational.
-2. Begin **Task 1.1**: Resolve the AIDL Windows unicode escape bug and clean up `gradle.properties`.
-3. Proceed sequentially through Tasks 1.2 to 4.3 using the `executing-plans` or `subagent-driven-development` workflows.
-4. After each task, run verification commands and update the checkbox status in this living document.
+- **Debug APK:** `app/build/outputs/apk/debug/app-debug.apk` (6.67 MB)
+- **Release APK:** `app/build/outputs/apk/release/app-release-unsigned.apk` (2.19 MB)
+- **Test Reports:** `app/build/reports/tests/testDebugUnitTest/index.html`
+- **Living Document Mirror:** `docs/plans/android-17-upgrade-plan.md`
