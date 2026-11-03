@@ -12,9 +12,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ServiceInfo;
+import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
@@ -33,6 +37,8 @@ import java.util.Map;
 // will freeze all the apps that the user launched through Unfreeze & Launch
 // during the last session.
 public class FreezeService extends Service {
+    private static final String TAG = "FreezeService";
+
     // Use a static variable and static methods to store the current list to be frozen
     // We don't need to run this service in another process, so the static context should
     // be sufficient for this. DummyActivity will use these static methods to add more apps
@@ -74,7 +80,8 @@ public class FreezeService extends Service {
             mAlarmManager.set(AlarmManager.RTC_WAKEUP,
                     System.currentTimeMillis() + ((long) SettingsManager.getInstance().getAutoFreezeDelay()) * 1000,
                     null, mFreezeWork, null);
-            registerReceiver(mUnlockReceiver, new IntentFilter(Intent.ACTION_SCREEN_ON));
+            ContextCompat.registerReceiver(FreezeService.this, mUnlockReceiver,
+                    new IntentFilter(Intent.ACTION_SCREEN_ON), ContextCompat.RECEIVER_NOT_EXPORTED);
         }
     };
 
@@ -102,7 +109,11 @@ public class FreezeService extends Service {
     private AlarmManager.OnAlarmListener mFreezeWork = () -> {
         synchronized (FreezeService.class) {
             // Cancel the unlock receiver first - the delay has passed if this work is executed
-            unregisterReceiver(mUnlockReceiver);
+            try {
+                unregisterReceiver(mUnlockReceiver);
+            } catch (IllegalArgumentException ignored) {
+                // Receiver was not registered
+            }
 
             if (sAppToFreeze.size() > 0) {
                 DevicePolicyManager dpm = getSystemService(DevicePolicyManager.class);
@@ -131,7 +142,8 @@ public class FreezeService extends Service {
         super.onCreate();
         mAlarmManager = getSystemService(AlarmManager.class);
         // This is the only thing that we do
-        registerReceiver(mLockReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
+        ContextCompat.registerReceiver(this, mLockReceiver,
+                new IntentFilter(Intent.ACTION_SCREEN_OFF), ContextCompat.RECEIVER_NOT_EXPORTED);
         // Use foreground notification to keep this service alive until screen is locked
         setForeground();
     }
@@ -139,7 +151,10 @@ public class FreezeService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mLockReceiver);
+        try {
+            unregisterReceiver(mLockReceiver);
+        } catch (IllegalArgumentException ignored) {
+        }
     }
 
     @Nullable
@@ -170,6 +185,14 @@ public class FreezeService extends Service {
         };
 
         // Show the notification and begin foreground operation
-        startForeground(NOTIFICATION_ID, notification);
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED);
+            } else {
+                startForeground(NOTIFICATION_ID, notification);
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "Failed to start foreground service", e);
+        }
     }
 }

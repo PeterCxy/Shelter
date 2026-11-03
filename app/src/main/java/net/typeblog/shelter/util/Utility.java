@@ -58,19 +58,8 @@ public class Utility {
                 .isProfileOwnerApp(context.getPackageName());
     }
 
-    // Polyfill for String.join
     public static String stringJoin(String delimiter, String[] list) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return String.join(delimiter, list);
-        } else {
-            if (list.length == 0) return "";
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < list.length - 1; i++) {
-                sb.append(list[i]).append(delimiter);
-            }
-            sb.append(list[list.length - 1]);
-            return sb.toString();
-        }
+        return String.join(delimiter, list);
     }
 
     // Affiliate an Intent to another profile (i.e. the Work profile that we manage)
@@ -236,11 +225,7 @@ public class Utility {
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES);
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_UNINSTALL_APPS);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            // Polyfill for UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES
-            // Don't use this on Android Oreo and later, it will crash
-            manager.setSecureSetting(adminComponent, Settings.Secure.INSTALL_NON_MARKET_APPS, "1");
-        }
+
 
         manager.addUserRestriction(adminComponent, UserManager.ALLOW_PARENT_PROFILE_APP_LINKING);
     }

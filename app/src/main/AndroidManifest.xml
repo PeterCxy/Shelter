@@ -36,6 +36,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_egg_round"
         android:supportsRtl="true"
+        android:enableOnBackInvokedCallback="true"
         android:theme="@style/AppTheme">
 
         <!-- The main activity for UI -->
@@ -50,7 +51,7 @@
 
         <!-- Setup Wizard -->
         <activity android:name=".ui.SetupWizardActivity"
-            android:theme="@style/SuwThemeMaterial.Light"
+            android:theme="@style/AppTheme"
             android:launchMode="singleTask"
             android:exported="false"/>
 

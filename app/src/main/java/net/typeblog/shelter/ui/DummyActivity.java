@@ -257,19 +257,9 @@ public class DummyActivity extends Activity {
 
     private void actionFinalizeProvision() {
         if (mIsProfileOwner) {
-            // Only notify the main profile on pre-Oreo
-            // After Oreo, since we use the activity-based finalization flow,
-            // the setup wizard will wait until we finish finalization before returning
-            // (Note: the actual finalization is done by common code in onCreate)
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                // This is the action used by DeviceAdminReceiver to finalize the setup
-                // The work has been finished in onCreate(), now we just have to
-                // inform the main profile about this
-                Intent intent = new Intent(FINALIZE_PROVISION);
-                // We don't need signature for this intent
-                Utility.transferIntentToProfileUnsigned(this, intent);
-                startActivity(intent);
-            }
+            // On Oreo and later, since we use the activity-based finalization flow,
+            // the setup wizard waits until we finish finalization before returning
+            // (the actual finalization is done by common code in onCreate)
             finish();
         } else {
             // Set the flag telling MainActivity that we have now finished provisioning

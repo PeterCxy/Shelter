@@ -6,7 +6,6 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -21,10 +20,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.setupwizardlib.SetupWizardLayout;
-import com.android.setupwizardlib.view.NavigationBar;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import net.typeblog.shelter.R;
 import net.typeblog.shelter.receivers.ShelterDeviceAdminReceiver;
@@ -33,10 +32,6 @@ import net.typeblog.shelter.util.LocalStorageManager;
 import net.typeblog.shelter.util.Utility;
 
 public class SetupWizardActivity extends AppCompatActivity {
-    // RESUME_SETUP should be used when MainActivity detects the provisioning has been
-    // finished by the system, but the Shelter inside the profile has never been brought up
-    // due to the user having not clicked on the notification yet (on Android 7 or lower).
-    // TODO: When we remove support for Android 7, get rid of all of these nonsense :)
     public static final String ACTION_RESUME_SETUP = "net.typeblog.shelter.RESUME_SETUP";
     public static final String ACTION_PROFILE_PROVISIONED = "net.typeblog.shelter.PROFILE_PROVISIONED";
 
@@ -83,7 +78,7 @@ public class SetupWizardActivity extends AppCompatActivity {
             finishWithResult(true);
     }
 
-    private<T extends BaseWizardFragment> void switchToFragment(T fragment, boolean reverseAnimation) {
+    private <T extends BaseWizardFragment> void switchToFragment(T fragment, boolean reverseAnimation) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(
@@ -187,9 +182,17 @@ public class SetupWizardActivity extends AppCompatActivity {
     }
 
     // ==== SetupWizard steps ====
-    private static abstract class BaseWizardFragment extends Fragment implements NavigationBar.NavigationBarListener {
+    public interface WizardNavigationListener {
+        void onNavigateBack();
+        void onNavigateNext();
+    }
+
+    private static abstract class BaseWizardFragment extends Fragment implements WizardNavigationListener {
         protected SetupWizardActivity mActivity = null;
-        protected SetupWizardLayout mWizard = null;
+        protected TextView mTitleView = null;
+        protected LinearProgressIndicator mProgressBar = null;
+        protected Button mBackButton = null;
+        protected Button mNextButton = null;
 
         protected abstract int getLayoutResource();
 
@@ -219,29 +222,47 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             View view = inflater.inflate(getLayoutResource(), container, false);
-            mWizard = view.findViewById(R.id.wizard);
-            mWizard.getNavigationBar().setNavigationBarListener(this);
-            mWizard.setLayoutBackground(ContextCompat.getDrawable(inflater.getContext(), R.color.colorAccent));
+            mTitleView = view.findViewById(R.id.wizard_title);
+            mProgressBar = view.findViewById(R.id.wizard_progress);
+            mBackButton = view.findViewById(R.id.wizard_btn_back);
+            mNextButton = view.findViewById(R.id.wizard_btn_next);
+
+            if (mBackButton != null) {
+                mBackButton.setOnClickListener(v -> onNavigateBack());
+            }
+            if (mNextButton != null) {
+                mNextButton.setOnClickListener(v -> onNavigateNext());
+            }
             return view;
         }
 
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            ViewCompat.setOnApplyWindowInsetsListener(mWizard, (v, windowInsets) -> {
+            ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
                 Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
-
-                mWizard.setDecorPaddingTop(insets.top);
-
-                NavigationBar nav = mWizard.getNavigationBar();
-                ViewGroup.LayoutParams params = nav.getLayoutParams();
-                params.height += insets.bottom;
-
-                nav.setLayoutParams(params);
-
-                nav.setPadding(nav.getPaddingLeft(), nav.getPaddingTop(), nav.getPaddingRight(), insets.bottom);
+                View header = v.findViewById(R.id.wizard_header);
+                View nav = v.findViewById(R.id.wizard_navigation_bar);
+                if (header != null) {
+                    header.setPadding(header.getPaddingLeft(), insets.top + 16, header.getPaddingRight(), header.getPaddingBottom());
+                }
+                if (nav != null) {
+                    nav.setPadding(nav.getPaddingLeft(), nav.getPaddingTop(), nav.getPaddingRight(), insets.bottom + 12);
+                }
                 return WindowInsetsCompat.CONSUMED;
             });
+        }
+
+        protected void setHeaderText(int textRes) {
+            if (mTitleView != null) {
+                mTitleView.setText(textRes);
+            }
+        }
+
+        protected void setProgressBarShown(boolean shown) {
+            if (mProgressBar != null) {
+                mProgressBar.setVisibility(shown ? View.VISIBLE : View.GONE);
+            }
         }
     }
 
@@ -252,7 +273,9 @@ public class SetupWizardActivity extends AppCompatActivity {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             TextView tv = view.findViewById(R.id.setup_wizard_generic_text);
-            tv.setText(getTextRes());
+            if (tv != null) {
+                tv.setText(getTextRes());
+            }
         }
     }
 
@@ -276,8 +299,10 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            mWizard.setHeaderText(R.string.setup_wizard_welcome);
-            mWizard.getNavigationBar().getBackButton().setVisibility(View.GONE);
+            setHeaderText(R.string.setup_wizard_welcome);
+            if (mBackButton != null) {
+                mBackButton.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -307,7 +332,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            mWizard.setHeaderText(R.string.setup_wizard_permissions);
+            setHeaderText(R.string.setup_wizard_permissions);
         }
     }
 
@@ -337,7 +362,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            mWizard.setHeaderText(R.string.setup_wizard_compatibility);
+            setHeaderText(R.string.setup_wizard_compatibility);
         }
     }
 
@@ -368,7 +393,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            mWizard.setHeaderText(R.string.setup_wizard_ready);
+            setHeaderText(R.string.setup_wizard_ready);
         }
     }
 
@@ -384,18 +409,12 @@ public class SetupWizardActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onAttach(@NonNull Context context) {
-            super.onAttach(context);
-        }
-
-        @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            mWizard.setHeaderText(R.string.setup_wizard_please_wait);
-            mWizard.setProgressBarColor(view.getContext().getColorStateList(R.color.setup_wizard_progress_bar));
-            mWizard.setProgressBarShown(true);
-            mWizard.getNavigationBar().getBackButton().setVisibility(View.GONE);
-            mWizard.getNavigationBar().getNextButton().setVisibility(View.GONE);
+            setHeaderText(R.string.setup_wizard_please_wait);
+            setProgressBarShown(true);
+            if (mBackButton != null) mBackButton.setVisibility(View.GONE);
+            if (mNextButton != null) mNextButton.setVisibility(View.GONE);
         }
     }
 
@@ -413,11 +432,10 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            mWizard.setHeaderText(R.string.setup_wizard_action_required);
-            mWizard.setProgressBarColor(view.getContext().getColorStateList(R.color.setup_wizard_progress_bar));
-            mWizard.setProgressBarShown(true);
-            mWizard.getNavigationBar().getBackButton().setVisibility(View.GONE);
-            mWizard.getNavigationBar().getNextButton().setVisibility(View.GONE);
+            setHeaderText(R.string.setup_wizard_action_required);
+            setProgressBarShown(true);
+            if (mBackButton != null) mBackButton.setVisibility(View.GONE);
+            if (mNextButton != null) mNextButton.setVisibility(View.GONE);
         }
     }
 
@@ -441,8 +459,8 @@ public class SetupWizardActivity extends AppCompatActivity {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            mWizard.setHeaderText(R.string.setup_wizard_failed);
-            mWizard.getNavigationBar().getBackButton().setVisibility(View.GONE);
+            setHeaderText(R.string.setup_wizard_failed);
+            if (mBackButton != null) mBackButton.setVisibility(View.GONE);
         }
     }
 }

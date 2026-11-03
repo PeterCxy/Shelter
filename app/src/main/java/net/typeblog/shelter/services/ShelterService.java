@@ -326,10 +326,20 @@ public class ShelterService extends Service {
     }
 
     private void setForeground() {
-        startForeground(NOTIFICATION_ID, Utility.buildNotification(this,
-                getString(R.string.app_name),
-                getString(R.string.service_title),
-                getString(R.string.service_desc),
-                R.drawable.ic_notification_white_24dp));
+        try {
+            android.app.Notification notification = Utility.buildNotification(this,
+                    getString(R.string.app_name),
+                    getString(R.string.service_title),
+                    getString(R.string.service_desc),
+                    R.drawable.ic_notification_white_24dp);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                startForeground(NOTIFICATION_ID, notification,
+                        android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED);
+            } else {
+                startForeground(NOTIFICATION_ID, notification);
+            }
+        } catch (Exception e) {
+            android.util.Log.w("ShelterService", "Failed to start foreground service", e);
+        }
     }
 }

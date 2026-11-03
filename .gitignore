@@ -80,3 +80,6 @@ fastlane/readme.md
 # temporary google play repackaging tool
 repackage/*
 !repackage/repackage.sh
+
+.idea/
+.superpowers/
