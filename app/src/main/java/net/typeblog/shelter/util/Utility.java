@@ -244,14 +244,30 @@ public class Utility {
 
     // From <https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap>
     public static Bitmap drawableToBitmap(Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable)drawable).getBitmap();
+        if (drawable == null) {
+            return null;
         }
 
         int width = drawable.getIntrinsicWidth();
         width = width > 0 ? width : 1;
         int height = drawable.getIntrinsicHeight();
         height = height > 0 ? height : 1;
+
+        // Cap dimensions to prevent Binder TransactionTooLargeException
+        // and adhere to Android 17 RemoteViews / Shortcut memory limits
+        final int MAX_SIZE = 192;
+        if (width > MAX_SIZE || height > MAX_SIZE) {
+            float ratio = Math.min((float) MAX_SIZE / width, (float) MAX_SIZE / height);
+            width = Math.max(1, Math.round(width * ratio));
+            height = Math.max(1, Math.round(height * ratio));
+        }
+
+        if (drawable instanceof BitmapDrawable) {
+            Bitmap bmp = ((BitmapDrawable) drawable).getBitmap();
+            if (bmp != null && bmp.getWidth() <= MAX_SIZE && bmp.getHeight() <= MAX_SIZE) {
+                return bmp;
+            }
+        }
 
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);

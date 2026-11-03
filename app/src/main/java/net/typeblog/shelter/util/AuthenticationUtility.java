@@ -66,7 +66,7 @@ public class AuthenticationUtility {
         } else {
             long timestamp = new Date().getTime();
             long intentTimestamp = intent.getLongExtra("timestamp", 0);
-            return timestamp - intentTimestamp < 30 * 1000 &&
+            return Math.abs(timestamp - intentTimestamp) < 30 * 1000 &&
                     sign(key, intentTimestamp).equals(intent.getStringExtra("signature"));
         }
     }

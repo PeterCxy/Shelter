@@ -326,6 +326,10 @@ public class ShelterService extends Service {
     }
 
     private void setForeground() {
+        if (!mIsProfileOwner) {
+            // Cannot use systemExempted foreground service type unless profile owner
+            return;
+        }
         try {
             android.app.Notification notification = Utility.buildNotification(this,
                     getString(R.string.app_name),
