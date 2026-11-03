@@ -401,6 +401,7 @@ stateDiagram-v2
 | **Task 4.1** | Unit Testing Suite | Completed | `./gradlew testDebugUnitTest` 100% green with `UtilityTest`. |
 | **Task 4.2** | E2E Android 17 Emulator Verification | Completed | Installed on `emulator-5554` (API 37); launched `MainActivity`, `SettingsActivity`, and Material 3 `SetupWizardActivity`. |
 | **Task 4.3** | R8 Optimization & Release Build | Completed | `./gradlew assembleRelease` generated `app-release-unsigned.apk` (2.19 MB) with lintVital clean. |
+| **Task 4.4** | Setup Wizard UI Modernization & Button Fix | Completed | Replaced legacy "OK" button with high-contrast, prominent "Next" button (`MaterialButton`, 54dp height, 140dp width, pill shape). Updated theme to `Theme.Shelter.SetupWizard` (`Theme.MaterialComponents`). Verified on Android 17 emulator and physical phone. |
 
 ### Artifacts & Deliverables
 
