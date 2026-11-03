@@ -8,6 +8,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.os.DeadObjectException;
+import android.util.Log;
+import net.typeblog.shelter.ShelterApplication;
+import net.typeblog.shelter.util.LocalStorageManager;
+
 import android.provider.Settings;
 import android.view.View;
 
@@ -41,6 +46,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_AUTO_FREEZE_DELAY = "settings_auto_freeze_delay";
     private static final String SETTINGS_SKIP_FOREGROUND = "settings_dont_freeze_foreground";
     private static final String SETTINGS_PAYMENT_STUB = "settings_payment_stub";
+    private static final String SETTINGS_DESTROY_PROFILE = "settings_destroy_profile";
+
 
     private static final int[] AUTO_FREEZE_DELAY_SECONDS = new int[]{0, 60, 2 * 60, 5 * 60};
 
@@ -68,8 +75,19 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.preferences_settings);
-        mServiceWork = IShelterService.Stub.asInterface(
-                ((Bundle) getActivity().getIntent().getParcelableExtra("extras")).getBinder("profile_service"));
+        Bundle extras = getActivity() != null && getActivity().getIntent() != null ?
+                getActivity().getIntent().getParcelableExtra("extras") : null;
+        if (extras != null && extras.getBinder("profile_service") != null) {
+            mServiceWork = IShelterService.Stub.asInterface(extras.getBinder("profile_service"));
+        }
+
+        Preference destroyProfilePref = findPreference(SETTINGS_DESTROY_PROFILE);
+        if (destroyProfilePref != null) {
+            destroyProfilePref.setOnPreferenceClickListener(pref -> {
+                showDestroyProfileDialog();
+                return true;
+            });
+        }
 
         // Set the displayed version
         try {
@@ -248,6 +266,125 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             return false;
         } else {
             return true;
+        }
+    }
+
+    private void showDestroyProfileDialog() {
+        if (getContext() == null) return;
+
+        if (mServiceWork == null) {
+            // Cannot contact work profile service
+            new AlertDialog.Builder(requireContext())
+                    .setTitle(R.string.settings_destroy_profile_failed_title)
+                    .setMessage(R.string.settings_destroy_profile_failed_message)
+                    .setPositiveButton(R.string.settings_destroy_profile_reset_state, (dialog, which) -> {
+                        resetShelterAndSetupAgain();
+                    })
+                    .setNeutralButton(R.string.settings_open_system_settings, (dialog, which) -> {
+                        try {
+                            startActivity(new Intent(Settings.ACTION_SYNC_SETTINGS));
+                        } catch (Exception e) {
+                            startActivity(new Intent(Settings.ACTION_SETTINGS));
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show();
+            return;
+        }
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.settings_destroy_profile_dialog_title)
+                .setMessage(R.string.settings_destroy_profile_dialog_message)
+                .setPositiveButton(R.string.settings_destroy_profile_confirm, (dialog, which) -> {
+                    performDestroyProfile();
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    private void performDestroyProfile() {
+        if (getContext() == null || getActivity() == null) return;
+
+        AlertDialog progressDialog = new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.settings_destroy_profile_title)
+                .setMessage(R.string.settings_destroying_profile_progress)
+                .setCancelable(false)
+                .create();
+        progressDialog.show();
+
+        new Thread(() -> {
+            if (mServiceWork != null) {
+                try {
+                    mServiceWork.destroyProfile();
+                } catch (DeadObjectException e) {
+                    // Profile owner process was killed upon profile wipe; expected behavior
+                    Log.d("SettingsFragment", "Remote service terminated on profile wipe");
+                } catch (Exception e) {
+                    Log.e("SettingsFragment", "Error calling destroyProfile", e);
+                }
+            }
+
+            // Clean up local preferences
+            LocalStorageManager storage = LocalStorageManager.getInstance();
+            storage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
+            storage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, false);
+            storage.remove(LocalStorageManager.PREF_AUTH_KEY);
+            storage.remove(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE);
+
+            // Unbind application services
+            try {
+                if (getActivity() != null && getActivity().getApplication() instanceof ShelterApplication) {
+                    ((ShelterApplication) getActivity().getApplication()).unbindShelterService();
+                    ((ShelterApplication) getActivity().getApplication()).unbindFileShuttleService();
+                }
+            } catch (Exception ignored) {}
+
+            try {
+                Thread.sleep(1200); // Give the system time to finalize user profile removal
+            } catch (InterruptedException ignored) {}
+
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    try {
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+                    } catch (Exception ignored) {}
+
+                    showSetupAgainDialog();
+                });
+            }
+        }).start();
+    }
+
+    private void showSetupAgainDialog() {
+        if (getContext() == null || getActivity() == null || getActivity().isFinishing()) return;
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.settings_destroy_profile_success_title)
+                .setMessage(R.string.settings_destroy_profile_success_message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.settings_destroy_profile_setup_again, (dialog, which) -> {
+                    resetShelterAndSetupAgain();
+                })
+                .setNegativeButton(R.string.settings_destroy_profile_close, (dialog, which) -> {
+                    getActivity().finishAffinity();
+                })
+                .show();
+    }
+
+    private void resetShelterAndSetupAgain() {
+        LocalStorageManager storage = LocalStorageManager.getInstance();
+        storage.setBoolean(LocalStorageManager.PREF_HAS_SETUP, false);
+        storage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, false);
+        storage.remove(LocalStorageManager.PREF_AUTH_KEY);
+        storage.remove(LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE);
+
+        if (getActivity() != null) {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            getActivity().finish();
         }
     }
 }

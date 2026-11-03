@@ -119,4 +119,21 @@
 
     <!-- Formats -->
     <string name="format_minutes">%d min</string>
+
+    <!-- Work Profile Management / Deletion -->
+    <string name="settings_work_profile">Work Profile Management</string>
+    <string name="settings_destroy_profile_title">Delete Work Profile</string>
+    <string name="settings_destroy_profile_summary">Permanently remove the Work Profile and reset Shelter to allow setting up again</string>
+    <string name="settings_destroy_profile_dialog_title">Delete Work Profile?</string>
+    <string name="settings_destroy_profile_dialog_message">Are you sure you want to permanently delete the Work Profile?\n\nAll applications, accounts, and data inside the Work Profile will be permanently deleted. This action cannot be undone.\n\nAfter deletion, Shelter will reset its state so you can set up a new Work Profile again.</string>
+    <string name="settings_destroy_profile_confirm">Delete</string>
+    <string name="settings_destroying_profile_progress">Deleting Work Profile… Please wait.</string>
+    <string name="settings_destroy_profile_success_title">Work Profile Deleted</string>
+    <string name="settings_destroy_profile_success_message">The Work Profile has been successfully removed from your device.\n\nWould you like to set up Shelter again now?</string>
+    <string name="settings_destroy_profile_setup_again">Set Up Again</string>
+    <string name="settings_destroy_profile_close">Close</string>
+    <string name="settings_destroy_profile_failed_title">Work Profile Not Connected</string>
+    <string name="settings_destroy_profile_failed_message">Shelter cannot communicate with the Work Profile service (it may be disabled, locked, or already removed).\n\nIf the Work Profile still exists, you can remove it in Android System Settings -> Accounts -> Work Profile.\n\nYou can also reset Shelter\'s local state now to restart the setup wizard.</string>
+    <string name="settings_destroy_profile_reset_state">Reset Shelter State</string>
+    <string name="settings_open_system_settings">System Settings</string>
 </resources>

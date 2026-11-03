@@ -44,6 +44,16 @@
     </androidx.preference.PreferenceCategory>
 
     <androidx.preference.PreferenceCategory
+        android:title="@string/settings_work_profile">
+
+        <androidx.preference.Preference
+            android:key="settings_destroy_profile"
+            android:title="@string/settings_destroy_profile_title"
+            android:summary="@string/settings_destroy_profile_summary" />
+
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
         android:title="@string/settings_about">
 
         <androidx.preference.Preference

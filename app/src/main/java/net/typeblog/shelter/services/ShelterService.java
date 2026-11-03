@@ -292,6 +292,13 @@ public class ShelterService extends Service {
                 throw new IllegalStateException("Cross-profile packages support is only available on Android 11 and later");
             mPolicyManager.setCrossProfilePackages(mAdminComponent, new HashSet<>(packages));
         }
+
+        @Override
+        public void destroyProfile() {
+            if (!mIsProfileOwner)
+                throw new IllegalStateException("Cannot destroy profile without being profile owner");
+            mPolicyManager.wipeData(0);
+        }
     };
 
     @Override
