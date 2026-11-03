@@ -264,6 +264,18 @@ public class SetupWizardActivity extends AppCompatActivity {
                 mProgressBar.setVisibility(shown ? View.VISIBLE : View.GONE);
             }
         }
+
+        protected void setNextButtonText(int textRes) {
+            if (mNextButton != null) {
+                mNextButton.setText(textRes);
+            }
+        }
+
+        protected void setBackButtonText(int textRes) {
+            if (mBackButton != null) {
+                mBackButton.setText(textRes);
+            }
+        }
     }
 
     protected static abstract class TextWizardFragment extends BaseWizardFragment {
@@ -300,6 +312,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             setHeaderText(R.string.setup_wizard_welcome);
+            setNextButtonText(R.string.wizard_next);
             if (mBackButton != null) {
                 mBackButton.setVisibility(View.GONE);
             }
@@ -333,6 +346,9 @@ public class SetupWizardActivity extends AppCompatActivity {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             setHeaderText(R.string.setup_wizard_permissions);
+            setNextButtonText(R.string.wizard_next);
+            setBackButtonText(R.string.wizard_back);
+            if (mBackButton != null) mBackButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -363,6 +379,9 @@ public class SetupWizardActivity extends AppCompatActivity {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             setHeaderText(R.string.setup_wizard_compatibility);
+            setNextButtonText(R.string.wizard_next);
+            setBackButtonText(R.string.wizard_back);
+            if (mBackButton != null) mBackButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -394,6 +413,9 @@ public class SetupWizardActivity extends AppCompatActivity {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             setHeaderText(R.string.setup_wizard_ready);
+            setNextButtonText(R.string.wizard_next);
+            setBackButtonText(R.string.wizard_back);
+            if (mBackButton != null) mBackButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -460,6 +482,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             setHeaderText(R.string.setup_wizard_failed);
+            setNextButtonText(R.string.wizard_next);
             if (mBackButton != null) mBackButton.setVisibility(View.GONE);
         }
     }

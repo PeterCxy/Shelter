@@ -53,7 +53,7 @@
 
         <!-- Setup Wizard -->
         <activity android:name=".ui.SetupWizardActivity"
-            android:theme="@style/AppTheme"
+            android:theme="@style/Theme.Shelter.SetupWizard"
             android:launchMode="singleTask"
             android:exported="false"/>
 

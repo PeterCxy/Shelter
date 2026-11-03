@@ -76,28 +76,45 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="end|center_vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/wizard_btn_back"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@android:string/cancel"
-            android:layout_marginEnd="8dp"/>
+            android:minHeight="54dp"
+            android:minWidth="100dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:cornerRadius="27dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/wizard_back"
+            android:layout_marginEnd="12dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/wizard_btn_next"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@android:string/ok"/>
+            android:minHeight="54dp"
+            android:minWidth="140dp"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            app:cornerRadius="27dp"
+            app:backgroundTint="@color/colorAccent"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/wizard_next"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

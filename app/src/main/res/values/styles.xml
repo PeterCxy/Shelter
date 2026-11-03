@@ -54,4 +54,15 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
 
+    <!-- Setup Wizard Theme using MaterialComponents -->
+    <style name="Theme.Shelter.SetupWizard" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
 </resources>

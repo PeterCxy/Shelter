@@ -8,6 +8,8 @@
     <string name="payment_stub_description">Payment Service Stub (DO NOT USE)</string>
 
     <!-- Setup Wizard -->
+    <string name="wizard_next">Next</string>
+    <string name="wizard_back">Back</string>
     <string name="setup_wizard_welcome">Welcome to Shelter</string>
     <string name="setup_wizard_welcome_text">Shelter is an application to help you run other applications in an isolated profile. It does so by making use of the <b>Work Profile</b> feature of Android.\n\nClick \"Next\", and we will provide you with more information about Shelter, and guide you through the setup process.\n\nWe suggest that you read through all of the following pages carefully.</string>
     <string name="setup_wizard_permissions">A word on permissions</string>
