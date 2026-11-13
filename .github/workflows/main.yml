@@ -1,0 +1,36 @@
+name: Build Shelter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    name: Build APK (arm32)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build APK for armeabi-v7a (arm32)
+        run: ./gradlew assembleRelease -PabiFilters=armeabi-v7a
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: shelter-arm32-a10s-apk
+          path: app/build/outputs/apk/release/app-armeabi-v7a-release.apk
