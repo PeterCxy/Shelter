@@ -1,18 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="first_run_alert">Você esta a ponto de configurar o Shelter.
-\n
-\nEste aplicativo depende de <b>Perfil de Trabalho</b> recurso do Android que permite isolar os aplicativos. Se você usa um Stock / ROM personalizado que interfere nesta funcionalidade (por ex. MIUI), você deve <b>SAIR</b> agora e <b>NÃO</b> usar este app.
-\n
-\nSe você optar por continuar, o Shelter criará Perfil de Trabalho para você.
-\n
-\nSe você é um desenvolvedor e gostaria de fazer o Shelter compatível com os ROMs como MIUI, faça Pull Request, sua ajuda é bem-vinda. O desenvolvedor não assume <b>ABSOLUTAMENTE NENHUMA RESPONSABILIDADE</b> se você quebrar seu dispositivo executando o Shelter num ROM incompatível.
-\n
-\nVocê precisará receber uma notificação para finalizar a configuração, por favor, certifique-se de que seu dispositivo <b>NÃO</b> está no modo Não Perturbe.</string>
     <string name="first_run_alert_cancel">Tchau</string>
     <string name="first_run_alert_continue">Continuar</string>
     <string name="device_admin_desc">Serviço de isolamento</string>
     <string name="device_admin_explanation">Shelter precisa tornar-se o Administrador do seu dispositivo para poder executar as tarefas de isolamento.</string>
+    <string name="payment_stub_description">Stub do Serviço de Pagamento (NÃO USE)</string>
+    <!-- Setup Wizard -->
+    <string name="setup_wizard_welcome">Bem-vindo ao Shelter</string>
+    <string name="setup_wizard_welcome_text">O Shelter é um app que ajuda a executar outros apps em um perfil isolado. Para isto ele usa o recurso de <b>Perfil de Trabalho</b> no Android.
+\n
+\nClique no \"Próximo\", para ver mais informações sobre o Shelter e o guia de como fazer o processo de configuração.
+\n
+\nSugerimos que você leia cuidadosamente todas as dicas a seguir.</string>
+    <string name="setup_wizard_permissions">Detalhes sobre as permissões</string>
+    <string name="setup_wizard_permissions_text">O Shelter, por padrão não pedirá nenhuma permissão. Entretanto, uma vez que você prossiga com o processo de configuração, ele tentará configurar o Perfil de Trabalho e tornar-se o <b>Gerenciador dele</b>.
+\n
+\nIsto concederá ao Shelter uma ampla lista de permissões dentro do perfil, comparável com um Administrador de Dispositivo, embora confinado somente neste perfil. O gerenciamento do perfil é necessário para realizar a maioria das funcionalidades do Shelter.
+\n
+\nAlgumas funcionalidades avançadas do Shelter podem exigir mais permissões <b>fora</b> do perfil de trabalho. Quando for necessário o Shelter solicitará essas permissões separadamente para ativar as funcionalidades correspondentes.</string>
+    <string name="setup_wizard_compatibility">Compatibilidade</string>
+    <string name="setup_wizard_compatibility_text">O Shelter é desenvolvido e testado em ROMs tipo AOSP do Android. Isto inclui AOSP (Android Open Source Project), Android do Google (telefones Pixel), e a <b>maioria de ROMs personalizadas de software livre baseadas em AOSP</b> como o LineageOS. Se seu telefone está rodando um dos derivativos do Android listados acima, então parabéns! O Shelter provavelmente vai funcionar corretamente no seu aparelho.
+\n
+\nAlguns fornecedores de dispositivos introduzem customizações bem invasivas no código fonte do Android, resultando em conflitos, incompatibilidades e comportamentos inesperados. Algumas ROMs personalizadas podem conter as alterações que causam incompatibilidades, mas geralmente estes casos são muito raros em comparação às modificações introduzidas pelo vendedor do telefone.
+\n
+\nO Shelter é meramente uma interface para o recurso do Perfil de Trabalho fornecido pelo sistema. Se o recurso for alterado ou não padrão, o <b>Shelter não poderá resolver o problema por si só</b>. Se você tiver uma versão do Android modificada pelo fornecedor, que é conhecida por quebrar os Perfis de Trabalho, <b>você foi avisado</b>. Você pode proceder mesmo assim, mas não há garantia de que o Shelter funcionará corretamente sob estas circunstâncias.</string>
+    <string name="setup_wizard_ready">Pronto?</string>
+    <string name="setup_wizard_ready_text">Vamos configurar o Shelter para você. Se o seu dispositivo estiver rodando Android 7 ou superior, por favor, certifique-se primeiro de que seu dispositivo <b>não</b> esteja no modo \"Não Perturbe\", porque mais tarde você precisará <b>clicar em uma notificação</b> para finalizar o processo de configuração.
+\n
+\nQuando estiver pronto, clique em \"Próximo\" para iniciar o processo de configuração.</string>
+    <string name="setup_wizard_please_wait">Por favor, aguarde…</string>
+    <string name="setup_wizard_please_wait_text">Estamos tentando criar o Perfil de Trabalho e configurar o Shelter no seu dispositivo.</string>
+    <string name="setup_wizard_failed">A configuração falhou</string>
+    <string name="setup_wizard_failed_text">Lamentamos informar que não foi possível configurar o Shelter para você.
+\n
+\nSe seu dispositivo já tinha configurado um Perfil de Trabalho, seja através uma instalação anterior do Shelter ou de outro app, você terá que remover primeiro esse perfil em Configurações -&gt; Conta, para que o Shelter possa prosseguir.
+\n
+\nSe você não cancelou a configuração manualmente, então é bem provável que a falha aconteceu devido a um sistema excessivamente modificado ou um conflito entre o Shelter e outros gerenciadores do Perfil de Trabalho. Infelizmente, não há muito que dá para fazer sobre isso.
+\n
+\nClique no \"Próximo\" para sair.</string>
+    <string name="setup_wizard_action_required">Ação necessária</string>
+    <string name="setup_wizard_action_required_text">Neste momento você deveria ver uma notificação do Shelter. <b>Por favor, clique nessa notificação</b> para terminar o processo de configuração.
+\n
+\nSe você não vê a notificação, certifique-se de que seu dispositivo não está no modo \"Não Perturbe\" e tente recuperar ela da área de notificações deslizando de cima para baixo.
+\n
+\nPara reiniciar o Shelter e começar de novo, você pode limpar os dados em Configurações do app.</string>
+    <!-- Notifications -->
     <string name="notifications_important">Importante (Shelter)</string>
     <string name="finish_provision_title">Clique aqui para concluir a configuração do Shelter</string>
     <string name="finish_provision_desc">Parabéns! Você está a um clique para concluir a configuração do Shelter.</string>
@@ -22,10 +54,12 @@
     <string name="service_auto_freeze_desc">O Shelter automaticamente suspenderá os apps executados via \"Reativar e Iniciar\" no próximo intento de bloqueio da tela.</string>
     <string name="service_auto_freeze_now">Suspender agora</string>
     <string name="app_installing">Instalando...</string>
+    <!-- Main UI -->
     <string name="fragment_profile_main">Principal</string>
     <string name="fragment_profile_work">Shelter</string>
     <string name="list_item_disabled">[Suspenso] %s</string>
     <string name="batch_operation">Operação em grupo</string>
+    <!-- App Context Menu -->
     <string name="clone_to_work_profile">Clonar ao Shelter (Perfil de trabalho)</string>
     <string name="clone_to_main_profile">Clonar ao Perfil Principal</string>
     <string name="uninstall_app">Desinstalar</string>
@@ -36,6 +70,8 @@
     <string name="unfreeze_and_launch">Reativar e Iniciar</string>
     <string name="auto_freeze">Auto-Suspender</string>
     <string name="allow_cross_profile_widgets">Permitir os widgets no Perfil Principal</string>
+    <string name="allow_cross_profile_interaction">Permitir Interação Entre Perfis</string>
+    <!-- Action Bar Options Menu -->
     <string name="search">Pesquisar</string>
     <string name="freeze_all">Suspensão em grupo</string>
     <string name="create_freeze_all_shortcut">Criar um atalho para Suspensão em grupo</string>
@@ -44,9 +80,16 @@
     <string name="install_app_to_profile_success">A instalação do app no perfil de trabalho foi concluída.</string>
     <string name="show_all">Mostrar todos os apps</string>
     <string name="show_all_warning">Administrar os apps que não estão visíveis na lista pode causar todo tipo de comportamentos inesperados e falhas. Entretanto, este recurso pode ser útil quando as ROMs personalizadas defeituosas, por padrão não descobrem todos os apps do sistema no Perfil de trabalho. Se continuar, esteja ciente disto.</string>
+    <string name="documents_ui">Abrir interface de Documentos</string>
+    <!-- Settings Options -->
     <string name="settings">Configurações</string>
+    <string name="settings_interaction">Interação</string>
     <string name="settings_cross_profile_file_chooser">Transferência de arquivos</string>
     <string name="settings_cross_profile_file_chooser_desc">Quando ativado, você será capaz de explorar / ver / escolher e copiar os arquivos de Perfil principal no Shelter e vice-versa, SOMENTE via a interface de Documentos (Arquivos ou Documentos em seu lançador) ou apps com suporte à Interface de Documentos (recebem acesso temporário aos arquivos que você escolher via interface de Documentos), enquanto ainda pertencendo ao isolamento do sistema de arquivos.</string>
+    <string name="settings_block_contacts_searching">Bloquear a pesquisa em contatos</string>
+    <string name="settings_block_contacts_searching_desc">Negar o acesso do perfil principal aos contatos no perfil de trabalho.</string>
+    <string name="settings_payment_stub">Stub do Serviço de Pagamento</string>
+    <string name="settings_payment_stub_desc">Ativa um serviço de pagamento NFC falso no perfil principal, de modo que a opção \"pagamentos por aproximação\" em Configurações - NFC fique ativada, permitindo que você escolha um app de pagamento dentro do perfil de trabalho. Isto contorna uma falha do Android que torna impossível selecionar um app de pagamento no perfil de trabalho se nenhum estiver disponível no perfil principal.</string>
     <string name="settings_services">Serviços</string>
     <string name="settings_auto_freeze_service">Serviço de Auto-Suspensão</string>
     <string name="settings_auto_freeze_service_desc">Quando a tela for bloqueada, suspende automaticamente os apps executados de \"Atalho de Reativar e Iniciar\".</string>
@@ -56,12 +99,15 @@
     <string name="settings_about">Sobre</string>
     <string name="settings_version">Versão</string>
     <string name="settings_source_code">Código-fonte</string>
-    <string name="provision_still_pending">Favor, aguarde enquanto nos preparamos perfil de Shelter para você …</string>
+    <string name="settings_translate">Traduzir</string>
+    <string name="settings_bug_report">Relatar as falhas / problemas</string>
+    <!-- Toast Long Texts -->
     <string name="provision_finished">Configuração do Shelter concluída. Reiniciando o Shelter. Se o Shelter não iniciar automaticamente, você pode executá-lo novamente do seu lançador.</string>
     <string name="msg_device_unsupported">Ou a permissão foi negada ou dispositivo não é suportado</string>
     <string name="work_profile_not_found">Perfil de trabalho não foi encontrado. Por favor reinicie o app para verificar o perfil de novo.</string>
     <string name="work_profile_provision_failed">Não foi possível criar o perfil de trabalho. Você pode tentar novamente reiniciando o Shelter.</string>
     <string name="work_mode_disabled">Parece que você desativou o Perfil de Trabalho ao iniciar o Shelter. Se você tiver ativado agora, por favor, reinicie o Shelter.</string>
+    <string name="clone_success">O app \"%s\" foi clonado com sucesso</string>
     <string name="uninstall_success">O app \"%s\" foi desinstalado com sucesso</string>
     <string name="freeze_success">O app \"%s\" foi suspenso com sucesso</string>
     <string name="unfreeze_success">O app \"%s\" foi reativado com sucesso</string>
@@ -73,54 +119,23 @@
     <string name="shortcut_create_success">Atalho foi criado no seu lançador.</string>
     <string name="request_usage_stats">O Shelter precisa de permissão para <b>Estatísticas de uso</b> para fazer isto. Por favor ative a permissão para <b>AMBOS</b> os apps do Shelter que aparecerão no diálogo após clicar no \"Ok\". Se isso não for feito, este recurso não funcionará corretamente.</string>
     <string name="launch_app_fail">Não podia iniciar o app %s porque não tem interface.</string>
-    <string name="miui_cannot_clone">A clonagem de apps fora do sistema para outro perfil não é suportado no MIUI. Por favor, clone a loja de apps do seu sistema (p.ex. a <b>Play Store</b>) ao outro perfil e depois instale os apps a partir daí.</string>
-    <string name="settings_interaction">Interação</string>
-    <string name="device_admin_toast">Tem que conceder permissão de administração do dispositivo para que Shelter funcione bem. Favor, tente de novo.</string>
-    <string name="clone_success">O app \"%s\" foi clonado com sucesso</string>
-    <string name="documents_ui">Abrir interface de Documentos</string>
-    <string name="settings_block_contacts_searching">Bloquear a pesquisa em contatos</string>
-    <string name="settings_block_contacts_searching_desc">Negar o acesso do perfil principal aos contatos no perfil de trabalho.</string>
-    <string name="settings_translate">Traduzir</string>
-    <string name="settings_bug_report">Relatar as falhas / problemas</string>
     <string name="request_storage_manager">O Shelter precisa ter acesso a <b>Todos os arquivos</b> para poder usar a Transferência de arquivos. Por favor ative a permissão para <b>AMBOS</b> (Pessoal / Trabalho) apps do Shelter que aparecerão no diálogo após clicar no \"Ok\".</string>
     <string name="request_system_alert">O Shelter precisa <b>Exibir sobre outros apps</b> para que a Transferência de arquivos funcione corretamente. Por favor ative a permissão para <b>Ambos</b> (Pessoal / Trabalho) apps do Shelter que aparecerão no diálogo após clicar no \"Ok\". Esta permissão é usada para iniciar os serviços de Transferência de arquivos em segundo plano.</string>
+    <!-- MIUI -->
+    <string name="miui_cannot_clone">A clonagem de apps fora do sistema para outro perfil não é suportado no MIUI. Por favor, clone a loja de apps do seu sistema (p.ex. a <b>Play Store</b>) ao outro perfil e depois instale os apps a partir daí.</string>
     <string name="continue_anyway">Quero continuar</string>
-    <string name="setup_wizard_welcome">Bem-vindo ao Shelter</string>
-    <string name="setup_wizard_permissions">Detalhes sobre as permissões</string>
-    <string name="setup_wizard_compatibility">Compatibilidade</string>
-    <string name="setup_wizard_ready_text">Vamos configurar o Shelter para você. Se o seu dispositivo estiver rodando Android 7 ou superior, por favor, certifique-se primeiro de que seu dispositivo <b>não</b> esteja no modo \"Não Perturbe\", porque mais tarde você precisará <b>clicar em uma notificação</b> para finalizar o processo de configuração.
+    <!-- Formats -->
+    <string name="format_minutes">%d min</string>
+    <!-- legacy / removed upstream, kept from previous translation -->
+    <string name="first_run_alert">Você esta a ponto de configurar o Shelter.
 \n
-\nQuando estiver pronto, clique em \"Próximo\" para iniciar o processo de configuração.</string>
-    <string name="setup_wizard_please_wait">Por favor, aguarde…</string>
-    <string name="setup_wizard_failed">A configuração falhou</string>
-    <string name="setup_wizard_failed_text">Lamentamos informar que não foi possível configurar o Shelter para você.
+\nEste aplicativo depende de <b>Perfil de Trabalho</b> recurso do Android que permite isolar os aplicativos. Se você usa um Stock / ROM personalizado que interfere nesta funcionalidade (por ex. MIUI), você deve <b>SAIR</b> agora e <b>NÃO</b> usar este app.
 \n
-\nSe seu dispositivo já tinha configurado um Perfil de Trabalho, seja através uma instalação anterior do Shelter ou de outro app, você terá que remover primeiro esse perfil em Configurações -&gt; Conta, para que o Shelter possa prosseguir.
+\nSe você optar por continuar, o Shelter criará Perfil de Trabalho para você.
 \n
-\nSe você não cancelou a configuração manualmente, então é bem provável que a falha aconteceu devido a um sistema excessivamente modificado ou um conflito entre o Shelter e outros gerenciadores do Perfil de Trabalho. Infelizmente, não há muito que dá para fazer sobre isso.
+\nSe você é um desenvolvedor e gostaria de fazer o Shelter compatível com os ROMs como MIUI, faça Pull Request, sua ajuda é bem-vinda. O desenvolvedor não assume <b>ABSOLUTAMENTE NENHUMA RESPONSABILIDADE</b> se você quebrar seu dispositivo executando o Shelter num ROM incompatível.
 \n
-\nClique no \"Próximo\" para sair.</string>
-    <string name="setup_wizard_action_required">Ação necessária</string>
-    <string name="setup_wizard_ready">Pronto?</string>
-    <string name="setup_wizard_please_wait_text">Estamos tentando criar o Perfil de Trabalho e configurar o Shelter no seu dispositivo.</string>
-    <string name="setup_wizard_welcome_text">O Shelter é um app que ajuda a executar outros apps em um perfil isolado. Para isto ele usa o recurso de <b>Perfil de Trabalho</b> no Android.
-\n
-\nClique no \"Próximo\", para ver mais informações sobre o Shelter e o guia de como fazer o processo de configuração.
-\n
-\nSugerimos que você leia cuidadosamente todas as dicas a seguir.</string>
-    <string name="setup_wizard_permissions_text">O Shelter, por padrão não pedirá nenhuma permissão. Entretanto, uma vez que você prossiga com o processo de configuração, ele tentará configurar o Perfil de Trabalho e tornar-se o <b>Gerenciador dele</b>.
-\n
-\nIsto concederá ao Shelter uma ampla lista de permissões dentro do perfil, comparável com um Administrador de Dispositivo, embora confinado somente neste perfil. O gerenciamento do perfil é necessário para realizar a maioria das funcionalidades do Shelter.
-\n
-\nAlgumas funcionalidades avançadas do Shelter podem exigir mais permissões <b>fora</b> do perfil de trabalho. Quando for necessário o Shelter solicitará essas permissões separadamente para ativar as funcionalidades correspondentes.</string>
-    <string name="setup_wizard_compatibility_text">O Shelter é desenvolvido e testado em ROMs tipo AOSP do Android. Isto inclui AOSP (Android Open Source Project), Android do Google (telefones Pixel), e a <b>maioria de ROMs personalizadas de software livre baseadas em AOSP</b> como o LineageOS. Se seu telefone está rodando um dos derivativos do Android listados acima, então parabéns! O Shelter provavelmente vai funcionar corretamente no seu aparelho.
-\n
-\nAlguns fornecedores de dispositivos introduzem customizações bem invasivas no código fonte do Android, resultando em conflitos, incompatibilidades e comportamentos inesperados. Algumas ROMs personalizadas podem conter as alterações que causam incompatibilidades, mas geralmente estes casos são muito raros em comparação às modificações introduzidas pelo vendedor do telefone.
-\n
-\nO Shelter é meramente uma interface para o recurso do Perfil de Trabalho fornecido pelo sistema. Se o recurso for alterado ou não padrão, o <b>Shelter não poderá resolver o problema por si só</b>. Se você tiver uma versão do Android modificada pelo fornecedor, que é conhecida por quebrar os Perfis de Trabalho, <b>você foi avisado</b>. Você pode proceder mesmo assim, mas não há garantia de que o Shelter funcionará corretamente sob estas circunstâncias.</string>
-    <string name="setup_wizard_action_required_text">Neste momento você deveria ver uma notificação do Shelter. <b>Por favor, clique nessa notificação</b> para terminar o processo de configuração.
-\n
-\nSe você não vê a notificação, certifique-se de que seu dispositivo não está no modo \"Não Perturbe\" e tente recuperar ela da área de notificações deslizando de cima para baixo.
-\n
-\nPara reiniciar o Shelter e começar de novo, você pode limpar os dados em Configurações do app.</string>
+\nVocê precisará receber uma notificação para finalizar a configuração, por favor, certifique-se de que seu dispositivo <b>NÃO</b> está no modo Não Perturbe.</string>
+    <string name="provision_still_pending">Favor, aguarde enquanto nos preparamos perfil de Shelter para você …</string>
+    <string name="device_admin_toast">Tem que conceder permissão de administração do dispositivo para que Shelter funcione bem. Favor, tente de novo.</string>
 </resources>
